@@ -1,0 +1,93 @@
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body{
+    min-width: $body-min-width;
+    background: $white;
+    font-family: $base-font-family;
+    font-size: $base-font-size;
+    line-height: $base-line-height;
+    color: $text-color;
+
+    &.search-open,
+    &.nav-open{
+        overflow: hidden;
+    }
+
+    @media only screen and (min-width: $screen-sm) {
+        font-size: floor($base-font-size * 1.29)
+    }
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: top;
+}
+
+img[src*=".svg"] {
+    width: 100%;
+    height: auto;
+}
+
+.page{
+    overflow: hidden;
+}
+
+.main{
+    padding-top: 55px;
+
+    @media only screen and (min-width: $screen-sm) {
+        padding-top: 100px;
+    }
+
+    @media only screen and (min-width: $screen-md) {
+        padding-top: 85px;
+
+        .header-extended + &{
+            padding-top: 160px;
+        }
+    }
+}
+
+.bg-stretch{
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.text-dark-blue{
+    color: $dark-blue;
+}
+
+.md-visible{
+    display: none !important;
+
+    @media only screen and (min-width: $screen-md) {
+        display: block !important;
+    }
+}
+
+.sm-visible{
+    display: none !important;
+
+    @media only screen and (min-width: $screen-sm) {
+        display: block !important;
+    }
+}
+
+.md-hidden{
+    @media only screen and (min-width: $screen-md) {
+        display: none !important;
+    }
+}

@@ -1,0 +1,12 @@
+<IfDefine CDD-GITLAB>
+    Order deny,allow
+    Deny from all
+    RedirectMatch 404 /\\.(svn|git|hg|bzr|cvs)(/|$)
+    RedirectMatch 404 /README.md$
+    AuthName "Authorization required!"
+    AuthUserFile /data/vhosts/mindtrustlabs.w3project.org/gla/.htpasswd
+    AuthType Basic
+    Require valid-user
+    Allow from 195.78.101.24/29 188.230.123.0/29 178.151.184.252
+    Satisfy Any
+</IfDefine>
