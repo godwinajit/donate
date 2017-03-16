@@ -1,0 +1,58 @@
+.nav {
+    display: none;
+    font-size: floor($base-font-size * 1.43);
+    text-transform: uppercase;
+    font-family: $font-family-condensed;
+
+    &-list {
+        display: flex;
+        justify-content: space-between;
+        @extend %listreset;
+        height: 100%;
+
+        > li {
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            position: relative;
+            &.active a {
+                color: $dark-blue;
+                font-weight: $font-weight-bold;
+
+                &:before {
+                    height: 4px;
+                }
+            }
+
+            a {
+                color: $blue;
+                &:before {
+                    content: '';
+                    position: absolute;
+                    left: 10px;
+                    right: 10px;
+                    top: 0;
+                    height: 0;
+                    background: $dark-blue;
+                    @extend %transition;
+                }
+
+                &:hover {
+                    color: $dark-blue;
+                    &:before {
+                        height: 4px;
+                    }
+                }
+            }
+        }
+    }
+
+    .accordion-slide{
+        display: none !important;
+    }
+
+    @media only screen and (min-width: $screen-md){
+        display: block;
+        height: 85px;
+    }
+}
