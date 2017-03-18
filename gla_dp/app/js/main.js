@@ -41,13 +41,13 @@ jQuery(function($) {
 
     $form.on('click', '.donate-sum-box', function(e) {
         e.preventDefault();
-        $form.find('[name^="donate-sum-"]').val(this.dataset.donateSum);
+        $form.find('[name="donate"]').val(this.dataset.donateSum);
         stepper.nextStep();
     });
 
-    $form.on('change', '[name^="donate-sum-"]', function(e) {
+    $form.on('change', '[name="donate"]', function(e) {
         var value = e.currentTarget.value;
-        $form.find('[name^="donate-sum-"]').not(e.currentTarget).val(value);
+        $form.find('[name="donate"]').not(e.currentTarget).val(value);
     });
 
     $(document).on('click', '.donate-form-nav > li', function(e) {

@@ -270,7 +270,7 @@
                                         <div class="donate-sum-choice-box02">
                                             <h3>Or donate another amount</h3>
                                             <div class="input-holder">
-                                                <input id="donate-1" name="donate-sum-1" type="number" min="1" required>
+                                                <input id="donate-1" name="donate" type="number" min="1" required>
                                                 <a href="#" class="btn btn-blue js-btn-step-next">Donate</a>
                                             </div>
                                         </div>
@@ -361,7 +361,7 @@
                                     </div>
                                     <div class="donate-sum-choice-box">
                                         <label>Your Donation</label>
-                                        <input id="donate-2" name="donate-sum-2" type="number" min="1" required>
+                                        <input id="donate-2" name="donate" type="number" min="1" required>
                                     </div>
                                     <input id="step2-submit" type="button" value="Continue" class="btn btn-default btn-continue js-btn-step-next">
                                     <div class="text-note">
@@ -498,8 +498,11 @@
                                     </div>
                                     <div class="donate-sum-choice-box">
                                         <label>Your Donation</label>
-                                        <input id="donate-3" name="donate-sum-3" type="number" min="1" required>
+                                        <input id="donate-3" name="donate" type="number" min="1" disabled="disabled">
                                     </div>
+                                    <INPUT type ="text" name="billing-cc-number" value="4111111111111111">
+                                    <INPUT type ="text" name="billing-cc-exp" value="1012">
+                                    <INPUT type ="text" name="billing-first-name" value="shenikutty">
                                     <input id="step3-submit" type="submit" value="Continue" class="btn btn-default btn-continue">
                                     <div class="text-note">
                                         <p>Global Lyme Alliance is a 501(c)(3) charitable organization. Tax ID is 06-1559393.</p>
