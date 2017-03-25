@@ -1,0 +1,19 @@
+.alert-success{
+	background-color:#dff0d8;
+	border-color:#d0e9c6;
+	margin-top: 15px;
+	border-top-color:#c1e2b3;
+	color:#2b542c;
+	min-height: 40px;
+	vertical-align: middle;
+}
+
+.alert-fail{
+	background-color:#f2dede;
+	border-color:#ebcccc;
+	color:#a94442;
+	margin-top: 15px;
+	border-top-color:#e4b9b9;
+	min-height: 40px;
+	vertical-align: middle;
+}

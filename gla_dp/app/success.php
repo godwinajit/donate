@@ -1,5 +1,3 @@
-<?php require_once 'src/handlePayments.php';?>
-<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -155,319 +153,32 @@
 		</div>
 		<form id="donate-form" action="" class="donate-form" method="post">
 			<ul class="donate-form-nav">
-				<li
-					<?php if (!$isPaymentStep) { echo 'class="step-active"';}else echo 'class="step-passed"';?>>
+				<li class="step-passed" onclick="window.location.href = 'donate.php'">
 					<a href="#"> <span class="title">Amount</span> <span class="number">1</span>
 						<span class="badge"> <span class="icon icon-check"></span>
 					</span>
 				</a>
 				</li>
-				<li
-					<?php if (!$isPaymentStep) { echo '';}else echo 'class="step-passed"';?>>
+				<li class="step-passed" onclick="window.location.href = 'donate.php'">
 					<a href="#"> <span class="title">Details</span> <span
 						class="number">2</span> <span class="badge"> <span
 							class="icon icon-check"></span>
 					</span>
 				</a>
 				</li>
-				<li <?php if ( ($isPaymentStep) && ($transactionStatus != 'SUCCESS')) { echo 'class="step-active"';}?>><a
+				<li class="step-passed" onclick="window.location.href = 'donate.php'"><a
 					href="#"> <span class="title">Payment</span> <span class="number">3</span>
 						<span class="badge"> <span class="icon icon-check"></span>
 					</span>
 				</a></li>
-				<li><a href="#"> <span class="title">Finish</span> <span
+				<li class="step-active"><a href="#"> <span class="title">Finish</span> <span
 						class="number">4</span> <span class="badge"> <span
 							class="icon icon-check"></span>
 					</span>
 				</a></li>
 			</ul>
-			<?php if ($transactionDetails){?>
-				<div class="row center-xs <?php echo $alertCSS;?> vertical-center">
-					<div id="formMessage" class="col-xs-10" style="margin-top: 10px;">
-						<?php echo $transactionDetails;?>
-					</div>
-				</div>
-			<?php }?>
-			<div
-				class="donate-form-step <?php if (!$isPaymentStep) { echo 'active'; }?>">
-				<div class="wrapper container-fluid">
-					<div class="row center-xs">
-						<div class="col-xs-11 col-md-10">
-							<h1>
-								<span>Step 1</span> Amount
-							</h1>
-							<h2>I want to make a</h2>
-							<ul class="donate-options-list">
-								<li><input type="radio" name="billing-method" id="rad01"
-									value="" checked> <label for="rad01">Single donation</label></li>
-								<li><input type="radio" name="billing-method" id="rad02"
-									value="recurring'"> <label for="rad02">Monthly donation</label>
-								</li>
-							</ul>
-							<div class="donate-sum">
-								<div class="row">
-									<div class="col-xs-12 col-md-4">
-										<a href="#" class="donate-sum-box" data-donate-sum="50">
-											<div class="image">
-												<div class="bg-stretch"
-													style="background: #fff url('images/bg-donate01.jpg') 50% 50% no-repeat; background-size: cover;"></div>
-											</div>
-											<div class="text">
-												<span class="title">Prevention</span>
-												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-													sed do.</p>
-											</div> <span class="sum">+ $50</span>
-										</a>
-									</div>
-									<div class="col-xs-12 col-md-4">
-										<a href="#" class="donate-sum-box" data-donate-sum="100">
-											<div class="image">
-												<div class="bg-stretch"
-													style="background: #fff url('images/bg-donate02.jpg') 50% 50% no-repeat; background-size: cover;"></div>
-											</div>
-											<div class="text">
-												<span class="title">Ticks</span>
-												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-													sed do.</p>
-											</div> <span class="sum">+ $100</span>
-										</a>
-									</div>
-									<div class="col-xs-12 col-md-4">
-										<a href="#" class="donate-sum-box" data-donate-sum="250">
-											<div class="image">
-												<div class="bg-stretch"
-													style="background: #fff url('images/bg-donate03.jpg') 50% 50% no-repeat; background-size: cover;"></div>
-											</div>
-											<div class="text">
-												<span class="title">Investigation</span>
-												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-													sed do.</p>
-											</div> <span class="sum">+ $250</span>
-										</a>
-									</div>
-								</div>
-								<div class="donate-sum-choice-box02">
-									<h3>Or donate another amount</h3>
-									<div class="input-holder">
-										<input id="donate-1" name="donate" type="number" min="1"
-											required> <a href="#" class="btn btn-blue js-btn-step-next">Donate</a>
-									</div>
-								</div>
-							</div>
-							<a href="#"
-								class="btn btn-primary btn-primary-green btn-continue">Donate by
-								mail</a>
-							<div class="text-note">
-								<p>Global Lyme Alliance is a 501(c)(3) charitable organization.
-									Tax ID is 06-1559393.</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="donate-form-step">
-				<div class="wrapper container-fluid">
-					<div class="row center-xs">
-						<div class="col-xs-11 col-md-10">
-							<h1>
-								<span>Step 2</span> Details
-							</h1>
-							<div class="toggle-content expanded">
-								<a href="#" class="toggle-content-opener">Your information <span
-									class="icon icon-plus"></span><span class="icon icon-minus"></span></a>
-								<div class="toggle-content-slide">
-									<div class="row">
-										<div class="col-xs-12 col-md-6 col-md-short">
-											<label>Title</label> <select name="merchant-defined-field-3">
-												<option value="" class="hideme">Select one</option>
-												<option value="Mr.">Mr.</option>
-												<option value="Mrs.">Mrs.</option>
-												<option value="Ms.">Ms.</option>
-												<option value="Dr.">Dr.</option>
-											</select> <label for="input01">* First name</label> <input
-												type="text" id="input01" name="merchant-defined-field-1"
-												required> <label for="input02">* Last name</label> <input
-												type="text" id="input02" name="merchant-defined-field-2"
-												required> <label for="input022">* Email</label> <input
-												type="email" id="input022" name="email" required>
-											<div class="checkbox-row">
-												<input type="checkbox" id="check01"
-													name="merchant-defined-field-4" value="Y">
-												<label for="check01">This is a corporate donation</label>
-											</div>
-											<div class="checkbox-row">
-												<input type="checkbox" id="check02"
-													name="merchant-defined-field-5"
-													value="Y"> <label for="check02">My
-													company has a <a href="#">matching gift program</a>
-												</label>
-											</div>
-											<label for="input03">Company name</label> 
-											<input type="text"  id="input03" name="company"> 
-												<label>Country</label>
-												<select name="country" required>
-												<option class="hideme">Select one</option>
-												<option value="USA">United States of America</option>
-											</select>
-										</div>
-										<div class="col-xs-12 col-md-6 col-md-short">
-											<label for="input04">* Address #1</label> <input type="text"
-												id="input04" name="address1" required> <label for="input05">Address
-												#2</label> <input type="text" id="input05" name="address2">
-											<label for="input06">* City</label> <input type="text"
-												id="input06" name="city" required> <label>* State/Province</label>
-											<select name="state" required>
-												<option value="" class="hideme">Select one</option>
-												<?php getStates();?>
-											</select> <label for="input07">* Zip/Postal code</label> <input
-												type="text" name="postal" name="input07" required> <label
-												for="input08">Phone number</label> <input type="tel"
-												id="input08" name="phone">
-												<label>Type of Tribute</label>
-											<select name="merchant-defined-field-9">
-												<option value="" class="hideme">Select one</option>
-												<option value="M">In Memory of</option>
-												<option value="H">In Honour of</option>
-											</select>
-										</div>
-										<div class="form-note" style="display: none">* Complete the
-											required fields</div>
-									</div>
-								</div>
-							</div>
-							<div class="toggle-content">
-								<a href="#" class="toggle-content-opener">IS THIS DONATION IN
-									tribute OF SOMEONE?<span class="icon icon-plus"></span><span
-									class="icon icon-minus"></span> <span class="answer md-visible">Yes</span>
-								</a>
-								<div class="toggle-content-slide">
-									<div class="row">
-										<div class="col-xs-12 col-md-6  col-md-short">
-											<label for="input09">* First name</label> <input type="text"
-												id="input09" name="merchant-defined-field-6" required> <label
-												for="input10">Last Name</label> <input type="text"
-												id="input10" name="merchant-defined-field-7">
-										</div>
-										<div class="form-note" style="display: none">* Complete the
-											required fields</div>
-									</div>
-								</div>
-							</div>
-							<div class="donate-sum-choice-box">
-								<label>Your Donation</label> <input id="donate-2" name="donate"
-									type="number" min="1" required>
-							</div>
-							<input id="step2-submit" type="button" value="Continue"
-								class="btn btn-default btn-continue js-btn-step-next">
-							<div class="text-note">
-								<p>Global Lyme Alliance is a 501(c)(3) charitable organization.
-									Tax ID is 06-1559393.</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="donate-form-step <?php if (($isPaymentStep)) { echo 'active';}?>">
-				<div class="wrapper container-fluid">
-					<div class="row center-xs">
-						<div class="col-xs-11 col-md-10">
-							<h1>
-								<span>Step 3</span> Payment
-							</h1>
-							<div class="row">
-								<div class="col-xs-12 col-md-6  col-md-short">
-									<div class="toggle-content expanded static-expand">
-										<a href="#" class="toggle-content-opener">Credit card
-											information <span class="icon icon-plus"></span><span
-											class="icon icon-minus"></span>
-										</a>
-										<div class="toggle-content-slide">
-											<label for="input11">* Card holder first name <img
-												src="images/img-cards.jpg" alt=""></label> <input
-												type="text" id="input11" name="billing-first-name" required>
-											<label for="input111">* Card holder last name </label> <input
-												type="text" id="input111" name="billing-last-name" required>
-											<label for="input12">* Card account number</label> <input
-												type="text" id="input12" name="billing-cc-number" required>
-											<label>* Expiration date <i>( Format: MMYY )</i></label> <input
-												type="text" id="input12" name="billing-cc-exp" required>
-											<!-- 
-                                                    <div class="row">
-                                                       <div class="col-xs-6">
-                                                            <select name="step3_card_exp_date">
-                                                                <option class="hideme">Day</option>
-                                                                <option>1</option>
-                                                                <option>2</option>
-                                                                <option>3</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-xs-6">
-                                                            <select name="step3_card_exp_year">
-                                                                <option class="hideme">Year</option>
-                                                                <option>2015</option>
-                                                                <option>2016</option>
-                                                                <option>2017</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                     -->
-											<label for="input13">* Security code click <a href="#">here</a>
-												for CVV2 information
-											</label> <input type="password" id="input13"
-												name="billing-cvv">
-										</div>
-									</div>
-								</div>
-								<div class="col-xs-12 col-md-6  col-md-short">
-									<div class="toggle-content expanded static-expand">
-										<a href="#" class="toggle-content-opener">Billing address <span
-											class="icon icon-plus"></span><span class="icon icon-minus"></span></a>
-										<div class="toggle-content-slide">
-											<div class="checkbox-row">
-												<input type="checkbox" id="check03"
-													name="merchant-defined-field-10"> <label for="check03">Same as
-													mailing address</label>
-											</div>
-											<label for="input14">* Address</label> <input type="text"
-												id="input14" name="billing-address1" required> 
-												<label for="input15">* Country</label>
-												<select name="billing-country" required>
-												<option class="hideme">Select one</option>
-												<option value="USA">United States of America</option>
-											</select>
-												<label for="input16">* City</label> <input type="text" id="input16"
-												name="billing-city" required> <label>* State/Province</label>
-											<select name="billing-state" required>
-												<option value="" class="hideme">Select one</option>
-												<?php getStates();?>
-											</select> <label for="input17">* Zip/Postal code</label> <input
-												type="text" id="input17" name="billing-postal" required>
-											<div class="checkbox-row">
-												<input type="checkbox" id="check04" checked
-													name="merchant-defined-field-8" required
-													value="Accept Add Information"> <label for="check04">I
-													understand that by submitting a donation, my information
-													will be automatically added to GLA's secure database.</label>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="donate-sum-choice-box">
-								<label>Your Donation</label> <input id="donate-3" name="donate"
-									type="number" min="1" disabled="disabled">
-							</div>
-							<input id="step3-submit" type="submit" value="Continue"
-								class="btn btn-default btn-continue">
-							<div class="text-note">
-								<p>Global Lyme Alliance is a 501(c)(3) charitable organization.
-									Tax ID is 06-1559393.</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="donate-form-step">
+			
+			<div class="donate-form-step active">
 				<div class="wrapper container-fluid">
 					<div class="row center-xs">
 						<div class="col-xs-11 col-md-10">
@@ -495,7 +206,7 @@
 								<div class="donation-summary-box">
 									<div class="total-sum">
 										<span class="title">Total donated</span> <strong
-											class="amount">$250</strong>
+											class="amount"><?php echo $_GET ['amount'];?></strong>
 									</div>
 									<div class="box-holder">
 										<h3>Lorem ipsum dolor</h3>
