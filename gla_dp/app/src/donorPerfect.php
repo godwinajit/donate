@@ -1,39 +1,43 @@
 <?php
 class DonorPerfect {
+	
 	protected $dpAPIKey;
-	public function __construct($dpAPIKey) {
+	protected $log;
+	
+	public function __construct($dpAPIKey, $log) {
 		$this->dpAPIKey = $dpAPIKey;
+		$this->log = $log;
 	}
 	function saveDonorDetails($transactionDetails) {
 		$donorDetails = $this->saveDonor ( $transactionDetails );
 		
-		log_dp ( "New Donor Id is " . $donorDetails [0] );
+		$this->log->info( "New Donor Id is ". $donorDetails [0] );
 		
 		$donorGiftDetails = $this->saveDonorGifts ( $transactionDetails, $donorDetails [0] );
 		
-		log_dp ( "New Gift id is " . $donorGiftDetails [0] );
+		$this->log->info( "New Gift id is ". $donorGiftDetails [0] );
 		
 		$donorPaymentDetails = $this->saveDonorPayment ( $transactionDetails, $donorDetails [0], $donorGiftDetails [0] );
 		
-		log_dp ( "New payment name is " . $donorPaymentDetails->{'name'} [0] );
-		log_dp ( "New payment id is " . $donorPaymentDetails->{'id'} [0] );
-		log_dp ( "New payment value is " . $donorPaymentDetails->{'value'} [0] );
+		$this->log->info( "New payment name is ". $donorPaymentDetails->{'name'} [0] );
+		$this->log->info( "New payment id is ". $donorPaymentDetails->{'id'} [0] );
+		$this->log->info( "New payment value is ". $donorPaymentDetails->{'value'} [0] );
 	}
 	function saveDonor($transactionDetails) {
 		$billingetails = $transactionDetails->{'billing'};
 		
-		log_dp ( "Title :" . $transactionDetails->{'merchant-defined-field-3'} );
-		log_dp ( "First Name :" . $transactionDetails->{'merchant-defined-field-1'} );
-		log_dp ( "Last Name :" . $transactionDetails->{'merchant-defined-field-2'} );
-		log_dp ( "Email :" . $billingetails->{'email'} );
-		log_dp ( "ORG_REC :" . $transactionDetails->{'merchant-defined-field-4'} );
-		log_dp ( "country :" . $transactionDetails->{'descriptor-country'} );
-		log_dp ( "address1 :" . $transactionDetails->{'descriptor-address'} );
-		log_dp ( "address2 :" . $transactionDetails->{'merchant-defined-field-11'} );
-		log_dp ( "city :" . $transactionDetails->{'descriptor-city'} );
-		log_dp ( "state :" . $transactionDetails->{'descriptor-state'} );
-		log_dp ( "postal :" . $transactionDetails->{'descriptor-postal'} );
-		log_dp ( "phone :" . $transactionDetails->{'descriptor-phone'} );
+		$this->log->info( "Title :" . $transactionDetails->{'merchant-defined-field-3'} );
+		$this->log->info( "First Name :" . $transactionDetails->{'merchant-defined-field-1'} );
+		$this->log->info( "Last Name :" . $transactionDetails->{'merchant-defined-field-2'} );
+		$this->log->info( "Email :" . $billingetails->{'email'} );
+		$this->log->info( "ORG_REC :" . $transactionDetails->{'merchant-defined-field-4'} );
+		$this->log->info( "country :" . $transactionDetails->{'descriptor-country'} );
+		$this->log->info( "address1 :" . $transactionDetails->{'descriptor-address'} );
+		$this->log->info( "address2 :" . $transactionDetails->{'merchant-defined-field-11'} );
+		$this->log->info( "city :" . $transactionDetails->{'descriptor-city'} );
+		$this->log->info( "state :" . $transactionDetails->{'descriptor-state'} );
+		$this->log->info( "postal :" . $transactionDetails->{'descriptor-postal'} );
+		$this->log->info( "phone :" . $transactionDetails->{'descriptor-phone'} );
 		
 		$title = $transactionDetails->{'merchant-defined-field-3'} ? $transactionDetails->{'merchant-defined-field-3'} : '';
 		$firstName = $transactionDetails->{'merchant-defined-field-1'} ? $transactionDetails->{'merchant-defined-field-1'} : '';
@@ -80,16 +84,15 @@ class DonorPerfect {
 		
 		$request = urlencode ( $request );
 		
-		log_dp ( "Donor save Request :" . $request );
+		$this->log->info( "Donor save Request :". $request );
 		$donorDetails;
 		try {
 			$donorDetails = simplexml_load_file ( $request );
 		} catch ( Exception $e ) {
-			log_dp ( $e );
+			$this->log->error( "Unable to Save Donor",$e );
 		}
 		
-		log_dp ( "Donor Save Information is " );
-		log_dp ( $donorDetails );
+		$this->log->info( "Donor Save Information is ", get_object_vars($donorDetails) );
 		
 		return $donorDetails->{'record'}->{'field'} [0]->attributes ()->{'value'};
 	}
@@ -101,11 +104,11 @@ class DonorPerfect {
 		$gfname = $transactionDetails->{'merchant-defined-field-6'} ? $transactionDetails->{'merchant-defined-field-6'} : '';
 		$glname = $transactionDetails->{'merchant-defined-field-7'} ? $transactionDetails->{'merchant-defined-field-7'} : '';
 		
-		log_dp ( "Date :" . $date );
-		log_dp ( "Amount :" . $amount );
-		log_dp ( "Memory :" . $memoryHonor );
-		log_dp ( "First name :" . $gfname );
-		log_dp ( "Last Name :" . $glname );
+		$this->log->info( "Date :" . $date );
+		$this->log->info( "Amount :" . $amount );
+		$this->log->info( "Memory :" . $memoryHonor );
+		$this->log->info( "First name :" . $gfname );
+		$this->log->info( "Last Name :" . $glname );
 		
 		$request = "https://www.donorperfect.net/prod/xmlrequest.asp?apikey=" . $this->dpAPIKey;
 		$request .= "&action=dp_savegift&params=";
@@ -135,19 +138,18 @@ class DonorPerfect {
 		$request .= "null,"; // @old_amount
 		$request .= "'GLA API User'"; // @user_id
 		
-		log_dp ( "Gift save Request before encode:" . $request );
+		$this->log->info( "Gift save Request before encode:". $request );
 		
 		$request = urlencode ( $request );
 		
-		log_dp ( "Gift save Request :" . $request );
+		$this->log->info( "Gift save Request :". $request );
 		
 		try {
 			$giftDetails = simplexml_load_file ( $request );
 		} catch ( Exception $e ) {
-			log_dp ( $e );
+			$this->log->error( "Unable to save the Gift" ,$e );
 		}
-		log_dp ( "Gift Save Information is " );
-		log_dp ( $giftDetails );
+		$this->log->info( "Gift Save Information is ", get_object_vars($giftDetails) );
 		
 		return $giftDetails->{'record'}->{'field'} [0]->attributes ()->{'value'};
 	}
@@ -170,19 +172,19 @@ class DonorPerfect {
 		$request .= "VALUES";
 		$request .= "('$donorGiftDetails','$cardHolderName','$cardNumber','$cardExp', '$cardaddress','$cardCity','$cardState','$cardZip')";
 		
-		log_dp ( "Payment save Request before encode:" . $request );
+		$this->log->info( "Payment save Request before encode:". $request );
 		
 		$request = urlencode ( $request );
 		
-		log_dp ( "Payment save Request :" . $request );
+		$this->log->info( "Payment save Request :". $request );
 		$PaymentDetails;
 		try {
 			$PaymentDetails = simplexml_load_file ( $request );
 		} catch ( Exception $e ) {
-			log_dp ( $e );
+			$this->log->error( " The Unable to save Payment details ".$e );
 		}
-		log_dp ( "Payment Save Information is " );
-		log_dp ( $PaymentDetails );
+		$this->log->info( "Payment Save Information is " );
+		$this->log->info( $PaymentDetails );
 		
 		return $PaymentDetails->{'record'}->{'field'} [0]->attributes ();
 		
@@ -207,16 +209,16 @@ class DonorPerfect {
 		 * $request .= "null,"; //@modified_by Nvarchar(20)
 		 * $request .= "'USD'"; //@selected_currency Nvarchar(3)
 		 *
-		 * log_dp("Payment save Request before encode:".$request);
+		 * $this->log->info("Payment save Request before encode:",$request);
 		 *
 		 * $request = urlencode($request);
 		 *
-		 * log_dp("Payment save Request :".$request);
+		 * $this->log->info("Payment save Request :",$request);
 		 *
 		 * $PaymentDetails = simplexml_load_file($request);
 		 *
-		 * log_dp("Payment Save Information is ");
-		 * log_dp($PaymentDetails);
+		 * $this->log->info("Payment Save Information is ");
+		 * $this->log->info($PaymentDetails);
 		 *
 		 * return $PaymentDetails->{'record'}->{'field'}[0]-> attributes();
 		 */

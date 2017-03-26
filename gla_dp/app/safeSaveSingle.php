@@ -21,7 +21,7 @@ if (empty($_POST['DO_STEP_1']) && empty($_GET['token-id'])) {
 	appendXmlNode($xmlRequest, $xmlSale, 'order-id', '1234');
 	appendXmlNode($xmlRequest, $xmlSale, 'order-description', 'Small Order');
 	appendXmlNode($xmlRequest, $xmlSale, 'merchant-defined-field-1' , 'ReduRedu');
-	appendXmlNode($xmlRequest, $xmlSale, 'gabriel-own-field' , 'Gabriel Oliver');
+	//appendXmlNode($xmlRequest, $xmlSale, 'gabriel-own-field' , 'Gabriel Oliver');
 	appendXmlNode($xmlRequest, $xmlSale, 'merchant-defined-field-2', 'Medium');
 	appendXmlNode($xmlRequest, $xmlSale, 'tax-amount' , '0.00');
 

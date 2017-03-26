@@ -1,4 +1,56 @@
 <?php 
+$dpAPIKey = '8qjqp2zU2%2fnCDsvvPQbuIVwJFf6WLqzLX5xyy1%2bZ3zSiAeqGsKSZR0aHzIgebJqXSs7GJx%2bp%2bQuKkRmu9717vylGLOVFVXwx7HzIIiAkY%2bYCO%2fnbfFhdnsuz0IvGqtZC';
+
+
+
+$date = date("m/d/Y");
+$amount =  "250.00";
+$memoryHonor =  "M";
+$gfname		= "Det First Name";
+$glname		= "Det Last Name";
+
+$request = "https://www.donorperfect.net/prod/xmlrequest.asp?apikey=".$dpAPIKey;
+$request .= "&action=dp_savegift&params=";
+$request .= "0,";						//@gift_id
+$request .= "'2803',";					//@donor_id
+$request .= "'G',";						//@record_type
+$request .= "'$date',";					//@gift_date
+$request .= "'$amount',";					//@amount
+$request .= "null,";						//@gl_code
+$request .= "null,";						//@solicit_code
+$request .= "null,";						//@sub_solicit_code
+$request .= "null,";						//@gift_type
+$request .= "'N',";						//@split_gift
+$request .= "'N',";						//@pledge_payment
+$request .= "null,";						//@reference
+$request .= "'$memoryHonor',";				//@memory_honor
+$request .= "'$gfname',";					//@gfname
+$request .= "'$glname',";					//@glname
+$request .= "0,";						//@fmv
+$request .= "0,";						//@batch_no
+$request .= "null,";						//@gift_narrative
+$request .= "null,";						//@ty_letter_no
+$request .= "null,";						//@glink
+$request .= "null,";						//@plink
+$request .= "'N',";						//@nocalc
+$request .= "'N',";						//@receipt
+$request .= "null,";						//@old_amount
+$request .= "'GLA API User'";			//@user_id
+echo $request;
+
+echo '<br><br><br><br><br><br>';
+$request = urlencode($request);
+
+echo $request; 
+$donorDetails = simplexml_load_file($request);
+
+
+echo '<pre>';
+
+print_r($donorDetails);
+
+
+exit;
 // API Setup parameters
 $gatewayURL = 'https://secure.safesavegateway.com/api/v2/three-step';
 $APIKey = '2F822Rw39fx762MaV7Yy86jXGTC7sCDy';
@@ -85,7 +137,6 @@ if (empty($_POST['DO_STEP_1']) && empty($_GET['token-id'])) {
 	appendXmlNode($xmlRequest, $xmlSale, 'merchant-defined-field-17' , '7');
 	appendXmlNode($xmlRequest, $xmlSale, 'merchant-defined-field-18' , '8');
 	appendXmlNode($xmlRequest, $xmlSale, 'merchant-defined-field-19' , '9');
-	appendXmlNode($xmlRequest, $xmlSale, 'merchant-defined-field-20' , '0');
 	appendXmlNode($xmlRequest, $xmlSale, 'tax-amount' , '0.00');
 
 	/*if(!empty($_POST['customer-vault-id'])) {

@@ -1,5 +1,6 @@
 <?php
-$environment = "test"; // test or production
+$environment	= "test"; // test or production
+$emailList		= '';
 
 if ($environment == "test") {
 	// DP API Key

@@ -141,3 +141,7 @@ SimpleXMLElement Object
     [error] => [Microsoft][ODBC SQL Server Driver][SQL Server]Violation of PRIMARY KEY constraint 'PK_dpgiftudf'. Cannot insert duplicate key in object 'dpo.dpgiftudf'. The duplicate key value is (15275).
 )
 
+Initializing the donation
+Initializing the donation
+Initializing the donation
+Initializing the donation
