@@ -106,7 +106,7 @@ function getStates() {
 				<option value="British Columbia">British Columbia</option>
 				<option value="Manitoba">Manitoba</option>
 				<option value="New Brunswick">New Brunswick</option>
-				<option value="Newfoundland &amp; Labrador">Newfoundland &amp; Labrador</option>
+				<option value="Newfoundland & Labrador">Newfoundland &amp; Labrador</option>
 				<option value="Northwest Territories">Northwest Territories</option>
 				<option value="Nova Scotia">Nova Scotia</option>
 				<option value="Nunavut">Nunavut</option>

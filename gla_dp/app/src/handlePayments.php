@@ -28,7 +28,7 @@ if (! empty ( $_GET ['token-id'] )) {
 	$transactionDetails = $safeSave->submitTransactionDetails ( $tokenId, $ipAaddress );
 
 	$log->info("Submitted the payment details");
-	$log->info("Transaction result is ",get_object_vars($transactionDetails));
+	$log->info("Transaction result is ".print_r($transactionDetails, true));
 
 	if ( ($transactionDetails->{'result'} == 1) && ($transactionDetails->{'result-text'} == 'SUCCESS') ){
 		$log->info("Saving details to Doner Perfect");
