@@ -298,7 +298,7 @@
 											<div class="checkbox-row">
 												<input type="checkbox" id="check02"
 													name="merchant-defined-field-5"
-													value="Y"> <label for="check02">My
+													value="YES"> <label for="check02">My
 													company has a <a href="#">matching gift program</a>
 												</label>
 											</div>
