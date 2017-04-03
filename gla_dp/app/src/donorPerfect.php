@@ -2,16 +2,21 @@
 class DonorPerfect {
 	protected $dpAPIKey;
 	protected $log;
+	protected $emailList;
+	protected $dpSaveFlag = false;
 	
-	public function __construct($dpAPIKey, $log) {
+	public function __construct($dpAPIKey, $log, $emailList) {
 		$this->dpAPIKey = $dpAPIKey;
 		$this->log = $log;
+		$this->emailList = $emailList;
 	}
 	
 	function saveDonorDetails($transactionDetails) {
 		$donorDetails = $this->saveDonor ( $transactionDetails );
 		
 		$this->log->info ( "New Donor Id is " . $donorDetails [0] );
+		$headers = "From: glastaging@wpengine.com" . "\r\n";
+		mail($this->emailList,"New Donor Added","New Donor Id is " . $donorDetails [0], $headers);
 		
 		$donorGiftDetails = $this->saveDonorGifts ( $transactionDetails, $donorDetails [0] );
 		
@@ -40,18 +45,18 @@ class DonorPerfect {
 		$this->log->info ( "postal :" . $transactionDetails->{'descriptor-postal'} );
 		$this->log->info ( "phone :" . $transactionDetails->{'descriptor-phone'} );
 		
-		$title = $transactionDetails->{'merchant-defined-field-3'} ? $transactionDetails->{'merchant-defined-field-3'} : '';
-		$firstName = $transactionDetails->{'merchant-defined-field-1'} ? $transactionDetails->{'merchant-defined-field-1'} : '';
-		$lastName = $transactionDetails->{'merchant-defined-field-2'} ? $transactionDetails->{'merchant-defined-field-2'} : '';
-		$email = $billingetails->{'email'} ? $billingetails->{'email'} : '';
-		$isCorp = $transactionDetails->{'merchant-defined-field-4'} ? $transactionDetails->{'merchant-defined-field-4'} : '';
-		$country = $transactionDetails->{'descriptor-country'} ? $transactionDetails->{'descriptor-country'} : '';
-		$address1 = $transactionDetails->{'descriptor-address'} ? $transactionDetails->{'descriptor-address'} : '';
-		$address2 = $transactionDetails->{'merchant-defined-field-11'} ? $transactionDetails->{'merchant-defined-field-11'} : '';
-		$city = $transactionDetails->{'descriptor-city'} ? $transactionDetails->{'descriptor-city'} : '';
-		$state = $transactionDetails->{'descriptor-state'} ? $transactionDetails->{'descriptor-state'} : '';
-		$postal = $transactionDetails->{'descriptor-postal'} ? $transactionDetails->{'descriptor-postal'} : '';
-		$phone = $transactionDetails->{'descriptor-phone'} ? $transactionDetails->{'descriptor-phone'} : '';
+		$title = $this->clean($transactionDetails->{'merchant-defined-field-3'} ? $transactionDetails->{'merchant-defined-field-3'} : '');
+		$firstName = $this->clean($transactionDetails->{'merchant-defined-field-1'} ? $transactionDetails->{'merchant-defined-field-1'} : '');
+		$lastName = $this->clean($transactionDetails->{'merchant-defined-field-2'} ? $transactionDetails->{'merchant-defined-field-2'} : '');
+		$email = $this->clean($billingetails->{'email'} ? $billingetails->{'email'} : '');
+		$isCorp = $this->clean($transactionDetails->{'merchant-defined-field-4'} ? $transactionDetails->{'merchant-defined-field-4'} : '');
+		$country = $this->clean($transactionDetails->{'descriptor-country'} ? $transactionDetails->{'descriptor-country'} : '');
+		$address1 = $this->clean($transactionDetails->{'descriptor-address'} ? $transactionDetails->{'descriptor-address'} : '');
+		$address2 = $this->clean($transactionDetails->{'merchant-defined-field-11'} ? $transactionDetails->{'merchant-defined-field-11'} : '');
+		$city = $this->clean($transactionDetails->{'descriptor-city'} ? $transactionDetails->{'descriptor-city'} : '');
+		$state = $this->clean($transactionDetails->{'descriptor-state'} ? $transactionDetails->{'descriptor-state'} : '');
+		$postal = $this->clean($transactionDetails->{'descriptor-postal'} ? $transactionDetails->{'descriptor-postal'} : '');
+		$phone = $this->clean($transactionDetails->{'descriptor-phone'} ? $transactionDetails->{'descriptor-phone'} : '');
 		
 		$request = "https://www.donorperfect.net/prod/xmlrequest.asp?apikey=" . $this->dpAPIKey;
 		$request .= "&action=dp_savedonor&params=";
@@ -60,8 +65,8 @@ class DonorPerfect {
 		$request .= "'$lastName',"; // @last_name
 		$request .= "null,"; // @middle_name
 		$request .= "null,"; // @suffix
-		$request .= "'$title',"; // @title
-		$request .= "null,"; // @salutation
+		$request .= "null,"; // @title
+		$request .= "'$title',"; // @salutation
 		$request .= "null,"; // @prof_title
 		$request .= "null,"; // @opt_line
 		$request .= "'$address1',"; // @address
@@ -100,10 +105,10 @@ class DonorPerfect {
 	
 	function saveDonorGifts($transactionDetails, $donorId) {
 		$date = date ( "m/d/Y" );
-		$amount = $transactionDetails->{'amount'} ? $transactionDetails->{'amount'} : '';
-		$memoryHonor = $transactionDetails->{'merchant-defined-field-9'} ? $transactionDetails->{'merchant-defined-field-9'} : '';
-		$gfname = $transactionDetails->{'merchant-defined-field-6'} ? $transactionDetails->{'merchant-defined-field-6'} : '';
-		$glname = $transactionDetails->{'merchant-defined-field-7'} ? $transactionDetails->{'merchant-defined-field-7'} : '';
+		$amount = $this->clean($transactionDetails->{'amount'} ? $transactionDetails->{'amount'} : '');
+		$memoryHonor = $this->clean($transactionDetails->{'merchant-defined-field-9'} ? $transactionDetails->{'merchant-defined-field-9'} : '');
+		$gfname = $this->clean($transactionDetails->{'merchant-defined-field-6'} ? $transactionDetails->{'merchant-defined-field-6'} : '');
+		$glname = $this->clean($transactionDetails->{'merchant-defined-field-7'} ? $transactionDetails->{'merchant-defined-field-7'} : '');
 		
 		$this->log->info ( "Date :" . $date );
 		$this->log->info ( "Amount :" . $amount );
@@ -157,17 +162,18 @@ class DonorPerfect {
 	
 	function saveDonorPayment($transactionDetails, $donorDetails, $donorGiftDetails) {
 		
-		$matchingGift = $transactionDetails->{'merchant-defined-field-5'} ? $transactionDetails->{'merchant-defined-field-5'} : 'NO';
-		$billingetails = $transactionDetails->{'billing'};
+		$matchingGift = $this->clean($transactionDetails->{'merchant-defined-field-5'} ? $transactionDetails->{'merchant-defined-field-5'} : 'NO');
+		$billingetails = $this->clean($transactionDetails->{'billing'});
 		
 		$cardHolderName = $billingetails->{'first-name'} ? $billingetails->{'first-name'} : '';
 		$cardHolderName .= ' ' . $billingetails->{'last-name'} ? $billingetails->{'last-name'} : '';
-		$cardNumber = $billingetails->{'cc-number'} ? $billingetails->{'cc-number'} : '';
-		$cardExp = $billingetails->{'cc-exp'} ? $billingetails->{'cc-exp'} : '';
-		$cardaddress = $billingetails->{'address1'} ? $billingetails->{'address1'} : '';
-		$cardCity = $billingetails->{'city'} ? $billingetails->{'city'} : '';
-		$cardState = $billingetails->{'state'} ? $billingetails->{'state'} : '';
-		$cardZip = $billingetails->{'postal'} ? $billingetails->{'postal'} : '';
+		$cardHolderName = $this->clean($cardHolderName);
+		$cardNumber = $this->clean($billingetails->{'cc-number'} ? $billingetails->{'cc-number'} : '');
+		$cardExp = $this->clean($billingetails->{'cc-exp'} ? $billingetails->{'cc-exp'} : '');
+		$cardaddress = $this->clean($billingetails->{'address1'} ? $billingetails->{'address1'} : '');
+		$cardCity = $this->clean($billingetails->{'city'} ? $billingetails->{'city'} : '');
+		$cardState = $this->clean($billingetails->{'state'} ? $billingetails->{'state'} : '');
+		$cardZip = $this->clean($billingetails->{'postal'} ? $billingetails->{'postal'} : '');
 		$date = date ( "m/d/Y" );
 		
 		// DP APIs dp_paymentmethod_insert does not insert all the fields so using the Query insert above
@@ -284,5 +290,11 @@ class DonorPerfect {
 		}
 		
 		return $giftUDFDetails;
+	}
+	
+	function clean($string) {
+		$replaceArr = array('#','&','+');
+	
+		return str_replace($replaceArr, "",$string);
 	}
 }

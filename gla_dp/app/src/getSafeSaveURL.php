@@ -1,6 +1,6 @@
 <?php
 require_once 'config.php';
-require_once 'SafeSave.php';
+require_once 'safeSave.php';
 
 $safeSave = new SafeSave($gatewayURL, $APIKey);
 
@@ -12,7 +12,7 @@ $xmlSale = $xmlRequest->createElement('sale');
 
 // Amount, authentication, and Redirect-URL are typically the bare minimum.
 $safeSave->appendXmlNode($xmlRequest, $xmlSale,'api-key',$APIKey);
-$safeSave->appendXmlNode($xmlRequest, $xmlSale,'redirect-url',$_SERVER ['HTTP_REFERER']);
+$safeSave->appendXmlNode($xmlRequest, $xmlSale,'redirect-url',strtok($_SERVER["HTTP_REFERER"],'?'));
 $safeSave->appendXmlNode($xmlRequest, $xmlSale, 'ip-address', $ipAaddress);
 
 $safeSave->appendXmlNode($xmlRequest, $xmlSale, 'amount', isset($_POST['donate']) ? $_POST['donate'] : '');

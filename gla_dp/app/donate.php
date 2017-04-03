@@ -184,7 +184,7 @@
 			<?php if ($transactionDetails){?>
 				<div class="row center-xs <?php echo $alertCSS;?> vertical-center">
 					<div id="formMessage" class="col-xs-10" style="margin-top: 10px;">
-						<?php echo $transactionDetails;?>
+						<?php echo $transactionDetails. ' : '.$transactionStatus;?>
 					</div>
 				</div>
 			<?php }?>
@@ -199,9 +199,9 @@
 							<h2>I want to make a</h2>
 							<ul class="donate-options-list">
 								<li><input type="radio" name="billing-method" id="rad01"
-									value="" checked> <label for="rad01">Single donation</label></li>
+									value="single" <?php if( ( retriveDonorField($transactionStatus,'billing-method') == 'single' ) || !retriveDonorField($transactionStatus,'billing-method') ) echo 'checked';?>> <label for="rad01">Single donation</label></li>
 								<li><input type="radio" name="billing-method" id="rad02"
-									value="recurring'"> <label for="rad02">Monthly donation</label>
+									value="recurring" <?php if( ( retriveDonorField($transactionStatus,'billing-method') == 'recurring' ) && (retriveDonorField($transactionStatus,'billing-method') )) echo 'checked';?>> <label for="rad02">Monthly donation</label>
 								</li>
 							</ul>
 							<div class="donate-sum">
@@ -249,8 +249,8 @@
 								<div class="donate-sum-choice-box02">
 									<h3>Or donate another amount</h3>
 									<div class="input-holder">
-										<input id="donate-1" name="donate" type="number" min="1"
-											required> <a href="#" class="btn btn-blue js-btn-step-next">Donate</a>
+										<input id="donate-1" name="donate" type="number" min="1" value="<?php if( retriveDonorField($transactionStatus,'donate') ) echo retriveDonorField($transactionStatus,'donate');?>"
+											 required> <a href="#" class="btn btn-blue js-btn-step-next">Donate</a>
 									</div>
 								</div>
 							</div>
@@ -280,30 +280,40 @@
 										<div class="col-xs-12 col-md-6 col-md-short">
 											<label>Title</label> <select name="merchant-defined-field-3">
 												<option value="" class="hideme">Select one</option>
-												<option value="Mr.">Mr.</option>
-												<option value="Mrs.">Mrs.</option>
-												<option value="Ms.">Ms.</option>
-												<option value="Dr.">Dr.</option>
-											</select> <label for="input01">* First name</label> <input
-												type="text" id="input01" name="merchant-defined-field-1"
-												required> <label for="input02">* Last name</label> <input
-												type="text" id="input02" name="merchant-defined-field-2"
-												required> <label for="input022">* Email</label> <input
-												type="email" id="input022" name="email" required>
+												<option <?php if( ( retriveDonorField($transactionStatus,'merchant-defined-field-3') == 'Mr.' ) ) echo 'selected="selected"';?> value="Mr.">Mr.</option>
+												<option <?php if( ( retriveDonorField($transactionStatus,'merchant-defined-field-3') == 'Mrs.' ) ) echo 'selected="selected"';?>value="Mrs.">Mrs.</option>
+												<option <?php if( ( retriveDonorField($transactionStatus,'merchant-defined-field-3') == 'Ms.' ) ) echo 'selected="selected"';?>value="Ms.">Ms.</option>
+												<option <?php if( ( retriveDonorField($transactionStatus,'merchant-defined-field-3') == 'Dr.' ) ) echo 'selected="selected"';?>value="Dr.">Dr.</option>
+											</select>
+											
+											<label for="input01">* First name</label>
+											<input type="text" id="input01" name="merchant-defined-field-1" required 
+											value="<?php if( ( retriveDonorField($transactionStatus,'merchant-defined-field-1') ) ) echo retriveDonorField($transactionStatus,'merchant-defined-field-1');?>">
+											
+											<label for="input02">* Last name</label>
+											<input type="text" id="input02" name="merchant-defined-field-2" required 
+											value="<?php if( ( retriveDonorField($transactionStatus,'merchant-defined-field-2') ) ) echo retriveDonorField($transactionStatus,'merchant-defined-field-2');?>">
+											
+											<label for="input022">* Email</label>
+											<input type="email" id="input022" name="email" required 
+											value="<?php if( ( retriveDonorField($transactionStatus,'email') ) ) echo retriveDonorField($transactionStatus,'email');?>">
+											
 											<div class="checkbox-row">
-												<input type="checkbox" id="check01"
-													name="merchant-defined-field-4" value="Y">
+												<input type="checkbox" id="check01" name="merchant-defined-field-4" value="Y"
+												<?php if( ( retriveDonorField($transactionStatus,'merchant-defined-field-4') == 'Y' ) ) echo 'checked="checked"';?>>
 												<label for="check01">This is a corporate donation</label>
 											</div>
+											
 											<div class="checkbox-row">
-												<input type="checkbox" id="check02"
-													name="merchant-defined-field-5"
-													value="YES"> <label for="check02">My
-													company has a <a href="#">matching gift program</a>
+												<input type="checkbox" id="check02" name="merchant-defined-field-5" value="YES"
+												<?php if( ( retriveDonorField($transactionStatus,'merchant-defined-field-5') == 'YES' ) ) echo 'checked="checked"';?>>
+												<label for="check02">My company has a <a href="#">matching gift program</a>
 												</label>
 											</div>
+											
 											<label for="input03">Company name</label> 
-											<input type="text"  id="input03" name="company"> 
+											<input type="text"  id="input03" name="company"
+												value="<?php if( ( retriveDonorField($transactionStatus,'company') ) ) echo retriveDonorField($transactionStatus,'company');?>"> 
 												<label>Country</label>
 												<select name="country" required>
 												<option class="hideme">Select one</option>
@@ -311,24 +321,39 @@
 											</select>
 										</div>
 										<div class="col-xs-12 col-md-6 col-md-short">
-											<label for="input04">* Address #1</label> <input type="text"
-												id="input04" name="address1" required> <label for="input05">Address
-												#2</label> <input type="text" id="input05" name="address2">
-											<label for="input06">* City</label> <input type="text"
-												id="input06" name="city" required> <label>* State/Province</label>
+											<label for="input04">* Address #1</label>
+											<input type="text" id="input04" name="address1" required 
+											value="<?php if( ( retriveDonorField($transactionStatus,'address1') ) ) echo retriveDonorField($transactionStatus,'address1');?>">
+											
+											<label for="input05">Address #2</label>
+											<input type="text" id="input05" name="address2"
+											value="<?php if( ( retriveDonorField($transactionStatus,'address2') ) ) echo retriveDonorField($transactionStatus,'address2');?>">
+											
+											<label for="input06">* City</label>
+											<input type="text" id="input06" name="city" required 
+											value="<?php if( ( retriveDonorField($transactionStatus,'city') ) ) echo retriveDonorField($transactionStatus,'city');?>">
+											
+											<label>* State/Province</label>
 											<select name="state" required>
 												<option value="" class="hideme">Select one</option>
-												<?php getStates();?>
-											</select> <label for="input07">* Zip/Postal code</label> <input
-												type="text" name="postal" name="input07" required> <label
-												for="input08">Phone number</label> <input type="tel"
-												id="input08" name="phone">
-												<label>Type of Tribute</label>
+												<?php getStates(retriveDonorField($transactionStatus,'state'));?>
+											</select>
+											
+											<label for="input07">* Zip/Postal code</label>
+											<input type="text" name="postal" name="input07" required 
+											value="<?php if( ( retriveDonorField($transactionStatus,'postal') ) ) echo retriveDonorField($transactionStatus,'postal');?>">
+											
+											<label for="input08">Phone number</label>
+											<input type="tel" id="input08" name="phone"
+											value="<?php if( ( retriveDonorField($transactionStatus,'phone') ) ) echo retriveDonorField($transactionStatus,'phone');?>">
+											
+											<label>Type of Tribute</label>
 											<select name="merchant-defined-field-9">
 												<option value="" class="hideme">Select one</option>
-												<option value="M">In Memory of</option>
-												<option value="H">In Honour of</option>
+												<option <?php if( ( retriveDonorField($transactionStatus,'merchant-defined-field-9') == 'M' ) ) echo 'selected="selected"';?> value="M">In Memory of</option>
+												<option <?php if( ( retriveDonorField($transactionStatus,'merchant-defined-field-9') == 'H' ) ) echo 'selected="selected"';?> value="H">In Honour of</option>
 											</select>
+											
 										</div>
 										<div class="form-note" style="display: none">* Complete the
 											required fields</div>
@@ -343,10 +368,13 @@
 								<div class="toggle-content-slide">
 									<div class="row">
 										<div class="col-xs-12 col-md-6  col-md-short">
-											<label for="input09">* First name</label> <input type="text"
-												id="input09" name="merchant-defined-field-6" required> <label
-												for="input10">Last Name</label> <input type="text"
-												id="input10" name="merchant-defined-field-7">
+											<label for="input09">* First name</label>
+											<input type="text" id="input09" name="merchant-defined-field-6" required 
+											value="<?php if( ( retriveDonorField($transactionStatus,'merchant-defined-field-6') ) ) echo retriveDonorField($transactionStatus,'merchant-defined-field-6');?>">
+											
+											<label for="input10">Last Name</label>
+											<input type="text" id="input10" name="merchant-defined-field-7"
+											value="<?php if( ( retriveDonorField($transactionStatus,'merchant-defined-field-7') ) ) echo retriveDonorField($transactionStatus,'merchant-defined-field-7');?>">
 										</div>
 										<div class="form-note" style="display: none">* Complete the
 											required fields</div>
@@ -354,11 +382,11 @@
 								</div>
 							</div>
 							<div class="donate-sum-choice-box">
-								<label>Your Donation</label> <input id="donate-2" name="donate"
-									type="number" min="1" required>
+								<label>Your Donation</label>
+								<input id="donate-2" name="donate" type="number" min="1" required 
+								value="<?php if( retriveDonorField($transactionStatus,'donate') ) echo retriveDonorField($transactionStatus,'donate');?>">
 							</div>
-							<input id="step2-submit" type="button" value="Continue"
-								class="btn btn-default btn-continue js-btn-step-next">
+							<input id="step2-submit" type="button" value="Continue" class="btn btn-default btn-continue js-btn-step-next">
 							<div class="text-note">
 								<p>Global Lyme Alliance is a 501(c)(3) charitable organization.
 									Tax ID is 06-1559393.</p>
@@ -383,14 +411,19 @@
 										</a>
 										<div class="toggle-content-slide">
 											<label for="input11">* Card holder first name <img
-												src="images/img-cards.jpg" alt=""></label> <input
-												type="text" id="input11" name="billing-first-name" required>
-											<label for="input111">* Card holder last name </label> <input
-												type="text" id="input111" name="billing-last-name" required>
-											<label for="input12">* Card account number</label> <input
-												type="text" id="input12" name="billing-cc-number" required>
-											<label>* Expiration date <i>( Format: MMYY )</i></label> <input
-												type="text" id="input12" name="billing-cc-exp" required>
+												src="images/img-cards.jpg" alt=""></label>
+											<input type="text" id="input11" name="billing-first-name" required 
+											value="<?php if( retriveDonorField($transactionStatus,'billing-first-name') ) echo retriveDonorField($transactionStatus,'billing-first-name');?>">
+											
+											<label for="input111">* Card holder last name </label>
+											<input type="text" id="input111" name="billing-last-name" required 
+											value="<?php if( retriveDonorField($transactionStatus,'billing-last-name') ) echo retriveDonorField($transactionStatus,'billing-last-name');?>">
+											
+											<label for="input12">* Card account number</label>
+											<input type="text" id="input12" name="billing-cc-number" required>
+											
+											<label>* Expiration date <i>( Format: MMYY )</i></label>
+											<input type="text" id="input12" name="billing-cc-exp" required>
 											<!-- 
                                                     <div class="row">
                                                        <div class="col-xs-6">
@@ -413,8 +446,8 @@
                                                      -->
 											<label for="input13">* Security code click <a href="#">here</a>
 												for CVV2 information
-											</label> <input type="password" id="input13"
-												name="billing-cvv">
+											</label>
+											<input type="password" id="input13" name="billing-cvv">
 										</div>
 									</div>
 								</div>
@@ -424,28 +457,37 @@
 											class="icon icon-plus"></span><span class="icon icon-minus"></span></a>
 										<div class="toggle-content-slide">
 											<div class="checkbox-row">
-												<input type="checkbox" id="check03"
-													name="merchant-defined-field-10"> <label for="check03">Same as
-													mailing address</label>
+												<input type="checkbox" id="check03" name="merchant-defined-field-10" 
+												<?php if( ( retriveDonorField($transactionStatus,'merchant-defined-field-10') == 'on' ) ) echo 'checked="checked"';?>>
+												<label for="check03">Same as mailing address</label>
 											</div>
-											<label for="input14">* Address</label> <input type="text"
-												id="input14" name="billing-address1" required> 
-												<label for="input15">* Country</label>
-												<select name="billing-country" required>
+											<label for="input14">* Address</label>
+											<input type="text" id="input14" name="billing-address1" required 
+											value="<?php if( retriveDonorField($transactionStatus,'billing-address1') ) echo retriveDonorField($transactionStatus,'billing-address1');?>"> 
+											
+											<label for="input15">* Country</label>
+											<select name="billing-country" required>
 												<option class="hideme">Select one</option>
 												<option value="USA">United States of America</option>
 											</select>
-												<label for="input16">* City</label> <input type="text" id="input16"
-												name="billing-city" required> <label>* State/Province</label>
+											
+											<label for="input16">* City</label>
+											<input type="text" id="input16" name="billing-city" required 
+											value="<?php if( retriveDonorField($transactionStatus,'billing-city') ) echo retriveDonorField($transactionStatus,'billing-city');?>">
+											
+											<label>* State/Province</label>
 											<select name="billing-state" required>
 												<option value="" class="hideme">Select one</option>
-												<?php getStates();?>
-											</select> <label for="input17">* Zip/Postal code</label> <input
-												type="text" id="input17" name="billing-postal" required>
+												<?php getStates(retriveDonorField($transactionStatus,'billing-state'));?>
+											</select>
+											
+											<label for="input17">* Zip/Postal code</label>
+											<input type="text" id="input17" name="billing-postal" required 
+											value="<?php if( retriveDonorField($transactionStatus,'billing-postal') ) echo retriveDonorField($transactionStatus,'billing-postal');?>">
 											<div class="checkbox-row">
-												<input type="checkbox" id="check04" checked
-													name="merchant-defined-field-8" required
-													value="Accept Add Information"> <label for="check04">I
+												<input type="checkbox" id="check04" checked name="merchant-defined-field-8" required value="Y" 
+												<?php if( ( retriveDonorField($transactionStatus,'merchant-defined-field-8') == 'Y' ) ) echo 'checked="checked"';?>>
+												<label for="check04">I
 													understand that by submitting a donation, my information
 													will be automatically added to GLA's secure database.</label>
 											</div>
@@ -455,7 +497,7 @@
 							</div>
 							<div class="donate-sum-choice-box">
 								<label>Your Donation</label> <input id="donate-3" name="donate"
-									type="number" min="1" disabled="disabled">
+									type="number" min="1" disabled="disabled" value="<?php if( retriveDonorField($transactionStatus,'donate') ) echo retriveDonorField($transactionStatus,'donate');?>">
 							</div>
 							<input id="step3-submit" type="submit" value="Continue"
 								class="btn btn-default btn-continue">
@@ -746,6 +788,21 @@
 	<script type="text/javascript">
 			var currentActiveStep = 0;
 			<?php if ($isPaymentStep) { echo 'currentActiveStep = 2;'; }?>
-		</script>
+			<?php if (! empty ( $_GET ['token-id'] )) { ?>
+				jQuery(function($) {
+					$.ajax({
+						type: "POST",
+						url: 'src/getSafeSaveURL.php',
+						data : $("#donate-form").serialize(),
+						success: function(data){
+							$('#donate-form').attr('action', data);
+						},
+						error: function(jqxhr) {
+							$("#register_area").text(jqxhr.responseText); // @text = response error, it is will be errors: 324, 500, 404 or anythings else
+						}
+					});
+				});
+		<?php }?>
+	</script>
 </body>
 </html>

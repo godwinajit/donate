@@ -101,77 +101,86 @@ class SafeSave {
 	}
 }
 
-function getStates() {
-	echo '<option value="Alberta">Alberta</option>
-				<option value="British Columbia">British Columbia</option>
-				<option value="Manitoba">Manitoba</option>
-				<option value="New Brunswick">New Brunswick</option>
-				<option value="Newfoundland & Labrador">Newfoundland &amp; Labrador</option>
-				<option value="Northwest Territories">Northwest Territories</option>
-				<option value="Nova Scotia">Nova Scotia</option>
-				<option value="Nunavut">Nunavut</option>
-				<option value="Ontario">Ontario</option>
-				<option value="Prince Edward Island">Prince Edward Island</option>
-				<option value="Quebec">Quebec</option>
-				<option value="Saskatchewan">Saskatchewan</option>
-				<option value="Yukon">Yukon</option>
-				<option value="Alabama">Alabama</option>
-				<option value="Alaska">Alaska</option>
-				<option value="Arizona">Arizona</option>
-				<option value="Arkansas">Arkansas</option>
-				<option value="Armed Forces Americas">Armed Forces Americas</option>
-				<option value="Armed Forces Other">Armed Forces Other</option>
-				<option value="Armed Forces Pacific">Armed Forces Pacific</option>
-				<option value="California">California</option>
-				<option value="Colorado">Colorado</option>
-				<option value="Connecticut">Connecticut</option>
-				<option value="Delaware">Delaware</option>
-				<option value="Florida">Florida</option>
-				<option value="Georgia">Georgia</option>
-				<option value="Hawaii">Hawaii</option>
-				<option value="Idaho">Idaho</option>
-				<option value="Illinois">Illinois</option>
-				<option value="Indiana">Indiana</option>
-				<option value="Iowa">Iowa</option>
-				<option value="Kansas">Kansas</option>
-				<option value="Kentucky">Kentucky</option>
-				<option value="Louisiana">Louisiana</option>
-				<option value="Maine">Maine</option>
-				<option value="Maryland">Maryland</option>
-				<option value="Massachusetts">Massachusetts</option>
-				<option value="Michigan">Michigan</option>
-				<option value="Minnesota">Minnesota</option>
-				<option value="Mississippi">Mississippi</option>
-				<option value="Missouri">Missouri</option>
-				<option value="Montana">Montana</option>
-				<option value="Nebraska">Nebraska</option>
-				<option value="Nevada">Nevada</option>
-				<option value="New Hampshire">New Hampshire</option>
-				<option value="New Jersey">New Jersey</option>
-				<option value="New Mexico">New Mexico</option>
-				<option value="New York">New York</option>
-				<option value="North Carolina">North Carolina</option>
-				<option value="North Dakota">North Dakota</option>
-				<option value="Ohio">Ohio</option>
-				<option value="Oklahoma">Oklahoma</option>
-				<option value="Oregon">Oregon</option>
-				<option value="Pennsylvania">Pennsylvania</option>
-				<option value="Puerto Rico">Puerto Rico</option>
-				<option value="Rhode Island">Rhode Island</option>
-				<option value="South Carolina">South Carolina</option>
-				<option value="South Dakota">South Dakota</option>
-				<option value="Tennessee">Tennessee</option>
-				<option value="Texas">Texas</option>
-				<option value="Utah">Utah</option>
-				<option value="Vermont">Vermont</option>
-				<option value="Virginia">Virginia</option>
-				<option value="Washington">Washington</option>
-				<option value="Washington DC">Washington DC</option>
-				<option value="West Virginia">West Virginia</option>
-				<option value="Wisconsin">Wisconsin</option>
-				<option value="Wyoming">Wyoming</option>';
+function getStates($selectedState) {
+	$stateList = "";
+	
+	$StateArray['Alberta']					= 'Alberta';
+	$StateArray['British Columbia']			= 'British Columbia';
+	$StateArray['Manitoba']					= 'Manitoba';
+	$StateArray['New Brunswick']			= 'New Brunswick';
+	$StateArray['Newfoundland & Labrador']	= 'Newfoundland & Labrador';
+	$StateArray['Northwest Territories']	= 'Northwest Territories';
+	$StateArray['Nova Scotia']				= 'Nova Scotia';
+	$StateArray['Nunavut']					= 'Nunavut';
+	$StateArray['Ontario']					= 'Ontario';
+	$StateArray['Prince Edward Island']		= 'Prince Edward Island';
+	$StateArray['Quebec']					= 'Quebec';
+	$StateArray['Saskatchewan']				= 'Saskatchewan';
+	$StateArray['Yukon']					= 'Yukon';
+	$StateArray['Alabama']					= 'Alabama';
+	$StateArray['Alaska']					= 'Alaska';
+	$StateArray['Arizona']					= 'Arizona';
+	$StateArray['Arkansas']					= 'Arkansas';
+	$StateArray['Armed Forces America']		= 'Armed Forces America';
+	$StateArray['Armed Forces Other']		= 'Armed Forces Other';
+	$StateArray['Armed Forces Pacific']		= 'Armed Forces Pacific';
+	$StateArray['California']				= 'California';
+	$StateArray['Colorado']					= 'Colorado';
+	$StateArray['Connecticut']				= 'Connecticut';
+	$StateArray['Delaware']					= 'Delaware';
+	$StateArray['Florida']					= 'Florida';
+	$StateArray['Georgia']					= 'Georgia';
+	$StateArray['Hawaii']					= 'Hawaii';
+	$StateArray['Idaho']					= 'Idaho';
+	$StateArray['Illinois']					= 'Illinois';
+	$StateArray['Indiana']					= 'Indiana';
+	$StateArray['Iowa']						= 'Iowa';
+	$StateArray['Kansas']					= 'Kansas';
+	$StateArray['Kentucky']					= 'Kentucky';
+	$StateArray['Louisiana']				= 'Louisiana';
+	$StateArray['Maine']					= 'Maine';
+	$StateArray['Maryland']					= 'Maryland';
+	$StateArray['Massachusetts']			= 'Massachusetts';
+	$StateArray['Michigan']					= 'Michigan';
+	$StateArray['Minnesota']				= 'Minnesota';
+	$StateArray['Mississippi']				= 'Mississippi';
+	$StateArray['Missouri']					= 'Missouri';
+	$StateArray['Montana']					= 'Montana';
+	$StateArray['Nebraska']					= 'Nebraska';
+	$StateArray['Nevada']					= 'Nevada';
+	$StateArray['New Hampshire']			= 'New Hampshire';
+	$StateArray['New Jersey']				= 'New Jersey';
+	$StateArray['New Mexico']				= 'New Mexico';
+	$StateArray['New York']					= 'New York';
+	$StateArray['North Carolina']			= 'North Carolina';
+	$StateArray['North Dakota']				= 'North Dakota';
+	$StateArray['Ohio']						= 'Ohio';
+	$StateArray['Oklahoma']					= 'Oklahoma';
+	$StateArray['Oregon']					= 'Ohio';
+	$StateArray['Pennsylvania']				= 'Pennsylvania';
+	$StateArray['Puerto Rico']				= 'Puerto Rico';
+	$StateArray['Rhode Island']				= 'Rhode Island';
+	$StateArray['South Carolina']			= 'South Carolina';
+	$StateArray['South Dakota']				= 'South Dakota';
+	$StateArray['Tennessee']				= 'Tennessee';
+	$StateArray['Texas']					= 'Texas';
+	$StateArray['Utah']						= 'Utah';
+	$StateArray['Vermont']					= 'Vermont';
+	$StateArray['Virginia']					= 'Virginia';
+	$StateArray['Washington']				= 'Washington';
+	$StateArray['Washington DC']			= 'Washington DC';
+	$StateArray['West Virginia']			= 'West Virginia';
+	$StateArray['Wisconsin']				= 'Wisconsin';
+	$StateArray['Wyoming']					= 'Wyoming';
+	
+	foreach ($StateArray  as $key => $value){
+		$selected = '';
+		if ($selectedState == $key)$selected = 'selected="selected"';
+		$stateList .= '<option value="'.$key.'" '.$selected.'>'.$value.'</option>';
+	}
+	
+	echo $stateList;
 }
-
 
 /* function getStates() {
 	echo '<option value="AB|Alberta">Alberta</option>

@@ -1,4 +1,5 @@
 <?php
+if(!isset($_SESSION)){session_start();}
 require __DIR__ . '/vendor/autoload.php';
 require_once 'config.php';
 require_once 'safeSave.php';
@@ -23,7 +24,7 @@ if (! empty ( $_GET ['token-id'] )) {
 	$tokenId =  $_GET ['token-id'];
 	$isPaymentStep = true;
 	$safeSave = new SafeSave($gatewayURL, $APIKey);
-	$donorPerfect = new DonorPerfect($dpAPIKey, $log);
+	$donorPerfect = new DonorPerfect($dpAPIKey, $log, $emailList);
 	
 	$transactionDetails = $safeSave->submitTransactionDetails ( $tokenId, $ipAaddress );
 
@@ -41,4 +42,14 @@ if (! empty ( $_GET ['token-id'] )) {
 		$transactionDetails = "Transaction failed";
 		$alertCSS = "alert-fail";
 	}
+}else{
+	session_destroy();
+}
+
+
+function retriveDonorField($transactionStatus, $fieldName ){
+	if ( (isset($_SESSION[$fieldName])) && ($transactionStatus) && ($transactionStatus != 'SUCCESS'))
+	{
+		return $_SESSION[$fieldName];
+	}else return '';
 }
