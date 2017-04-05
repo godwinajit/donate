@@ -317,7 +317,7 @@
 												<label>Country</label>
 												<select name="country" required>
 												<option class="hideme">Select one</option>
-												<option value="USA">United States of America</option>
+												<option value="US">United States of America</option>
 											</select>
 										</div>
 										<div class="col-xs-12 col-md-6 col-md-short">
@@ -468,7 +468,7 @@
 											<label for="input15">* Country</label>
 											<select name="billing-country" required>
 												<option class="hideme">Select one</option>
-												<option value="USA">United States of America</option>
+												<option value="US">United States of America</option>
 											</select>
 											
 											<label for="input16">* City</label>

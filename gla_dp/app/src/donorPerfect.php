@@ -162,9 +162,10 @@ class DonorPerfect {
 	
 	function saveDonorPayment($transactionDetails, $donorDetails, $donorGiftDetails) {
 		
-		$matchingGift = $this->clean($transactionDetails->{'merchant-defined-field-5'} ? $transactionDetails->{'merchant-defined-field-5'} : 'NO');
-		$billingetails = $this->clean($transactionDetails->{'billing'});
+		$matchingGift = $transactionDetails->{'merchant-defined-field-5'} ? $transactionDetails->{'merchant-defined-field-5'} : 'NO';
+		$billingetails = $transactionDetails->{'billing'};
 		
+		$companyName = $this->clean($billingetails->{'company'} ? $billingetails->{'company'} : '');
 		$cardHolderName = $billingetails->{'first-name'} ? $billingetails->{'first-name'} : '';
 		$cardHolderName .= ' ' . $billingetails->{'last-name'} ? $billingetails->{'last-name'} : '';
 		$cardHolderName = $this->clean($cardHolderName);
@@ -211,6 +212,8 @@ class DonorPerfect {
 		$this->log->info ( "Payment Save Information is " );
 		$this->log->info ( $PaymentDetails );
 		
+		$companyNameStatus = $this->dp_save_udf_xml($donorDetails, 'EMPLOYER', 'C', $companyName, 'null', 'null', 'GLA API User' );
+		$this->log->info ( "Company name is ". print_r( $companyNameStatus, true ) );
 		
 		$cardHolderNameStatus = $this->dp_save_udf_xml($donorGiftDetails, 'CARDHOLDERNAME', 'C', $cardHolderName, 'null', 'null', 'GLA API User' );
 		$this->log->info ( "Card name is ". print_r( $cardHolderNameStatus, true ) );
@@ -218,7 +221,7 @@ class DonorPerfect {
 		$cardHolderNumStatus = $this->dp_save_udf_xml($donorGiftDetails, 'CARDACCOUNTNUM', 'C', $cardNumber, 'null', 'null', 'GLA API User' );
 		$this->log->info ( "Card Num is ". print_r( $cardHolderNumStatus, true ) );
 		
-		$cardHolderExpStatus = $this->dp_save_udf_xml($donorGiftDetails, 'CC_EXP', 'C', $cardExp, 'null', 'null', 'GLA API User' );
+		$cardHolderExpStatus = $this->dp_save_udf_xml($donorGiftDetails, 'EXPIRATIONDATE', 'C', $cardExp, 'null', 'null', 'GLA API User' );
 		$this->log->info ( "Card Exp is ". print_r( $cardHolderExpStatus, true ) );
 		
 		$cardHolderAddStatus = $this->dp_save_udf_xml($donorGiftDetails, 'CARDHOLDERADDRESS', 'C', $cardaddress, 'null', 'null', 'GLA API User' );
