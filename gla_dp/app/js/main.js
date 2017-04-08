@@ -20,6 +20,47 @@ jQuery(function($) {
         }
     });
 
+    //Commented by TM
+       $("#check03").on("change", function(){
+        if (this.checked) {
+              $("[name='billing-address1']").val($("[name='address1']").val());
+              $("[name='billing-city']").val($("[name='city']").val());
+              $("[name='billing-postal']").val($("[name='postal']").val());
+              var state = $("[name='state'] option:selected").text();
+              var country = $("[name='country'] option:selected").text();
+              $("[name='billing-country'] + span > span.jcf-select-text > span").text(country).removeClass('jcf-option-hideme');
+              $("[name='billing-state'] + span > span.jcf-select-text > span").text(state).removeClass('jcf-option-hideme');
+
+
+        } else { 
+            //Clear on uncheck
+            $("[name='billing-address1']").val("");
+            $("[name='billing-city']").val("");
+            $("[name='billing-postal']").val("");
+            $("[name='billing-country'] + span > span.jcf-select-text > span").text("Select One").addClass('jcf-option-hideme');
+            $("[name='billing-state'] + span > span.jcf-select-text > span").text("Select One").addClass('jcf-option-hideme');
+        };
+      });
+    //Popop Modal CVV TM
+    function initCVModal() {
+        var modal = document.getElementById('CVVPopup');
+        var cvlink = document.getElementById("OpenCVV");
+        var span = document.getElementsByClassName("close")[0];
+        cvlink.onclick = function() {
+            modal.style.display = "block";
+        }
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    }
+    initCVModal();
+    //end
+
     // Commented by Goliver@MTL. This submit is implmented in donate.js
    /* $form.on('submit', function(e) {
         e.preventDefault();
@@ -85,6 +126,9 @@ jQuery(function($) {
             $li.prevAll().removeClass('step-active').addClass('step-passed');
             $li.nextAll().removeClass('step-active').removeClass('step-passed');
             $li.addClass('step-active');
+            //TM Scroll Top 
+            $("html, body").animate({ scrollTop: 0 }, "slow");
+
         }
     });
 });
