@@ -198,10 +198,10 @@
 							</h1>
 							<h2>I want to make a</h2>
 							<ul class="donate-options-list">
-								<li><input type="radio" name="billing-method" id="rad01"
-									value="single" <?php if( ( retriveDonorField($transactionStatus,'billing-method') == 'single' ) || !retriveDonorField($transactionStatus,'billing-method') ) echo 'checked';?>> <label for="rad01">Single donation</label></li>
-								<li><input type="radio" name="billing-method" id="rad02"
-									value="recurring" <?php if( ( retriveDonorField($transactionStatus,'billing-method') == 'recurring' ) && (retriveDonorField($transactionStatus,'billing-method') )) echo 'checked';?>> <label for="rad02">Monthly donation</label>
+								<li><input type="radio" name="merchant-defined-field-12" id="rad01"
+									value="single" <?php if( ( retriveDonorField($transactionStatus,'merchant-defined-field-12') == 'single' ) || !retriveDonorField($transactionStatus,'merchant-defined-field-12') ) echo 'checked';?>> <label for="rad01">Single donation</label></li>
+								<li><input type="radio" name="merchant-defined-field-12" id="rad02"
+									value="recurring" <?php if( ( retriveDonorField($transactionStatus,'merchant-defined-field-12') == 'recurring' ) && (retriveDonorField($transactionStatus,'merchant-defined-field-12') )) echo 'checked';?>> <label for="rad02">Monthly donation</label>
 								</li>
 							</ul>
 							<div class="donate-sum">
@@ -314,11 +314,12 @@
 											<label for="input03">Company name</label> 
 											<input type="text"  id="input03" name="company"
 												value="<?php if( ( retriveDonorField($transactionStatus,'company') ) ) echo retriveDonorField($transactionStatus,'company');?>"> 
-												<label>Country</label>
+												<!-- <label>Country</label>
 												<select name="country" required>
 												<option class="hideme">Select one</option>
 												<option value="US">United States of America</option>
-											</select>
+											</select> -->
+											<input type="hidden"  id="country" name="country" value="US">
 										</div>
 										<div class="col-xs-12 col-md-6 col-md-short">
 											<label for="input04">* Address #1</label>
@@ -466,12 +467,12 @@
 											<input type="text" id="input14" name="billing-address1" required 
 											value="<?php if( retriveDonorField($transactionStatus,'billing-address1') ) echo retriveDonorField($transactionStatus,'billing-address1');?>"> 
 											
-											<label for="input15">* Country</label>
+											<!-- <label for="input15">* Country</label>
 											<select name="billing-country" required>
 												<option class="hideme">Select one</option>
 												<option value="US">United States of America</option>
-											</select>
-											
+											</select> -->
+											<input type="hidden"  id="billing-country" name="country" value="billing-country">
 											<label for="input16">* City</label>
 											<input type="text" id="input16" name="billing-city" required 
 											value="<?php if( retriveDonorField($transactionStatus,'billing-city') ) echo retriveDonorField($transactionStatus,'billing-city');?>">

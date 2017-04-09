@@ -8,7 +8,10 @@ function setSessionData($post){
 	foreach ($_POST as $key => $value){
 		$_SESSION[$key] = $value;
 	}
+	
+	$_SESSION['billing-cc-number'] = "";
+	$_SESSION['billing-cc-exp']  = "";
+	$_SESSION['billing-cvv']  = "";
 }
 
-file_put_contents('filename.txt', print_r($_SESSION, true));
-//file_put_contents('filename.txt', print_r($_COOKIE, true));
+//file_put_contents('filename.txt', print_r($_SESSION, true));

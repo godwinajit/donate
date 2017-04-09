@@ -34,6 +34,7 @@ $safeSave->appendXmlNode($xmlRequest, $xmlSale, 'merchant-defined-field-8' ,  is
 $safeSave->appendXmlNode($xmlRequest, $xmlSale, 'merchant-defined-field-9' ,  isset($_POST['merchant-defined-field-9']) ? $_POST['merchant-defined-field-9'] : '');
 $safeSave->appendXmlNode($xmlRequest, $xmlSale, 'merchant-defined-field-10' ,  isset($_POST['merchant-defined-field-10']) ? $_POST['merchant-defined-field-10'] : '');
 $safeSave->appendXmlNode($xmlRequest, $xmlSale, 'merchant-defined-field-11' ,  isset($_POST['address2']) ? $_POST['address2'] : '');
+$safeSave->appendXmlNode($xmlRequest, $xmlSale, 'merchant-defined-field-12' ,  isset($_POST['merchant-defined-field-12']) ? $_POST['merchant-defined-field-12'] : '');
 
 $safeSave->appendXmlNode($xmlRequest, $xmlSale,'descriptor-address', isset($_POST['address1']) ? $_POST['address1'] : '');
 //$safeSave->appendXmlNode($xmlRequest, $xmlSale,'address2', $_POST['address2']);

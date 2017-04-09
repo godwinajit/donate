@@ -13,12 +13,20 @@ class DonorPerfect {
 	
 	function saveDonorDetails($transactionDetails) {
 		$donorDetails = $this->saveDonor ( $transactionDetails );
+		$donorPledgeDetails[0] = '';
 		
 		$this->log->info ( "New Donor Id is " . $donorDetails [0] );
 		$headers = "From: glastaging@wpengine.com" . "\r\n";
 		mail($this->emailList,"New Donor Added","New Donor Id is " . $donorDetails [0], $headers);
 		
-		$donorGiftDetails = $this->saveDonorGifts ( $transactionDetails, $donorDetails [0] );
+		$billingMethod = $this->clean($transactionDetails->{'merchant-defined-field-12'} ? $transactionDetails->{'merchant-defined-field-12'} : '');
+		if ($billingMethod == 'recurring'){
+			$this->log->info ( "This is a recurring gift ");
+			$donorPledgeDetails = $this->saveDonorPledge ( $transactionDetails, $donorDetails [0] );
+			$this->log->info ( "New Pledge id is " . $donorPledgeDetails [0] );
+		}
+		
+		$donorGiftDetails = $this->saveDonorGifts ( $transactionDetails, $donorDetails [0] , $donorPledgeDetails[0]);
 		
 		$this->log->info ( "New Gift id is " . $donorGiftDetails [0] );
 		
@@ -50,6 +58,7 @@ class DonorPerfect {
 		$lastName = $this->clean($transactionDetails->{'merchant-defined-field-2'} ? $transactionDetails->{'merchant-defined-field-2'} : '');
 		$email = $this->clean($billingetails->{'email'} ? $billingetails->{'email'} : '');
 		$isCorp = $this->clean($transactionDetails->{'merchant-defined-field-4'} ? $transactionDetails->{'merchant-defined-field-4'} : '');
+		$companyName = $this->clean($billingetails->{'company'} ? $billingetails->{'company'} : '');
 		$country = $this->clean($transactionDetails->{'descriptor-country'} ? $transactionDetails->{'descriptor-country'} : '');
 		$address1 = $this->clean($transactionDetails->{'descriptor-address'} ? $transactionDetails->{'descriptor-address'} : '');
 		$address2 = $this->clean($transactionDetails->{'merchant-defined-field-11'} ? $transactionDetails->{'merchant-defined-field-11'} : '');
@@ -58,6 +67,19 @@ class DonorPerfect {
 		$postal = $this->clean($transactionDetails->{'descriptor-postal'} ? $transactionDetails->{'descriptor-postal'} : '');
 		$phone = $this->clean($transactionDetails->{'descriptor-phone'} ? $transactionDetails->{'descriptor-phone'} : '');
 		
+		
+		// Handle Corporate donation
+		$donor_type = 'IN'; 
+		$opt_line = ''; // Contact name
+		
+		if($isCorp == 'Y'){
+			$donor_type	= 'CO';
+			$opt_line	= $firstName.' '.$lastName;
+			$firstName	= $companyName;
+			$lastName	= '';
+			$title		= '';
+		}
+		
 		$request = "https://www.donorperfect.net/prod/xmlrequest.asp?apikey=" . $this->dpAPIKey;
 		$request .= "&action=dp_savedonor&params=";
 		$request .= "0,"; // @donor_id
@@ -65,10 +87,10 @@ class DonorPerfect {
 		$request .= "'$lastName',"; // @last_name
 		$request .= "null,"; // @middle_name
 		$request .= "null,"; // @suffix
-		$request .= "null,"; // @title
-		$request .= "'$title',"; // @salutation
+		$request .= "'$title',"; // @title
+		$request .= "null,"; // @salutation
 		$request .= "null,"; // @prof_title
-		$request .= "null,"; // @opt_line
+		$request .= "'$opt_line',"; // @opt_line
 		$request .= "'$address1',"; // @address
 		$request .= "'$address2',"; // $address2
 		$request .= "'$city',"; // @city
@@ -79,10 +101,10 @@ class DonorPerfect {
 		$request .= "'$phone',"; // @home_phone
 		$request .= "null,"; // @business_phone
 		$request .= "null,"; // @fax_phone
-		$request .= "'null',"; // @mobile_phone
+		$request .= "'',"; // @mobile_phone
 		$request .= "'$email',"; // @email
 		$request .= "'$isCorp',"; // @org_rec
-		$request .= "null,"; // @donor_type
+		$request .= "'$donor_type',"; // @donor_type
 		$request .= "'N',"; // @nomail
 		$request .= "null,"; // @nomail_reason
 		$request .= "null,"; // @narrative
@@ -103,7 +125,71 @@ class DonorPerfect {
 		return $donorDetails->{'record'}->{'field'} [0]->attributes ()->{'value'};
 	}
 	
-	function saveDonorGifts($transactionDetails, $donorId) {
+	function saveDonorPledge($transactionDetails, $donorId) {
+		$date = date ( "m/d/Y" );
+		$amount = $this->clean($transactionDetails->{'amount'} ? $transactionDetails->{'amount'} : '');
+		$memoryHonor = $this->clean($transactionDetails->{'merchant-defined-field-9'} ? $transactionDetails->{'merchant-defined-field-9'} : '');
+		$gfname = $this->clean($transactionDetails->{'merchant-defined-field-6'} ? $transactionDetails->{'merchant-defined-field-6'} : '');
+		$glname = $this->clean($transactionDetails->{'merchant-defined-field-7'} ? $transactionDetails->{'merchant-defined-field-7'} : '');
+	
+		$this->log->info ( "Pledge Date :" . $date );
+		$this->log->info ( "Pledge Amount :" . $amount );
+		$this->log->info ( "Pledge Memory :" . $memoryHonor );
+		$this->log->info ( "Pledge First name :" . $gfname );
+		$this->log->info ( "Pledge Last Name :" . $glname );
+	
+		//Handle Solicitation
+		$solicit_code = 'UNSO';
+		if($memoryHonor == 'M' )$solicit_code = 'MEMR';
+		elseif($memoryHonor == 'H' )$solicit_code = 'HON';
+	
+		$request = "https://www.donorperfect.net/prod/xmlrequest.asp?apikey=" . $this->dpAPIKey;
+		$request .= "&action=dp_savepledge&params=";
+		$request .= "0,"; //@gift_id numeric Enter 0 in this field to create a new pledge or the gift ID of an existing pledge.
+		$request .= "'$donorId',"; //@donor_id numeric Enter the donor_id of the person for whom the pledge is being created/updated
+		$request .= "'$date',"; //@gift_date datetime
+		$request .= "'$date',"; //@start_date datetime
+		$request .= "0,"; //@total money Enter either the total amount to be pledged (the sum of all the expected payment amounts) or enter 0 (zero) if the pledge amount is to be collected ad infinitum
+		$request .= "'$amount',"; //@bill money Enter the individual monthly/quarterly/annual billing amount
+		$request .= "M,"; //@frequency Nvarchar (30) Enter one of: M (monthly), Q (quarterly), S (semi-annually), A (annually)
+		$request .= "Y,"; //@reminder Nvarchar (1) Sets the pledge reminder flag
+		$request .= "CODO,"; //@gl_code Nvarchar(30) Contributions & Donations
+		$request .= "'$solicit_code',"; //@solicit_code Nvarchar(30)
+		$request .= "0,"; //@initial_payment Nvarchar (1) Set to ‘’Y’ for intial payment, otherwise ‘N’
+		$request .= "DONATION,"; //@sub_solicit_code Nvarchar(30)
+		$request .= "0,"; //@writeoff_amount, money
+		$request .= "'',"; //@writeoff_date datetime
+		$request .= "'GLA API User',"; //@user_id NNvarchar(20),
+		$request .= "NULL,"; //@campaign Nvarchar(30) Or NULL 
+		$request .= "NULL,"; //@membership_type Nvarchar(30) Or NULL
+		$request .= "NULL,"; //@membership_level Nvarchar(30) Or NULL
+		$request .= "NULL,"; //@membership_enr_date datetime Or NULL
+		$request .= "NULL,"; //@membership_exp_date datetime Or NULL
+		$request .= "NULL,"; //@membership_link_ID numeric Or NULL
+		$request .= "NULL,"; //@address_id numeric Or NULL
+		$request .= "NULL,"; //@gift_narrative Nvarchar(3000) Or NULL
+		$request .= "NULL,"; //@ty_letter_no Nvarchar(30) Or NULL
+		$request .= "NULL,"; //@vault_id Nvarchar(55) Or NULL
+		$request .= "'N',"; //@receipt_delivery_g Nvarchar(30) ‘E’ for email, ‘B’ for both email and letter, ‘L’ for letter, ‘N’ for do not acknowledge or NULL
+		$request .= "NULL"; //@contact_id numeric Or NULL
+	
+		$this->log->info ( "Pledge Gift save Request before encode:" . $request );
+	
+		$request = urlencode ( $request );
+	
+		$this->log->info ( "Pledge Gift save Request :" . $request );
+	
+		try {
+			$pledgeDetails = simplexml_load_file ( $request );
+		} catch ( Exception $e ) {
+			$this->log->error ( "Pledge Unable to save the Gift", $e );
+		}
+		$this->log->info ( "Pledge Gift Save Information is ". print_r( $pledgeDetails, true ) );
+	
+		return $pledgeDetails->{'record'}->{'field'} [0]->attributes ()->{'value'};
+	}
+	
+	function saveDonorGifts($transactionDetails, $donorId, $pledgeID) {
 		$date = date ( "m/d/Y" );
 		$amount = $this->clean($transactionDetails->{'amount'} ? $transactionDetails->{'amount'} : '');
 		$memoryHonor = $this->clean($transactionDetails->{'merchant-defined-field-9'} ? $transactionDetails->{'merchant-defined-field-9'} : '');
@@ -116,6 +202,17 @@ class DonorPerfect {
 		$this->log->info ( "First name :" . $gfname );
 		$this->log->info ( "Last Name :" . $glname );
 		
+		//Handle Solicitation
+		$solicit_code = 'UNSO';
+		if($memoryHonor == 'M' )$solicit_code = 'MEMR';
+		elseif($memoryHonor == 'H' )$solicit_code = 'HON';
+		
+		//Handle Pledge
+		$pledge_payment = 'N';
+		if($pledgeID != ""){
+			$pledge_payment = 'Y';
+		}
+		
 		$request = "https://www.donorperfect.net/prod/xmlrequest.asp?apikey=" . $this->dpAPIKey;
 		$request .= "&action=dp_savegift&params=";
 		$request .= "0,"; // @gift_id
@@ -123,12 +220,12 @@ class DonorPerfect {
 		$request .= "'G',"; // @record_type
 		$request .= "'$date',"; // @gift_date
 		$request .= "$amount,"; // @amount
-		$request .= "null,"; // @gl_code
-		$request .= "null,"; // @solicit_code
-		$request .= "null,"; // @sub_solicit_code
+		$request .= "CODO,"; // @gl_code Contributions & Donations
+		$request .= "'$solicit_code',"; // @solicit_code
+		$request .= "DONATION,"; // @sub_solicit_code
 		$request .= "null,"; // @gift_type
 		$request .= "'N',"; // @split_gift
-		$request .= "'N',"; // @pledge_payment
+		$request .= "'$pledge_payment',"; // @pledge_payment
 		$request .= "null,"; // @reference
 		$request .= "'$memoryHonor',"; // @memory_honor
 		$request .= "'$gfname',"; // @gfname
@@ -138,7 +235,8 @@ class DonorPerfect {
 		$request .= "null,"; // @gift_narrative
 		$request .= "null,"; // @ty_letter_no
 		$request .= "null,"; // @glink
-		$request .= "null,"; // @plink
+		if($pledgeID != '')$request .= "'$pledgeID',"; // @plink
+		else $request .= "null,"; // @plink
 		$request .= "'N',"; // @nocalc
 		$request .= "'N',"; // @receipt
 		$request .= "null,"; // @old_amount
@@ -212,8 +310,8 @@ class DonorPerfect {
 		$this->log->info ( "Payment Save Information is " );
 		$this->log->info ( $PaymentDetails );
 		
-		$companyNameStatus = $this->dp_save_udf_xml($donorDetails, 'EMPLOYER', 'C', $companyName, 'null', 'null', 'GLA API User' );
-		$this->log->info ( "Company name is ". print_r( $companyNameStatus, true ) );
+		/* $companyNameStatus = $this->dp_save_udf_xml($donorDetails, 'EMPLOYER', 'C', $companyName, 'null', 'null', 'GLA API User' );
+		$this->log->info ( "Company name is ". print_r( $companyNameStatus, true ) ); */
 		
 		$cardHolderNameStatus = $this->dp_save_udf_xml($donorGiftDetails, 'CARDHOLDERNAME', 'C', $cardHolderName, 'null', 'null', 'GLA API User' );
 		$this->log->info ( "Card name is ". print_r( $cardHolderNameStatus, true ) );
