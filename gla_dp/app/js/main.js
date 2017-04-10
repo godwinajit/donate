@@ -28,6 +28,7 @@ jQuery(function($) {
               $("[name='billing-postal']").val($("[name='postal']").val());
               var state = $("[name='state'] option:selected").text();
               var country = $("[name='country'] option:selected").text();
+              $("[name='billing-state'] option:contains(" + state +")").attr('selected', true);
               $("[name='billing-country'] + span > span.jcf-select-text > span").text(country).removeClass('jcf-option-hideme');
               $("[name='billing-state'] + span > span.jcf-select-text > span").text(state).removeClass('jcf-option-hideme');
 
@@ -37,6 +38,7 @@ jQuery(function($) {
             $("[name='billing-address1']").val("");
             $("[name='billing-city']").val("");
             $("[name='billing-postal']").val("");
+            $("[name='billing-state'] option:contains(Select One)").attr('selected', true);
             $("[name='billing-country'] + span > span.jcf-select-text > span").text("Select One").addClass('jcf-option-hideme');
             $("[name='billing-state'] + span > span.jcf-select-text > span").text("Select One").addClass('jcf-option-hideme');
         };
