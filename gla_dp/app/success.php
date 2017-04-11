@@ -1,3 +1,4 @@
+<?php require_once 'src/handlePayments.php';?>
 <html>
 <head>
 <meta charset="utf-8">
@@ -198,15 +199,36 @@
 								<div class="donation-summary-box personal-info">
 									<div class="box-holder">
 										<h3>Your Donation</h3>
-										<span>Jesus Summers</span> <span>8 (495) 358-23-75</span> <span>French
-											Southern Territories</span> <span>20090042</span> <span>52
-											Little Valley Suite 117</span>
+										<span>
+											<?php if( retriveDonorField($_SESSION,'merchant-defined-field-3') ) echo retriveDonorField($_SESSION,'merchant-defined-field-3');?>
+											&nbsp;
+											<?php if( retriveDonorField($_SESSION,'merchant-defined-field-1') ) echo retriveDonorField($_SESSION,'merchant-defined-field-1');?>
+											&nbsp;
+											<?php if( retriveDonorField($_SESSION,'merchant-defined-field-2') ) echo retriveDonorField($_SESSION,'merchant-defined-field-2');?>
+											&nbsp;
+										</span>
+										<span>
+											<?php if( retriveDonorField($_SESSION,'phone') ) echo retriveDonorField($_SESSION,'phone');?>
+										</span>
+										<span>
+											<?php if( retriveDonorField($_SESSION,'city') ) echo retriveDonorField($_SESSION,'city');?>
+											&nbsp;,
+											<?php if( retriveDonorField($_SESSION,'state') ) echo retriveDonorField($_SESSION,'state');?>
+										</span>
+										<span>
+											<?php if( retriveDonorField($_SESSION,'postal') ) echo retriveDonorField($_SESSION,'postal');?>
+										</span>
+										<span>
+											<?php if( retriveDonorField($_SESSION,'address1') ) echo retriveDonorField($_SESSION,'address1');?>
+											&nbsp;,
+											<?php if( retriveDonorField($_SESSION,'address2') ) echo retriveDonorField($_SESSION,'address2');?>
+										</span>
 									</div>
 								</div>
 								<div class="donation-summary-box">
 									<div class="total-sum">
 										<span class="title">Total donated</span> <strong
-											class="amount"><?php echo $_GET ['amount'];?></strong>
+											class="amount"><?php if( retriveDonorField($_SESSION,'donate') ) echo retriveDonorField($_SESSION,'donate');?></strong>
 									</div>
 									<div class="box-holder">
 										<h3>Lorem ipsum dolor</h3>
@@ -460,3 +482,4 @@
 		</script>
 </body>
 </html>
+<?php session_destroy();?>

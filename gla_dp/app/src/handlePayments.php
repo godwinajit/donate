@@ -35,16 +35,16 @@ if (! empty ( $_GET ['token-id'] )) {
 		$log->info("Saving details to Doner Perfect");
 		$donorDetails = $donorPerfect->saveDonorDetails($transactionDetails);
 		$transactionStatus = $transactionDetails->{'result-text'};
-		header("Location: success.php?amount=".$transactionDetails->{'amount'}); /* Redirect browser */
+		header("Location: success.php"); /* Redirect browser */
 		exit();
 	}else{
 		$transactionStatus = $transactionDetails->{'result-text'};
 		$transactionDetails = "Transaction failed";
 		$alertCSS = "alert-fail";
 	}
-}else{
+}/* else{
 	session_destroy();
-}
+} */
 
 
 function retriveDonorField($transactionStatus, $fieldName ){
