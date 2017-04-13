@@ -10,10 +10,10 @@ if ($environment == "test") {
 	$APIKey = '2F822Rw39fx762MaV7Yy86jXGTC7sCDy';
 } elseif ($environment == "production") {
 	// DP API Key
-	$dpAPIKey = '';
+	$dpAPIKey = 'HFCBGrK8x8aiXpEu50tVH31W7akQaoPOiUtFpsHiXH%2fUKsFZQ4uX3L1gaDHsywRmHwzAsalBDEVpMDsIs56kM%2brGU%2b1SS%2fzQCZodcSq7c6hokQPh1VZPUBRXN9ULnmYp';
 	// Safe Save API Setup parameters
 	$gatewayURL = 'https://secure.safesavegateway.com/api/v2/three-step';
-	$APIKey = '';
+	$APIKey = 'H2T4fc3XKkWU243C2R6pj863P4ERS3mn';
 }
 
 $ipAaddress = $_SERVER ["REMOTE_ADDR"];
