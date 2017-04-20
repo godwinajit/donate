@@ -46,8 +46,9 @@ jQuery(function($) {
     //Popop Modal CVV TM
     function initCVModal() {
         var modal = document.getElementById('CVVPopup');
-        var cvlink = document.getElementById("OpenCVV");
+        var cvlink = document.getElementById("OpenCVV") || ("");
         var span = document.getElementsByClassName("close")[0];
+        
         cvlink.onclick = function() {
             modal.style.display = "block";
         }
@@ -59,6 +60,9 @@ jQuery(function($) {
                 modal.style.display = "none";
             }
         }
+        if (cvlink == 'undefined'){
+            return;
+        };
     }
     initCVModal();
     //end

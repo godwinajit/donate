@@ -1,6 +1,6 @@
 <?php
 $environment	= "test"; // test or production
-$emailList		= 'goliver@mindtrustlabs.com,godwin.ajith@gmail.com';
+$emailList		= 'goliver@mindtrustlabs.com';
 
 if ($environment == "test") {
 	// DP API Key
@@ -17,3 +17,6 @@ if ($environment == "test") {
 }
 
 $ipAaddress = $_SERVER ["REMOTE_ADDR"];
+
+$donateWPPage = 4442;
+$successWPPage = 4444;
