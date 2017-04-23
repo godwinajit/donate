@@ -1,0 +1,312 @@
+.footer{
+    background: #000b2e;
+    color: #a3a5ac;
+    font-size: floor($base-font-size * 0.86);
+    padding: 10px 0;
+    border-top: 3px solid $blue;
+
+    h3{
+        color: $white;
+        font-size: floor($base-font-size * 0.86);
+        font-family: $font-family-condensed;
+        font-weight: $font-weight-bold;
+        margin-bottom: 0.3em;
+    }
+    
+    a{
+        color: #82a4bb;
+        &:hover{
+            color: $white;
+        }
+    }
+
+    .logo{
+        display: inline-block;
+        vertical-align: middle;
+        width: 198px;
+        height: 37px;
+        text-indent: -9999px;
+        overflow: hidden;
+        background: url('../images/logo03-mobile.svg') no-repeat;
+        background-size: 100% auto;
+        max-width: 100%;
+    }
+
+    .sub-nav{
+        @extend %listreset;
+        margin-bottom: -5px;
+
+        li{
+            padding-bottom: 5px;
+        }
+
+        &-bold{
+            font-family: $font-family-condensed;
+            font-weight: $font-weight-bold;
+            
+            a{
+                color: $white;
+                &:hover{
+                    color: #82a4bb;
+                }
+            }
+        }
+    }
+
+    .contact-block{
+        padding-top: 20px;
+    }
+
+    address{
+        font-style: normal;
+        display: inline;
+    }
+
+    .footer-columns{
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        overflow: hidden;
+    }
+
+    .footer-column{
+        width: 33.33%;
+        padding: 0 10px;
+        margin-bottom: 10px;
+        position: relative;
+        text-align: left;
+
+        &:before{
+            content: '';
+            position: absolute;
+            left: -1px;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: #273959;
+        }
+
+        &-logo{
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        &-nav{
+            width: 24%;
+        }
+
+        &-nav02{
+            width: 38%;
+            padding: 0 5px;
+        }
+
+        &-social{
+            width: 100%;
+            margin: 0 0 9px;
+            padding: 9px 10px;
+            border: 1px solid #273959;
+            border-width: 1px 0;
+        }
+
+        &-contact{
+            padding-left: 17px;
+        }
+
+        &-copyright{
+            width: 100%;
+            text-align: center;
+            font-size: floor($base-font-size * 0.74);
+        }
+    }
+
+    @media only screen and (min-width: $screen-sm) {
+        border-width: 10px;
+        padding: 17px 0;
+        font-size: floor($base-font-size * 1.43);
+
+        h3{
+            font-size: floor($base-font-size * 1.43);
+        }
+
+        .logo{
+            width: 398px;
+            height: 73px;
+        }
+
+        .sub-nav{
+            margin-bottom: -15px;
+
+            li{
+                padding-bottom: 15px;
+            }
+        }
+
+        .footer-column{
+            padding: 0 20px;
+            margin-bottom: 22px;
+
+            &-logo{
+                margin-bottom: 39px;
+            }
+
+            &-nav{
+                width: 25%;
+            }
+
+            &-nav02{
+                width: 36%;
+                padding-left: 32px;
+            }
+
+            &-contact{
+                padding-left: 8%;
+            }
+
+            &-social{
+                margin-bottom: 27px;
+                padding-top: 21px;
+                padding-bottom: 21px;
+            }
+
+            &-copyright{
+                font-size: floor($base-font-size * 1.14);
+            }
+        }
+    }
+
+    @media only screen and (min-width: $screen-md) {
+        padding: 20px 0 60px;
+
+        .logo{
+            width: 183px;
+            height: 83px;
+            background: url('../images/logo03.svg') no-repeat;
+            background-size: 100% auto;
+            margin: -9px 0 36px;
+        }
+
+        .copyright-block{
+            font-size: floor($base-font-size * 1.17);
+
+            > div{
+                padding-bottom: 17px;
+            }
+        }
+
+        .contact-block{
+            padding-top: 12px;
+        }
+
+        .footer-columns{
+            flex-wrap: nowrap;
+        }
+
+        .footer-column{
+            width: 20%;
+            padding: 20px 10px 10px;
+            margin-bottom: 0;
+
+            &-logo{
+                text-align: left;
+                width: 22%;
+            }
+
+            &-nav{
+                width: 15%;
+            }
+
+            &-nav02{
+                width: 20.5%;
+                padding-left: 12px;
+
+                &:before{
+                    display: none;
+                }
+            }
+
+            &-contact{
+                order:5;
+                width: 22%;
+            }
+
+            &-social{
+                order: 4;
+                width: 19%;
+                border: 0;
+            }
+        }
+    }
+
+    @media only screen and (min-width: $screen-lg) {
+        .footer-column {
+            padding: 50px 15px 10px 35px;
+            margin-bottom: 0;
+
+            &-logo{
+                padding-left: 0;
+            }
+
+            &-nav02{
+                padding-left: 12px;
+            }
+        }
+    }
+}
+
+.social-list{
+    @extend %listreset;
+    padding: 1px 0 0;
+    margin: 0 -7px;
+
+    li{
+        display: inline-block;
+        vertical-align: middle;
+        padding: 0 7px 5px;
+        margin: 0 -4px 0 0;
+    }
+
+    .icon{
+        display: inline-block;
+        vertical-align: middle;
+        font-size: floor($base-font-size * 1.2);
+        padding-right: 3px;
+    }
+
+    @media only screen and (min-width: $screen-sm) {
+        padding-top: 3px;
+        margin: 0 -10px;
+
+        li{
+            padding: 0 10px 5px;
+        }
+
+        .icon{
+            font-size: floor($base-font-size * 2.5);
+            padding-right: 10px;
+        }
+    }
+
+    @media only screen and (min-width: $screen-lg) {
+        li{
+            padding: 0 0 22px 10px;
+        }
+    }
+}
+
+.contact-list {
+    margin: 0;
+    color: #82a4bb;
+    @extend %clearfix;
+
+    dt{
+        float: left;
+        clear: left;
+        padding-right: 5px;
+    }
+
+    dd{
+        margin: 0;
+        overflow: hidden;
+    }
+}

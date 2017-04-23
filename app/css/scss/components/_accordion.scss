@@ -1,0 +1,292 @@
+.accordion-nav{
+    padding: 29px 0 30px;
+    font-weight: $font-weight-light;
+
+    .accordion-opener{
+        color: $white;
+        display: block;
+        font-size: floor($base-font-size * 1.143);
+        font-family: $font-family-condensed;
+        font-weight: $font-weight-bold;
+        padding: 11px 30px 10px 5px;
+        text-transform: uppercase;
+        position: relative;
+
+        &:after{
+            content: "\e90a";
+            @include icofont;
+            font-size: 18px;
+            color: $blue;
+            position: absolute;
+            right: 4px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        &:hover{
+            color: $blue;
+            &:after{
+                color: $white;
+            }
+        }
+    }
+
+    .accordion-active > .accordion-opener {
+        color: $white;
+        &:after{
+            content: "\e909";
+            color: $white;
+        }
+    }
+
+    ul{
+        @extend %listreset;
+        text-align: left;
+
+        a:not(.accordion-opener){
+            color: $white;
+            display: block;
+            padding: 6px 30px 6px 22px;
+            position: relative;
+
+            &:after{
+                content: "\f105";
+                @include icofont;
+                font-size: 10px;
+                color: $blue;
+                position: absolute;
+                right: 12px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            &:hover{
+                color: $blue;
+                &:after{
+                    color: $white;
+                }
+            }
+        }
+
+        li{
+            border-top: 1px solid $light-gray;
+
+            &:first-child{
+                border: 0;
+            }
+        }
+
+        ul{
+            border-top: 1px solid $white;
+            padding: 4px 0 14px;
+
+            li {
+                border-top: 0;
+                
+                &.accordion-active{
+                    .accordion-opener{
+                        color: $blue;
+                        
+                        &:after{
+                            color: inherit;
+                        }
+                    }
+                }
+            }
+
+            .accordion-opener{
+                font-size: floor($base-font-size * 1.36);
+                color: $blue;
+                font-family: $base-font-family;
+                font-weight: $font-weight-light;
+                padding-top: 3px;
+                padding-bottom: 3px;
+                
+                &:hover{
+                    color: $white;
+                }
+            }
+
+            ul{
+                border-top: 0;
+                padding: 1px 0 15px 5px;
+
+                li{
+                    border-top: 1px solid $dark-gray;
+
+                    &:first-child{
+                        border: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    @media only screen and (min-width: $screen-sm){
+        padding: 54px 5px 50px 25px;
+        font-size: floor($base-font-size * 2);
+
+        .accordion-opener{
+            font-size: floor($base-font-size * 2.29);
+            padding: 23px 30px 22px 5px;
+
+            &:after{
+                font-size: 45px;
+                right: 0;
+            }
+        }
+
+        ul{
+            a:not(.accordion-opener){
+                padding: 13px 30px 11px 14px;
+
+                &:after{
+                    font-size: 20px;
+                    right: 10px;
+                }
+            }
+
+            ul{
+                padding: 8px 0 30px;
+
+                .accordion-opener{
+                    font-size: floor($base-font-size * 2.7);
+                    padding-top: 5px;
+                    padding-bottom: 5px;
+
+                    &:after{
+                        font-size: 25px;
+                    }
+                }
+
+                ul{
+                    padding: 5px 0 31px 23px;
+                }
+            }
+        }
+    }
+
+    @media only screen and (min-width: $screen-md){
+        padding: 53px 5px 50px 15px;
+
+        .accordion-opener{
+            padding: 23px 30px 22px 10px;
+
+            &:after{
+                display: none;
+            }
+        }
+
+        ul{
+            a:not(.accordion-opener){
+                padding: 9px 30px 11px 28px;
+
+                &:after{
+                    right: auto;
+                    left: 8px;
+                    color: $white;
+                }
+            }
+
+            ul{
+                padding: 21px 0;
+                position: relative;
+
+                > li{
+                    width: 42%;
+                    padding: 25px 0 24px;
+
+                    > .accordion-slide{
+                        position: absolute;
+                        left: 44%;
+                        top: 0;
+                    }
+                }
+
+                .accordion-opener{
+                    padding-top: 5px;
+                    padding-bottom: 5px;
+                }
+
+                ul{
+                    padding: 17px 0 0;
+
+                    li{
+                        width: 100%;
+                        border: 0;
+                        padding: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    @media only screen and (min-width: $screen-lg){
+        font-size: floor($base-font-size * 2.71);
+
+        .accordion-opener{
+            font-size: floor($base-font-size * 2);
+        }
+
+        ul{
+            a:not(.accordion-opener){
+                &:after{
+                    font-size: 25px;
+                }
+            }
+
+            ul{
+                .accordion-opener{
+                    font-size: floor($base-font-size * 4.14);
+                }
+            }
+        }
+    }
+}
+
+.accordion-content{
+    @extend %listreset;
+    text-align: left;
+
+    &-active{
+        .accordion-content-opener{
+            .icon-minus{
+                display: block;
+            }
+
+            .icon-plus{
+                display: none;
+            }
+        }
+    }
+
+    &-opener{
+        display: block;
+        text-transform: uppercase;
+        background: #f9f9f9;
+        border: 1px solid #b6b6b6;
+        border-width: 1px 0;
+        padding-top: 9px;
+        padding-bottom: 8px;
+        padding-left: 9999px;
+        padding-right: 9999px;
+        margin: 0 -9999px;
+        overflow: hidden;
+
+        .icon{
+            float: right;
+            display: none;
+            font-size: floor($base-font-size * 1.2);
+
+        }
+
+        .icon-plus{
+            display: block;
+        }
+    }
+
+    &-slide{
+        padding: 13px 0 0;
+    }
+}
+

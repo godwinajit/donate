@@ -1,0 +1,83 @@
+.section-involved{
+    padding: 36px 0 28px;
+    background: #000b2e;
+    color: $white;
+
+    h2,
+    h3{
+        color: inherit;
+    }
+
+    @media only screen and (min-width: $screen-sm) {
+        padding: 52px 0 41px;
+    }
+
+    @media only screen and (min-width: $screen-md) {
+        padding-bottom: 69px;
+    }
+}
+
+.involve-options{
+    text-align: center;
+
+    &-item{
+        color: $white;
+        display: inline-block;
+        vertical-align: top;
+        margin: 10px 0 21px;
+
+        &:hover{
+            color: $blue;
+
+            .icon{
+                color: $white;
+            }
+        }
+    }
+
+    .icon{
+        display: inline-block;
+        vertical-align: top;
+        font-size: 60px;
+        color: $blue;
+        margin-bottom: 10px;
+        @extend %transition;
+    }
+
+    span{
+        display: inline-block;
+        width: 100%;
+    }
+
+    @media only screen and (min-width: $screen-xs) {
+        .icon{
+            font-size: 83px;
+        }
+    }
+
+    @media only screen and (min-width: $screen-sm) {
+        padding: 0;
+        font-size: floor($base-font-size * 1.43);
+
+        &-item {
+            margin: 25px 0;
+        }
+
+        .icon{
+            font-size: 110px;
+            margin: 0 0 16px;
+        }
+    }
+
+    @media only screen and (min-width: $screen-md) {
+        &-item {
+            margin: 16px 0;
+        }
+    }
+
+    @media only screen and (min-width: $screen-lg) {
+        .icon{
+            font-size: 118px;
+        }
+    }
+}
