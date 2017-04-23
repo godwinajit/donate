@@ -77,7 +77,7 @@ include('../../wp-load.php');
 										</span>
 										<span>
 											<?php if( retriveDonorField($_SESSION,'city') ) echo retriveDonorField($_SESSION,'city');?>
-											&nbsp;,
+											,&nbsp;
 											<?php if( retriveDonorField($_SESSION,'state') ) echo retriveDonorField($_SESSION,'state');?>
 										</span>
 										<span>
@@ -85,7 +85,7 @@ include('../../wp-load.php');
 										</span>
 										<span>
 											<?php if( retriveDonorField($_SESSION,'address1') ) echo retriveDonorField($_SESSION,'address1');?>
-											&nbsp;,
+											,&nbsp;
 											<?php if( retriveDonorField($_SESSION,'address2') ) echo retriveDonorField($_SESSION,'address2');?>
 										</span>
 									</div>
