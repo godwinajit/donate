@@ -73,10 +73,10 @@ class DonorPerfect {
 		$opt_line = ''; // Contact name
 		
 		if($isCorp == 'Y'){
-			$donor_type	= 'CO';
+			$donor_type	= 'OR';
 			$opt_line	= $firstName.' '.$lastName;
-			$firstName	= $companyName;
-			$lastName	= '';
+			$firstName	= '';
+			$lastName	= $companyName;
 			$title		= '';
 		}
 		
