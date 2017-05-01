@@ -203,15 +203,21 @@ class DonorPerfect {
 		$this->log->info ( "Last Name :" . $glname );
 		
 		//Handle Solicitation
-		$solicit_code = 'UNSO';
-		if($memoryHonor == 'M' )$solicit_code = 'MEMR';
-		elseif($memoryHonor == 'H' )$solicit_code = 'HON';
+		$solicit_code = 'UN';
+		if( ($memoryHonor == 'M') || ($memoryHonor == 'H') )$solicit_code = 'TRB';
+		//elseif($memoryHonor == 'H' )$solicit_code = 'HON';
 		
 		//Handle Pledge
 		$pledge_payment = 'N';
 		if($pledgeID != ""){
 			$pledge_payment = 'Y';
 		}
+		
+		//Thank-You Letter
+		$ty_letter_no = "01";
+		$amountNumber = number_format($amount, 2);
+		if( bccomp($amountNumber, 250) == -1 ) $ty_letter_no = "NOLTR";
+		
 		
 		$request = "https://www.donorperfect.net/prod/xmlrequest.asp?apikey=" . $this->dpAPIKey;
 		$request .= "&action=dp_savegift&params=";
@@ -233,7 +239,7 @@ class DonorPerfect {
 		$request .= "0,"; // @fmv
 		$request .= "0,"; // @batch_no
 		$request .= "null,"; // @gift_narrative
-		$request .= "null,"; // @ty_letter_no
+		$request .= "'$ty_letter_no',"; // @ty_letter_no
 		$request .= "null,"; // @glink
 		if($pledgeID != '')$request .= "'$pledgeID',"; // @plink
 		else $request .= "null,"; // @plink
@@ -279,7 +285,7 @@ class DonorPerfect {
 		
 		$request = "https://www.donorperfect.net/prod/xmlrequest.asp?apikey=" . $this->dpAPIKey;
 		$request .= "&action=dp_paymentmethod_insert&params=";
-		$request .= "0,"; // @CustomerVaultID Nvarchar(55) Enter -0 to create a new Customer Vault ID record
+		$request .= "-0,"; // @CustomerVaultID Nvarchar(55) Enter -0 to create a new Customer Vault ID record
 		$request .= "'$donorDetails',"; // @donor_id int
 		$request .= "1,"; // @IsDefault bit Bit Enter 1 if this is will be the default EFT payment method
 		$request .= "null,"; // @AccountType Nvarchar(256) e.g. ‘Visa’
