@@ -352,8 +352,8 @@ include('../../wp-load.php');
 											<input type="text" id="input17" name="billing-postal" required 
 											value="<?php if( retriveDonorField($transactionStatus,'billing-postal') ) echo retriveDonorField($transactionStatus,'billing-postal');?>">
 											<div class="checkbox-row">
-												<input type="checkbox" id="check04" checked name="merchant-defined-field-8" required value="Y" 
-												<?php if( ( retriveDonorField($transactionStatus,'merchant-defined-field-8') == 'Y' ) ) echo 'checked="checked"';?>>
+												<input type="checkbox" id="check04" checked name="merchant-defined-field-dummy" required value="Y"  disabled="disabled" checked="checked">
+												<input type="hidden" id="check05" name="merchant-defined-field-8" value="Y" />
 												<label for="check04">I
 													understand that by submitting a donation, my information
 													will be automatically added to GLA's secure database.</label>
@@ -534,5 +534,24 @@ include('../../wp-load.php');
 		  <script src="js/jquery-1.11.2.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/donate.js"></script>
+	<script type="text/javascript">
+            var currentActiveStep = 0;
+            <?php if ($isPaymentStep) { echo 'currentActiveStep = 2;'; }?>
+            <?php if (! empty ( $_GET ['token-id'] )) { ?>
+                jQuery(function($) {
+                    $.ajax({
+                        type: "POST",
+                        url: 'src/getSafeSaveURL.php',
+                        data : $("#donate-form").serialize(),
+                        success: function(data){
+                            $('#donate-form').attr('action', data);
+                        },
+                        error: function(jqxhr) {
+                            $("#register_area").text(jqxhr.responseText); // @text = response error, it is will be errors: 324, 500, 404 or anythings else
+                        }
+                    });
+                });
+        <?php }?>
+    </script>
 	<?php get_template_part( 'donatefooter' ); ?>
 </body></html>

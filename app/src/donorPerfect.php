@@ -30,7 +30,7 @@ class DonorPerfect {
 		
 		$this->log->info ( "New Gift id is " . $donorGiftDetails [0] );
 		
-		$donorPaymentDetails = $this->saveDonorPayment ( $transactionDetails, $donorDetails [0], $donorGiftDetails [0] );
+		$donorPaymentDetails = $this->saveDonorPayment ( $transactionDetails, $donorDetails [0], $donorGiftDetails [0] , $donorPledgeDetails[0] );
 		
 		$this->log->info ( "New payment name is " . $donorPaymentDetails->{'name'} [0] );
 		$this->log->info ( "New payment id is " . $donorPaymentDetails->{'id'} [0] );
@@ -131,6 +131,7 @@ class DonorPerfect {
 		$memoryHonor = $this->clean($transactionDetails->{'merchant-defined-field-9'} ? $transactionDetails->{'merchant-defined-field-9'} : '');
 		$gfname = $this->clean($transactionDetails->{'merchant-defined-field-6'} ? $transactionDetails->{'merchant-defined-field-6'} : '');
 		$glname = $this->clean($transactionDetails->{'merchant-defined-field-7'} ? $transactionDetails->{'merchant-defined-field-7'} : '');
+		$customerVaultId = $transactionDetails->{'customer-vault-id'} ? $transactionDetails->{'customer-vault-id'} : '0';
 	
 		$this->log->info ( "Pledge Date :" . $date );
 		$this->log->info ( "Pledge Amount :" . $amount );
@@ -155,7 +156,7 @@ class DonorPerfect {
 		$request .= "Y,"; //@reminder Nvarchar (1) Sets the pledge reminder flag
 		$request .= "CODO,"; //@gl_code Nvarchar(30) Contributions & Donations
 		$request .= "'$solicit_code',"; //@solicit_code Nvarchar(30)
-		$request .= "0,"; //@initial_payment Nvarchar (1) Set to ‘’Y’ for intial payment, otherwise ‘N’
+		$request .= "'Y',"; //@initial_payment Nvarchar (1) Set to ‘’Y’ for intial payment, otherwise ‘N’
 		$request .= "DONATION,"; //@sub_solicit_code Nvarchar(30)
 		$request .= "0,"; //@writeoff_amount, money
 		$request .= "'',"; //@writeoff_date datetime
@@ -169,7 +170,7 @@ class DonorPerfect {
 		$request .= "NULL,"; //@address_id numeric Or NULL
 		$request .= "NULL,"; //@gift_narrative Nvarchar(3000) Or NULL
 		$request .= "NULL,"; //@ty_letter_no Nvarchar(30) Or NULL
-		$request .= "NULL,"; //@vault_id Nvarchar(55) Or NULL
+		$request .= "'$customerVaultId',"; //@vault_id Nvarchar(55) Or NULL
 		$request .= "'N',"; //@receipt_delivery_g Nvarchar(30) ‘E’ for email, ‘B’ for both email and letter, ‘L’ for letter, ‘N’ for do not acknowledge or NULL
 		$request .= "NULL"; //@contact_id numeric Or NULL
 	
@@ -192,6 +193,7 @@ class DonorPerfect {
 	function saveDonorGifts($transactionDetails, $donorId, $pledgeID) {
 		$date = date ( "m/d/Y" );
 		$amount = $this->clean($transactionDetails->{'amount'} ? $transactionDetails->{'amount'} : '');
+		$transactionID = $this->clean($transactionDetails->{'transaction-id'} ? $transactionDetails->{'transaction-id'} : '');
 		$memoryHonor = $this->clean($transactionDetails->{'merchant-defined-field-9'} ? $transactionDetails->{'merchant-defined-field-9'} : '');
 		$gfname = $this->clean($transactionDetails->{'merchant-defined-field-6'} ? $transactionDetails->{'merchant-defined-field-6'} : '');
 		$glname = $this->clean($transactionDetails->{'merchant-defined-field-7'} ? $transactionDetails->{'merchant-defined-field-7'} : '');
@@ -232,7 +234,7 @@ class DonorPerfect {
 		$request .= "null,"; // @gift_type
 		$request .= "'N',"; // @split_gift
 		$request .= "'$pledge_payment',"; // @pledge_payment
-		$request .= "null,"; // @reference
+		$request .= "'$transactionID',"; // @reference
 		$request .= "'$memoryHonor',"; // @memory_honor
 		$request .= "'$gfname',"; // @gfname
 		$request .= "'$glname',"; // @glname
@@ -264,10 +266,14 @@ class DonorPerfect {
 		return $giftDetails->{'record'}->{'field'} [0]->attributes ()->{'value'};
 	}
 	
-	function saveDonorPayment($transactionDetails, $donorDetails, $donorGiftDetails) {
-		
+	function saveDonorPayment($transactionDetails, $donorDetails, $donorGiftDetails, $pledgeID) {
+
 		$matchingGift = $transactionDetails->{'merchant-defined-field-5'} ? $transactionDetails->{'merchant-defined-field-5'} : 'NO';
 		$billingetails = $transactionDetails->{'billing'};
+		$transactionID = $this->clean($transactionDetails->{'transaction-id'} ? $transactionDetails->{'transaction-id'} : '');
+		$responseCode  = $this->clean($transactionDetails->{'result-code'} ? $transactionDetails->{'result-code'} : '');
+		$authCode  = $this->clean($transactionDetails->{'authorization-code'} ? $transactionDetails->{'authorization-code'} : '');
+		$amount = $this->clean($transactionDetails->{'amount'} ? $transactionDetails->{'amount'} : '');
 		
 		$companyName = $this->clean($billingetails->{'company'} ? $billingetails->{'company'} : '');
 		$cardHolderName = $billingetails->{'first-name'} ? $billingetails->{'first-name'} : '';
@@ -281,11 +287,13 @@ class DonorPerfect {
 		$cardZip = $this->clean($billingetails->{'postal'} ? $billingetails->{'postal'} : '');
 		$date = date ( "m/d/Y" );
 		
+		$customerVaultId = $transactionDetails->{'customer-vault-id'} ? $transactionDetails->{'customer-vault-id'} : '0';
+
 		// DP APIs dp_paymentmethod_insert does not insert all the fields so using the Query insert above
 		
 		$request = "https://www.donorperfect.net/prod/xmlrequest.asp?apikey=" . $this->dpAPIKey;
 		$request .= "&action=dp_paymentmethod_insert&params=";
-		$request .= "-0,"; // @CustomerVaultID Nvarchar(55) Enter -0 to create a new Customer Vault ID record
+		$request .= "'$customerVaultId',"; // @CustomerVaultID Nvarchar(55) Enter -0 to create a new Customer Vault ID record
 		$request .= "'$donorDetails',"; // @donor_id int
 		$request .= "1,"; // @IsDefault bit Bit Enter 1 if this is will be the default EFT payment method
 		$request .= "null,"; // @AccountType Nvarchar(256) e.g. ‘Visa’
@@ -339,7 +347,47 @@ class DonorPerfect {
 		
 		$cardHolderZipStatus = $this->dp_save_udf_xml($donorGiftDetails, 'CARDHOLDERZIP', 'C', $cardZip, 'null', 'null', 'GLA API User' );
 		$this->log->info ( "Card Zip is ". print_r( $cardHolderZipStatus, true ) );
+
+		$referenceNumber = $this->dp_save_udf_xml($donorGiftDetails, 'REFERENCE_NUMBER', 'C', $transactionID, 'null', 'null', 'GLA API User' );
+		$this->log->info ( "Card Reference ". print_r( $referenceNumber, true ) );
+
+		$responseCodeStatus = $this->dp_save_udf_xml($donorGiftDetails, 'RESPONSE_CODE', 'C', $responseCode, 'null', 'null', 'GLA API User' );
+		$this->log->info ( "Response code ". print_r( $responseCodeStatus, true ) );
+
+		$vaultSaveStatus = $this->dp_save_udf_xml($donorGiftDetails, 'CUSTOMER_VAULT_ID', 'C', $customerVaultId, 'null', 'null', 'GLA API User' );
+		$this->log->info ( "Gift Vault status ". print_r( $vaultSaveStatus, true ) );
+
+		$authCodeSaveStatus = $this->dp_save_udf_xml($donorGiftDetails, 'AUTHCODE', 'C', $authCode, 'null', 'null', 'GLA API User' );
+		$this->log->info ( "Auth Code status ". print_r( $authCodeSaveStatus, true ) );
+
+
+		if($pledgeID != '') {
+			$eftAccountNumber = $this->dp_save_udf_xml($pledgeID, 'ACCOUNT', 'C', $cardNumber, 'null', 'null', 'GLA API User' );
+			$this->log->info ( "EFT account Num is ". print_r( $eftAccountNumber, true ) );
+
+			$eftExpStatus = $this->dp_save_udf_xml($pledgeID, 'CC_EXP', 'C', $cardExp, 'null', 'null', 'GLA API User' );
+			$this->log->info ( "EFT Card Exp is ". print_r( $eftExpStatus, true ) );
+
+			$eftPaymentDate = $this->dp_save_udf_xml($pledgeID, 'EFT_DT', 'D', $date, 'null', 'null', 'GLA API User' );
+			$this->log->info ( "EFT Payment Date is ". print_r( $eftPaymentDate, true ) );
 		
+			$eftPaymentStatus = $this->dp_save_udf_xml($pledgeID, 'EFT', 'C', 'Y', 'null', 'null', 'GLA API User' );
+			$this->log->info ( "EFT Payment Status is ". print_r( $eftPaymentStatus, true ) );
+
+			$eftScheduled = $this->dp_save_udf_xml($pledgeID, 'scheduledEFT', 'C', 'M', 'null', 'null', 'GLA API User' );
+			$this->log->info ( "EFT Scheduled Status is ". print_r( $eftScheduled, true ) );
+
+			$tranactionCodeStatus = $this->dp_save_udf_xml($pledgeID, 'TRANSACTION_CODE', 'C', $transactionID, 'null', 'null', 'GLA API User' );
+			$this->log->info ( "Transaction code Status is ". print_r( $tranactionCodeStatus, true ) );
+
+			$tranactionStatus = $this->dp_save_udf_xml($pledgeID, 'TRANSACTION_STATUS', 'C', 'Ok', 'null', 'null', 'GLA API User' );
+			$this->log->info ( "Transaction Status is ". print_r( $tranactionStatus, true ) );
+
+			$tranactionAmountStatus = $this->dp_save_udf_xml($pledgeID, 'TRANSACTIONAMOUNT', 'C', $amount, 'null', 'null', 'GLA API User' );
+			$this->log->info ( "Transaction Amount Status is ". print_r( $tranactionAmountStatus, true ) );
+
+		}
+
 		$matchingGiftStatus = $this->dp_save_udf_xml($donorGiftDetails, 'GMG', 'C', $matchingGift, 'null', 'null', 'GLA API User' );
 		$this->log->info ( "Matching gift is ". print_r( $matchingGiftStatus, true ) );
 		//TODO This above field name should be changed to MATCHING_GIFT

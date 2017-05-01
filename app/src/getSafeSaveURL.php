@@ -47,12 +47,12 @@ $safeSave->appendXmlNode($xmlRequest, $xmlSale,'descriptor-phone', isset($_POST[
 //$safeSave->appendXmlNode($xmlRequest, $xmlSale, 'tax-amount' , '0.00');
 
 if(!empty($_POST['customer-vault-id'])) {
-	$safeSave->appendXmlNode($xmlRequest, $xmlSale, 'customer-vault-id' , $_POST['customer-vault-id']);
-}else {
-	$xmlAdd = $xmlRequest->createElement('add-customer');
-	$safeSave->appendXmlNode($xmlRequest, $xmlAdd, 'customer-vault-id' ,'');
-	$xmlSale->appendChild($xmlAdd);
-}
+ $safeSave->appendXmlNode($xmlRequest, $xmlSale, 'customer-vault-id' , $_POST['customer-vault-id']);
+ }else {
+ $xmlAdd = $xmlRequest->createElement('add-customer');
+ $safeSave->appendXmlNode($xmlRequest, $xmlAdd, 'customer-vault-id' ,'');
+ $xmlSale->appendChild($xmlAdd);
+ }
 
 
 // Set the Billing and Shipping from what was collected on initial shopping cart form
@@ -61,8 +61,8 @@ $safeSave->appendXmlNode($xmlRequest, $xmlBillingAddress,'email', isset($_POST['
 $safeSave->appendXmlNode($xmlRequest, $xmlBillingAddress,'first-name', isset($_POST['billing-first-name']) ? $_POST['billing-first-name'] : '');
 $safeSave->appendXmlNode($xmlRequest, $xmlBillingAddress,'last-name', isset($_POST['billing-last-name']) ? $_POST['billing-last-name'] : '');
 /* $safeSave->appendXmlNode($xmlRequest, $xmlBillingAddress,'billing-cc-number', $_POST['billing-cc-number']);
- $safeSave->appendXmlNode($xmlRequest, $xmlBillingAddress,'billing-cc-exp', $_POST['billing-cc-exp']);
- $safeSave->appendXmlNode($xmlRequest, $xmlBillingAddress,'billing-cvv', $_POST['billing-cvv']);
+$safeSave->appendXmlNode($xmlRequest, $xmlBillingAddress,'billing-cc-exp', $_POST['billing-cc-exp']);
+$safeSave->appendXmlNode($xmlRequest, $xmlBillingAddress,'billing-cvv', $_POST['billing-cvv']);
  */
 $safeSave->appendXmlNode($xmlRequest, $xmlBillingAddress,'address1', isset($_POST['billing-address1']) ? $_POST['billing-address1'] : '');
 $safeSave->appendXmlNode($xmlRequest, $xmlBillingAddress,'country', isset($_POST['billing-country']) ? $_POST['billing-country'] : '');
