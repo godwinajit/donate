@@ -201,7 +201,6 @@ include('../../wp-load.php');
 											
 											<label>* State/Province</label>
 											<select name="state" required>
-												<option value="" class="hideme">Select one</option>
 												<?php getStates(retriveDonorField($transactionStatus,'state'));?>
 											</select>
 											
@@ -344,7 +343,6 @@ include('../../wp-load.php');
 											
 											<label>* State/Province</label>
 											<select name="billing-state" required>
-												<option value="" class="hideme">Select one</option>
 												<?php getStates(retriveDonorField($transactionStatus,'billing-state'));?>
 											</select>
 											
