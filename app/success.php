@@ -72,22 +72,21 @@ include('../../wp-load.php');
 											<?php if( retriveDonorField($_SESSION,'merchant-defined-field-2') ) echo retriveDonorField($_SESSION,'merchant-defined-field-2');?>
 											&nbsp;
 										</span>
+                    <span>
+                      <?php if( retriveDonorField($_SESSION,'address1') ) echo retriveDonorField($_SESSION,'address1');?>
+                    </span>
+                    <span>
+                      <?php if( retriveDonorField($_SESSION,'address2') ) echo retriveDonorField($_SESSION,'address2');?>
+                    </span>
 										<span>
-											<?php if( retriveDonorField($_SESSION,'phone') ) echo retriveDonorField($_SESSION,'phone');?>
-										</span>
-										<span>
-											<?php if( retriveDonorField($_SESSION,'city') ) echo retriveDonorField($_SESSION,'city');?>
-											,&nbsp;
+											<?php if( retriveDonorField($_SESSION,'city') ) echo retriveDonorField($_SESSION,'city');?>,    &nbsp;
 											<?php if( retriveDonorField($_SESSION,'state') ) echo retriveDonorField($_SESSION,'state');?>
+                      &nbsp;
+                      <?php if( retriveDonorField($_SESSION,'postal') ) echo retriveDonorField($_SESSION,'postal');?>
 										</span>
-										<span>
-											<?php if( retriveDonorField($_SESSION,'postal') ) echo retriveDonorField($_SESSION,'postal');?>
-										</span>
-										<span>
-											<?php if( retriveDonorField($_SESSION,'address1') ) echo retriveDonorField($_SESSION,'address1');?>
-											,&nbsp;
-											<?php if( retriveDonorField($_SESSION,'address2') ) echo retriveDonorField($_SESSION,'address2');?>
-										</span>
+                    <span>
+                      <?php if( retriveDonorField($_SESSION,'phone') ) echo retriveDonorField($_SESSION,'phone');?>
+                    </span>
 									</div>
 								</div>
 								<div class="donation-summary-box">
