@@ -36,14 +36,14 @@ $safeSave->appendXmlNode($xmlRequest, $xmlSale, 'merchant-defined-field-10' ,  i
 $safeSave->appendXmlNode($xmlRequest, $xmlSale, 'merchant-defined-field-11' ,  isset($_POST['address2']) ? $_POST['address2'] : '');
 $safeSave->appendXmlNode($xmlRequest, $xmlSale, 'merchant-defined-field-12' ,  isset($_POST['merchant-defined-field-12']) ? $_POST['merchant-defined-field-12'] : '');
 
-$safeSave->appendXmlNode($xmlRequest, $xmlSale,'descriptor-address', isset($_POST['address1']) ? $_POST['address1'] : '');
+$safeSave->appendXmlNode($xmlRequest, $xmlSale,'merchant-defined-field-14', isset($_POST['address1']) ? $_POST['address1'] : '');
 //$safeSave->appendXmlNode($xmlRequest, $xmlSale,'address2', $_POST['address2']);
-$safeSave->appendXmlNode($xmlRequest, $xmlSale,'descriptor-city', isset($_POST['city']) ? $_POST['city'] : '');
-$safeSave->appendXmlNode($xmlRequest, $xmlSale,'descriptor-state', isset($_POST['state']) ? $_POST['state'] : '');
-$safeSave->appendXmlNode($xmlRequest, $xmlSale,'descriptor-postal', isset($_POST['postal']) ? $_POST['postal'] : '');
+$safeSave->appendXmlNode($xmlRequest, $xmlSale,'merchant-defined-field-15', isset($_POST['city']) ? $_POST['city'] : '');
+$safeSave->appendXmlNode($xmlRequest, $xmlSale,'merchant-defined-field-16', isset($_POST['state']) ? $_POST['state'] : '');
+$safeSave->appendXmlNode($xmlRequest, $xmlSale,'merchant-defined-field-17', isset($_POST['postal']) ? $_POST['postal'] : '');
 //billing-address-email
-$safeSave->appendXmlNode($xmlRequest, $xmlSale,'descriptor-country', isset($_POST['country']) ? $_POST['country'] : '');
-$safeSave->appendXmlNode($xmlRequest, $xmlSale,'descriptor-phone', isset($_POST['phone']) ? $_POST['phone'] : '');
+$safeSave->appendXmlNode($xmlRequest, $xmlSale,'merchant-defined-field-13', isset($_POST['country']) ? $_POST['country'] : '');
+$safeSave->appendXmlNode($xmlRequest, $xmlSale,'merchant-defined-field-18', isset($_POST['phone']) ? $_POST['phone'] : '');
 //$safeSave->appendXmlNode($xmlRequest, $xmlSale, 'tax-amount' , '0.00');
 
 if(!empty($_POST['customer-vault-id'])) {

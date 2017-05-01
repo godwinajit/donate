@@ -45,13 +45,13 @@ class DonorPerfect {
 		$this->log->info ( "Last Name :" . $transactionDetails->{'merchant-defined-field-2'} );
 		$this->log->info ( "Email :" . $billingetails->{'email'} );
 		$this->log->info ( "ORG_REC :" . $transactionDetails->{'merchant-defined-field-4'} );
-		$this->log->info ( "country :" . $transactionDetails->{'descriptor-country'} );
-		$this->log->info ( "address1 :" . $transactionDetails->{'descriptor-address'} );
+		$this->log->info ( "country :" . $transactionDetails->{'merchant-defined-field-13'} );
+		$this->log->info ( "address1 :" . $transactionDetails->{'merchant-defined-field-14'} );
 		$this->log->info ( "address2 :" . $transactionDetails->{'merchant-defined-field-11'} );
-		$this->log->info ( "city :" . $transactionDetails->{'descriptor-city'} );
-		$this->log->info ( "state :" . $transactionDetails->{'descriptor-state'} );
-		$this->log->info ( "postal :" . $transactionDetails->{'descriptor-postal'} );
-		$this->log->info ( "phone :" . $transactionDetails->{'descriptor-phone'} );
+		$this->log->info ( "city :" . $transactionDetails->{'merchant-defined-field-15'} );
+		$this->log->info ( "state :" . $transactionDetails->{'merchant-defined-field-16'} );
+		$this->log->info ( "postal :" . $transactionDetails->{'merchant-defined-field-17'} );
+		$this->log->info ( "phone :" . $transactionDetails->{'merchant-defined-field-18'} );
 		
 		$title = $this->clean($transactionDetails->{'merchant-defined-field-3'} ? $transactionDetails->{'merchant-defined-field-3'} : '');
 		$firstName = $this->clean($transactionDetails->{'merchant-defined-field-1'} ? $transactionDetails->{'merchant-defined-field-1'} : '');
@@ -59,13 +59,13 @@ class DonorPerfect {
 		$email = $this->clean($billingetails->{'email'} ? $billingetails->{'email'} : '');
 		$isCorp = $this->clean($transactionDetails->{'merchant-defined-field-4'} ? $transactionDetails->{'merchant-defined-field-4'} : '');
 		$companyName = $this->clean($billingetails->{'company'} ? $billingetails->{'company'} : '');
-		$country = $this->clean($transactionDetails->{'descriptor-country'} ? $transactionDetails->{'descriptor-country'} : '');
-		$address1 = $this->clean($transactionDetails->{'descriptor-address'} ? $transactionDetails->{'descriptor-address'} : '');
+		$country = $this->clean($transactionDetails->{'merchant-defined-field-13'} ? $transactionDetails->{'merchant-defined-field-13'} : '');
+		$address1 = $this->clean($transactionDetails->{'merchant-defined-field-14'} ? $transactionDetails->{'merchant-defined-field-14'} : '');
 		$address2 = $this->clean($transactionDetails->{'merchant-defined-field-11'} ? $transactionDetails->{'merchant-defined-field-11'} : '');
-		$city = $this->clean($transactionDetails->{'descriptor-city'} ? $transactionDetails->{'descriptor-city'} : '');
-		$state = $this->clean($transactionDetails->{'descriptor-state'} ? $transactionDetails->{'descriptor-state'} : '');
-		$postal = $this->clean($transactionDetails->{'descriptor-postal'} ? $transactionDetails->{'descriptor-postal'} : '');
-		$phone = $this->clean($transactionDetails->{'descriptor-phone'} ? $transactionDetails->{'descriptor-phone'} : '');
+		$city = $this->clean($transactionDetails->{'merchant-defined-field-15'} ? $transactionDetails->{'merchant-defined-field-15'} : '');
+		$state = $this->clean($transactionDetails->{'merchant-defined-field-16'} ? $transactionDetails->{'merchant-defined-field-16'} : '');
+		$postal = $this->clean($transactionDetails->{'merchant-defined-field-17'} ? $transactionDetails->{'merchant-defined-field-17'} : '');
+		$phone = $this->clean($transactionDetails->{'merchant-defined-field-18'} ? $transactionDetails->{'merchant-defined-field-18'} : '');
 		
 		
 		// Handle Corporate donation
@@ -96,7 +96,7 @@ class DonorPerfect {
 		$request .= "'$city',"; // @city
 		$request .= "'$state',"; // @state
 		$request .= "'$postal',"; // @zip
-		$request .= "'$country',"; // @country
+		$request .= "'US',"; // @country
 		$request .= "null,"; // @address_type
 		$request .= "'$phone',"; // @home_phone
 		$request .= "null,"; // @business_phone
