@@ -211,14 +211,6 @@ include('../../wp-load.php');
 											<label for="input08">Phone number</label>
 											<input type="tel" id="input08" name="phone"
 											value="<?php if( ( retriveDonorField($transactionStatus,'phone') ) ) echo retriveDonorField($transactionStatus,'phone');?>">
-											
-											<label>Type of Tribute</label>
-											<select name="merchant-defined-field-9">
-												<option value="" class="hideme">Select one</option>
-												<option <?php if( ( retriveDonorField($transactionStatus,'merchant-defined-field-9') == 'M' ) ) echo 'selected="selected"';?> value="M">In Memory of</option>
-												<option <?php if( ( retriveDonorField($transactionStatus,'merchant-defined-field-9') == 'H' ) ) echo 'selected="selected"';?> value="H">In Honour of</option>
-											</select>
-											
 										</div>
 										<div class="form-note" style="display: none">* Complete the
 											required fields</div>
@@ -233,6 +225,12 @@ include('../../wp-load.php');
 								<div class="toggle-content-slide">
 									<div class="row">
 										<div class="col-xs-12 col-md-6  col-md-short">
+											<label>Type of Tribute</label>
+											<select name="merchant-defined-field-9">
+												<option value="" class="hideme">Select one</option>
+												<option <?php if( ( retriveDonorField($transactionStatus,'merchant-defined-field-9') == 'M' ) ) echo 'selected="selected"';?> value="M">In Memory of</option>
+												<option <?php if( ( retriveDonorField($transactionStatus,'merchant-defined-field-9') == 'H' ) ) echo 'selected="selected"';?> value="H">In Honor of</option>
+											</select>
 											<label for="input09">* First name</label>
 											<input type="text" id="input09" name="merchant-defined-field-6" required 
 											value="<?php if( ( retriveDonorField($transactionStatus,'merchant-defined-field-6') ) ) echo retriveDonorField($transactionStatus,'merchant-defined-field-6');?>">
@@ -275,6 +273,11 @@ include('../../wp-load.php');
 											class="icon icon-minus"></span>
 										</a>
 										<div class="toggle-content-slide">
+										<div class="checkbox-row">
+												<input type="checkbox" id="check03" name="merchant-defined-field-10" 
+												<?php if( ( retriveDonorField($transactionStatus,'merchant-defined-field-10') == 'on' ) ) echo 'checked="checked"';?>>
+												<label for="check03">Same as personal details</label>
+											</div>
 											<label for="input11">* Card holder first name <img
 												src="images/img-cards.jpg" alt=""></label>
 											<input type="text" id="input11" name="billing-first-name" required 
@@ -322,11 +325,6 @@ include('../../wp-load.php');
 										<a href="#" class="toggle-content-opener">Billing address <span
 											class="icon icon-plus"></span><span class="icon icon-minus"></span></a>
 										<div class="toggle-content-slide">
-											<div class="checkbox-row">
-												<input type="checkbox" id="check03" name="merchant-defined-field-10" 
-												<?php if( ( retriveDonorField($transactionStatus,'merchant-defined-field-10') == 'on' ) ) echo 'checked="checked"';?>>
-												<label for="check03">Same as mailing address</label>
-											</div>
 											<label for="input14">* Address</label>
 											<input type="text" id="input14" name="billing-address1" required 
 											value="<?php if( retriveDonorField($transactionStatus,'billing-address1') ) echo retriveDonorField($transactionStatus,'billing-address1');?>"> 

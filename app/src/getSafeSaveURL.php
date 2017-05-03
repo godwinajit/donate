@@ -46,13 +46,11 @@ $safeSave->appendXmlNode($xmlRequest, $xmlSale,'merchant-defined-field-13', isse
 $safeSave->appendXmlNode($xmlRequest, $xmlSale,'merchant-defined-field-18', isset($_POST['phone']) ? $_POST['phone'] : '');
 //$safeSave->appendXmlNode($xmlRequest, $xmlSale, 'tax-amount' , '0.00');
 
-if(!empty($_POST['customer-vault-id'])) {
- $safeSave->appendXmlNode($xmlRequest, $xmlSale, 'customer-vault-id' , $_POST['customer-vault-id']);
- }else {
- $xmlAdd = $xmlRequest->createElement('add-customer');
- $safeSave->appendXmlNode($xmlRequest, $xmlAdd, 'customer-vault-id' ,'');
- $xmlSale->appendChild($xmlAdd);
- }
+if( (!empty($_POST['merchant-defined-field-12'])) && ($_POST['merchant-defined-field-12'] == 'recurring')) {
+	$xmlAdd = $xmlRequest->createElement('add-customer');
+	$safeSave->appendXmlNode($xmlRequest, $xmlAdd, 'customer-vault-id' ,'');
+	$xmlSale->appendChild($xmlAdd);
+}
 
 
 // Set the Billing and Shipping from what was collected on initial shopping cart form

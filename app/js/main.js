@@ -23,7 +23,9 @@ jQuery(function($) {
     //Commented by TM
        $("#check03").on("change", function(){
         if (this.checked) {
-              $("[name='billing-address1']").val($("[name='address1']").val());
+              $("[name='billing-first-name']").val($("[name='merchant-defined-field-1']").val());
+              $("[name='billing-last-name']").val($("[name='merchant-defined-field-2']").val());
+			  $("[name='billing-address1']").val($("[name='address1']").val());
               $("[name='billing-city']").val($("[name='city']").val());
               $("[name='billing-postal']").val($("[name='postal']").val());
               var state = $("[name='state'] option:selected").text();
@@ -35,6 +37,8 @@ jQuery(function($) {
 
         } else { 
             //Clear on uncheck
+            $("[name='billing-first-name']").val("");
+            $("[name='billing-last-name']").val("");
             $("[name='billing-address1']").val("");
             $("[name='billing-city']").val("");
             $("[name='billing-postal']").val("");

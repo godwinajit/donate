@@ -32,9 +32,11 @@ class DonorPerfect {
 		
 		$donorPaymentDetails = $this->saveDonorPayment ( $transactionDetails, $donorDetails [0], $donorGiftDetails [0] , $donorPledgeDetails[0] );
 		
-		$this->log->info ( "New payment name is " . $donorPaymentDetails->{'name'} [0] );
-		$this->log->info ( "New payment id is " . $donorPaymentDetails->{'id'} [0] );
-		$this->log->info ( "New payment value is " . $donorPaymentDetails->{'value'} [0] );
+		if ($billingMethod == 'recurring'){
+			$this->log->info ( "New payment name is " . $donorPaymentDetails->{'name'} [0] );
+			$this->log->info ( "New payment id is " . $donorPaymentDetails->{'id'} [0] );
+			$this->log->info ( "New payment value is " . $donorPaymentDetails->{'value'} [0] );
+		}
 	}
 	
 	function saveDonor($transactionDetails) {
@@ -231,7 +233,7 @@ class DonorPerfect {
 		$request .= "CODO,"; // @gl_code Contributions & Donations
 		$request .= "'$solicit_code',"; // @solicit_code
 		$request .= "DONATION,"; // @sub_solicit_code
-		$request .= "null,"; // @gift_type
+		$request .= "'CC',"; // @gift_type
 		$request .= "'N',"; // @split_gift
 		$request .= "'$pledge_payment',"; // @pledge_payment
 		$request .= "'$transactionID',"; // @reference
@@ -267,6 +269,7 @@ class DonorPerfect {
 	}
 	
 	function saveDonorPayment($transactionDetails, $donorDetails, $donorGiftDetails, $pledgeID) {
+		$PaymentDetails = array();
 
 		$matchingGift = $transactionDetails->{'merchant-defined-field-5'} ? $transactionDetails->{'merchant-defined-field-5'} : 'NO';
 		$billingetails = $transactionDetails->{'billing'};
@@ -309,20 +312,22 @@ class DonorPerfect {
 		$request .= "null,"; // @modified_by Nvarchar(20)
 		$request .= "'USD'"; // @selected_currency Nvarchar(3)
 		
-		$this->log->info ( "Payment save Request before encode:". $request );
+		if($pledgeID != '') {
+			$this->log->info ( "Payment save Request before encode:". $request );
 		
-		$request = urlencode ( $request );
+			$request = urlencode ( $request );
 		
-		$this->log->info ( "Payment save Request :". $request );
+			$this->log->info ( "Payment save Request :". $request );
 		
-		try {
-			$PaymentDetails = simplexml_load_file ( $request );
-		} catch ( Exception $e ) {
-			$this->log->error ( " The Unable to save Payment details " . $e );
+			try {
+				$PaymentDetails = simplexml_load_file ( $request );
+			} catch ( Exception $e ) {
+				$this->log->error ( " The Unable to save Payment details " . $e );
+			}
+		
+			$this->log->info ( "Payment Save Information is " );
+			$this->log->info ( $PaymentDetails );
 		}
-		
-		$this->log->info ( "Payment Save Information is " );
-		$this->log->info ( $PaymentDetails );
 		
 		/* $companyNameStatus = $this->dp_save_udf_xml($donorDetails, 'EMPLOYER', 'C', $companyName, 'null', 'null', 'GLA API User' );
 		$this->log->info ( "Company name is ". print_r( $companyNameStatus, true ) ); */
@@ -392,7 +397,11 @@ class DonorPerfect {
 		$this->log->info ( "Matching gift is ". print_r( $matchingGiftStatus, true ) );
 		//TODO This above field name should be changed to MATCHING_GIFT
 		
-		return $PaymentDetails->{'record'}->{'field'} [0]->attributes ();
+		if($pledgeID != '') {
+			return $PaymentDetails->{'record'}->{'field'} [0]->attributes ();
+		}else{
+			return $PaymentDetails;
+		}
 		
 		/*
 		 * $request = "https://www.donorperfect.net/prod/xmlrequest.asp?apikey=" . $this->dpAPIKey;
