@@ -18,6 +18,9 @@ class DonorPerfect {
 		$this->log->info ( "New Donor Id is " . $donorDetails [0] );
 		$headers = "From: glastaging@wpengine.com" . "\r\n";
 		mail($this->emailList,"New Donor Added","New Donor Id is " . $donorDetails [0], $headers);
+
+		if ( ! empty($donorDetails [0]) && ($donorDetails [0] != '') )
+		$this->eMailDonor($transactionDetails);
 		
 		$billingMethod = $this->clean($transactionDetails->{'merchant-defined-field-12'} ? $transactionDetails->{'merchant-defined-field-12'} : '');
 		if ($billingMethod == 'recurring'){
@@ -37,6 +40,170 @@ class DonorPerfect {
 			$this->log->info ( "New payment id is " . $donorPaymentDetails->{'id'} [0] );
 			$this->log->info ( "New payment value is " . $donorPaymentDetails->{'value'} [0] );
 		}
+	}
+
+	function eMailDonor($transactionDetails){
+
+		$title = $this->clean($transactionDetails->{'merchant-defined-field-3'} ? $transactionDetails->{'merchant-defined-field-3'} : '');
+		$firstName = $this->clean($transactionDetails->{'merchant-defined-field-1'} ? $transactionDetails->{'merchant-defined-field-1'} : '');
+		$lastName = $this->clean($transactionDetails->{'merchant-defined-field-2'} ? $transactionDetails->{'merchant-defined-field-2'} : '');
+		$email = $this->clean($billingetails->{'email'} ? $billingetails->{'email'} : '');
+		$isCorp = $this->clean($transactionDetails->{'merchant-defined-field-4'} ? $transactionDetails->{'merchant-defined-field-4'} : '');
+		$companyName = $this->clean($billingetails->{'company'} ? $billingetails->{'company'} : '');
+		$country = $this->clean($transactionDetails->{'merchant-defined-field-13'} ? $transactionDetails->{'merchant-defined-field-13'} : '');
+		$address1 = $this->clean($transactionDetails->{'merchant-defined-field-14'} ? $transactionDetails->{'merchant-defined-field-14'} : '');
+		$address2 = $this->clean($transactionDetails->{'merchant-defined-field-11'} ? $transactionDetails->{'merchant-defined-field-11'} : '');
+		$city = $this->clean($transactionDetails->{'merchant-defined-field-15'} ? $transactionDetails->{'merchant-defined-field-15'} : '');
+		$state = $this->clean($transactionDetails->{'merchant-defined-field-16'} ? $transactionDetails->{'merchant-defined-field-16'} : '');
+		$postal = $this->clean($transactionDetails->{'merchant-defined-field-17'} ? $transactionDetails->{'merchant-defined-field-17'} : '');
+		$phone = $this->clean($transactionDetails->{'merchant-defined-field-18'} ? $transactionDetails->{'merchant-defined-field-18'} : '');
+		
+		$billingMethod = $this->clean($transactionDetails->{'merchant-defined-field-12'} ? $transactionDetails->{'merchant-defined-field-12'} : '');
+		$amount = $this->clean($transactionDetails->{'amount'} ? $transactionDetails->{'amount'} : '');
+		
+		$billingMethodEmailText = 'One Time Donation';
+		if ($billingMethod == 'recurring'){
+			$billingMethodEmailText = 'Monthly Recurring Donation';
+		}
+	
+	$message = ' <div>
+  				Dear '.$title.' '.$firstName.' '.$lastName.',
+
+  	<p>
+  		Thank you very much for your donation.  It is through the generosity of people like you that we are able to continue our work.  Your support truly makes a difference!! 
+  	</p>
+   <p>
+		Your contribution is tax-deductible to the extent allowed by law. No goods or services were received for this donation. Global Lyme Alliance, Inc. is a tax exempt charitable organization under Section 501(c)3 of the Internal Revenue Service Code. Our tax ID number is 06-1559393. Please save or print this receipt for your records.  
+  	</p>
+
+  <h2>Donor Information</h2>
+  <table>
+  <tr>
+	<td>Donor First Name</td>
+	<td>'.$firstName.'</td>
+  </tr>
+  <tr>
+	<td>Donor Last Name</td>
+	<td>'.$lastName.'</td>
+  </tr>
+  <tr>
+	<td>Company Name</td>
+	<td>'.$companyName.'</td>
+  </tr>
+  <tr>
+	<td>Donor Address</td>
+	<td>'.$address1.'</td>
+  </tr>
+    <tr>
+	<td>Address 2</td>
+	<td>'.$address2.'</td>
+  </tr>
+   </tr>
+  <tr>
+	<td>City</td>
+	<td>'.$city.'</td>
+  </tr>
+  <tr>
+	<td>Donor State/Province</td>
+	<td>'.$state.'</td>
+  </tr>
+  <tr>
+	<td>Donor Zip/Postal Code</td>
+	<td>'.$postal.'</td>
+  </tr>
+  <tr>
+	<td>Home Phone</td>
+	<td>'.$phone.'</td>
+  </tr>
+  <tr>
+	<td>Cell Phone</td>
+	<td></td>
+  </tr>
+  <tr>
+	<td>Work Phone</td>
+	<td></td>
+  </tr>
+  <tr>
+	<td>Donor Email</td>
+	<td>'.$email.'</td>
+  </tr>
+  </table>
+
+  <h2>Items selected for '.$title.' '.$firstName.' '.$lastName.'</h2>
+  <table>
+  <tr>
+	<td>'.$billingMethodEmailText.'</td>
+	<td>'.$amount.'$</td>
+  </tr>
+  </table>
+
+  <h2>Details for '.$title.' '.$firstName.' '.$lastName.'</h2>
+  <table>
+  <tr>
+	<td>Item</td>
+	<td>Donation</td>
+  </tr>
+  <tr>
+	<td>Amount</td>
+	<td>'.$amount.'$</td>
+  </tr>
+  <tr>
+	<td>Type of Donation</td>
+	<td>'.$billingMethodEmailText.'</td>
+  </tr>
+  </table>
+
+  <h2>Tribute Details</h2>
+  <table>
+  <tr>
+	<td>Type of Tribute</td>
+	<td>In Memory Of</td>
+  </tr>
+  <tr>
+	<td>Does your company has a matching gift program?</td>
+	<td>Yes</td>
+  </tr>
+  <tr>
+	<td>Tribute/Honoree First Name</td>
+	<td>first anme</td>
+  </tr>
+  <tr>
+	<td>Tribute/Honoree Last Name</td>
+	<td>last name</td>
+  </tr>
+  <tr>
+	<td>Tribute/Honoree Address</td>
+	<td>address</td>
+  </tr>
+  <tr>
+	<td>Tribute/Honoree City</td>
+	<td>CIty</td>
+  </tr>
+  <tr>
+	<td>Tribute/Honoree State/Province</td>
+	<td>State</td>
+  </tr>
+  <tr>
+	<td>Tribute/Honoree Zip/Postal Code</td>
+	<td>1234</td>
+  </tr>
+  </table>
+</div>';
+
+$donateMail = SimpleMail::make()
+    ->setTo($emailList, 'Goliver Godli')
+    ->setFrom('info@globallymealliance.org', 'Global Lyme Alliance')
+    ->setSubject('Thank you from Global Lyme Alliance')
+    ->setMessage($message)
+    ->setReplyTo($replyEmail, $replyName)
+  //  ->setCc(['Bill Gates' => 'bill@example.com'])
+    ->setBcc(['Godwin Ajit' => 'godwin.ajith@gmail.com'])
+    ->setHtml()
+    ->setWrap(100);
+$send = $donateMail->send();
+    
+ $send ? $this->log->info('Email sent successfully') : $this->log->info('Could not send email');
+	
 	}
 	
 	function saveDonor($transactionDetails) {
@@ -119,6 +286,7 @@ class DonorPerfect {
 		try {
 			$donorDetails = simplexml_load_file ( $request );
 		} catch ( Exception $e ) {
+			mail($this->emailList,"Error Saving Donor Information","Donor Information save in DP is Fully or Partially Failed. See log file for more details. Donor First Name:".$firstName.", Second Name:".$lastName);
 			$this->log->error ( "Unable to Save Donor", $e );
 		}
 		
@@ -128,6 +296,9 @@ class DonorPerfect {
 	}
 	
 	function saveDonorPledge($transactionDetails, $donorId) {
+		$firstName = $this->clean($transactionDetails->{'merchant-defined-field-1'} ? $transactionDetails->{'merchant-defined-field-1'} : '');
+		$lastName = $this->clean($transactionDetails->{'merchant-defined-field-2'} ? $transactionDetails->{'merchant-defined-field-2'} : '');
+		
 		$date = date ( "m/d/Y" );
 		$amount = $this->clean($transactionDetails->{'amount'} ? $transactionDetails->{'amount'} : '');
 		$memoryHonor = $this->clean($transactionDetails->{'merchant-defined-field-9'} ? $transactionDetails->{'merchant-defined-field-9'} : '');
@@ -185,6 +356,7 @@ class DonorPerfect {
 		try {
 			$pledgeDetails = simplexml_load_file ( $request );
 		} catch ( Exception $e ) {
+			mail($this->emailList,"Error Saving Donor Information","Donor Information save in DP is Fully or Partially Failed. See log file for more details. Donor First Name:".$firstName.", Second Name:".$lastName);
 			$this->log->error ( "Pledge Unable to save the Gift", $e );
 		}
 		$this->log->info ( "Pledge Gift Save Information is ". print_r( $pledgeDetails, true ) );
@@ -193,6 +365,9 @@ class DonorPerfect {
 	}
 	
 	function saveDonorGifts($transactionDetails, $donorId, $pledgeID) {
+		$firstName = $this->clean($transactionDetails->{'merchant-defined-field-1'} ? $transactionDetails->{'merchant-defined-field-1'} : '');
+		$lastName = $this->clean($transactionDetails->{'merchant-defined-field-2'} ? $transactionDetails->{'merchant-defined-field-2'} : '');
+		
 		$date = date ( "m/d/Y" );
 		$amount = $this->clean($transactionDetails->{'amount'} ? $transactionDetails->{'amount'} : '');
 		$transactionID = $this->clean($transactionDetails->{'transaction-id'} ? $transactionDetails->{'transaction-id'} : '');
@@ -261,6 +436,7 @@ class DonorPerfect {
 		try {
 			$giftDetails = simplexml_load_file ( $request );
 		} catch ( Exception $e ) {
+			mail($this->emailList,"Error Saving Donor Information","Donor Information save in DP is Fully or Partially Failed. See log file for more details. Donor First Name:".$firstName.", Second Name:".$lastName);
 			$this->log->error ( "Unable to save the Gift", $e );
 		}
 		$this->log->info ( "Gift Save Information is ". print_r( $giftDetails, true ) );
@@ -270,6 +446,9 @@ class DonorPerfect {
 	
 	function saveDonorPayment($transactionDetails, $donorDetails, $donorGiftDetails, $pledgeID) {
 		$PaymentDetails = array();
+		
+		$firstName = $this->clean($transactionDetails->{'merchant-defined-field-1'} ? $transactionDetails->{'merchant-defined-field-1'} : '');
+		$lastName = $this->clean($transactionDetails->{'merchant-defined-field-2'} ? $transactionDetails->{'merchant-defined-field-2'} : '');
 
 		$matchingGift = $transactionDetails->{'merchant-defined-field-5'} ? $transactionDetails->{'merchant-defined-field-5'} : 'NO';
 		$billingetails = $transactionDetails->{'billing'};
@@ -322,6 +501,7 @@ class DonorPerfect {
 			try {
 				$PaymentDetails = simplexml_load_file ( $request );
 			} catch ( Exception $e ) {
+				mail($this->emailList,"Error Saving Donor Information","Donor Information save in DP is Fully or Partially Failed. See log file for more details. Donor First Name:".$firstName.", Second Name:".$lastName);
 				$this->log->error ( " The Unable to save Payment details " . $e );
 			}
 		
@@ -332,68 +512,68 @@ class DonorPerfect {
 		/* $companyNameStatus = $this->dp_save_udf_xml($donorDetails, 'EMPLOYER', 'C', $companyName, 'null', 'null', 'GLA API User' );
 		$this->log->info ( "Company name is ". print_r( $companyNameStatus, true ) ); */
 		
-		$cardHolderNameStatus = $this->dp_save_udf_xml($donorGiftDetails, 'CARDHOLDERNAME', 'C', $cardHolderName, 'null', 'null', 'GLA API User' );
+		$cardHolderNameStatus = $this->dp_save_udf_xml($transactionDetails, $donorGiftDetails, 'CARDHOLDERNAME', 'C', $cardHolderName, 'null', 'null', 'GLA API User' );
 		$this->log->info ( "Card name is ". print_r( $cardHolderNameStatus, true ) );
 		
-		$cardHolderNumStatus = $this->dp_save_udf_xml($donorGiftDetails, 'CARDACCOUNTNUM', 'C', $cardNumber, 'null', 'null', 'GLA API User' );
+		$cardHolderNumStatus = $this->dp_save_udf_xml($transactionDetails, $donorGiftDetails, 'CARDACCOUNTNUM', 'C', $cardNumber, 'null', 'null', 'GLA API User' );
 		$this->log->info ( "Card Num is ". print_r( $cardHolderNumStatus, true ) );
 		
-		$cardHolderExpStatus = $this->dp_save_udf_xml($donorGiftDetails, 'EXPIRATIONDATE', 'C', $cardExp, 'null', 'null', 'GLA API User' );
+		$cardHolderExpStatus = $this->dp_save_udf_xml($transactionDetails, $donorGiftDetails, 'EXPIRATIONDATE', 'C', $cardExp, 'null', 'null', 'GLA API User' );
 		$this->log->info ( "Card Exp is ". print_r( $cardHolderExpStatus, true ) );
 		
-		$cardHolderAddStatus = $this->dp_save_udf_xml($donorGiftDetails, 'CARDHOLDERADDRESS', 'C', $cardaddress, 'null', 'null', 'GLA API User' );
+		$cardHolderAddStatus = $this->dp_save_udf_xml($transactionDetails, $donorGiftDetails, 'CARDHOLDERADDRESS', 'C', $cardaddress, 'null', 'null', 'GLA API User' );
 		$this->log->info ( "Card Address is ". print_r( $cardHolderAddStatus, true ) );
 		
-		$cardHolderCityStatus = $this->dp_save_udf_xml($donorGiftDetails, 'CARDHOLDERCITY', 'C', $cardCity, 'null', 'null', 'GLA API User' );
+		$cardHolderCityStatus = $this->dp_save_udf_xml($transactionDetails, $donorGiftDetails, 'CARDHOLDERCITY', 'C', $cardCity, 'null', 'null', 'GLA API User' );
 		$this->log->info ( "Card City is ". print_r( $cardHolderCityStatus, true ) );
 		
-		$cardHolderStateStatus = $this->dp_save_udf_xml($donorGiftDetails, 'CARDHOLDERSTATE', 'C', $cardState, 'null', 'null', 'GLA API User' );
+		$cardHolderStateStatus = $this->dp_save_udf_xml($transactionDetails, $donorGiftDetails, 'CARDHOLDERSTATE', 'C', $cardState, 'null', 'null', 'GLA API User' );
 		$this->log->info ( "Card State is ". print_r( $cardHolderStateStatus, true ) );
 		
-		$cardHolderZipStatus = $this->dp_save_udf_xml($donorGiftDetails, 'CARDHOLDERZIP', 'C', $cardZip, 'null', 'null', 'GLA API User' );
+		$cardHolderZipStatus = $this->dp_save_udf_xml($transactionDetails, $donorGiftDetails, 'CARDHOLDERZIP', 'C', $cardZip, 'null', 'null', 'GLA API User' );
 		$this->log->info ( "Card Zip is ". print_r( $cardHolderZipStatus, true ) );
 
-		$referenceNumber = $this->dp_save_udf_xml($donorGiftDetails, 'REFERENCE_NUMBER', 'C', $transactionID, 'null', 'null', 'GLA API User' );
+		$referenceNumber = $this->dp_save_udf_xml($transactionDetails, $donorGiftDetails, 'REFERENCE_NUMBER', 'C', $transactionID, 'null', 'null', 'GLA API User' );
 		$this->log->info ( "Card Reference ". print_r( $referenceNumber, true ) );
 
-		$responseCodeStatus = $this->dp_save_udf_xml($donorGiftDetails, 'RESPONSE_CODE', 'C', $responseCode, 'null', 'null', 'GLA API User' );
+		$responseCodeStatus = $this->dp_save_udf_xml($transactionDetails, $donorGiftDetails, 'RESPONSE_CODE', 'C', $responseCode, 'null', 'null', 'GLA API User' );
 		$this->log->info ( "Response code ". print_r( $responseCodeStatus, true ) );
 
-		$vaultSaveStatus = $this->dp_save_udf_xml($donorGiftDetails, 'CUSTOMER_VAULT_ID', 'C', $customerVaultId, 'null', 'null', 'GLA API User' );
+		$vaultSaveStatus = $this->dp_save_udf_xml($transactionDetails, $donorGiftDetails, 'CUSTOMER_VAULT_ID', 'C', $customerVaultId, 'null', 'null', 'GLA API User' );
 		$this->log->info ( "Gift Vault status ". print_r( $vaultSaveStatus, true ) );
 
-		$authCodeSaveStatus = $this->dp_save_udf_xml($donorGiftDetails, 'AUTHCODE', 'C', $authCode, 'null', 'null', 'GLA API User' );
+		$authCodeSaveStatus = $this->dp_save_udf_xml($transactionDetails, $donorGiftDetails, 'AUTHCODE', 'C', $authCode, 'null', 'null', 'GLA API User' );
 		$this->log->info ( "Auth Code status ". print_r( $authCodeSaveStatus, true ) );
 
 
 		if($pledgeID != '') {
-			$eftAccountNumber = $this->dp_save_udf_xml($pledgeID, 'ACCOUNT', 'C', $cardNumber, 'null', 'null', 'GLA API User' );
+			$eftAccountNumber = $this->dp_save_udf_xml($transactionDetails, $pledgeID, 'ACCOUNT', 'C', $cardNumber, 'null', 'null', 'GLA API User' );
 			$this->log->info ( "EFT account Num is ". print_r( $eftAccountNumber, true ) );
 
-			$eftExpStatus = $this->dp_save_udf_xml($pledgeID, 'CC_EXP', 'C', $cardExp, 'null', 'null', 'GLA API User' );
+			$eftExpStatus = $this->dp_save_udf_xml($transactionDetails, $pledgeID, 'CC_EXP', 'C', $cardExp, 'null', 'null', 'GLA API User' );
 			$this->log->info ( "EFT Card Exp is ". print_r( $eftExpStatus, true ) );
 
-			$eftPaymentDate = $this->dp_save_udf_xml($pledgeID, 'EFT_DT', 'D', $date, 'null', 'null', 'GLA API User' );
+			$eftPaymentDate = $this->dp_save_udf_xml($transactionDetails, $pledgeID, 'EFT_DT', 'D', $date, 'null', 'null', 'GLA API User' );
 			$this->log->info ( "EFT Payment Date is ". print_r( $eftPaymentDate, true ) );
 		
-			$eftPaymentStatus = $this->dp_save_udf_xml($pledgeID, 'EFT', 'C', 'Y', 'null', 'null', 'GLA API User' );
+			$eftPaymentStatus = $this->dp_save_udf_xml($transactionDetails, $pledgeID, 'EFT', 'C', 'Y', 'null', 'null', 'GLA API User' );
 			$this->log->info ( "EFT Payment Status is ". print_r( $eftPaymentStatus, true ) );
 
-			$eftScheduled = $this->dp_save_udf_xml($pledgeID, 'scheduledEFT', 'C', 'M', 'null', 'null', 'GLA API User' );
+			$eftScheduled = $this->dp_save_udf_xml($transactionDetails, $pledgeID, 'scheduledEFT', 'C', 'M', 'null', 'null', 'GLA API User' );
 			$this->log->info ( "EFT Scheduled Status is ". print_r( $eftScheduled, true ) );
 
-			$tranactionCodeStatus = $this->dp_save_udf_xml($pledgeID, 'TRANSACTION_CODE', 'C', $transactionID, 'null', 'null', 'GLA API User' );
+			$tranactionCodeStatus = $this->dp_save_udf_xml($transactionDetails, $pledgeID, 'TRANSACTION_CODE', 'C', $transactionID, 'null', 'null', 'GLA API User' );
 			$this->log->info ( "Transaction code Status is ". print_r( $tranactionCodeStatus, true ) );
 
-			$tranactionStatus = $this->dp_save_udf_xml($pledgeID, 'TRANSACTION_STATUS', 'C', 'Ok', 'null', 'null', 'GLA API User' );
+			$tranactionStatus = $this->dp_save_udf_xml($transactionDetails, $pledgeID, 'TRANSACTION_STATUS', 'C', 'Ok', 'null', 'null', 'GLA API User' );
 			$this->log->info ( "Transaction Status is ". print_r( $tranactionStatus, true ) );
 
-			$tranactionAmountStatus = $this->dp_save_udf_xml($pledgeID, 'TRANSACTIONAMOUNT', 'C', $amount, 'null', 'null', 'GLA API User' );
+			$tranactionAmountStatus = $this->dp_save_udf_xml($transactionDetails, $pledgeID, 'TRANSACTIONAMOUNT', 'C', $amount, 'null', 'null', 'GLA API User' );
 			$this->log->info ( "Transaction Amount Status is ". print_r( $tranactionAmountStatus, true ) );
 
 		}
 
-		$matchingGiftStatus = $this->dp_save_udf_xml($donorGiftDetails, 'GMG', 'C', $matchingGift, 'null', 'null', 'GLA API User' );
+		$matchingGiftStatus = $this->dp_save_udf_xml($transactionDetails, $donorGiftDetails, 'GMG', 'C', $matchingGift, 'null', 'null', 'GLA API User' );
 		$this->log->info ( "Matching gift is ". print_r( $matchingGiftStatus, true ) );
 		//TODO This above field name should be changed to MATCHING_GIFT
 		
@@ -430,6 +610,9 @@ class DonorPerfect {
 	
 	function dp_save_udf_xml($matching_id, $field_name, $data_type, $char_value, $date_value, $number_value, $user_id ){
 		
+		$firstName = $this->clean($transactionDetails->{'merchant-defined-field-1'} ? $transactionDetails->{'merchant-defined-field-1'} : '');
+		$lastName = $this->clean($transactionDetails->{'merchant-defined-field-2'} ? $transactionDetails->{'merchant-defined-field-2'} : '');
+		
 		$request = "https://www.donorperfect.net/prod/xmlrequest.asp?apikey=" . $this->dpAPIKey;
 		$request .= "&action=dp_save_udf_xml&params=";
 		
@@ -450,6 +633,7 @@ class DonorPerfect {
 		try {
 			$giftUDFDetails = simplexml_load_file ( $request );
 		} catch ( Exception $e ) {
+			mail($this->emailList,"Error Saving Donor Information","Donor Information save in DP is Fully or Partially Failed. See log file for more details. Donor First Name:".$firstName.", Second Name:".$lastName);
 			$this->log->error ( " Unable to save Gift UDF details " . $e );
 		}
 		
