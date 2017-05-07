@@ -20,6 +20,18 @@ jQuery(function($) {
         }
     });
 
+//Added by Gabrial for Tribute Yes/No
+
+	$("#isATributeID").on("click", function(){
+		if( $("#isATributeID").parent().hasClass( "expanded" ) ){
+			$("#tributeEnabled").val("NO");
+		}else{
+			$("#tributeEnabled").val("YES");
+		}
+     });
+
+
+
     //Commented by TM
        $("#check03").on("change", function(){
         if (this.checked) {

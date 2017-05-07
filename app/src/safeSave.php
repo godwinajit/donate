@@ -322,3 +322,18 @@ function getStates($selectedState) {
 	$StateArray['Wisconsin']				= 'Wisconsin';
 	$StateArray['Wyoming']					= 'Wyoming';
  */
+	
+function getCountries($selectedCountry) {
+	$countryList = "";
+
+	$CountryArray['US']	= 'United States';
+	$CountryArray['AF']	= 'Afghanistan';
+
+	foreach ($CountryArray  as $key => $value){
+		$selected = '';
+		if ($selectedState == $key)$selected = 'selected="selected"';
+		$CountryList .= '<option value="'.$key.'" '.$selected.'>'.$value.'</option>';
+	}
+
+	echo $CountryList;
+}
