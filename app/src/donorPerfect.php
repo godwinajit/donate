@@ -11,7 +11,7 @@ class DonorPerfect {
 		$this->emailList = $emailList;
 	}
 	
-	function saveDonorDetails($transactionDetails) {
+	function saveDonorDetails($transactionDetails, $sessionData) {
 		$donorDetails = $this->saveDonor ( $transactionDetails );
 		$donorPledgeDetails[0] = '';
 		
@@ -20,7 +20,7 @@ class DonorPerfect {
 		mail($this->emailList,"New Donor Added","New Donor Id is " . $donorDetails [0], $headers);
 
 		if ( ! empty($donorDetails [0]) && ($donorDetails [0] != '') )
-		$this->eMailDonor($transactionDetails);
+		$this->eMailDonor($transactionDetails, $sessionData);
 		
 		$billingMethod = $this->clean($transactionDetails->{'merchant-defined-field-12'} ? $transactionDetails->{'merchant-defined-field-12'} : '');
 		if ($billingMethod == 'recurring'){
@@ -42,7 +42,7 @@ class DonorPerfect {
 		}
 	}
 
-	function eMailDonor($transactionDetails){
+	function eMailDonor($transactionDetails, $sessionData){
 
 		$title = $this->clean($transactionDetails->{'merchant-defined-field-3'} ? $transactionDetails->{'merchant-defined-field-3'} : '');
 		$firstName = $this->clean($transactionDetails->{'merchant-defined-field-1'} ? $transactionDetails->{'merchant-defined-field-1'} : '');
@@ -151,60 +151,74 @@ class DonorPerfect {
 	<td>Type of Donation</td>
 	<td>'.$billingMethodEmailText.'</td>
   </tr>
-  </table>
+  </table>';
 
-  <h2>Tribute Details</h2>
+  $typeOfTribute = '';
+  if ( $sessionData['merchant-defined-field-9'] == 'M') $typeOfTribute = 'In Memory of';
+  elseif ( $sessionData['merchant-defined-field-9'] == 'H') $typeOfTribute = 'In Honor of';
+
+if ( $sessionData['tributeEnabled'] == 'YES' ) {
+  $message .= '<h2>Tribute Details</h2>
   <table>
   <tr>
 	<td>Type of Tribute</td>
-	<td>In Memory Of</td>
+	<td>'.$sessionData['merchant-defined-field-9'].'</td>
   </tr>
   <tr>
 	<td>Does your company has a matching gift program?</td>
-	<td>Yes</td>
+	<td>'.$sessionData['merchant-defined-field-5'].'</td>
   </tr>
   <tr>
 	<td>Tribute/Honoree First Name</td>
-	<td>first anme</td>
+	<td>'.$sessionData['merchant-defined-field-6'].'</td>
   </tr>
   <tr>
 	<td>Tribute/Honoree Last Name</td>
-	<td>last name</td>
+	<td>'.$sessionData['merchant-defined-field-7'].'</td>
   </tr>
   <tr>
 	<td>Tribute/Honoree Address</td>
-	<td>address</td>
+	<td>'.$sessionData['tributeAddress'].'</td>
   </tr>
   <tr>
 	<td>Tribute/Honoree City</td>
-	<td>CIty</td>
+	<td>'.$sessionData['tributeCity'].'</td>
   </tr>
   <tr>
 	<td>Tribute/Honoree State/Province</td>
-	<td>State</td>
+	<td>'.$sessionData['tributeState'].'</td>
   </tr>
   <tr>
 	<td>Tribute/Honoree Zip/Postal Code</td>
-	<td>1234</td>
+	<td>'.$sessionData['tributePostal'].'</td>
   </tr>
-  </table>
-</div>';
+  <tr>
+	<td>Tribute/Honoree Email</td>
+	<td>'.$sessionData['tributeEmail'].'</td>
+  </tr>
+  </table>';
 
-$donateMail = SimpleMail::make()
-    ->setTo($emailList, 'Goliver Godli')
-    ->setFrom('info@globallymealliance.org', 'Global Lyme Alliance')
-    ->setSubject('Thank you from Global Lyme Alliance')
-    ->setMessage($message)
-    ->setReplyTo($replyEmail, $replyName)
-  //  ->setCc(['Bill Gates' => 'bill@example.com'])
-    ->setBcc(['Godwin Ajit' => 'godwin.ajith@gmail.com'])
-    ->setHtml()
-    ->setWrap(100);
-$send = $donateMail->send();
+}
+  $message .= '</div>';
+
+		$billingetails = $transactionDetails->{'billing'};
+  		$email = $this->clean($billingetails->{'email'} ? $billingetails->{'email'} : '');
+
+		$donateMail = SimpleMail::make()
+		    ->setTo($email)
+		    ->setFrom('info@globallymealliance.org', 'Global Lyme Alliance')
+		    ->setSubject('Thank you from Global Lyme Alliance')
+		    ->setMessage($message)
+		    ->setReplyTo('info@globallymealliance.org', 'Global Lyme Alliance')
+		  //  ->setCc(['Bill Gates' => 'bill@example.com'])
+		    ->setBcc(['Casie Richardson' => 'godwin.ajith@gmail.com', 'Christine Llewellyn' => 'goliver@mindtrustlabs.com'])
+		    ->setHtml()
+		    ->setWrap(100);
+	$send = $donateMail->send();
     
- $send ? $this->log->info('Email sent successfully') : $this->log->info('Could not send email');
+	 $send ? $this->log->info('Email sent successfully') : $this->log->info('Could not send email');
 	
-	}
+}
 	
 	function saveDonor($transactionDetails) {
 		$billingetails = $transactionDetails->{'billing'};

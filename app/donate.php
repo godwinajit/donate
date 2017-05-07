@@ -179,12 +179,11 @@ include('../../wp-load.php');
 											<label for="input03">Company name</label> 
 											<input type="text"  id="input03" name="company"
 												value="<?php if( ( retriveDonorField($transactionStatus,'company') ) ) echo retriveDonorField($transactionStatus,'company');?>"> 
-												<!-- <label>Country</label>
-												<select name="country" required>
-												<option class="hideme">Select one</option>
-												<option value="US">United States of America</option>
-											</select> -->
-											<input type="hidden"  id="country" name="country" value="US">
+												<label>Country</label>
+												<select name="country" required>												
+													<?php getCountries(retriveDonorField($transactionStatus,'country'));?>
+												</select>
+										<!--  <input type="hidden"  id="country" name="country" value="US">  -->
 										</div>
 										<div class="col-xs-12 col-md-6 col-md-short">
 											<label for="input04">* Address #1</label>
@@ -205,7 +204,7 @@ include('../../wp-load.php');
 											</select>
 											
 											<label for="input07">* Zip/Postal code</label>
-											<input type="text" name="postal" name="input07" required 
+											<input type="text" name="postal" required 
 											value="<?php if( ( retriveDonorField($transactionStatus,'postal') ) ) echo retriveDonorField($transactionStatus,'postal');?>">
 											
 											<label for="input08">Phone number</label>
@@ -218,7 +217,7 @@ include('../../wp-load.php');
 								</div>
 							</div>
 							<div class="toggle-content">
-								<a href="#" class="toggle-content-opener">IS THIS DONATION IN
+								<a href="#" id="isATributeID" class="toggle-content-opener">IS THIS DONATION IN
 									tribute OF SOMEONE?<span class="icon icon-plus"></span><span
 									class="icon icon-minus"></span> <span class="answer md-visible">Yes</span>
 								</a>
@@ -226,6 +225,7 @@ include('../../wp-load.php');
 									<div class="row">
 										<div class="col-xs-12 col-md-6  col-md-short">
 											<label>Type of Tribute</label>
+											<input type="hidden"  id="tributeEnabled" name="tributeEnabled" value="NO">
 											<select name="merchant-defined-field-9">
 												<option value="" class="hideme">Select one</option>
 												<option <?php if( ( retriveDonorField($transactionStatus,'merchant-defined-field-9') == 'M' ) ) echo 'selected="selected"';?> value="M">In Memory of</option>
@@ -238,6 +238,29 @@ include('../../wp-load.php');
 											<label for="input10">Last Name</label>
 											<input type="text" id="input10" name="merchant-defined-field-7"
 											value="<?php if( ( retriveDonorField($transactionStatus,'merchant-defined-field-7') ) ) echo retriveDonorField($transactionStatus,'merchant-defined-field-7');?>">
+
+											<label for="input0222">Email</label>
+											<input type="email" id="input0222" name="tributeEmail"  
+											value="<?php if( ( retriveDonorField($transactionStatus,'tributeEmail') ) ) echo retriveDonorField($transactionStatus,'tributeEmail');?>">
+										</div>
+										<div class="col-xs-12 col-md-6 col-md-short">
+											<label for="input055">Address</label>
+											<input type="text" id="input055" name="tributeAddress"
+											value="<?php if( ( retriveDonorField($transactionStatus,'tributeAddress') ) ) echo retriveDonorField($transactionStatus,'tributeAddress');?>">
+											
+											<label for="input066">City</label>
+											<input type="text" id="input066" name="tributeCity"  
+											value="<?php if( ( retriveDonorField($transactionStatus,'tributeCity') ) ) echo retriveDonorField($transactionStatus,'tributeCity');?>">
+											
+											<label>State/Province</label>
+											<select name="tributeState">
+												<?php getStates(retriveDonorField($transactionStatus,'tributeState'));?>
+											</select>
+											
+											<label for="input077">Zip/Postal code</label>
+											<input type="text" name="tributePostal"  
+											value="<?php if( ( retriveDonorField($transactionStatus,'tributePostal') ) ) echo retriveDonorField($transactionStatus,'tributePostal');?>">
+											
 										</div>
 										<div class="form-note" style="display: none">* Complete the
 											required fields</div>
@@ -329,12 +352,11 @@ include('../../wp-load.php');
 											<input type="text" id="input14" name="billing-address1" required 
 											value="<?php if( retriveDonorField($transactionStatus,'billing-address1') ) echo retriveDonorField($transactionStatus,'billing-address1');?>"> 
 											
-											<!-- <label for="input15">* Country</label>
+											<label for="input15">* Country</label>
 											<select name="billing-country" required>
-												<option class="hideme">Select one</option>
-												<option value="US">United States of America</option>
-											</select> -->
-											<input type="hidden"  id="billing-country" name="country" value="billing-country">
+												<?php getCountries(retriveDonorField($transactionStatus,'billing-country'));?>
+											</select>
+											<!-- <input type="hidden"  id="billing-country" name="country" value="billing-country"> -->
 											<label for="input16">* City</label>
 											<input type="text" id="input16" name="billing-city" required 
 											value="<?php if( retriveDonorField($transactionStatus,'billing-city') ) echo retriveDonorField($transactionStatus,'billing-city');?>">

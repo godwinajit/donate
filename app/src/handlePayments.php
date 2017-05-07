@@ -33,7 +33,7 @@ if (! empty ( $_GET ['token-id'] )) {
 
 	if ( ($transactionDetails->{'result'} == 1) && ($transactionDetails->{'result-text'} == 'SUCCESS') ){
 		$log->info("Saving details to Doner Perfect");
-		$donorDetails = $donorPerfect->saveDonorDetails($transactionDetails);
+		$donorDetails = $donorPerfect->saveDonorDetails($transactionDetails, $_SESSION);
 		$transactionStatus = $transactionDetails->{'result-text'};
 		header("Location: success.php"); /* Redirect browser */
 		exit();
