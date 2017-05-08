@@ -22,6 +22,7 @@ jQuery(function($) {
 	$("#step3-submit").click(function(e){
 		e.preventDefault();
 		if ($form.valid()) {
+			$("#step3-submit").prop('disabled', true);
 			$.ajax({
 				type: "POST",
 				url: '../app/src/setSessionData.php',
