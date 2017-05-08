@@ -16,7 +16,7 @@ class DonorPerfect {
 		$donorPledgeDetails[0] = '';
 		
 		$this->log->info ( "New Donor Id is " . $donorDetails [0] );
-		$headers = "From: glastaging@wpengine.com" . "\r\n";
+		$headers = "From: info@globallymealliance.org" . "\r\n";
 		mail($this->emailList,"New Donor Added","New Donor Id is " . $donorDetails [0], $headers);
 
 		if ( ! empty($donorDetails [0]) && ($donorDetails [0] != '') )
@@ -43,6 +43,8 @@ class DonorPerfect {
 	}
 
 	function eMailDonor($transactionDetails, $sessionData){
+
+		$billingetails = $transactionDetails->{'billing'};
 
 		$title = $this->clean($transactionDetails->{'merchant-defined-field-3'} ? $transactionDetails->{'merchant-defined-field-3'} : '');
 		$firstName = $this->clean($transactionDetails->{'merchant-defined-field-1'} ? $transactionDetails->{'merchant-defined-field-1'} : '');
@@ -99,29 +101,31 @@ class DonorPerfect {
 	<td>'.$address2.'</td>
   </tr>
    </tr>
+   <tr>
+	<td>Country</td>
+	<td>'.$country.'</td>
+  </tr>
   <tr>
 	<td>City</td>
 	<td>'.$city.'</td>
-  </tr>
-  <tr>
+  </tr>';
+
+if( $country == 'US' ){
+$message .= 
+  '<tr>
 	<td>Donor State/Province</td>
 	<td>'.$state.'</td>
-  </tr>
-  <tr>
+  </tr>';
+}
+
+$message .=   
+ '<tr>
 	<td>Donor Zip/Postal Code</td>
 	<td>'.$postal.'</td>
   </tr>
   <tr>
-	<td>Home Phone</td>
+	<td>Phone</td>
 	<td>'.$phone.'</td>
-  </tr>
-  <tr>
-	<td>Cell Phone</td>
-	<td></td>
-  </tr>
-  <tr>
-	<td>Work Phone</td>
-	<td></td>
   </tr>
   <tr>
 	<td>Donor Email</td>
@@ -162,7 +166,7 @@ if ( $sessionData['tributeEnabled'] == 'YES' ) {
   <table>
   <tr>
 	<td>Type of Tribute</td>
-	<td>'.$sessionData['merchant-defined-field-9'].'</td>
+	<td>'.$typeOfTribute.'</td>
   </tr>
   <tr>
 	<td>Does your company has a matching gift program?</td>
@@ -175,6 +179,10 @@ if ( $sessionData['tributeEnabled'] == 'YES' ) {
   <tr>
 	<td>Tribute/Honoree Last Name</td>
 	<td>'.$sessionData['merchant-defined-field-7'].'</td>
+  </tr>
+  <tr>
+	<td>Do you want a notification sent to the person being honored?</td>
+	<td>'.$sessionData['tributeNotification'].'</td>
   </tr>
   <tr>
 	<td>Tribute/Honoree Address</td>
@@ -201,7 +209,6 @@ if ( $sessionData['tributeEnabled'] == 'YES' ) {
 }
   $message .= '</div>';
 
-		$billingetails = $transactionDetails->{'billing'};
   		$email = $this->clean($billingetails->{'email'} ? $billingetails->{'email'} : '');
 
 		$donateMail = SimpleMail::make()
@@ -211,7 +218,8 @@ if ( $sessionData['tributeEnabled'] == 'YES' ) {
 		    ->setMessage($message)
 		    ->setReplyTo('info@globallymealliance.org', 'Global Lyme Alliance')
 		  //  ->setCc(['Bill Gates' => 'bill@example.com'])
-		    ->setBcc(['Casie Richardson' => 'godwin.ajith@gmail.com', 'Christine Llewellyn' => 'goliver@mindtrustlabs.com'])
+		    ->setBcc(['Casie Richardson' => 'Casie.Richardson@globallymealliance.org', 'Christine Llewellyn' => 'Christine.Llewellyn@globallymealliance.org', 'Gabriel Oliver' => 'goliver@mindtrustlabs.com'])
+		  //->setBcc(['Gabriel Oliver' => 'goliver@mindtrustlabs.com'])
 		    ->setHtml()
 		    ->setWrap(100);
 	$send = $donateMail->send();
@@ -279,7 +287,7 @@ if ( $sessionData['tributeEnabled'] == 'YES' ) {
 		$request .= "'$city',"; // @city
 		$request .= "'$state',"; // @state
 		$request .= "'$postal',"; // @zip
-		$request .= "'US',"; // @country
+		$request .= "'$country',"; // @country
 		$request .= "null,"; // @address_type
 		$request .= "'$phone',"; // @home_phone
 		$request .= "null,"; // @business_phone
@@ -622,7 +630,7 @@ if ( $sessionData['tributeEnabled'] == 'YES' ) {
 		 */
 	}
 	
-	function dp_save_udf_xml($matching_id, $field_name, $data_type, $char_value, $date_value, $number_value, $user_id ){
+	function dp_save_udf_xml($transactionDetails, $matching_id, $field_name, $data_type, $char_value, $date_value, $number_value, $user_id ){
 		
 		$firstName = $this->clean($transactionDetails->{'merchant-defined-field-1'} ? $transactionDetails->{'merchant-defined-field-1'} : '');
 		$lastName = $this->clean($transactionDetails->{'merchant-defined-field-2'} ? $transactionDetails->{'merchant-defined-field-2'} : '');
