@@ -20,6 +20,15 @@ jQuery(function($) {
         }
     });
 
+//Added by Gabrial for Tribute Address show hide
+$("#tributeNotification").change(function() {
+    if(this.checked) {
+		$("#tributeNotificationAddress").slideDown( "slow" );
+    }else{
+		$("#tributeNotificationAddress").hide( "slow" );
+	}
+});
+
 //Added by Gabrial for Tribute Yes/No
 
 	$("#isATributeID").on("click", function(){
@@ -31,6 +40,30 @@ jQuery(function($) {
      });
 
 
+//Added by Gabrial for State update based on Country
+$("#country").on("change", function(){
+		if( this.value == 'US' ){
+			$("#stateProvince1").show();
+			$("#cityLabel1").html("* City");
+			$("#state").prop('disabled', false);
+		}else{
+			$("#stateProvince1").hide();
+			$("#cityLabel1").html("* City/State/Province");
+			$("#state").prop('disabled', true);
+		}
+    });
+
+$("#billing-country").on("change", function(){
+		if( this.value == 'US' ){
+			$("#stateProvince2").show();
+			$("#cityLabel2").html("* City");
+			$("#billing-state").prop('disabled', false);
+		}else{
+			$("#stateProvince2").hide();
+			$("#cityLabel2").html("* City/State/Province");
+			$("#billing-state").prop('disabled', true);
+		}
+    });
 
     //Commented by TM
        $("#check03").on("change", function(){
@@ -45,8 +78,12 @@ jQuery(function($) {
               $("[name='billing-state'] option:contains(" + state +")").attr('selected', true);
               $("[name='billing-country'] + span > span.jcf-select-text > span").text(country).removeClass('jcf-option-hideme');
               $("[name='billing-state'] + span > span.jcf-select-text > span").text(state).removeClass('jcf-option-hideme');
-
-
+				
+				if(country != 'United States'){
+					$("#stateProvince2").hide();
+					$("#cityLabel2").html("* City/State/Province");
+					$("#billing-state").prop('disabled', true);
+				}
         } else { 
             //Clear on uncheck
             $("[name='billing-first-name']").val("");
@@ -57,6 +94,9 @@ jQuery(function($) {
             $("[name='billing-state'] option:contains(Select One)").attr('selected', true);
             $("[name='billing-country'] + span > span.jcf-select-text > span").text("Select One").addClass('jcf-option-hideme');
             $("[name='billing-state'] + span > span.jcf-select-text > span").text("Select One").addClass('jcf-option-hideme');
+			$("#stateProvince2").show();
+			$("#cityLabel2").html("* City");
+			$("#billing-state").prop('disabled', false);
         };
       });
     //Popop Modal CVV TM
