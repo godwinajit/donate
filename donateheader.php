@@ -45,7 +45,6 @@
 
   <!--styles -->
 <link rel="stylesheet" href="/donate/dist/css/main.css">
-	<script src="/donate/dist/js/donate.js"></script>
 <link rel="stylesheet" href="/donate/app/css/donate.css">
 </head>
 <body <?php body_class(); ?>>

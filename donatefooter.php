@@ -148,6 +148,4 @@ $(window).load(function(e) {
         js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
-   <script src="js/jquery-1.11.2.min.js"></script>
-    <script src="http://globallyme.staging.wpengine.com/donate/dist/js/main.js"></script>
 </body></html>
