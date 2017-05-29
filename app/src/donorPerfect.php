@@ -137,7 +137,7 @@ $message .=
   <table>
   <tr>
 	<td>'.$billingMethodEmailText.'</td>
-	<td>'.$amount.'$</td>
+	<td>$'.$amount.'</td>
   </tr>
   </table>
 
@@ -149,7 +149,7 @@ $message .=
   </tr>
   <tr>
 	<td>Amount</td>
-	<td>'.$amount.'$</td>
+	<td>$'.$amount.'</td>
   </tr>
   <tr>
 	<td>Type of Donation</td>

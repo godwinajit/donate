@@ -6,11 +6,14 @@
     z-index: 999;
     height: 55px;
     background: $white;
-    overflow: hidden;
+    // overflow: hidden;
     min-width: $body-min-width;
     border-bottom: 1px solid $light-gray;
     padding: 13px 0 10px;
 
+    &.header-extended {
+        border-bottom: 0;
+    }
     .logo{
         float: left;
         width: 32px;
@@ -25,6 +28,8 @@
 
     .right-holder{
         float: right;
+        position: relative;
+        z-index: 10;
     }
 
     .nav-opener,
@@ -113,7 +118,7 @@
         .nav{
             position: relative;
             top: -13px;
-            overflow: hidden;
+            // overflow: hidden;
         }
 
         .logo{
@@ -146,14 +151,16 @@
                 top: 0;
                 height: 82px;
                 clear: both;
-                margin: 0 -9999px;
-                padding: 17px 9999px 0;
+                // margin: 0 -9999px;
+                // padding: 17px 9999px 0;
+                margin: 0;
+                padding: 17px 0 0;
 
                 &:before{
                     content: '';
                     position: absolute;
-                    left: 0;
-                    right: 0;
+                    left: -9999px;
+                    right: -9999px;
                     top: 17px;
                     border-top: 1px solid $light-gray;
                 }

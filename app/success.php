@@ -298,9 +298,9 @@ include('../../wp-load.php');
 		</main>
 	
 	</div>
-	<script src="js/jquery-1.11.2.min.js"></script>
-	<script src="js/main.js"></script>
-	<script src="js/donate.js"></script>
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="http://globallyme.staging.wpengine.com/donate/dist/js/main.js"></script>
+	<script src="/donate/dist/js/donate.js"></script>
 				<?php get_template_part( 'donatefooter' ); ?>
 
 	<script type="text/javascript">

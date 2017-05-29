@@ -559,9 +559,9 @@ include('../../wp-load.php');
 		</form>
 		</main>
 		</div>
-		  <script src="js/jquery-1.11.2.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/donate.js"></script>
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="http://globallyme.staging.wpengine.com/donate/dist/js/main.js"></script>
+	<script src="/donate/dist/js/donate.js"></script>
 	<script type="text/javascript">
             var currentActiveStep = 0;
             <?php if ($isPaymentStep) { echo 'currentActiveStep = 2;'; }?>
@@ -582,4 +582,3 @@ include('../../wp-load.php');
         <?php }?>
     </script>
 	<?php get_template_part( 'donatefooter' ); ?>
-</body></html>

@@ -1,6 +1,7 @@
 <?php
 $environment	= "test"; // test or production
 $emailList		= 'goliver@mindtrustlabs.com,Casie.Richardson@globallymealliance.org,Christine.Llewellyn@globallymealliance.org,mwilson@mindtrustlabs.com';
+//$emailList		= 'goliver@mindtrustlabs.com';
 
 if ($environment == "test") {
 	// DP API Key

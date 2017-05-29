@@ -13,6 +13,10 @@
     min-width: $body-min-width;
     visibility: hidden;
 
+    &.popup-nav {
+        background: $bg-nav;
+    }
+
     .nav-open &.popup-nav{
         transform: translate(0, 0);
         opacity: 1;
@@ -53,6 +57,16 @@
                 &:hover{
                     color: $blue;
                 }
+            }
+        }
+        &.popup-nav {
+            z-index: 998;
+            background: transparent;
+            .panel-close {
+                display: none;
+            }
+            .accordion-nav {
+                z-index: 10;
             }
         }
     }

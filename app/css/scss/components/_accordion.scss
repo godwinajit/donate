@@ -1,246 +1,243 @@
 .accordion-nav{
+    $size-plus: 16px;
+
+    // font-weight: $font-weight-light;
     padding: 29px 0 30px;
-    font-weight: $font-weight-light;
-
-    .accordion-opener{
-        color: $white;
-        display: block;
-        font-size: floor($base-font-size * 1.143);
-        font-family: $font-family-condensed;
-        font-weight: $font-weight-bold;
-        padding: 11px 30px 10px 5px;
-        text-transform: uppercase;
+    font-family: $font-family-condensed;
+    font-weight: $font-weight-bold;
+    text-transform: uppercase;
+    font-size: 20px;
+    a {
         position: relative;
-
-        &:after{
-            content: "\e90a";
-            @include icofont;
-            font-size: 18px;
-            color: $blue;
+        display: block;
+        color: $dark-blue;
+        padding: 6px 40px 6px 10px;
+        &:after {
+            content: "\e90e";
             position: absolute;
-            right: 4px;
+            right: 11px;
             top: 50%;
             transform: translateY(-50%);
-        }
-        
-        &:hover{
+            @include icofont;
             color: $blue;
-            &:after{
-                color: $white;
+            font-size: 16px;
+        }
+    }
+    .accordion-opener{
+        &:before,
+        &:after{
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 8px;
+            overflow: hidden;
+            background: $blue;
+            transition: opacity .25s ease-out;
+            transform: translateY(-50%);
+        }
+        &:before {
+            width: 2px;
+            height: $size-plus;
+            margin-right: ($size-plus - 2) / 2;
+        }
+        &:after {
+            width: $size-plus;
+            height: 2px;
+        }
+    }
+    .accordion-active {
+        > .accordion-opener {
+            &:before {
+                opacity: 0;
+            }
+            &:after {
+                content: "\e90e";
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                @include icofont;
+                color: $blue;
+                background: none;
+                margin: 0;
+                width: auto;
+                height: auto;
+                right: 11px;
+                font-size: 16px;
             }
         }
     }
-
-    .accordion-active > .accordion-opener {
-        color: $white;
-        &:after{
-            content: "\e909";
-            color: $white;
+    .accordion-slide {
+        .accordion-slide {
+            padding-left: 10px;
         }
     }
-
     ul{
         @extend %listreset;
         text-align: left;
 
-        a:not(.accordion-opener){
-            color: $white;
-            display: block;
-            padding: 6px 30px 6px 22px;
-            position: relative;
-
-            &:after{
-                content: "\f105";
-                @include icofont;
-                font-size: 10px;
-                color: $blue;
-                position: absolute;
-                right: 12px;
-                top: 50%;
-                transform: translateY(-50%);
-            }
-
-            &:hover{
-                color: $blue;
-                &:after{
-                    color: $white;
-                }
-            }
-        }
-
         li{
-            border-top: 1px solid $light-gray;
+            border-top: 1px solid $dark-gray;
 
-            &:first-child{
-                border: 0;
+            &:first-child {
+                border-top: 0;
             }
         }
 
         ul{
-            border-top: 1px solid $white;
+            font-size: 17px;
+            border-top: 1px solid $dark-gray;
             padding: 4px 0 14px;
 
             li {
                 border-top: 0;
-                
-                &.accordion-active{
-                    .accordion-opener{
-                        color: $blue;
-                        
-                        &:after{
-                            color: inherit;
-                        }
-                    }
-                }
-            }
-
-            .accordion-opener{
-                font-size: floor($base-font-size * 1.36);
-                color: $blue;
-                font-family: $base-font-family;
-                font-weight: $font-weight-light;
-                padding-top: 3px;
-                padding-bottom: 3px;
-                
-                &:hover{
-                    color: $white;
-                }
             }
 
             ul{
                 border-top: 0;
                 padding: 1px 0 15px 5px;
-
+                font-family: $base-font-family;
+                font-weight: $font-weight-light;
+                font-size: 14px;
+                line-height: 31px;
+                text-transform: none;
                 li{
-                    border-top: 1px solid $dark-gray;
+                    border-top: 1px solid $border-color-drop;
 
                     &:first-child{
                         border: 0;
                     }
                 }
+                a {
+                    padding-left: 15px;
+                    &:after {
+                        font-size: 11px;
+                        right: 14px;
+                    }
+                }
             }
         }
     }
-
+    .title {
+        display: none;
+    }
+    .row {
+        margin-left: 0;
+        margin-right: 0;
+        > div {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
     @media only screen and (min-width: $screen-sm){
-        padding: 54px 5px 50px 25px;
-        font-size: floor($base-font-size * 2);
+        padding: 53px 0;
+        font-size: 38px;
+        $size-plus: 24px;
 
-        .accordion-opener{
-            font-size: floor($base-font-size * 2.29);
-            padding: 23px 30px 22px 5px;
-
-            &:after{
-                font-size: 45px;
-                right: 0;
+        .accordion > li > .accordion-opener{
+            &:before,
+            &:after {
+                right: 12px;
+            }
+            &:before {
+                height: $size-plus;
+                margin-right: ($size-plus - 2) / 2;
+            }
+            &:after {
+                width: $size-plus;
             }
         }
-
-        ul{
-            a:not(.accordion-opener){
-                padding: 13px 30px 11px 14px;
-
-                &:after{
-                    font-size: 20px;
-                    right: 10px;
-                }
+        .accordion > .accordion-active > .accordion-opener{
+            &:after {
+                width: auto;
+                right: 19px;
+                font-size: 19px;
             }
-
+        }
+        .accordion-active .accordion-slide .accordion-active > .accordion-opener {
+            &:after {
+                width: auto;
+                right: 20px;
+            }
+        }
+        a {
+            padding-top: 18px;
+            padding-bottom: 18px;
+            &:after {
+                right: 19px;
+                font-size: 19px;
+            }
+        }
+        ul{
             ul{
-                padding: 8px 0 30px;
-
-                .accordion-opener{
-                    font-size: floor($base-font-size * 2.7);
-                    padding-top: 5px;
-                    padding-bottom: 5px;
-
-                    &:after{
-                        font-size: 25px;
+                padding: 4px 0 25px;
+                font-size: 32px;
+                ul{
+                    font-size: 28px;
+                }
+                .accordion-opener {
+                    &:before,
+                    &:after {
+                        right: 16px;
                     }
                 }
-
-                ul{
-                    padding: 5px 0 31px 23px;
+                ul {
+                    a {
+                        padding-top: 14px;
+                        padding-bottom: 14px;
+                        &:not(.accordion-opener) {
+                            &:after {
+                                right: 23px;
+                            }
+                        }
+                    }
                 }
             }
+        }
+        .accordion {
+            padding-left: 32px;
+            padding-right: 32px;
         }
     }
 
-    @media only screen and (min-width: $screen-md){
-        padding: 53px 5px 50px 15px;
-
-        .accordion-opener{
-            padding: 23px 30px 22px 10px;
-
-            &:after{
-                display: none;
+    @media only screen and (max-width: $screen-md - 1){ // mobile nav
+        ul {
+            ul {
+                a {
+                    color: $link-color;
+                }
+                ul {
+                    a {
+                        color: $dark-gray;
+                    }
+                }
             }
         }
-
-        ul{
-            a:not(.accordion-opener){
-                padding: 9px 30px 11px 28px;
-
-                &:after{
-                    right: auto;
-                    left: 8px;
-                    color: $white;
-                }
-            }
-
-            ul{
-                padding: 21px 0;
-                position: relative;
-
-                > li{
-                    width: 42%;
-                    padding: 25px 0 24px;
-
-                    > .accordion-slide{
-                        position: absolute;
-                        left: 44%;
-                        top: 0;
-                    }
-                }
-
-                .accordion-opener{
-                    padding-top: 5px;
-                    padding-bottom: 5px;
-                }
-
-                ul{
-                    padding: 17px 0 0;
-
-                    li{
-                        width: 100%;
-                        border: 0;
-                        padding: 0;
-                    }
-                }
-            }
+        .container-fluid {
+            padding-left: 0;
+            padding-right: 0;
         }
     }
 
-    @media only screen and (min-width: $screen-lg){
-        font-size: floor($base-font-size * 2.71);
+    @media only screen and (min-width: $screen-md){ // desktop nav
+        // padding-top: 85px;
+        // font-size: 22px;
 
-        .accordion-opener{
-            font-size: floor($base-font-size * 2);
-        }
-
-        ul{
-            a:not(.accordion-opener){
-                &:after{
-                    font-size: 25px;
-                }
-            }
-
-            ul{
-                .accordion-opener{
-                    font-size: floor($base-font-size * 4.14);
-                }
-            }
-        }
+        // a {
+        //     padding-left: 10px;
+        //     &:after,
+        //     &:before{
+        //         display: none;
+        //     }
+        // }
+        // .accordion {
+        //     background: $bg-nav;
+        //     margin-left: 10px;
+        //     margin-right: 10px;
+        //     padding: 32px 0;
+        //     > a {
+        //         position: relative;
+        //     }
+        // }
     }
 }
 
@@ -289,4 +286,3 @@
         padding: 13px 0 0;
     }
 }
-
