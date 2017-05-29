@@ -16,6 +16,7 @@
 <!-- End Google Tag Manager -->
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="viewport"
   content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700"
@@ -28,7 +29,7 @@
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 <!--[if lt IE 9]>
-	<script src="<?php echo get_template_directory_uri(); ?>/js/html5.js"></script>
+  <script src="<?php echo get_template_directory_uri(); ?>/js/html5.js"></script>
 <![endif]-->
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
@@ -43,9 +44,8 @@
 	</script>
 
   <!--styles -->
-<link rel="stylesheet" href="/donate/app/css/main.css">
-<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/css/main.css" />
-
+<link rel="stylesheet" href="/donate/dist/css/main.css">
+	<script src="/donate/dist/js/donate.js"></script>
 <link rel="stylesheet" href="/donate/app/css/donate.css">
 </head>
 <body <?php body_class(); ?>>
@@ -61,7 +61,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="row center-xs">
           <div class="col-xs-11 col-lg-10">
 
-			             <?php $logo= get_field( 'logo', 'option'); if($logo){ ?>
+                   <?php $logo= get_field( 'logo', 'option'); if($logo){ ?>
    <a class="logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="Appeal To Heaven"><img src="<?php echo $logo['url']; ?>" alt="Global Lyme Alliance" title="Global Lyme Alliance" /></a>
    <?php } ?>
                             <div class="right-holder">
@@ -82,16 +82,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             </div>
                                 <nav class="nav">
                                 <?php
-                                    wp_nav_menu( array(
-                                        'menu'              => 'top-menu',
-                                        'theme_location'    => 'top-menu',
-                                        'depth'             => 3,
-                                        'container'         => '',
-                                        'menu_class'        => 'nav-list',
-                                        'fallback_cb'       => 'Yamm_Fw_Nav_Walker_menu_fallback',
-                                        'walker'            => new Yamm_Fw_Nav_Walker())
-                                    );
-                                ?>
+                                     if(is_active_sidebar('sidebar-mainmenu')){
+                                        dynamic_sidebar('sidebar-mainmenu');
+                                     }
+                                    ?>
                                 </nav>
                             </div>
                             </div>

@@ -119,7 +119,6 @@
 
 <!-- #colophon -->
 <div class="preload"> <img src="<?php echo get_template_directory_uri(); ?>/images/minus.png" alt="Preload" /> </div>
-</div>
 <!-- #page -->
 <!--Ajax Search Code -->
 <script type="text/javascript">var BASE = "<?php echo home_url() ?>";</script>
@@ -142,11 +141,13 @@ $(window).load(function(e) {
 </script>
 <!-- Facebook Book -->
 <div id="fb-root"></div>
-    <script>(function(d, s, id) {
+      <script>(function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
         js = d.createElement(s); js.id = id;
         js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
+   <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="http://globallyme.staging.wpengine.com/donate/dist/js/main.js"></script>
 </body></html>
