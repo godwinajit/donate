@@ -1,5 +1,11 @@
-<?php 
+<?php
 require_once 'src/handlePayments.php';
+
+if (empty(retriveDonorField($_SESSION,'donate')) || (retriveDonorField($_SESSION,'donate') == '')){
+	//header("Location: donate.php"); /* Redirect browser */
+	//exit();
+}
+
 include('../../wp-load.php');
 ?>
 <?php //get_header();?>
@@ -56,45 +62,83 @@ include('../../wp-load.php');
 							</div>
 							<h2>Thank You</h2>
 							<div class="finish-text-holder">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-									do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-									Ut enim ad minim veniam, quis nostrud</p>
+								<p>Your donation was successfully processed. We appreciate your generosity!</p>
 							</div>
+							<?php if (!empty(retriveDonorField($_SESSION,'donate')) || (retriveDonorField($_SESSION,'donate') != '')){ ?>
 							<div class="donation-summary">
 								<div class="donation-summary-box personal-info">
 									<div class="box-holder">
 										<h3>Your Donation</h3>
-										<span>
-											<?php if( retriveDonorField($_SESSION,'merchant-defined-field-3') ) echo retriveDonorField($_SESSION,'merchant-defined-field-3');?>
-											&nbsp;
-											<?php if( retriveDonorField($_SESSION,'merchant-defined-field-1') ) echo retriveDonorField($_SESSION,'merchant-defined-field-1');?>
-											&nbsp;
-											<?php if( retriveDonorField($_SESSION,'merchant-defined-field-2') ) echo retriveDonorField($_SESSION,'merchant-defined-field-2');?>
-											&nbsp;
-										</span>
-                    <span>
-                      <?php if( retriveDonorField($_SESSION,'address1') ) echo retriveDonorField($_SESSION,'address1');?>
-                    </span>
-                    <span>
-                      <?php if( retriveDonorField($_SESSION,'address2') ) echo retriveDonorField($_SESSION,'address2');?>
-                    </span>
-										<span>
-											<?php if( retriveDonorField($_SESSION,'city') ) echo retriveDonorField($_SESSION,'city');?>,    &nbsp;
-											<?php if( retriveDonorField($_SESSION,'state') ) echo retriveDonorField($_SESSION,'state');?>
-                      &nbsp;
-                      <?php if( retriveDonorField($_SESSION,'postal') ) echo retriveDonorField($_SESSION,'postal');?>
-										</span>
-                    <span>
-                      <?php if( retriveDonorField($_SESSION,'phone') ) echo retriveDonorField($_SESSION,'phone');?>
-                    </span>
+										<?php
+											$billingMethod = retriveDonorField($_SESSION, 'merchant-defined-field-12');
+											$billingMethodEmailText = 'One Time Donation';
+											if ($billingMethod == 'recurring'){
+												$billingMethodEmailText = 'Monthly Recurring Donation';
+											}
+										?>
+										<table class="success-table">
+											<tr>
+												<td><b>Type of Donation:&nbsp;</b></td>
+												<td><?php echo $billingMethodEmailText;?></td>
+											</tr>
+											<tr>
+												<td><b>Name:&nbsp;</b></td>
+												<td><?php if( retriveDonorField($_SESSION,'merchant-defined-field-3') ) echo retriveDonorField($_SESSION,'merchant-defined-field-3');?>												
+												<?php if( retriveDonorField($_SESSION,'merchant-defined-field-1') ) echo gla_ucwords(retriveDonorField($_SESSION,'merchant-defined-field-1'));?>&nbsp<?php if( retriveDonorField($_SESSION,'merchant-defined-field-2') ) echo gla_ucwords(retriveDonorField($_SESSION,'merchant-defined-field-2'));?>
+												</td>
+											</tr>
+											<tr>
+												<td><b>Address:&nbsp;</b></td>
+												<td><?php if( retriveDonorField($_SESSION,'address1') ) echo gla_ucwords(retriveDonorField($_SESSION,'address1'));?></td>
+											</tr>
+											<tr>
+												<td></td>
+												<td><?php if( retriveDonorField($_SESSION,'address2') ) echo gla_ucwords(retriveDonorField($_SESSION,'address2'));?></td>
+											</tr>
+											<tr>
+												<td></td>
+												<td><?php if( retriveDonorField($_SESSION,'city') ) echo gla_ucwords(retriveDonorField($_SESSION,'city'));?>,    &nbsp;
+													<?php 
+														if ( retriveDonorField($_SESSION,'country') == 'US' ){
+															if( retriveDonorField($_SESSION,'state') ) echo retriveDonorField($_SESSION,'state').','.'&nbsp;';
+														}?>
+													<?php if( retriveDonorField($_SESSION,'postal') ) echo retriveDonorField($_SESSION,'postal');?></td>
+											</tr>
+											<tr>
+												<td></td>
+												<td><?php if( retriveDonorField($_SESSION,'country') ) echo retriveDonorField($_SESSION,'country');?></td>
+											</tr>
+											<tr>
+												<td><b>Phone:&nbsp;</b></td>
+												<td><?php if( retriveDonorField($_SESSION,'phone') ) echo retriveDonorField($_SESSION,'phone');?></td>
+											</tr>
+											<tr>
+												<td><b>Email&nbsp;</b></td>
+												<td><?php if( retriveDonorField($_SESSION,'email') ) echo retriveDonorField($_SESSION,'email');?></td>
+											</tr>
+											<tr>
+											<?php
+												$isCorp = retriveDonorField($_SESSION,'merchant-defined-field-4') ? 'YES' : 'NO';
+											?>
+												<td><b>This is a corporate donation:</b></td>
+												<td><?php echo $isCorp;?></td>
+											</tr>
+											<tr>
+											<?php
+												$matchingGift = retriveDonorField($_SESSION,'merchant-defined-field-5') == '' ? 'NO' : 'YES';
+											?>
+												<td><b>My company has a matching gift program:</b></td>
+												<td><?php echo $matchingGift;?></td>
+											</tr>											
+										</table>
 									</div>
 								</div>
 								<div class="donation-summary-box">
 									<div class="total-sum">
 										<span class="title">Total donated</span> <strong
-											class="amount"><?php if( retriveDonorField($_SESSION,'donate') ) echo retriveDonorField($_SESSION,'donate');?></strong>
+											class="amount">$ <?php if( retriveDonorField($_SESSION,'donate') ) echo retriveDonorField($_SESSION,'donate');?></strong>
 									</div>
-									<div class="box-holder">
+									<!-- <div class="box-holder">
 										<h3>Lorem ipsum dolor</h3>
 										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
 											sed do eiusmod tempor incididunt ut labore et dolore magna
@@ -104,13 +148,122 @@ include('../../wp-load.php');
 											cillum dolore eu fugiat nulla pariatur. Excepteur sint
 											occaecat cupidatat non proident, sunt in culpa qui officia
 											deserunt mollit anim id</p>
-									</div>
+									</div> -->
 									<div class="gla-info">
 										<p>Global Lyme Alliance is a 501(c)(3) charitable
 											organization. Tax ID is 06-1559393.</p>
 									</div>
 								</div>
 							</div>
+							<?php if ( retriveDonorField($_SESSION,'tributeEnabled') == 'YES' ) {
+								$typeOfTribute = '';
+								  if ( retriveDonorField($_SESSION,'merchant-defined-field-9') == 'M') $typeOfTribute = 'In Memory of';
+								  elseif ( retriveDonorField($_SESSION,'merchant-defined-field-9') == 'H') $typeOfTribute = 'In Honor of';
+							?>
+							<h3>Tribute Details</h3>
+							<div class="donation-summary">
+								<div class="donation-summary-box personal-info">
+									<div class="box-holder">
+										<table class="success-table">
+											<tr>
+												<td><b>Type of Tribute:&nbsp;</b></td>
+												<td><?php echo $typeOfTribute;?></td>
+											</tr>
+											<tr>
+												<td><b>Tribute/Honoree First name:&nbsp;</b></td>
+												<td><?php echo gla_ucwords(retriveDonorField($_SESSION,'merchant-defined-field-6'));?></td>
+											</tr>
+											<tr>
+												<td><b>Tribute/Honoree Last name:&nbsp;</b></td>
+												<td><?php echo gla_ucwords(retriveDonorField($_SESSION,'merchant-defined-field-7'));?></td>
+											</tr>
+											<tr>
+												<td><b>Tribute/Honoree Email:&nbsp;</b></td>
+												<td><?php echo retriveDonorField($_SESSION,'tributeEmail');?></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+								<div class="donation-summary-box">
+									<div class="box-holder">
+										<table class="success-table">
+											<?php if ( retriveDonorField($_SESSION,'tributeNotification') == 'YES' ) {?>
+											<tr>
+												<td><b>Name:&nbsp;</b></td>
+												<td><?php echo gla_ucwords(retriveDonorField($_SESSION,'tributeNotifyName'));?></td>
+											</tr>
+											<tr>
+												<td><b>Address:&nbsp;</b></td>
+												<td><?php echo gla_ucwords(retriveDonorField($_SESSION,'tributeAddress'));?></td>
+											</tr>
+											<tr>
+												<td><b>City:&nbsp;</b></td>
+												<td><?php echo gla_ucwords(retriveDonorField($_SESSION,'tributeCity'));?></td>
+											</tr>
+											<tr>
+												<td><b>State/Province:&nbsp;</b></td>
+												<td><?php echo retriveDonorField($_SESSION,'tributeState');?></td>
+											</tr>
+											<tr>
+												<td><b>Zip/Postal code:&nbsp;</b></td>
+												<td><?php echo retriveDonorField($_SESSION,'tributePostal');?></td>
+											</tr>
+											<?php }else {?>
+											<tr>
+												<td>Tribute/Honoree Address not given</td>
+											</tr>
+											<?php }?>
+										</table>
+									</div>
+								</div>
+							</div>
+							<?php }?>
+							<h3>Payment Information</h3>
+							<div class="donation-summary">
+								<div class="donation-summary-box personal-info">
+									<div class="box-holder">
+										<table class="success-table">
+											<tr>
+												<td><b>Card holder first name :&nbsp;</b></td>
+												<td><?php echo gla_ucwords(retriveDonorField($_SESSION,'billing-first-name'));?></td>
+											</tr>
+											<tr>
+												<td><b>Card holder last name :&nbsp;</b></td>
+												<td><?php echo gla_ucwords(retriveDonorField($_SESSION,'billing-last-name'));?></td>
+											</tr>
+											<tr>
+												<td><b>Country:&nbsp;</b></td>
+												<td><?php echo retriveDonorField($_SESSION,'billing-country');?></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+								<div class="donation-summary-box">
+									<div class="box-holder">
+										<table class="success-table">
+											<tr>
+												<td><b>Address:&nbsp;</b></td>
+												<td><?php echo gla_ucwords(retriveDonorField($_SESSION,'billing-address1'));?></td>
+											</tr>
+											<tr>
+												<td><b>City:&nbsp;</b></td>
+												<td><?php echo gla_ucwords(retriveDonorField($_SESSION,'billing-city'));?></td>
+											</tr>
+											<?php if (retriveDonorField($_SESSION,'billing-country') == 'US') {?>
+											<tr>
+												<td><b>State/Province:&nbsp;</b></td>
+												<td><?php echo retriveDonorField($_SESSION,'billing-state');?></td>
+											</tr>
+											<?php }?>
+											<tr>
+												<td><b>Zip/Postal code:&nbsp;</b></td>
+												<td><?php echo retriveDonorField($_SESSION,'billing-postal');?></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							</div>
+							<?php }?>
 						</div>
 					</div>
 				</div>
@@ -275,9 +428,10 @@ include('../../wp-load.php');
                             </div>
                         </div>
                     </div>
-                </section>
-                  <!-- Subscribe CTA -->
-                <section class="section-subscribe">
+                </section>               
+		</form>
+		   <!-- Subscribe CTA -->
+                <section class="section-subscribe" id="section-subscribe">
                     <div class="wrapper container-fluid">
                         <div class="row center-xs">
                             <div class="col-xs-12 col-sm-11 col-md-10">
@@ -285,7 +439,7 @@ include('../../wp-load.php');
                                     <span class="icon icon-mail sm-visible"></span>
                                     <h2><?php the_field('newsletter_text', 4185); ?></h2>
                                     <div class="form-row">
-                                         <?php echo do_shortcode('[constantcontactapi formid="2"]'); ?> 
+	                                         <?php echo do_shortcode('[ctct form="7979"]'); ?> 
                                     </div>
                                 </div>
                                 </div>
@@ -294,12 +448,11 @@ include('../../wp-load.php');
                     </div>
                 </section>
 			</div>
-		</form>
 		</main>
 	
 	</div>
     <script src="js/jquery-1.11.2.min.js"></script>
-    <script src="http://globallyme.staging.wpengine.com/donate/dist/js/main.js"></script>
+    <script src="/donate/dist/js/main.js"></script>
 	<script src="/donate/dist/js/donate.js"></script>
 				<?php get_template_part( 'donatefooter' ); ?>
 

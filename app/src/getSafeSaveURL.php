@@ -44,6 +44,8 @@ $safeSave->appendXmlNode($xmlRequest, $xmlSale,'merchant-defined-field-17', isse
 //billing-address-email
 $safeSave->appendXmlNode($xmlRequest, $xmlSale,'merchant-defined-field-13', isset($_POST['country']) ? $_POST['country'] : '');
 $safeSave->appendXmlNode($xmlRequest, $xmlSale,'merchant-defined-field-18', isset($_POST['phone']) ? $_POST['phone'] : '');
+$safeSave->appendXmlNode($xmlRequest, $xmlSale,'merchant-defined-field-19', isset($_POST['tributeEnabled']) ? $_POST['tributeEnabled'] : '');
+$safeSave->appendXmlNode($xmlRequest, $xmlSale,'merchant-defined-field-20', isset($_POST['tributeNotification']) ? $_POST['tributeNotification'] : '');
 //$safeSave->appendXmlNode($xmlRequest, $xmlSale, 'tax-amount' , '0.00');
 
 if( (!empty($_POST['merchant-defined-field-12'])) && ($_POST['merchant-defined-field-12'] == 'recurring')) {

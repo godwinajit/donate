@@ -54,3 +54,183 @@
     text-decoration: none;
     cursor: pointer;
 }
+
+.success-table td{
+	border-spacing: 15px !important;
+	padding: 5px !important;
+}
+.header .logo {
+	position: relative;
+	z-index: 5;
+}
+@media (max-width: 1023px) {
+	.donate-sum-box .sum {
+		width: 100% !important;
+	}
+}
+@media (max-width: 479px) {
+	.footer .footer-column-contact {
+		width: 38% !important;
+		padding-left: 10px !important;
+		padding-right: 0 !important;
+	}
+}
+
+.subscribe-form .form-row {
+	max-width: 945px !important;
+}
+.subscribe-form .gform_fields {
+	padding-right: 0 !important;
+}
+.subscribe-form .cc_first_name,
+.subscribe-form .cc_last_name,
+.subscribe-form .cc_email_address {
+	float: left;
+	width: 24%;
+	margin-right: 2%;
+}
+.subscribe-form input:not([type="submit"]):not([type="button"]), html body .subscribe-form #cc_form_2 input.t, .subscribe-form input[type="button"], .subscribe-form input[type="submit"] {
+	border-radius: 4px !important;
+	width: 100% !important;
+}
+.subscribe-form input:not([type="submit"]):not([type="button"]) {
+	font-weight: 700;
+}
+.subscribe-form .cc_Go {
+    float: left;
+    width: 22% !important;
+	position: static !important;
+}
+html body #cc_form_2 input.t {
+	max-width: 100% !important;
+}
+html #cc_form_2 .error {
+	margin-bottom: 30px;
+}
+html #cc_form_2 .error label {
+	font-size: 14px !important;
+	color: yellow;
+}
+@media (min-width:768px) {
+	.subscribe-form input:not([type="submit"]):not([type="button"]) {
+		padding-left: 12px !important;
+		padding-right: 12px !important;
+	}
+}
+@media (min-width:850px) {
+	.subscribe-form input:not([type="submit"]):not([type="button"]) {
+		padding-left: 30px !important;
+		padding-right: 30px !important;
+	}
+}
+@media (min-width:768px) {
+	.subscribe-form input:not([type="submit"]):not([type="button"]), html body .subscribe-form #cc_form_2 input.t {
+		padding-top: 14px;
+		padding-bottom: 14px;
+		font-size: 19px !important;
+	}
+	.subscribe-form input:not([type="submit"]):not([type="button"]), html body .subscribe-form #cc_form_2 input.t, .subscribe-form input[type="button"], .subscribe-form input[type="submit"] {
+		height: 70px !important;
+	}
+}
+@media (max-width:539px) {
+	.subscribe-form .cc_first_name,
+	.subscribe-form .cc_last_name,
+	.subscribe-form .cc_email_address,
+	.subscribe-form .cc_Go {
+		width: 100% !important;
+	}
+	.subscribe-form .cc_first_name,
+	.subscribe-form .cc_last_name,
+	.subscribe-form .cc_email_address {
+		margin: 0 0 20px !important;
+	}
+}
+.news-block .news-box .text-holder a {
+    color: #054977;
+}
+.news-block .news-box ul {
+	list-style: none;
+	margin:0;
+	padding:0;
+}
+.news-block .news-box .tweet-text,
+.news-block .news-box .tweet-details {
+	font-weight: 700;
+}
+.news-block .news-box p {
+	margin-bottom: 15px;
+}
+/* fix form */
+.subscribe-form .form-row {
+	overflow: visible !important;
+}
+.subscribe-form .ctct-form-wrapper label {
+	color: #fff;
+	display: block;
+	text-align: left;
+	margin-bottom: 10px !important;
+}
+.subscribe-form .ctct-form-wrapper p:after {
+	content: "";
+	display: block;
+	width: 100%;
+}
+.subscribe-form .ctct-form-wrapper .ctct-form abbr {
+	text-decoration: none;
+}
+.subscribe-form .ctct-form-wrapper input:not([type="submit"]):not([type="button"]), html body .subscribe-form .ctct-form-wrapper #cc_form_2 input.t {
+	float: none;
+}
+.subscribe-form .ctct-form-wrapper .ctct-form-field-submit {
+	overflow: hidden;
+}
+.subscribe-form .g-recaptcha {
+	margin: 0 0 18px;
+}
+@media (max-width:767px) {
+	.subscribe-form .g-recaptcha {
+		padding-top: 0.5em;
+	}
+}
+@media (max-width:480px) {
+	.section-subscribe {
+		margin-left: -20px;
+		margin-right: -20px;
+	}
+	.subscribe-form {
+		padding-left: 8px !important;
+		padding-right: 8px !important;
+	}
+}
+@media (min-width:768px) {
+	.ctct-form-wrapper {
+		margin-left: -15px;
+		margin-right: -15px;
+	}
+	.ctct-form-field-text {
+		float: left;
+		width: 50%;
+	}
+	.ctct-form-field,
+	.ctct-disclosure  {
+		float: left;
+		width: 33.333%;
+		padding-left: 12px;
+		padding-right: 12px;
+		margin-bottom: 51px !important;
+	}
+	.g-recaptcha {
+		float: left;
+		width: 328px;
+		padding: 0 12px;
+	}
+	.ctct-form-field-submit {
+		float: none;
+		width: auto;
+		overflow: hidden;
+	}
+	.ctct-disclosure {
+		width: 100%;
+	}
+}

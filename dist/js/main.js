@@ -21,6 +21,11 @@ jQuery(function($) {
 	});
 
 //Added by Gabrial for Tribute Address show hide
+if ($("#tributeNotification").is(':checked')) {
+	$("#tributeNotificationAddress").slideDown( "slow" );
+}
+
+//Added by Gabrial for Tribute Address show hide
 $("#tributeNotification").change(function() {
     if(this.checked) {
 		$("#tributeNotificationAddress").slideDown( "slow" );
@@ -184,6 +189,13 @@ $("#billing-country").on("change", function(){
 		onChange: function(currentStepIndex, oldStepIndex) {
 			var $lis = $('.donate-form-nav > li'),
 			$li = $lis.eq(currentStepIndex);
+			console.log("Current step Index"+currentStepIndex);
+			console.log("Next step Index"+oldStepIndex);
+
+			if(currentStepIndex == 0) window.location = '#';
+			if(currentStepIndex == 1) window.location = '#details';
+			if(currentStepIndex == 2) window.location = '#payment';
+
 
 			$li.prevAll().removeClass('step-active').addClass('step-passed');
 			$li.nextAll().removeClass('step-active').removeClass('step-passed');

@@ -11,7 +11,7 @@ include('../../wp-load.php');
 				<div class="row center-xs">
 					<div class="col-xs-10">
 						<ul class="breadcrumbs-nav">
-							<li><a href="home.html">Home</a></li>
+							<li><a href="/">Home</a></li>
 							<li>Donate</li>
 						</ul>
 					</div>
@@ -71,43 +71,43 @@ include('../../wp-load.php');
 							</ul>
 							<div class="donate-sum">
 								<div class="row">
-									<div class="col-xs-12 col-md-4">
+									<div class="col-xs-4">
 										<a href="#" class="donate-sum-box" data-donate-sum="50">
-											<div class="image">
+											<!-- <div class="image">
 												<div class="bg-stretch"
 													style="background: #fff url('images/bg-donate01.jpg') 50% 50% no-repeat; background-size: cover;"></div>
-											</div>
+											</div> 
 											<div class="text">
 												<span class="title">Prevention</span>
 												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
 													sed do.</p>
-											</div> <span class="sum">+ $50</span>
+											</div> --> <span class="sum">+ $50</span>
 										</a>
 									</div>
-									<div class="col-xs-12 col-md-4">
+									<div class="col-xs-4">
 										<a href="#" class="donate-sum-box" data-donate-sum="100">
-											<div class="image">
+											<!-- <div class="image">
 												<div class="bg-stretch"
 													style="background: #fff url('images/bg-donate02.jpg') 50% 50% no-repeat; background-size: cover;"></div>
-											</div>
+											</div> 
 											<div class="text">
 												<span class="title">Ticks</span>
 												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
 													sed do.</p>
-											</div> <span class="sum">+ $100</span>
+											</div> --> <span class="sum">+ $100</span>
 										</a>
 									</div>
-									<div class="col-xs-12 col-md-4">
+									<div class="col-xs-4">
 										<a href="#" class="donate-sum-box" data-donate-sum="250">
-											<div class="image">
+											<!-- <div class="image">
 												<div class="bg-stretch"
 													style="background: #fff url('images/bg-donate03.jpg') 50% 50% no-repeat; background-size: cover;"></div>
 											</div>
 											<div class="text">
 												<span class="title">Investigation</span>
 												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-													sed do.</p>
-											</div> <span class="sum">+ $250</span>
+													sed do.</p> 
+											</div> --> <span class="sum">+ $250</span>
 										</a>
 									</div>
 								</div>
@@ -119,8 +119,8 @@ include('../../wp-load.php');
 									</div>
 								</div>
 							</div>
-							<a href="#"
-								class="btn btn-primary btn-primary-green btn-continue">Donate by
+							<a href="../../wp-content/uploads/2017/06/General-Donation-Form_web.pdf"
+								class="btn btn-primary btn-primary-green btn-continue" target="_blank">Donate by
 								mail</a>
 							<div class="text-note">
 								<p>Global Lyme Alliance is a 501(c)(3) charitable organization.
@@ -172,7 +172,7 @@ include('../../wp-load.php');
 											<div class="checkbox-row">
 												<input type="checkbox" id="check02" name="merchant-defined-field-5" value="YES"
 												<?php if( ( retriveDonorField($transactionStatus,'merchant-defined-field-5') == 'YES' ) ) echo 'checked="checked"';?>>
-												<label for="check02">My company has a <a href="#">matching gift program</a>
+												<label for="check02">My company has a matching gift program
 												</label>
 											</div>
 											
@@ -218,12 +218,12 @@ include('../../wp-load.php');
 									</div>
 								</div>
 							</div>
-							<div class="toggle-content">
+							<div class="toggle-content <?php if(retriveDonorField($transactionStatus,'tributeEnabled') === 'YES') echo 'expanded';?>">
 								<a href="#" id="isATributeID" class="toggle-content-opener">IS THIS DONATION IN
 									tribute OF SOMEONE?<span class="icon icon-plus"></span><span
 									class="icon icon-minus"></span> <span class="answer md-visible">Yes</span>
 								</a>
-								<div class="toggle-content-slide">
+								<div class="toggle-content-slide" style="<?php if(retriveDonorField($transactionStatus,'tributeEnabled') === 'YES') echo 'display:block;';?>">
 									<div class="row">
 										<div class="col-xs-12 col-md-6  col-md-short">
 											<label>Type of Tribute</label>
@@ -249,9 +249,13 @@ include('../../wp-load.php');
 											<div class="checkbox-row">
 												<input type="checkbox" id="tributeNotification" name="tributeNotification" value="YES"
 												<?php if( ( retriveDonorField($transactionStatus,'tributeNotification') == 'YES' ) ) echo 'checked="checked"';?>>
-												<label for="tributeNotification">Do you want a notification sent to the person being honored?</label>
+												<label for="tributeNotification">Do you want a notification sent?</label>
 											</div>
 											<div id="tributeNotificationAddress" style="display:none;">
+												<label for="input0555">Name</label>
+												<input type="text" id="input0555" name="tributeNotifyName"
+												value="<?php if( ( retriveDonorField($transactionStatus,'tributeNotifyName') ) ) echo	retriveDonorField($transactionStatus,'tributeNotifyName');?>">
+											
 												<label for="input055">Address</label>
 												<input type="text" id="input055" name="tributeAddress"
 												value="<?php if( ( retriveDonorField($transactionStatus,'tributeAddress') ) ) echo	retriveDonorField($transactionStatus,'tributeAddress');?>">
@@ -560,7 +564,7 @@ include('../../wp-load.php');
 		</main>
 		</div>
     <script src="js/jquery-1.11.2.min.js"></script>
-    <script src="http://globallyme.staging.wpengine.com/donate/dist/js/main.js"></script>
+    <script src="/donate/dist/js/main.js"></script>
 	<script src="/donate/dist/js/donate.js"></script>
 	<script type="text/javascript">
             var currentActiveStep = 0;
