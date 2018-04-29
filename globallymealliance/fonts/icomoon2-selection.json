@@ -1,0 +1,164 @@
+{
+  "IcoMoonType": "selection",
+  "icons": [
+    {
+      "icon": {
+        "paths": [
+          "M832 96v-96h-192v96h-256v-96h-192v96h-192v928h1024v-928h-192zM704 64h64v128h-64v-128zM256 64h64v128h-64v-128zM960 960h-896v-576h896v576zM64 320v-160h128v96h192v-96h256v96h192v-96h128v160h-896z",
+          "M160 480.768h128v128h-128v-128z",
+          "M448 480.768h128v128h-128v-128z",
+          "M160 736.768h128v128h-128v-128z",
+          "M448 736.768h128v128h-128v-128z",
+          "M704 480.768h128v128h-128v-128z"
+        ],
+        "attrs": [],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "grid": 0,
+        "tags": [
+          "calendar-day"
+        ],
+        "colorPermutations": {}
+      },
+      "attrs": [],
+      "properties": {
+        "order": 172,
+        "id": 3,
+        "name": "calendar-day",
+        "prevSize": 32,
+        "code": 59648
+      },
+      "setIdx": 0,
+      "setId": 2,
+      "iconIdx": 0
+    },
+    {
+      "icon": {
+        "paths": [
+          "M0 292.545h329.155v-292.545h-329.155v292.545zM73.145 73.145h182.864v146.254h-182.864v-146.254z",
+          "M407.347-0v292.545h1061.048v-292.545h-1061.048zM1395.25 219.4h-914.757v-146.254h914.757v146.254z",
+          "M0 658.273h329.155v-292.545h-329.155v292.545zM73.145 438.873h182.864v146.254h-182.864v-146.254z",
+          "M407.347 658.273h1061.048v-292.545h-1061.048v292.545zM480.493 438.873h914.757v146.254h-914.757v-146.254z",
+          "M0 1024h329.155v-292.545h-329.155v292.545zM73.145 804.6h182.864v146.254h-182.864v-146.254z",
+          "M407.347 1024h1061.048v-292.545h-1061.048v292.545zM480.493 804.6h914.757v146.254h-914.757v-146.254z"
+        ],
+        "attrs": [],
+        "width": 1468,
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "grid": 0,
+        "tags": [
+          "calendar-list"
+        ],
+        "colorPermutations": {}
+      },
+      "attrs": [],
+      "properties": {
+        "order": 173,
+        "id": 2,
+        "name": "calendar-list",
+        "prevSize": 32,
+        "code": 59649
+      },
+      "setIdx": 0,
+      "setId": 2,
+      "iconIdx": 1
+    },
+    {
+      "icon": {
+        "paths": [
+          "M832 96v-96h-192v96h-256v-96h-192v96h-192v928h1024v-928h-192zM704 64h64v128h-64v-128zM256 64h64v128h-64v-128zM960 960h-896v-576h896v576zM64 320v-160h128v96h192v-96h256v96h192v-96h128v160h-896z"
+        ],
+        "attrs": [],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "grid": 0,
+        "tags": [
+          "calendar-month"
+        ],
+        "colorPermutations": {}
+      },
+      "attrs": [],
+      "properties": {
+        "order": 174,
+        "id": 1,
+        "name": "calendar-month",
+        "prevSize": 32,
+        "code": 59650
+      },
+      "setIdx": 0,
+      "setId": 2,
+      "iconIdx": 2
+    },
+    {
+      "icon": {
+        "paths": [
+          "M853.333 85.333v-85.333h-170.667v85.333h-341.333v-85.333h-170.667v85.333h-170.667v938.667h1024v-938.667h-170.667zM938.667 938.667h-853.333v-512h853.333v512zM85.333 341.333v-170.667h85.333v85.333h170.667v-85.333h341.333v85.333h170.667v-85.333h85.333v170.667h-853.333z"
+        ],
+        "attrs": [],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "grid": 0,
+        "tags": [
+          "calendar"
+        ],
+        "colorPermutations": {}
+      },
+      "attrs": [],
+      "properties": {
+        "order": 175,
+        "id": 0,
+        "name": "calendar",
+        "prevSize": 32,
+        "code": 59651
+      },
+      "setIdx": 0,
+      "setId": 2,
+      "iconIdx": 3
+    }
+  ],
+  "height": 1024,
+  "metadata": {
+    "name": "icomoon"
+  },
+  "preferences": {
+    "showGlyphs": true,
+    "showQuickUse": true,
+    "showQuickUse2": true,
+    "showSVGs": true,
+    "fontPref": {
+      "prefix": "icon-",
+      "metadata": {
+        "fontFamily": "icomoon",
+        "majorVersion": 1,
+        "minorVersion": 0
+      },
+      "metrics": {
+        "emSize": 1024,
+        "baseline": 6.25,
+        "whitespace": 50
+      },
+      "embed": false,
+      "cssVars": true,
+      "cssVarsFormat": "scss",
+      "noie8": true,
+      "ie7": false,
+      "showSelector": false,
+      "showMetrics": false,
+      "showMetadata": false,
+      "showVersion": false
+    },
+    "imagePref": {
+      "prefix": "icon-",
+      "png": true,
+      "useClassSelector": true,
+      "color": 0,
+      "bgColor": 16777215,
+      "classSelector": ".icon"
+    },
+    "historySize": 100,
+    "showCodes": true,
+    "gridSize": 16,
+    "showGrid": false
+  }
+}

@@ -1,0 +1,140 @@
+@import url("//hello.myfonts.net/count/2fd762");
+@font-face {
+	font-family: 'HelveticaNeueLT-BlackCond';
+	src: url('../fonts/2FD762_0_0.eot');
+	src: url('../fonts/2FD762_0_0.eot?#iefix') format('embedded-opentype'), 
+	 	url('../fonts/2FD762_0_0.woff2') format('woff2'), 
+	 	url('../fonts/2FD762_0_0.woff') format('woff'),  
+	 	url('../fonts/2FD762_0_0.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'UniversLT-Condensed';
+	src: url('../fonts/2FD762_1_0.eot');
+	src: url('../fonts/2FD762_1_0.eot?#iefix') format('embedded-opentype'), 
+	 	url('../fonts/2FD762_1_0.woff2') format('woff2'),  
+	 	url('../fonts/2FD762_1_0.woff') format('woff'),  
+	 	url('../fonts/2FD762_1_0.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'UniversLT-CondensedBold';
+	src: url('../fonts/2FD762_2_0.eot');
+	src: url('../fonts/2FD762_2_0.eot?#iefix') format('embedded-opentype'),
+	 	url('../fonts/2FD762_2_0.woff2') format('woff2'), 
+	 	url('../fonts/2FD762_2_0.woff') format('woff'), 
+	 	url('../fonts/2FD762_2_0.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'HelveticaNeueLT-BoldCond';
+	src: url('../fonts/2FD762_3_0.eot');
+	src: url('../fonts/2FD762_3_0.eot?#iefix') format('embedded-opentype'),
+	 	url('../fonts/2FD762_3_0.woff2') format('woff2'), 
+	 	url('../fonts/2FD762_3_0.woff') format('woff'), 
+	 	url('../fonts/2FD762_3_0.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'UniversLT-CondensedLight';
+	src: url('../fonts/2FD762_4_0.eot');
+	src: url('../fonts/2FD762_4_0.eot?#iefix') format('embedded-opentype'),
+	 	url('../fonts/2FD762_4_0.woff2') format('woff2'), 
+	 	url('../fonts/2FD762_4_0.woff') format('woff'), 
+	 	url('../fonts/2FD762_4_0.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Univers';
+    src: url('../fonts/Univers.eot');
+    src: url('../fonts/Univers.eot') format('embedded-opentype'),
+         url('../fonts/Univers.woff2') format('woff2'),
+         url('../fonts/Univers.woff') format('woff'),
+         url('../fonts/Univers.ttf') format('truetype'),
+         url('../fonts/Univers.svg#Univers') format('svg');
+	font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'univers_57_condensedregular';
+    src: url('../fonts/univers-condensed-webfont.eot');
+    src: url('../fonts/univers-condensed-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/univers-condensed-webfont.woff2') format('woff2'),
+         url('../fonts/univers-condensed-webfont.woff') format('woff'),
+         url('../fonts/univers-condensed-webfont.ttf') format('truetype'),
+         url('../fonts/univers-condensed-webfont.svg#univers_57_condensedregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'univers_condensedlight';
+    src: url('../fonts/UniversLTStdLightCn.eot');
+    src: url('../fonts/UniversLTStdLightCn.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/UniversLTStdLightCn.woff2') format('woff2'),
+         url('../fonts/UniversLTStdLightCn.woff') format('woff'),
+         url('../fonts/UniversLTStdLightCn.ttf') format('truetype'),
+         url('../fonts/UniversLTStdLightCn.svg#univers_condensedlight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'univers_57_condensedbold';
+    src: url('../fonts/univers_57_condensed_bold-webfont.eot');
+    src: url('../fonts/univers_57_condensed_bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/univers_57_condensed_bold-webfont.woff2') format('woff2'),
+         url('../fonts/univers_57_condensed_bold-webfont.woff') format('woff'),
+         url('../fonts/univers_57_condensed_bold-webfont.ttf') format('truetype'),
+         url('../fonts/univers_57_condensed_bold-webfont.svg#univers_57_condensedbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'source_sans_prolight';
+    src: url('../fonts/sourcesanspro-light-webfont.eot');
+    src: url('../fonts/sourcesanspro-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/sourcesanspro-light-webfont.woff2') format('woff2'),
+         url('../fonts/sourcesanspro-light-webfont.woff') format('woff'),
+         url('../fonts/sourcesanspro-light-webfont.ttf') format('truetype'),
+         url('../fonts/sourcesanspro-light-webfont.svg#source_sans_prolight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'source_sans_prosemibold';
+    src: url('../fonts/sourcesanspro-semibold-webfont.eot');
+    src: url('../fonts/sourcesanspro-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/sourcesanspro-semibold-webfont.woff2') format('woff2'),
+         url('../fonts/sourcesanspro-semibold-webfont.woff') format('woff'),
+         url('../fonts/sourcesanspro-semibold-webfont.ttf') format('truetype'),
+         url('../fonts/sourcesanspro-semibold-webfont.svg#source_sans_prosemibold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'source_sans_proSBdIt';
+    src: url('../fonts/sourcesanspro-semiboldit-webfont.eot');
+    src: url('../fonts/sourcesanspro-semiboldit-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/sourcesanspro-semiboldit-webfont.woff2') format('woff2'),
+         url('../fonts/sourcesanspro-semiboldit-webfont.woff') format('woff'),
+         url('../fonts/sourcesanspro-semiboldit-webfont.ttf') format('truetype'),
+         url('../fonts/sourcesanspro-semiboldit-webfont.svg#source_sans_proSBdIt') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'source_sans_probold';
+    src: url('../fonts/sourcesanspro-bold-webfont.eot');
+    src: url('../fonts/sourcesanspro-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/sourcesanspro-bold-webfont.woff2') format('woff2'),
+         url('../fonts/sourcesanspro-bold-webfont.woff') format('woff'),
+         url('../fonts/sourcesanspro-bold-webfont.ttf') format('truetype'),
+         url('../fonts/sourcesanspro-bold-webfont.svg#source_sans_probold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/icomoon.eot?celorh');
+  src:  url('../fonts/icomoon.eot?celorh#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?celorh') format('truetype'),
+    url('../fonts/icomoon.woff?celorh') format('woff'),
+    url('../fonts/icomoon.svg?celorh#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}

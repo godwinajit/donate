@@ -1,0 +1,602 @@
+@media only screen and (min-width:768px) {
+.left-comment-form .comment-login-head, .mobile-post-title-date, .mobile-show, .search-form-mob, .inner-pages-icon-slider, .event-right.mobile-event-right { display: none }
+.container-section #loginform .login-submit { position: absolute; right: 0; bottom: 0 }
+.container-section .comment-section input[type="submit"] { background-position: 112px 14px; background-size: 11px auto; font-size: 23px; height: 44px; padding: 0; width: 142px; }
+#loginform { position: relative }
+#loginform .login-password input { padding-right: 150px }
+}
+
+@media only screen and (max-width:1440px) {
+.owl-ico-slider.owl-carousel { position: static }
+.owl-ico-slider.owl-carousel .owl-controls .owl-nav .owl-prev { left: 30px; }
+.owl-ico-slider.owl-carousel .owl-controls .owl-nav .owl-next { right: 30px; }
+.aside-right { width: 27%; }
+.blog-pages .content-left, .the-research .content-left, .common-content-page .content-left { width: 70%; }
+}
+
+@media only screen and (max-width:1280px) {
+.owl-ico-slider.owl-carousel .owl-controls .owl-nav .owl-prev { left: 15px; }
+.owl-ico-slider.owl-carousel .owl-controls .owl-nav .owl-next { right: 15px; }
+.icon-slider .main { padding: 0 30px }
+.icon-slider-title { font-size: 28px; }
+.aside-right { padding-left: 20px; }
+.get-involved-img { margin-right: 10px; width: 70px; }
+.get-invol-txt { font-size: 18px; margin-bottom: 16px; padding-right: 15px; }
+}
+
+@media only screen and (max-width:1220px) {
+.main1196 { padding-left: 15px; padding-right: 15px }
+.aside-get-involved { padding-left: 0; }
+.common-aside-block { margin-left: 0; }
+.aside-widget-text { margin-left: 0; }
+.disease-box .lyme-disease { background-position: center 17px; background-size: 56px auto; height: 162px; width: 162px; }
+.l { font-size: 23px; padding: 87px 0 0; }
+.text-l { font-size: 16px; }
+.breast-cancer { background-position: center 23px; background-size: 48px 40px; height: 133px; margin: 19px 0 0 15px; width: 133px; }
+.b { font-size: 19px; padding: 74px 0 0; }
+.text-b { font-size: 15px; }
+.colon-disease { background-position: center 16px; background-size: 37px 31px; height: 111px; margin: 28px 0 0 15px; width: 111px; }
+.c { font-size: 16px; padding: 61px 0 0; }
+.text-c { font-size: 13px; }
+.hiv-disease { background-position: center 9px; background-size: 28px 24px; height: 81px; margin: 44px 0 0 15px; width: 81px; }
+.hiv { font-size: 14px; padding: 46px 0 0; }
+.text-hiv { font-size: 11px; }
+.disease-box p { line-height: 0.8; }
+.hipatities-disease { background-position: center 12px; background-size: 18px 15px; height:76px; margin: 53px 0 0 15px; width: 76px; }
+.hip { font-size: 12px; padding: 40px 0 0; }
+.text-hip { font-size: 9px; }
+.progress-bar-cont { width: 100%; }
+.committee-members-name, .three-block-bottom .committee-members-data .committee-members-name { font-size: 17px; }
+.committee-members-data .hidden-description-inner p, h5 { font-size: 16px; }
+.blog-list-left img { width: 100%; }
+.blog-list-left { padding-right: 20px; width: 40%; }
+.blog-list-right { width: auto; }
+.other-way-give { padding: 20px 0; }
+.other-way-give h1 { font-size: 37px; padding-right: 40px; }
+.content-form ul li:nth-child(6) { margin: 0; width: 100% }
+.content-form ul li:nth-child(7), .content-form ul li:nth-child(8) { width: 49% }
+.find-pro-form ul li:nth-child(5) { margin: 0; width: 100% }
+.find-pro-form ul li:nth-child(6), .find-pro-form ul li:nth-child(7) { width: 49% }
+.contact-form ul li:nth-child(7) { width: 100%; }
+.contact-form ul li:nth-child(8) { width: 100%; }
+.contact-form ul li:nth-child(9), .contact-form ul li:nth-child(10) { width: 49% }
+.get-involved-form ul li:nth-child(7) { width: 100%; }
+.get-involved-form ul li:nth-child(8) { width: 100%; }
+.get-involved-form ul li:nth-child(9), .get-involved-form ul li:nth-child(10) { width: 49% }
+}
+
+@media only screen and (max-width:1150px) {
+.owl-topbanner .banner-text { padding-left: 51px; max-width: 861px; }
+.icon-slider .main { padding: 0 70px; }
+.icon-slider-title { font-size: 20px; }
+.icon-slider-title span { width: 9px; }
+.icon-slider-title i { background-position: right 6px; }
+.owl-ico-slider .owl-item img { height: 92px; }
+.icon-slider-title { margin-top: 65px; }
+.grantees-right { width: 73%; }
+}
+
+@media only screen and (max-width:1110px) {
+.main { padding-left: 15px; padding-right: 15px }
+.recent-event-fund .main { padding-left: 20px; padding-right: 0 }
+.event-blog-left { width: 58%; }
+.video-facebook-right { width: 32.78% }
+.link-facebook img { width: 100% }
+.event-blog-img { float: left; width: 55.9%; }
+.event-blog-right-cont { width: 41%; }
+.sign-uplabel { font-size: 24px; }
+.img-overlap { width: 46.4%; }
+.overlap-content { width: 60.05% }
+.overlap-content { padding: 45px 0 49px 120px; }
+.events-blog-video h3 { font-size: 29px; }
+h1.page-title, .container-section h2, .pmargin-big p span { font-size: 29px; padding: 0 0 6px; }
+.single-post .container-section h2 { font-size: 20px; }
+.inner-banner { height: 400px; }
+.f-icon-person-ico { font-size: 115px; }
+.container-section { padding: 33px 0; }
+.aside-right { padding-top: 31px; }
+.get-invol-txt { max-width: 116px; }
+.aside-right { width: 30%; }
+.blog-pages .content-left, .the-research .content-left, .common-content-page .content-left { width: 68%; }
+.get-involved-img { margin-right: 10px; width: 63px; }
+.blog-list-left { padding-top: 2px; }
+.blog-list-right { padding-top: 0; vertical-align: top; }
+.other-way-give h1 { font-size: 27px; padding-right: 30px; }
+.single-thumbnail { margin: 3px 20px 20px 0; max-width: 43%; }
+}
+
+@media only screen and (max-width:1023px) {
+/* Menu Stars */
+.header-bottom { height: 49px; }
+body.slidemenuLeft .enumenu_ul { left: -373px; }
+body.slidemenuLeft.menu-open .enumenu_ul { left: 0; }
+body.menuOverlap .enumenu_ul { background: #f1f1f2; display: block; height: calc(100% - 163px); top: 163px; max-height: 100%; width: 100%; overflow: auto; padding: 14px 30px 8px 34px; position: fixed; transition: left 0.3s linear 0s; -o-transition: left 0.3s linear 0s; -webkit-transition: left 0.3s linear 0s; -moz-transition: left 0.3s linear 0s; max-width: 373px; }
+.menu-block { height: auto; }
+.menu-icon { display: block }
+.menu-icon:before { border: 1px solid #ffffff; border-radius: 50%; color: #ffffff; font-family: 'Univers'; font-size: 21px; content: "x"; line-height: 20px; position: absolute; opacity: 0; left: 14px; top: -1px; text-align: center; height: 23px; width: 23px; transition: opacity 0.3s linear 0s; -o-transition: opacity 0.3s linear 0s; -webkit-transition: opacity 0.3s linear 0s; -moz-transition: opacity 0.3s linear 0s; }
+.menu-icon.active span { opacity: 0; }
+.menu-icon.active:before { opacity: 1 }
+.enumenu_ul li { display: block; float: none; margin: 0; padding: 0; position: relative; }
+.enumenu_ul > li { padding-bottom: 20px; }
+.enumenu_ul > li > ul > li.secondLevel { padding-top: 20px; }
+.enumenu_ul > li:first-child { display: none; }
+.enumenu_ul > li a { color: #4b8ad0; display: table; }
+.enumenu_ul > li > a { font-size: 17px; padding: 0; font-family: 'UniversLT-CondensedBold'; font-weight: normal }
+.enumenu_ul { width: 100%; }
+.enumenu_ul a { letter-spacing: 0.04em; }
+.enumenu_ul > li ul a { color: #000; display: table; font-size: 15px; margin-bottom: 0; padding: 0; white-space: normal; }
+.enumenu_ul > li > ul > li.secondLevel > a { color: #4b8ad0; font-family: 'UniversLT-CondensedBold'; font-weight: normal; font-size: 17px; margin-bottom: 0; }
+.enumenu_ul > li > ul > li { padding-left: 12px; }
+.enumenu_ul > li > ul > li.secondLevel li { padding-left: 12px; }
+.enumenu_ul .sb-menu { display: block !important }
+.enumenu_ul .arrow { display: none }
+.enumenu_ul .arrow.up { background-image: url(images/minus.png) }
+.enumenu_ul a:hover { color: #589e2d !important }
+/* Menu Ends */
+.logo { float: left; width: 361px; margin: 23px 0 0 2px; }
+.owl-topbanner .banner-text { max-width: 558px; padding-top: 84px }
+.owl-topbanner .owl-item .item h1 { margin: 0; }
+a.gen-btn.btnlikebanner { margin-top: 36px; }
+.owl-topbanner .owl-item .item h1 span { display: inline }
+.owl-topbanner .owl-item .item .main::before { background-position: 50% 50%; }
+.owl-topbanner .owl-item .item h1 span span { font-size: 42px; letter-spacing: 0.02em; font-family: 'UniversLT-CondensedBold'; }
+.owl-ico-slider.owl-carousel .owl-controls .owl-nav .owl-prev, .owl-ico-slider.owl-carousel .owl-controls .owl-nav .owl-next { height: 23px; margin-top: -11px; top: 50%; width: 14px; }
+.owl-topbanner .owl-item { height: 544px; }
+h1 { font-size: 42px; }
+.owl-topbanner .owl-item .item h1 span { font-size: 39px; }
+.owl-topbanner .owl-item .item p { font-size: 18px; }
+.events-blog-video h3 { font-size: 22px; }
+.events-blog-video h4 { font-size: 13px; }
+.event-blog-right-cont p { font-size: 12px; }
+.sign-uplabel, #success_message { font-size: 18px; padding: 14px 24px 0 0; }
+.sign-up-news-t ul li { margin-right: 14px; }
+.sign-up-news-t .sform_footer { margin-left: 6px; }
+.recent-event-fund { padding: 44px 0 0; }
+.imgoverlap-content { padding-bottom: 37px; }
+.imgoverlap-title { font-size: 25px; }
+.text-title-link { font-size: 16px; }
+.overlap-content { padding: 45px 0 49px 80px; }
+.icon-slider .main { padding: 0 46px; position: relative; }
+.icon-slider .owl-carousel { position: static }
+.owl-ico-slider.owl-carousel .owl-controls .owl-nav .owl-prev { left: 20px; }
+.owl-ico-slider.owl-carousel .owl-controls .owl-nav .owl-next { right: 20px; }
+.owl-ico-slider .owl-item img { height: 92px; }
+.icon-slider-title { margin-top: 38px; }
+.img-ico { margin-right: 9px; }
+.site-footer { background-position: -152px 52px; padding: 25px 0 90px; }
+.site-footer p { font-size: 9px; letter-spacing: 0.02em; line-height: 12px; margin: 0 0 0 auto; max-width: 539px; }
+.footer-menu { padding: 0 0 31px; }
+.footer-menu li { font-size: 17px; margin-right: 38px; }
+.events-blog-video { padding: 28px 0 23px; }
+.sign-up-news-t input:not([type="submit"]) { font-size: 16px; height: 52px; letter-spacing: 0.06em; padding: 0 10px; width: 126px; }
+.disease-box .lyme-disease { background-position: center center; background-size: 80px auto; height: 142px; width: 142px; }
+.text-l, .disease-count, .text-b, .text-c, .text-hiv, .text-hip { color: #2172b4; }
+.l { padding: 149px 0 0; }
+.lyme-disease .text-l, .lyme-disease .disease-count { color: #6ea643 }
+.breast-cancer { background-position: center center; background-size: 68px 60px; height: 113px; margin: 29px 0 0 10px; width: 113px; }
+.b { padding: 120px 0 0 }
+.colon-disease { background-position: center center; background-size: 52px 46px; height: 91px; margin: 51px 0 0 10px; width: 91px; }
+.c { padding: 98px 0 0; }
+.hiv-disease { background-position: center center; background-size: 50% 50%; height: 61px; margin: 81px 0 0 10px; width: 61px; }
+.hiv { padding: 68px 0 0; }
+.hipatities-disease { background-position: center center; background-size: 50% auto; height: 41px; margin: 101px 0 0 5px; width: 41px; }
+.hip { padding: 48px 0 0; }
+.hip, .hiv, .c, .b, .l { font-size: 15px; line-height: 1 }
+.text-hip, .text-hiv, .text-c, .text-b, .text-l { font-size: 11px; font-weight: 400; }
+.disease-box { padding-bottom: 83px; }
+.container-section .diagnosis-dilemma h4.blue-title { font-size: 23px; }
+.disease-lable { width: 130px; }
+.disease-rate { width: calc(100% - 140px) !important; }
+.committee-members-data { width: 30.3%; margin-right: 2.26%; }
+.committee-members-cont .committee-members-data:nth-child(4n+4), .committee-members-data:nth-child(4n+4), .committee-members-data { margin-right: 2.26%; }
+.committee-members-cont .committee-members-data:nth-child(4n+1), .committee-members-data:nth-child(4n+1) { clear: none }
+.committee-members-data:nth-child(3n+3) { margin-right: 0 }
+.committee-members-data:nth-child(3n+1) { clear: left }
+.committee-members-data { margin-bottom: 20px; }
+.lyme-disease-progress .rprogress-text { margin-left: 2px; }
+.three-block-bottom .committee-members-data:nth-child(3n+3), .three-block-bottom .committee-members-data { float: none; margin-right: 0; width: 100%; }
+.three-block-bottom a.committee-members-name-img { display: table; height: 100%; width: 100%; }
+.three-block-bottom .committee-members-name-img img { display: table-cell; height: 100%; width: 100%; }
+.three-block-bottom .dis-table { background: #3386c5; border: 1px solid #3386c5; display: table-cell; height: 100%; padding: 0 10px; text-align: center; vertical-align: middle; width: 63%; transition: background 0.3s linear 0s, color 0.3s linear 0s; -o-transition: background 0.3s linear 0s, color 0.3s linear 0s; -webkit-transition: background 0.3s linear 0s, color 0.3s linear 0s; -moz-transition: background 0.3s linear 0s, color 0.3s linear 0s; }
+.three-block-bottom .committee-members-data .committee-members-name { background: none; font-size: 19px; display: inline; padding: 0; width: 100%; min-height: inherit !important }
+.three-block-bottom .committee-members-data .committee-members-name-inner { display: inline; position: static; top: auto; -webkit-transform: none; transform: none; }
+.three-block-bottom .committee-members-name:before, .three-block-bottom .committee-members-name:after { display: none }
+.three-block-bottom .committee-members-data a:hover .committee-members-name { background: none; }
+.three-block-bottom .committee-members-data a:hover .dis-table { background: #fff; }
+.three-block-bottom .committee-members-data .hidden-description-inner { padding: 11px 27px 15px; }
+.blog-list-container h3 { padding-bottom: 15px; }
+.blog-pages .entry-meta { padding-bottom: 12px; }
+.blog-list-container .entry-content a { margin-top: 15px; }
+.blog-list-container article { padding: 18px 20px 20px 0 }
+.grantees-list { padding: 16px 0; }
+.grantees-right { width: 72%; }
+.other-way-give h1 { display: block; padding: 0 0 16px; text-align: center; }
+.pullout-text .col-right ul li { float: none; width: 100%; }
+.pullout-text .col-right h3 { text-align: left }
+figure.event-left { display: block; padding-right: 0; width: 100%; text-align: center; }
+figure.event-left img { width: auto; }
+.desk-event-right.event-right { padding-top: 24px; }
+.event-right { display: block; width: 100%; }
+.recent-event-img-title { padding: 10px 0; display: block; }
+.content-form ul li.custom-textarea .ginput_container { width: 58%; }
+.bottom-event-address-clone { float: none; width: 100%; }
+.content-form .gform_footer input[type="submit"] { display: block; float: none; margin: 15px auto 0; }
+.inline-blue-box { width: 98%; }
+}
+
+@media only screen and (min-width:768px) and (max-width:1023px) {
+.video-popup a { height: 48px; margin: -24px 0 0 -24px; width: 48px; }
+.video-popup a:before, .video-popup a:after { background-size: 9px auto }
+.link-facebook a .fa-facebook { font-size: 12px; height: 19px; line-height: 20px; width: 19px; }
+.events-blog-video h4 { margin-top: -3px; }
+.upcoming-event-title { font-size: 21px; }
+.container-section h3, .upcoming-events .bucket-widget-text-title { font-size: 18px; }
+}
+
+@media only screen and (max-width:767px) {
+/* header css */
+.site { padding-top: 179px; } /* FC Original 197 */
+.header-top { height: 148px; }
+.logo { float: none; margin: 9px auto 19px; max-width: 401px; padding: 0 20px; width: 100%; }
+.top-social { padding-right: 0; padding-top: 7px; }
+.owl-topbanner .owl-item { height: 330px; }
+.pull-right { clear: both; float: none; }
+.social-donate { border-bottom: 0 none; padding-bottom: 0; padding-left: 20px }
+.site-header .header-top .search-form { display: none }
+.donate-now { background: url("images/donate-now-mob-bg.png") repeat-x left center; padding-top: 5px; font-size: 16px; height: 35px; width: calc(100% - 212px); }
+.donate-now a { background: url("images/donate-now-mob-bg-arrow.png") no-repeat left center; height: 35px; margin: -5px 0 0 -19px; line-height: 35px; }
+.top-social li a { height: 27px; width: 27px; line-height: 27px }
+.top-social li a.fa-pinterest { font-size: 30px; }
+.header-top .main { padding-left: 0; padding-right: 0 }
+.site-header .search-field { background-image: url(images/search-icon-wh.png); background-size: 18px auto; background-position: right center; color: #fff; height: 49px; font-size: 15px }
+ .site-header .search-field::-webkit-input-placeholder {
+ color: #fff;
+}
+ .site-header .search-field:-moz-placeholder {
+ color: #fff;
+}
+ .site-header .search-field::-moz-placeholder {
+ color: #fff;
+}
+ .site-header .search-field:-ms-input-placeholder {
+ color: #fff;
+}
+.site-header .search-form { float: right; max-width: 340px; width: calc(100% - 90px); }
+.owl-topbanner .owl-item .item h1 span span, h1 { font-size: 32px; }
+.owl-topbanner .owl-item .item h1 span { font-size: 30px; }
+.owl-topbanner .owl-item .item h1 { margin: 0 0 10px; }
+.owl-topbanner .owl-item .item p { letter-spacing: 0.04em; }
+.owl-topbanner .banner-text { padding-top: 65px; }
+.owl-theme .owl-dots { bottom: 20px; }
+/* Menu Stars */
+body.menuOverlap .enumenu_ul { height: calc(100% - 197px); top: 197px; }
+/* Menu Ends */
+.owl-topbanner .banner-text { padding-left: 7px; padding-right: 7px; text-align: center; margin: 0 auto }
+.icon-slider { padding: 13px 0; }
+.icon-slider .main { padding: 0 36px; }
+.img-ico { margin: 0 auto; }
+.owl-ico-slider.owl-carousel .owl-item { text-align: center }
+.icon-slider-title { display: block; font-size: 14px; margin: 6px auto 0; letter-spacing: 0; text-align: center; padding: 0; max-width: none;}
+.icon-slider-title i { background-size: 6px auto; background-position: right center; }
+.owl-ico-slider .owl-item img { height: 80px; }
+.overlap-content { padding: 45px 0 25px 80px; }
+.event-blog-left { float: none; width: 100%; }
+.event-blog-img { float: none; width: 100%; }
+.events-blog-video h3 { font-size: 33px; }
+.events-blog-video { padding: 9px 0 23px; text-align: center; }
+.event-blog-right-cont { width: 100%; float: none; }
+.events-blog-video h4 { font-size: 20px; margin-bottom: 7px; margin-top: 8px; }
+.event-blog-right-cont p { font-size: 18px; }
+.video-facebook-right { float: none; width: 100%; text-align: center; }
+.video-popup img { max-height: inherit; }
+.watch-video, .event-blog-cont { padding-bottom: 36px; }
+.event-blog-img img, .link-facebook img { width: 100%; }
+.sign-uplabel, #success_message { float: none; font-size: 29px; padding: 0 0 17px; }
+.follow-us-twitter .fa-twitter { font-size: 36px; }
+.twitter-title { font-size: 20px; padding-bottom: 27px; }
+.sign-up-news-t ul li { margin-right: 0; }
+.sign-up-news-t ul li.first-name-input { margin-right: 4% }
+.sign-up-news-container { display: block; margin: 0 auto; text-align: center }
+.sign-up-news-t ul li.first-name-input, .sign-up-news-t ul li.last-name-input { margin-bottom: 16px; width: 48%; }
+.sign-up-news-t .gf_browser_gecko.gform_wrapper, .sign-up-news-t .sform_body { float: left; width: 100%; }
+.sign-up-news-t ul li.first-name-input input, .sign-up-news-t ul li.last-name-input input { width: 100%; }
+.sign-up-news-t ul li.email-name-input { clear: both; float: left; width: 100% }
+.sign-up-news-t ul li.email-name-input input { width: 100% }
+.sign-up-news-t .sform_footer { clear: both; display: block; float: none; margin-left: 0; padding-top: 14px; }
+.sign-up-news-t input[type="submit"] { background-color: #7ba8de; background-position: 16px center; border: 0 none; border-radius: 50%; height: 42px; padding: 0; width: 42px; }
+.sign-up-news-t { padding: 30px 0 14px; }
+.img-overlap { float: none; margin-right: 0; padding: 0 20px; width: 100%; }
+.img-overlap img { width: 100% }
+.recent-event-fund .main { padding-left: 0; padding-right: 0; }
+.imgoverlap-title { font-size: 31px; padding-bottom: 6px; padding-right: 0; text-align: center; }
+.overlap-content { float: none; margin-top: -105px; padding: 125px 20px 27px; text-align: center; width: 100%; }
+.text-title-link { font-size: 20px; }
+.date-n-share { display: table; margin: 0 auto; }
+.blog-pages .masonary .date-n-share, .upcoming-events .date-n-share { margin: 0; display: block }
+.event-description a { display: inline; }
+.imgoverlap-content { padding-bottom: 30px; }
+.event-description, .event-description p { padding: 0; }
+.event-description { padding: 0 10px }
+.footer-menu { text-align: center; }
+.footer-menu li { display: inline-block; float: none; font-size: 13px; margin: 0 13px 5px; }
+.site-footer p { font-size: 11px; line-height: 14px; margin: 0 auto; max-width: 100%; text-align: center; }
+.site-footer { background-position: -72px 272px; background-size: 190px auto; padding: 25px 0 110px; }
+.recent-event-fund { padding: 44px 0 13px; }
+.recent-event-fund { padding: 22px 0 13px; }
+.follow-us-twitter p, .breadcrumb { display: none; }
+.aside-right { border-left: 0 none; padding-top: 20px; float: none; width: 100%; padding-left: 0; min-height: inherit !important }
+.container-section { padding: 28px 0; }
+.blog-pages h1.page-title { padding-bottom: 18px }
+.blog-pages .content-left, .content-left, .the-research .content-left, .common-content-page .content-left { float: none; width: 100%; min-height: inherit !important }
+.about-lyme .content-left { text-align: center }
+.diagnosis-dilemma { padding-bottom: 0; }
+.inner-banner { height: 210px; }
+.disease-box { display: table; margin: 0 auto; padding-bottom: 70px; }
+.onlyone-tencase { padding-top: 20px; }
+.col-md-3 { width: 100%; padding: 0 }
+.container-section .diagnosis-dilemma h4.blue-title { float: left; font-size: 21px; margin: 1px 0 0; text-align: right; width: 90px; }
+.dilema-box { float: right; width: calc(100% - 100px); }
+.row { margin: 0 }
+.container-section p { padding: 0 0 22px; }
+.container-section .dilema-box p { padding-bottom: 15px; padding-top: 4px; text-align: left; }
+.cont-people-diagnosed h2 span, h1.page-title span { display: block }
+.donate-content-pages h1.page-title span { display: inline }
+.donate-content-pages h1.page-title { padding: 0 0 12px; }
+.disease-box .lyme-disease { background-size: 50px 42px; height: 98px; width: 98px; }
+.l { padding: 102px 0 0; }
+.breast-cancer { background-size: 54px 46px; height: 78px; margin: 20px 0 0 5px; width: 78px; }
+.b { padding: 82px 0 0; }
+.colon-disease { background-size: 42px 38px; height: 61px; margin: 37px 0 0 5px; width: 61px; }
+.c { padding: 65px 0 0; }
+.hiv-disease { background-size: 33px 29px; height: 51px; margin: 47px 0 0 5px; width: 51px; }
+.hiv { padding: 55px 0 0; }
+.hipatities-disease { background-size: 25px 21px; height: 35px; margin: 63px 0 0 5px; width: 35px; }
+.hip { padding: 39px 0 0; }
+.disease-box p { line-height: 0.5; }
+.f-icon-person-ico { font-size: 86px; }
+.research-funding { padding-bottom: 13px; padding-top: 24px; }
+.rprogress { font-size: 15px; height: 23px !important; }
+.lyme-disease-progress .disease-lable, .disease-lable { font-size: 15px; height: 23px; margin: 0 0 6px; padding: 1px 0 0; width: 89px; }
+.rprogress-text { font-size: 15px; margin: 2px 5px 0 6px; }
+.lyme-disease-progress .rprogress-text { font-size: 14px; margin-left: 6px; }
+.disease-rate { margin: 0 0 6px; width: calc(100% - 100px) !important; }
+div.wppb-progress { height: 24px; }
+.committee-members-name-img img { width: 100% }
+.three-block-bottom .committee-members-data .committee-members-name, .committee-members-name { font-size: 17px; }
+.committee-members-data:nth-child(3n+1) { clear: none }
+.committee-members-data .hidden-description-inner p, h5 { font-size: 18px; }
+.committee-members-data:nth-child(3n+3), .committee-members-data { margin-right: 4%; width: 48%; }
+.committee-members-data:nth-child(2n+2), .committee-members-cont .committee-members-data:nth-child(4n+4), .committee-members-data:nth-child(4n+4) { margin-right: 0 }
+.committee-members-data:nth-child(2n+1), .committee-members-data:nth-child(4n+1) { clear: left }
+/* blog */
+.recent-events .container-section, .container-section.blog-pages, .upcoming-events .container-section { overflow: hidden }
+.blog-pages .main1196 { padding: 0 20px }
+.blog-list-container article:before, .grantees-list:before { left: -23px; width: 120%; z-index: -1; }
+.blog-list-container article { padding: 20px 0 15px 0; }
+.blog-list-left { width: 34.5% }
+.common-aside-block { display: table; margin-left: auto; margin-right: auto; margin-bottom: 0; padding-top: 31px; max-width: 232px; text-align: center; width: 100%; }
+.recent-events .common-aside-block { margin-left: auto }
+.grantees-right { float: right; width: 74%; }
+.grantees-list figure.grantees-left { padding-right: 20px; width: 33.88%; }
+.grantees-right { width: 66%; }
+.wp-pagenavi { padding: 61px 0 10px; }
+.top-banner-text { max-width: 900px; vertical-align: top; padding-top: 14px; }
+.top-banner-text h2 { font-size: 20px; margin: 0 0 7px; }
+.top-banner-text p { font-size: 18px; }
+.donate-content-pages .inner-banner .main1196 { height: 84%; margin: 49px auto 0; width: 100%; }
+.donate-content-pages .inner-banner { background-position: -44px bottom; background-size: 210px auto; }
+.other-way-give { display: none }
+.donate-content-pages .container-section h2 { font-size: 20px; }
+.donate-content-pages .container-section { padding: 28px 0 10px; }
+.orange-border-title { font-size: 23px; }
+.content-pullout-section { text-align: left }
+.recent-events .content-left:before, .event-right.desk-event-right { display: none }
+.recent-event-img-title .date-n-share { display: block; padding-bottom: 25px; }
+.recent-events .content-left h3 { padding-bottom: 22px; }
+.recent-event-img-title { display: block; padding: 10px 0 40px; }
+figure.event-left img { width: 100%; }
+.recent-events .container-section, .recent-events .content-left { background: #fcfdfe; }
+.upcoming-event-title { margin-top: 0; }
+.textwidget.uc-content { text-align: center; }
+.recent-events .content-left { padding-right: 0; }
+/*.event-title { padding-bottom: 0 }*/
+.container-section textarea { height: 400px; }
+.sbToggle { width: 24px; }
+.content-form ul li.custom-textarea label { float: none; text-align: center; }
+.content-form ul li.custom-textarea .ginput_container { float: none; padding-top: 13px; width: 100%; }
+.content-form .gform_footer { padding-top: 5px; }
+p.form-submit, p.login-submit { padding: 30px 0 0; text-align: center; }
+.desktop-post-title-date { display: none }
+.single-post .container-section h2 { padding-bottom: 12px; }
+.single-thumbnail { float: none; margin: 0 0 26px; max-width: 100%; }
+.single-post .featured-video-plus.fvp-center { max-width: 100%; width: 100%; }
+.blog-pages .post-title-date .entry-meta { padding-bottom: 41px; }
+.single-post .content-left { background: #ffffff; padding: 0; }
+.single-post .content-left:before { display: none }
+.container-section .content-left ol { padding-left: 24px; }
+.container-section .comment-form textarea { height: 88px; }
+.aside-widget-text { text-align: center }
+.aside-widget-text-title { display: inline-block; }
+.content-form ul li:nth-child(9), .content-form ul li:nth-child(11), .content-form ul li:nth-child(13), .content-form ul li:nth-child(15), .content-form ul li:nth-child(10), .content-form ul li:nth-child(12), .content-form ul li:nth-child(14), .content-form ul li:nth-child(16) { width: 100%; }
+.find-pro-form ul li:nth-child(8), .find-pro-form ul li:nth-child(10), .find-pro-form ul li:nth-child(9), .find-pro-form ul li:nth-child(11) { width: 100%; }
+.comment-section { margin-top: 15px; padding: 30px 0; }
+.comment-login-head, .wp-social-login-connect-with { float: left; padding-bottom: 0; padding-top: 10px; }
+.comment-login-head { padding-left: 5px; }
+.wp-social-login-connect-with { padding-right: 12px; }
+.left-comment-form { display: table; margin: 0 auto; float: none; }
+.right-comment-form { float: none; width: 100%; padding-top: 12px; }
+.right-comment-form #loginform { clear: both }
+.right-comment-form .comment-login-head { display: none }
+.wp-social-login-provider-list { width: auto; }
+.videoimage-pullout-section .left-content { width: 100%; position: relative; }
+.videoimage-pullout-section .right-content { clear: both; width: 100%; height: auto; background-color: #e9f1f9; padding: 2%; margin: 40px 0;  }
+.videoimage-pullout-section .right-content .inner { top: 0; transform: none; -ms-transform: none;  -webkit-transform: none;}
+.bbal { width: 200px; height: 186px; margin-top: 70px; }
+}
+
+/* 767px ends*/
+
+@media only screen and (max-width:530px) {
+.stwrapper.stwrapper5x { left: 5%; margin: 0 !important; padding: 0 20px; width: 90% !important; overflow: auto }
+iframe.stLframe { width: 100% !important; overflow: auto }
+iframe.stLframe .st5xMfoot, iframe.stLframe .qsbMselect, iframe.stLframe #outerContainer { width: 100% !important; }
+iframe.stLframe .qsbMselect .qsbMselectCol2 { width: calc(100% - 115px) !important; }
+.pullout-text .col-left { width: 100%; }
+.pullout-text .col-right h3, .content-pullout-section { text-align: center; }
+.pullout-text .equal_height { min-height: inherit !important }
+.pullout-text .col-left .equal_height:after { display: none }
+.pullout-text .col-left .equal_height { border-bottom: 2px solid #3b81c7; padding-right: 0 }
+.pullout-text .col-right { width: 100%; padding-left: 0; padding-top: 22px }
+.pullout-text .col-right ul li { float: left; padding: 0 10px 0 0; width: 50%; }
+.two-column-section .col-left { width: 100%; }
+.two-column-section .col-right { width: 100%; padding-left: 0; padding-top: 22px }
+}
+
+@media only screen and (max-width:479px) {
+.owl-ico-slider.owl-carousel .owl-controls .owl-nav .owl-prev { left: 10px; }
+.owl-ico-slider.owl-carousel .owl-controls .owl-nav .owl-next { right: 10px; }
+.owl-ico-slider .owl-item img { height: 51px; }
+.icon-slider-title { font-size: 13px; }
+.lyme-disease-progress .rprogress-text { font-size: 12px; margin-left: 4px; margin-top: 4px; }
+.top-banner-text p br { display: none; }
+}
+
+@media only screen and (max-width:413px) {
+.top-social li a { height: 27px; width: 27px; line-height: 27px }
+.donate-now { font-size: 14px; }
+.header-top { height: 140px; }
+.site { padding-top: 170px; } /* FC Original 189 */
+body.menuOverlap .enumenu_ul { height: calc(100% - 189px); max-width: 320px; top: 189px; }
+body.slidemenuLeft .enumenu_ul { left: -320px; }
+.logo { margin: 9px auto 11px; }
+.owl-topbanner .owl-item .item h1 span span, h1 { font-size: 22px; }
+.owl-topbanner .owl-item .item h1 span { font-size: 20px; }
+.owl-topbanner .owl-item .item p { font-size: 15px; letter-spacing: 0; }
+.imgoverlap-title, .events-blog-video h3 { font-size: 25px; }
+.f-icon-person-ico { font-size: 67px; }
+.disease-box .lyme-disease { background-size: 56% auto; height: 83px; width: 83px; }
+.l { padding: 87px 0 0; }
+.breast-cancer { background-size: 56% auto; height: 63px; margin: 20px 0 0 5px; width: 63px; }
+.b { padding: 67px 0 0; }
+.colon-disease { background-size: 56% auto; height: 46px; margin: 37px 0 0 5px; width: 46px; }
+.c { padding: 50px 0 0; }
+.hiv-disease { background-size: 56% auto; height: 36px; margin: 47px 0 0 5px; width: 36px; }
+.hiv { padding: 40px 0 0; }
+.hipatities-disease { background-size: 56% auto; height: 23px; margin: 60px 0 0 5px; width: 23px; }
+.hip { padding: 27px 0 0; }
+.hip, .hiv, .c, .b, .l { font-size: 13px; line-height: 1; }
+.text-hip, .text-hiv, .text-c, .text-b, .text-l { font-size: 10px; }
+.lyme-disease-progress .rprogress-text { margin-left: 1px; }
+.three-block-bottom .committee-members-data .committee-members-name, .committee-members-name { font-size: 15px; }
+.committee-members-data .hidden-description-inner p, h5 { font-size: 16px; }
+.blog-pages .main1196 { padding: 0 15px; }
+.blog-list-left { padding-right: 15px; width: 32%; }
+.blog-list-container article { padding: 15px 0; }
+.blog-list-container h3 { font-size: 16px; }
+.blog-pages .date-n-share { font-size: 14px; }
+.blog-pages .dateofevent, .upcoming-events .dateofevent, .recent-events .dateofevent { margin-right: 9px; padding-right: 9px; }
+.blog-pages .share-div .stButton .sharethis { background-size: 14px; background-position: left center; }
+.blog-list-right .entry-content p { font-size: 14px; }
+.blog-list-container .entry-content a { font-size: 16px; margin-top: 8px; }
+.grantees-list { padding: 11px 0 16px; }
+.grantees-list figure.grantees-left { padding-right: 15px; width: 32%; }
+.grantees-right { width: 68%; }
+.top-banner-text h2 { font-size: 17px; }
+.pullout-text .col-right ul li { float: none; padding: 0; width: 100%; }
+.container-section textarea, .container-section input:not([type="submit"]), .sbHolder { font-size: 14px; }
+.sbToggle { background-size: 14px auto }
+.left-comment-form { display: block; margin: 0; }
+.comment-login-head { clear: left; float: none; padding-left: 0; }
+}
+
+.resources-box{
+  background-color: #e9f1f9;
+}
+.resources-box .resources-col{
+  width: 50%;
+  display: inline-block;
+  vertical-align: top;
+}
+.resources-box .resources-box-title{
+  color: #ffffff;
+  background-color: #3386c5;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 24px;
+  font-weight: bold;
+  box-sizing: border-box;
+  padding: 10px 0;
+  position: relative; 
+}
+.resources-box .resources-box-title:after{
+  content: "";
+  position: absolute;
+  display: block;
+  width: 10px;
+  height: 100%;
+  background: #f7b105;
+  top: 0;
+  left: 0;
+}
+.resources-box .resources-list{
+  padding: 10px 1% 20px 1%;
+  display: block;
+}
+.resources-box .resources-list .resources-item{
+  display: block;
+  margin: 10px 1% 0 1%;
+  background-color: #ffffff;
+  border: 1px #3386c5 solid;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+.resources-box .resources-list .resources-item-title{
+  color: #3386c5;
+  height: 42px;
+  line-height: 42px;
+  font-size: 18px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0 10px;
+  text-transform: uppercase;
+}
+.resources-box .resources-list .resources-item-title:hover{
+  background-color: #3386c5;
+  color: #ffffff;
+}
+.resources-box .resources-list .resources-item-text{
+  display: none;
+  padding: 5px 10px 10px 10px;
+}
+@media only screen and (max-width:1023px){
+  .resources-box .resources-list{
+    padding: 10px 2% 20px 2%;
+  }
+  .resources-box .resources-col{
+    width: 98%;
+  }
+  .resources-box .resources-list .resources-item{
+    margin: 10px 0 0 0;
+  }
+  .resources-box .resources-list .resources-item-title{
+    height: auto;
+    text-align: center;
+  }
+}
+@media only screen and (max-width:870px) {
+  .contact-form ul li.contact-radio ul.gfield_radio li:nth-child(2) { width: 90%; float: left; }
+  .contact-form ul li.contact-radio ul.gfield_radio li:nth-child(3) { width: 90%; float: left; }
+  .contact-form ul li.contact-radio ul.gfield_radio li:nth-child(4) { width: 90%; float: left; }
+}
+
+@media only screen and (max-width:870px) {
+	.curriculum-item { margin-bottom: 20px; border-bottom: 1px solid #3b81c7; }
+	.curriculum-header .col-left, .curriculum-header .col-right { display: none; }
+	.curriculum-item .col-left, .curriculum-item .col-right { width: 100%; padding-left: 0; }
+	.curriculum-item h3 { display: block; } 
+	
+	
+}

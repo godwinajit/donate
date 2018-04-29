@@ -1,0 +1,33 @@
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video, container { margin: 0; padding: 0; border: 0; outline: 0; background: transparent; }
+body { margin: 0; padding: 0; font-size: 13px; line-height: 22px; font-family: Arial; background: #fff; color: #363636; }
+.backtotop, .footer-social, .footer-top a.gen-btn.btnlikefooter, .feeling-home, .who-we-are, .join-sign-up-cont, .main-navigation, .bottom-page-arrow, .log-phone-container .main530, .pagination, .home .top-social, .para-title, .appeal-as p:before, .appeal-as p:after, .owner-statement a, .hyphen-sep, .inner .pull-right ul, .breadcrumb, .content-left h2:after { display: none !important; }
+.home .fit-toscreen-section, .fit-toscreen-section { height: auto !important; background: none !important }
+.footer-top:before, .footer-top, .inner-banner.top-banner-section:before, .inner-banner.top-banner-section { backface-visibility: hidden; background: none !important }
+.cf, .clear, .clr, .clearboth { clear: both; }
+.logo-phone { top: 10px; }
+.call-us { text-shadow: none; }
+.tabbing-div li { font-size: 16px !important; margin-right: 10px !important; float: none; display: inline-block }
+.tabbing-div li a { padding: 14px 15px 13px !important; }
+.tabbing-div li a:after { bottom: -2px; }
+.reason-to-choose { font-size: 16px; padding: 0; margin-bottom: 25px; color: #363636; }
+.about-us-description { padding: 0; }
+.appeal-as-title { font-size: 17px; }
+.appeal-as-title:after { top: 12px; }
+.home-about { padding: 200px 0 40px; }
+.footer-logo img { width: 100px; }
+.contact-info-owner { text-align: center; width: 67.8%; padding-left: 30px }
+.footer-logo { width: 14%; }
+.site-footer { border-bottom: 0 none; }
+h1, h1.page-title { font-size: 36px; color:#363636; margin: 108px auto 0; max-width: 100%; }
+.inner-banner.top-banner-section { height: auto !important }
+.content-left { width: 455px; float: none; display: inline-block; vertical-align: top; padding-right: 30px }
+aside.content-right { width: 230px; float: none; display: inline-block; vertical-align: top; }
+h2 { font-size: 24px; }
+h3 { font-size: 18px; letter-spacing: 0; padding: 0 0 18px; margin: 0; }
+.container { padding-top: 30px; }
+.content-left h2 { letter-spacing: 0; margin-bottom: 0; padding-bottom: 31px; padding-right: 0; }
+.footer-bottom .dis-table-cell { vertical-align: middle; }
+.private-nurse { background: none; font-size: 20px; padding-top: 0; position: relative; text-align: center; }
+.why-choose-title { font-size: 30px; }
+.why-choose-title span { font-size: 50px; }
+.footer-top p { color: #363636 }
