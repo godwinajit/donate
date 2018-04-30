@@ -398,8 +398,11 @@ include('../../wp-load.php');
 								<label>Your Donation</label> <input id="donate-3" name="donate"
 									type="number" min="1" disabled="disabled" value="<?php if( retriveDonorField($transactionStatus,'donate') ) echo retriveDonorField($transactionStatus,'donate');?>">
 							</div>
-							<input id="step3-submit" type="submit" value="Continue"
-								class="btn btn-default btn-continue">
+							<div class="g-recaptcha" data-sitekey="6LeBrFIUAAAAACyFm2dZMWhT-AoAueatWYnBjlgh" data-callback="submitPayment" data-size="invisible"></div>
+							<button id="step3-submit" style="min-width: 230px;padding: 15px 10px;border: 0;" class="g-recaptcha btn btn-default btn-continue" data-sitekey="6LeBrFIUAAAAACyFm2dZMWhT-AoAueatWYnBjlgh" data-callback="submitPayment">
+								Continue
+							</button>
+							<!-- <input id="step3-submit" type="submit" value="Continue" class="btn btn-default btn-continue"> -->
 							<div class="text-note">
 								<p>Global Lyme Alliance is a 501(c)(3) charitable organization.
 									Tax ID is 06-1559393.</p>
@@ -566,6 +569,7 @@ include('../../wp-load.php');
     <script src="js/jquery-1.11.2.min.js"></script>
     <script src="/donate/dist/js/main.js"></script>
 	<script src="/donate/dist/js/donate.js"></script>
+	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 	<script type="text/javascript">
             var currentActiveStep = 0;
             <?php if ($isPaymentStep) { echo 'currentActiveStep = 2;'; }?>

@@ -167,7 +167,7 @@ $("#billing-country").on("change", function(){
 			stepper.toStep(liIndex);
 		} else if (liIndex > stepper._currentIndex) {
 			if (liIndex === stepper.stepsLength() - 1 && stepper._currentIndex === stepper.stepsLength() - 2) {
-				$form.submit();
+				//$form.submit();
 			} else {
 				stepper.nextStep();
 			}
@@ -189,8 +189,6 @@ $("#billing-country").on("change", function(){
 		onChange: function(currentStepIndex, oldStepIndex) {
 			var $lis = $('.donate-form-nav > li'),
 			$li = $lis.eq(currentStepIndex);
-			console.log("Current step Index"+currentStepIndex);
-			console.log("Next step Index"+oldStepIndex);
 
 			if(currentStepIndex == 0) window.location = '#';
 			if(currentStepIndex == 1) window.location = '#details';

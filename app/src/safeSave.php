@@ -146,7 +146,7 @@ function getStates($selectedState) {
 	$StateArray['MS']	= 'Mississippi';
 	$StateArray['MO']	= 'Missouri';
 	$StateArray['MT']	= 'Montana';
-	$StateArray['ME']	= 'Nebraska';
+	$StateArray['NE']	= 'Nebraska';
 	$StateArray['NV']	= 'Nevada';
 	$StateArray['NH']	= 'New Hampshire';
 	$StateArray['NJ']	= 'New Jersey';
@@ -173,6 +173,8 @@ function getStates($selectedState) {
 	$StateArray['WI']	= 'Wisconsin';
 	$StateArray['WY']	= 'Wyoming';
 	
+	asort($StateArray);
+
 	foreach ($StateArray  as $key => $value){
 		$selected = '';
 		if ($selectedState == $key)$selected = 'selected="selected"';

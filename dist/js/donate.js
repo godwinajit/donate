@@ -1,4 +1,8 @@
 jQuery(function($) {
+	$('#final-step-id').click(function(e) {
+		e.preventDefault();
+	});
+
 	var $form = $('#donate-form');
 
 	$("#step2-submit").click(function(e){
@@ -19,8 +23,12 @@ jQuery(function($) {
 		}
 	});
 
-	$("#step3-submit").click(function(e){
-		e.preventDefault();
+});
+
+
+function submitPayment(token){
+	console.log("submitting form");
+	var $form = $('#donate-form');
 		if ($form.valid()) {
 			$("#step3-submit").prop('disabled', true);
 			$.ajax({
@@ -36,7 +44,4 @@ jQuery(function($) {
 				}
 			});
 		}
-	});
-
-
-});
+}

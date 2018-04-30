@@ -220,7 +220,7 @@ html #cc_form_2 .error label {
 		padding-right: 12px;
 		margin-bottom: 51px !important;
 	}
-	.g-recaptcha {
+	.subscribe-form .g-recaptcha {
 		float: left;
 		width: 328px;
 		padding: 0 12px;
