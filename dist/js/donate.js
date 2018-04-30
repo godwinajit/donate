@@ -27,7 +27,6 @@ jQuery(function($) {
 
 
 function submitPayment(token){
-	console.log("submitting form");
 	var $form = $('#donate-form');
 		if ($form.valid()) {
 			$("#step3-submit").prop('disabled', true);

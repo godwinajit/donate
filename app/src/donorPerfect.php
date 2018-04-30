@@ -17,6 +17,7 @@ class DonorPerfect {
 	
 	
 	function saveDonorDetails($transactionDetails, $sessionData) {
+		$this->eMailDonor ( $transactionDetails, $sessionData );
 		$matchingDonorList = $this->dp_donorsearch ( $transactionDetails );
 		$matchingDonorArr = $matchingDonorList->{'record'};
 		$donorDetails = $this->saveDonor ( $transactionDetails );
@@ -26,7 +27,6 @@ class DonorPerfect {
 		if ( isset($donorDetails->{'record'}->{'field'} [0]) ) {
 			$donorDetails = $donorDetails->{'record'}->{'field'} [0]->attributes ()->{'value'};
 			
-			$this->eMailDonor ( $transactionDetails, $sessionData );
 			$this->eMailAdmin ( $matchingDonorArr, $donorDetails [0] );
 			
 			$this->log->info ( "New Donor Id is " . $donorDetails [0] );
@@ -66,7 +66,6 @@ class DonorPerfect {
 			}
 		} else {
 			$this->log->info ( "Error Adding New Donor to DP" );
-			//mail ( $this->emailList, "Error Adding New Donor to DP", "See Log file for More details", $headers );
 
 			$dpSaveFailMail = SimpleMail::make ()->setFrom ( 'info@globallymealliance.org', 'Global Lyme Alliance' )->setSubject ( 'Error Adding New Donor to DP' )
 				->setMessage ( "Error Adding New Donor to DP. See Log file for More details" )->setReplyTo ( 'info@globallymealliance.org', 'Global Lyme Alliance' )->setHtml ()->setWrap ( 100 );

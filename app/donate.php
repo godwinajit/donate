@@ -402,7 +402,6 @@ include('../../wp-load.php');
 							<button id="step3-submit" style="min-width: 230px;padding: 15px 10px;border: 0;" class="g-recaptcha btn btn-default btn-continue" data-sitekey="6LeBrFIUAAAAACyFm2dZMWhT-AoAueatWYnBjlgh" data-callback="submitPayment">
 								Continue
 							</button>
-							<!-- <input id="step3-submit" type="submit" value="Continue" class="btn btn-default btn-continue"> -->
 							<div class="text-note">
 								<p>Global Lyme Alliance is a 501(c)(3) charitable organization.
 									Tax ID is 06-1559393.</p>
