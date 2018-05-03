@@ -1,7 +1,7 @@
 function initCustomForms() {
     jcf.setOptions("Select", {
         wrapNative: !1
-    }), jcf.replaceAll('form.donate-form, form#tribe-bar-form .tribe-bar-filters, .resources-cat-container')
+    }), jcf.replaceAll('form.donate-form, form#tribe-bar-form .tribe-bar-filters, .resources-cat-container, .support-groups-cat-container')
 }
 
 function initHeaderCollapsed() {
