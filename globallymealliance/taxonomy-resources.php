@@ -1,52 +1,53 @@
 <?php
 get_header ();
-$banneurl = '/wp-content/uploads/2015/12/Reading-Resources-hero.jpg';
+$bannerImageurl = '/wp-content/uploads/2015/12/Reading-Resources-hero.jpg';
+
+$bannerurlId = get_field( 'resources_header', 'option');
+$bannerImage = wp_get_attachment_image_src($bannerurlId, 'banner-top')[0];
+
+if (!$bannerImage)
+$bannerImage = $bannerImageurl;
+
+global $wp_query;
+$args = array_merge( $wp_query->query_vars, ['posts_per_page' => 8] );
+query_posts( $args );
 ?>
 <main class="mains">
 <div class="inner-pages common-content-page">
-	<div class="inner-banner" style="background-image:url(<?php echo $banneurl; ?>)"></div>
+	<div class="inner-banner" style="background-image:url(<?php echo $bannerImage; ?>)"></div>
 	<div class="container-section resources-cat-container">
 		<div class="wrapper container-fluid">
 			<div class="row center-xs">
 				<div class="col-xs-12 col-sm-11 col-md-10">
 					<div class="boards resources-cat-page">
-						<h1 class="page-title">Resources</h1>
-						<div class="resources-cat-filter">
-							<ul>
-								<li id="categories-li">
+						<div class="inline">
+							<h1 class="page-title">Resources</h1>
+							<div class="resources-cat-filter">
+								<ul>
+									<li id="categories-li" class="blog-categories-select">
 										<?php
-										$url = site_url( '/resources/', 'https' );
-										$args = array (
-												'show_option_all' => '',
-												'show_option_none' => 'Category',
-												'option_none_value' => '',
-												'orderby' => 'ID',
-												'order' => 'ASC',
-												'show_count' => 0,
-												'hide_empty' => 1,
-												'child_of' => 0,
-												'exclude' => '',
-												'include' => '',
-												'echo' => 1,
-												'selected' => get_query_var('term'),
-												'hierarchical' => 0,
-												'name' => 'resources-cat',
-												'id' => 'resources-cat',
-												'class' => 'resources-cat',
-												'depth' => 0,
-												'tab_index' => 0,
+											$args = array(
+												'show_option_none' => __( 'Select category' ),
+												'option_none_value'  => '',
+												'show_count'       => 0,
+												'orderby'          => 'name',
+												'selected'	=> get_queried_object()->slug,
 												'taxonomy' => 'resources',
-												'hide_if_empty' => true,
 												'value_field' => 'slug',
-												'post_status' => 'publish'
-										);
-										?>
-										<?php wp_dropdown_categories( $args ); ?>
-									</li>
-							</ul>
+												'echo'             => 0,
+												);
+											?>
+											<?php $select  = wp_dropdown_categories( $args ); ?>
+											<?php $replace = "<select$1 onchange=\"window.location = '".esc_url( home_url( '/resources/' ) )."'+this.options
+																    [this.selectedIndex].value\">"; ?>
+											<?php $select  = preg_replace( '#<select([^>]*)>#', $replace, $select ); ?>
+											<?php echo $select; ?>
+									  </li>
+								</ul>
+							</div>
 						</div>
 						<div class="resources-cat-con-contain page">
-							<div class="resources-cat-list-container resources-cat-masonary">
+							<div class="resources-cat-list-container resources-cat-masonary cols4-per-row">
 							<?php if ( have_posts() ) : ?>
 								<?php while (have_posts() ) : the_post(); ?>
 									<article class="resources-cat-article">
@@ -65,7 +66,7 @@ $banneurl = '/wp-content/uploads/2015/12/Reading-Resources-hero.jpg';
 													$terms = wp_get_object_terms( get_the_ID(), 'resources' );
 														if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
 															foreach ( $terms as $term ) {
-        														$termName .= '<a href="'.$url.''.$term->slug . '">'.$term->name.'</a>, ';
+        														$termName .= '<a href="'.esc_url( home_url( '/resources/' ) ).''.$term->slug . '">'.$term->name.'</a>, ';
 														      }
 													    }
 														$termName = rtrim($termName,', ');
@@ -111,16 +112,3 @@ $banneurl = '/wp-content/uploads/2015/12/Reading-Resources-hero.jpg';
 </div>
 </main>
 <?php get_footer(); ?>
-<script>
-    $(function(){
-		var siteUrl = "<?php echo $url?>";
-      // bind change event to select
-      $('#resources-cat').on('change', function () {
-          var slug = $(this).val(); // get selected value
-          if (slug) { // require a slug
-              window.location = siteUrl+slug; // redirect
-          }
-          return false;
-      });
-    });
-</script>

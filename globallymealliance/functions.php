@@ -1414,7 +1414,7 @@ add_filter( 'tribe_events_pre_get_posts', 'setup_my_category_field_in_query', 10
  
 function setup_my_category_field_in_query( $query ){
 	if ( ! $query->tribe_is_event ) {
-		// donï¿½t add the query args to other queries besides events queries
+		// don’t add the query args to other queries besides events queries
 		return;
 	}
 

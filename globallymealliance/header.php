@@ -14,8 +14,8 @@
 
 <head>
 <!--  Google Analytics tracking code for Optimize plugin - Start -->
-<style>.async-hide
-{ opacity: 0 !important}
+<style>
+.async-hide{ opacity: 0 !important}
 </style>
 <script>(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.start=1*new Date;
 h.end=i=function()

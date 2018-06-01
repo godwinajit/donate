@@ -1,11 +1,16 @@
 <?php
 get_header ();
-$bannerImageurl = '/wp-content/uploads/2015/12/Reading-Resources-hero.jpg';
+$bannerImageurl = get_template_directory_uri().'/images/template-banner.jpg';
 
 $bannerurlId = get_field ( 'support_groups_header', 'option' );
 $bannerImage = wp_get_attachment_image_src ( $bannerurlId, 'banner-top' ) [0];
 
-if (! $bannerImage)
+$supportGroupsContent = get_pages('meta_key=_wp_page_template&meta_value=templates/support-groups-template.php');
+$supportGroupsContent = array_shift($supportGroupsContent);
+
+$bannerImage = wp_get_attachment_url( get_post_thumbnail_id($supportGroupsContent->ID) );
+
+if (! $bannerImage || $bannerImage == '')
 	$bannerImage = $bannerImageurl;
 ?>
 <main class="mains">
@@ -16,8 +21,11 @@ if (! $bannerImage)
 			<div class="row center-xs">
 				<div class="col-xs-12 col-sm-11 col-md-10">
 					<div class="boards">
-						<h1 class="page-title">Support Groups</h1>
-						<p>Some text</p>
+						<h1 class="page-title"><?php echo apply_filters('the_title', $supportGroupsContent->post_title );?></h1>
+						<div class="col-xs-12">
+							<?php echo apply_filters('the_content', $supportGroupsContent->post_content );?>
+						</div>
+						<div class="btn-row"></div>
 						<div class="row btn-row">
 							<div class="col-xs-12">
 								<p>
@@ -28,18 +36,20 @@ if (! $bannerImage)
 						</div>
 							<div class="row select-row">
 								<div class="col-xs-12 col-sm-6 col-md-4">
-									<p>Title</p>
+									<p>Find Support: </p>
 									<ul>
 										<li id="categories-li" class="blog-categories-select">
 										<?php
 											$args = array (
-												'show_option_none' => __ ( 'Select a state' ),
+												'show_option_none' => __ ( 'Select an option' ),
 												'option_none_value' => '',
 												'show_count' => 0,
+												'hide_empty' => 0,
 												'orderby' => 'name',
 												'selected' => get_queried_object ()->slug,
 												'taxonomy' => 'support_group_states',
 												'value_field' => 'slug',
+												'exclude' => 480,
 												'echo' => 0 
 											);
 										?>
@@ -47,6 +57,18 @@ if (! $bannerImage)
 										<?php $replace = "<select$1 onchange=\"window.location = '" . esc_url ( home_url ( '/support-groups/' ) ) . "'+this.options
 																    [this.selectedIndex].value\">"; ?>
 										<?php $select  = preg_replace( '#<select([^>]*)>#', $replace, $select ); ?>
+										<?php 
+											$addFirstOption = '<option class="level-0" value="online-groups">Online groups</option><option class="level-0" value="alabama">Alabama</option>';
+											$replaceFirstOption = '<option class="level-0" value="alabama">Alabama</option>';
+											if(get_queried_object ()->slug == 'online-groups'){
+												$addFirstOption = '<option class="level-0" selected="selected" value="online-groups">Online groups</option><option class="level-0" value="alabama">Alabama</option>';
+											}
+											if(get_queried_object ()->slug == 'alabama'){
+												$replaceFirstOption = '<option class="level-0" value="alabama" selected="selected">Alabama</option>';
+												$addFirstOption = '<option class="level-0" value="online-groups">Online groups</option><option selected="selected"  class="level-0" value="alabama">Alabama</option>';
+											}
+										?>
+										<?php $select  = str_replace( $replaceFirstOption, $addFirstOption, $select ); ?>
 										<?php echo $select; ?>
 									  </li>
 									</ul>
@@ -89,6 +111,8 @@ if (! $bannerImage)
                                                  </div>
 									</div>
                                         <?php endwhile; ?>
+									<?php else:?>
+										No Support Groups available.
                                     <?php endif; ?>
                                 </div>
                                 <?php wp_pagenavi(); ?>

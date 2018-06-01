@@ -2006,7 +2006,7 @@ div.wppb-progress > span{background:#589e31;display:block;height:100%;overflow:h
 
 .wp-pagenavi a{color:#087acc;}
 
-.wp-pagenavi a:hover{color:#589e2d;}
+.wp-pagenavi a:hover{color:#589e2d !important;}
 
 .single-post .content-left{position:relative;}
 
@@ -3399,7 +3399,7 @@ body .gform_wrapper li.gfield.gfield_error.gfield_contains_required.gfield_credi
 	border-left: 1px solid #4c8fcf;
 	border-bottom: 1px solid #4c8fcf;
 	font-weight: normal;
-	color: #000;
+	color: #000 !important;
 	font-size: 12px;
 	font-family: Roboto,Arial,sans-serif;
 }
@@ -3462,6 +3462,11 @@ body .gform_wrapper li.gfield.gfield_error.gfield_contains_required.gfield_credi
 	color: #fff;
 	background-color:#4c8fcf;
 }
+a.previouspostslink {
+	color: #000;
+	background-color: transparent !important;
+	border-right: 0 !important;
+}
 
 h1.search-label {
 	color: #6d6d6d;
@@ -3493,9 +3498,10 @@ h1.search-label {
 	/*float:right;*/
 }
 .search-year-menu-container {
-	margin-top:0;
+	/*margin-top:0;
 	margin-left: -33.33%;
-	margin-right: -33.33%;  
+	margin-right: -33.33%;*/
+	margin: 0;
 	background-color: #fafbfc;
 	border-top: 1px solid #dcdcdc;
 	border-bottom: 1px solid #dcdcdc;
@@ -3506,8 +3512,8 @@ h1.search-label {
 	-webkit-border-radius: 6px;
 	-khtml-border-radius: 6px;
 	border-radius: 6px;
-	margin: -12px 25px 0 -10px;
-	padding: 12px 10px 10px 10px;
+	/*margin: -12px 25px 0 -10px;
+	padding: 12px 10px 10px 10px;*/
 }
 .search-year-menu a.current_page_item,
 .search-year-menu ul li .current_page_item  {
@@ -3516,26 +3522,33 @@ h1.search-label {
 	-webkit-border-radius: 6px;
 	-khtml-border-radius: 6px;
 	border-radius: 6px;
-	margin: -12px -20px 0 -9px;
-	padding: 14px 12px 13px 11px;
+	/*margin: -12px -20px 0 -9px;*/
 }
 .search-year-menu {
 	width:100%;
 	display:block;
 	margin: 7px 0 0 0;
-	padding: 2em 0px 2em 0;
+	padding: 1.222em 0;
+	text-align: center;
+}
+.search-year-menu ul {
+	display: inline-block;
+	vertical-align: middle;
 }
 .search-year-menu li {
-	float:left;
-	padding-right:2em;
+	/*float:left;*/
+	display: inline-block;
+	vertical-align: middle;
+	padding:0 7px;
 }
 .search-year-menu li label {
 	color: #191919;
 }
 .search-year-menu li a {
 	color: #244670;
-	font-family: "Roboto",Arial,sans-serif;
-	font-size: 17px;
+	display: block;
+	font:17px/20px "Roboto",Arial,sans-serif;
+	padding: 14px 12px 13px 11px;
 }
 .search-results-view .stButton .twitter/*, .blog-pages .stButton .twitter*/  {
 	background-image: url('images/tw-social.png') !important;
@@ -4078,8 +4091,8 @@ p.login-submit {
 
 .select-mobile {
 	display:none;
-	position:absolute;
-	margin-top:-10px;
+	/*position:absolute;
+	margin-top:-10px;*/
 }
 
 @media (max-width:767px) {
@@ -4206,7 +4219,7 @@ p.login-submit {
 		margin-left: -5%;
 	}
 	ul.search-year-menu {
-		margin-left: -3em;
+		/*margin-left: -3em;*/
 	}
 }
 
@@ -5316,10 +5329,10 @@ html body .subscribe-form #cc_form_2 input.t {
 }
 
 /* resources page */
-.boards a {
+.boards a:not(.btn){
 	color: #4c8fcf;
 }
-.boards a:hover {
+.boards a:not(.btn):hover {
 	color: #054977;
 }
 .boards mark,
@@ -7455,6 +7468,11 @@ a.become-link:hover {
 	border-radius: 6px;
 	position: relative;
 }
+@media (min-width:1200px) {
+	.cols4-per-row .resources-cat-article {
+		width: calc(25% - 12px);
+	}
+}
 .resources-cat-masonary img.wp-post-image {
 	width: 100%;
 	height: auto;
@@ -7537,6 +7555,8 @@ a.become-link:hover {
 	.resources-cat-article {
 		margin-left: 0;
 		margin-right: 0;
+	}
+	.resources-cat-article {
 		float: none;
 		width: 100%;
 	}
@@ -7722,11 +7742,39 @@ ul.grid-sm {
 		word-wrap: break-word;
 	}
 }
-
+.blog-categories-select {
+	min-width: 300px;
+	text-align: left;
+}
+.search-year-menu .blog-categories-select {
+	margin-top: -21px;
+	margin-bottom: -21px;
+}
+.blog-categories-select form {
+	vertical-align: top;
+}
+.blog-categories-select select,
+.blog-categories-select .jcf-select {
+	margin-bottom: 0;
+}
 .boards .filter-row ul {
 	padding-top: 0;
 }
-
+.filter-row .btn.btn-default {
+	font-size: 20px;
+}
+@media only screen and (max-width: 1024px) {
+	.search-year-menu li.blog-categories-select {
+		display: block;
+		margin-top: -12px;
+		margin-bottom: 15px;
+	}
+}
+.inline:after {
+	content: '';
+	clear: both;
+	display: block;
+}
 @media (max-width:767px) {
 	.select-row > div {
 		padding-left: 0;
@@ -7737,4 +7785,19 @@ ul.grid-sm {
 	.select-row > div {
 		padding-right: 4px;
 	}
+}
+
+/* Timeline plugin design changes - start */
+.timeline-meta, .timeline-main-title {
+	display:none;
+}
+.cool-timeline-wrapper{
+	margin-top: 0px;
+}
+/* Timeline plugin design changes - end */
+.published-research-select-page{
+	max-width: 41%;
+	position: relative;
+	left: 60%;
+	text-align: center;
 }
