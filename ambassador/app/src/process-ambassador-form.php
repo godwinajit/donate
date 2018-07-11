@@ -1,0 +1,76 @@
+<?php
+if (! ini_get ( 'display_errors' )) {
+	ini_set ( 'display_errors', 1 );
+}
+// Report all PHP errors
+error_reporting ( - 1 );
+
+require_once 'functions.php';
+require __DIR__ . '/vendor/autoload.php';
+
+use Monolog\Logger;
+use Monolog\Handler\RotatingFileHandler;
+
+// create a log channel
+$log = new Logger ( 'Ambassador Log' );
+$log->pushHandler ( new RotatingFileHandler ( '../logs/ambassador.log', 0, Logger::INFO ) );
+
+$toEmail = '';
+$bccEmailList = array (
+		'Gabriel Oliver' => 'goliver@mindtrustlabs.com' 
+);
+
+if ($_SERVER ['SERVER_NAME'] === 'globallymealliance.org') {
+	$toEmail = 'education@gla.org';
+} else {
+	$toEmail = 'godwin.ajith@gmail.com';
+}
+
+$log->info ( "Submitting the Ambassador Form ...." );
+$log->info ( "Ambassador Form Browser Information is: " . $_SERVER ['HTTP_USER_AGENT'] );
+$log->info ( "Ambassador Form Connecting IP is: " . $_SERVER ['HTTP_CF_CONNECTING_IP'] );
+$log->info ( "Ambassador Form Remote Address: " . $_SERVER ['REMOTE_ADDR'] );
+$log->info ( "Ambassador Form request time: " . $_SERVER ['REQUEST_TIME'] );
+
+if ($_SERVER ['REQUEST_METHOD'] === 'POST' && ! empty ( $_POST )) {
+	try {
+		$log->info ( "Ambassador Form POST information: " );
+		$log->info ( print_r($_POST, true) );
+	} catch ( Exception $e ) {
+	}
+
+	if( isset($_POST['email']) && $_POST['email'] != '' && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
+	{
+		try {
+			$messageBody = buildUserMessageBodyFromPost ( $_POST );
+			$userMail = SimpleMail::make ()->setTo ( $_POST['email'], $_POST['first_name'] )->setFrom ( 'education@GLA.org', 'Global Lyme Alliance' )->setSubject ( 'Lyme Education Ambassador Submission' )->setMessage ( $messageBody )->setReplyTo ( 'education@GLA.org', 'Global Lyme Alliance' )->setBcc ( $bccEmailList )->setHtml ()->setWrap ( 100 );
+			$userEmailSend = $userMail->send ();
+		
+			$log->info ( "Ambassador Form User Email Sent Status is: " . $userEmailSend );
+		
+		} catch ( Exception $e ) {
+			$log->info ( "Ambassador Form User Email submission failed: " );
+			$log->info ( $e );
+		}
+	}
+	
+	try {
+		$messageBody = buildAdminMessageBodyFromPost ( $_POST );
+		$adminMail = SimpleMail::make ()->setTo ( $toEmail, 'Global Lyme Alliance' )->setFrom ( 'info@globallymealliance.org', 'Global Lyme Alliance' )->setSubject ( 'New Ambassador Submission' )->setMessage ( $messageBody )->setReplyTo ( 'info@globallymealliance.org', 'Global Lyme Alliance' )->setBcc ( $bccEmailList )->setHtml ()->setWrap ( 100 );
+		$send = $adminMail->send ();
+		
+		$log->info ( "Ambassador Form  Admin Email Sent Status is: " . $send );
+		
+		if ($send) {
+			redirect_to_url ( 'https://' . $_SERVER ['SERVER_NAME'] . '/ambassador/app/thankyou.php', true );
+		} else {
+			redirect_to_url ( 'https://' . $_SERVER ['SERVER_NAME'] . '/ambassador/app/failed.php', true );
+		}
+	} catch ( Exception $e ) {
+		$log->info ( "Ambassador Form Admin Email submission failed: " );
+		$log->info ( $e );
+	}
+
+} else {
+	redirect_to_url ( 'https://' . $_SERVER ['SERVER_NAME'] . '/ambassador/app/ambassador', true );
+}

@@ -1,0 +1,32 @@
+//misc settings
+@import 'config/settings';
+@import 'config/mixins';
+@import 'config/helpers';
+
+//vendors
+@import 'vendors/flexboxgrid';
+
+//global things
+@import 'general/normalize';
+@import "general/fonts";
+@import 'general/base';
+@import 'general/typography';
+@import 'general/form';
+
+//components
+@import 'components/buttons';
+@import 'components/header';
+@import 'components/footer';
+@import 'components/nav';
+@import 'components/accordion';
+@import 'components/breadcrumbs';
+@import 'components/intro';
+@import 'components/diagnosis';
+@import 'components/involved';
+@import 'components/news';
+@import 'components/subscribe';
+@import 'components/popup';
+@import 'components/chart';
+@import 'components/donate';
+@import 'components/_jcf';
+@import 'components/toggle-content';
