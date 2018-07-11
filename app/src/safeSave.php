@@ -408,9 +408,9 @@ function getCountries($selectedCountry) {
 
 	foreach ($CountryArray  as $key => $value){
 		$selected = '';
-		if ($selectedState == $key)$selected = 'selected="selected"';
-		$CountryList .= '<option value="'.$key.'" '.$selected.'>'.$value.'</option>';
+		if ($selectedCountry == $key)$selected = 'selected="selected"';
+		$countryList .= '<option value="'.$key.'" '.$selected.'>'.$value.'</option>';
 	}
 
-	echo $CountryList;
+	echo $countryList;
 }

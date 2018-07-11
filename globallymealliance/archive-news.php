@@ -72,7 +72,8 @@ get_header(); ?>
             <ul id="ActiveYearMenu" class="search-year-menu">
               <li><label>Filter By Year</label></li>
               <li><a class="current_page_item" href="<?php echo get_post_type_archive_link('news'); ?>">All</a></li>
-              <?php echo do_shortcode('[SidebarNewsYear]') ?>
+              <?php //echo do_shortcode('[SidebarNewsYear]') ?>
+			   <?php wp_get_archives( array('post_type' => 'news','post_status' => 'publish', 'type' => 'yearly','before' => '<ul>','after' => '</ul>', 'format' => 'html', 'show_post_count' => 0 ) ); ?>
                 <li> <div class="select-mobile">
                   <select name="archive-dropdown" onchange="document.location.href=this.options[this.selectedIndex].value;">
                       <option value=""><?php echo esc_attr( __( 'Select Year' ) ); ?></option> 

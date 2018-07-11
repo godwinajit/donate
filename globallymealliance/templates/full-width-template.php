@@ -26,11 +26,6 @@ get_header();
 
 	}
 
-	// Add the pageID which should not show the Hero Banner images 
-	$pagesToExcludeBannerImage = array(9002);
-	$current_page_id = get_queried_object_id();
-	if (!in_array($current_page_id, $pagesToExcludeBannerImage))
-	{
 ?>
 
  <div class="inner-banner" style="background-image:url(<?php echo $banneurl; ?>)">
@@ -47,7 +42,7 @@ get_header();
   </div>
 
  </div>
-<?php } ?>
+
  <?php //echo do_shortcode('[IconSlider]'); ?> 
 
  <!-- conatiner section -->

@@ -7,6 +7,7 @@ $bannerImage = wp_get_attachment_image_src($bannerurlId, 'banner-top')[0];
 
 if (!$bannerImage)
 $bannerImage = $bannerImageurl;
+
 global $wp_query;
 $args = array_merge( $wp_query->query_vars, ['posts_per_page' => 8] );
 query_posts( $args );
@@ -77,7 +78,7 @@ query_posts( $args );
 												<?php echo mb_strimwidth( get_the_content(), 0, 250, '...' ); ?>
 											</div>
 											<div class="resources-cat-readmore">
-												<a class="read-more" href="<?php the_permalink() ?>" title="Read More">READ MORE</a>
+												<a class="read-more" href="<?php the_permalink() ?>" target="_blank" title="Read More">READ MORE</a>
 											</div>
 										</div>
 										<?php endif; ?>

@@ -78,7 +78,7 @@ query_posts( $args );
 												<?php echo mb_strimwidth( get_the_content(), 0, 250, '...' ); ?>
 											</div>
 											<div class="resources-cat-readmore">
-												<a class="read-more" href="<?php the_permalink() ?>" title="Read More">READ MORE</a>
+												<a class="read-more" href="<?php the_permalink() ?>" target="_blank" title="Read More">READ MORE</a>
 											</div>
 										</div>
 										<?php endif; ?>
