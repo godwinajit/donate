@@ -7,7 +7,6 @@ $bannerImage = wp_get_attachment_image_src($bannerurlId, 'banner-top')[0];
 
 if (!$bannerImage)
 $bannerImage = $bannerImageurl;
-
 global $wp_query;
 $args = array_merge( $wp_query->query_vars, ['posts_per_page' => 8] );
 query_posts( $args );

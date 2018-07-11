@@ -69,7 +69,7 @@ if(isset($_GET['category']))
       </section>
      <section>
         <div class="search-year-menu-container">
-            <ul id="ActiveYearMenu" class="search-year-menu center-xs row">
+            <ul id="ActiveYearMenu" class="search-year-menu">
               <li><label>Filter By Year</label></li>
               <li><a class="current_page_item" href="<?php echo get_post_type_archive_link('newsletters'); ?>">All</a></li>
                 <?php echo do_shortcode('[SidebarNewslettersYear]'); ?>

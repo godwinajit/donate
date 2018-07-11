@@ -69,9 +69,29 @@ if(isset($_GET['category']))
       </section>
      <section>
         <div class="search-year-menu-container">
-            <ul class="search-year-menu center-xs row">
-              <li><label>Filter By Year</label></li>
-              <li class="current_page_item"><a href="<?php echo get_post_type_archive_link('post'); ?>">All</a></li>
+            <ul class="search-year-menu">
+              <li class="blog-categories-select">
+				<form id="category-select" class="category-select" action="<?php echo esc_url( home_url( '/' ) ); ?>" method="get">
+					<?php
+						$args = array(
+							'show_option_none' => __( 'Select category' ),
+							'option_none_value'  => '0',
+							'show_count'       => 0,
+							'orderby'          => 'name',
+							'echo'             => 0,
+						);
+					?>
+					<?php $select  = wp_dropdown_categories( $args ); ?>
+					<?php $replace = "<select$1 onchange='return this.form.submit()'>"; ?>
+					<?php $select  = preg_replace( '#<select([^>]*)>#', $replace, $select ); ?>
+					<?php echo $select; ?>
+					<noscript>
+						<input type="submit" value="View" />
+					</noscript>
+				</form>
+			  </li>
+			  <li><label>Filter By Year</label></li>
+			  <li class="current_page_item"><a href="<?php echo get_post_type_archive_link('post'); ?>">All</a></li>
                <?php echo do_shortcode('[SidebarBlogYear]') ?>
                 <li> <div class="select-mobile">
                   <select name="archive-dropdown" onchange="document.location.href=this.options[this.selectedIndex].value;">
@@ -168,7 +188,7 @@ if(isset($_GET['category']))
 
   <?php 
     global $wp_query;
-     $args = array_merge( $wp_query->query_vars, ['posts_per_page' => 10] );
+     $args = array_merge( $wp_query->query_vars, ['posts_per_page' => 9] );
      query_posts( $args ); ?>
 
   <?php } ?>
