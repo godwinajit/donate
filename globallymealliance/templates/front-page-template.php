@@ -326,7 +326,6 @@ get_header();
                             </div>
                         </div>
                     </div>
-													<span  id="newsletter-subscribe"></span>
                 </section>
                 <!-- Subscribe CTA -->
                 <?php get_template_part( 'newsletter', 'form' ); ?>

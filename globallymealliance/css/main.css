@@ -4115,16 +4115,18 @@ top
 .section-news {
 	padding: 21px 0 25px
 }
+.section-news h2 {
+    line-height: 1.208;
+}
 
 @media only screen and (min-width:768px) {
 	.section-news {
-		padding: 42px 0 50px
+		padding: 50px 0 20px
 	}
 	.section-news h2 {
-		margin-bottom: .35em
-	}
-	.section-news h3 {
-		font-size: 25px
+		font-size: 48px;
+		letter-spacing: 0.96px;
+		margin-bottom: 46px;
 	}
 }
 
@@ -4444,7 +4446,12 @@ top
 	display: block;
 	padding-top: 80%;
 	position: relative;
-	background: #e4eef8
+	/*background: #e4eef8*/
+	color: #1da2f2;
+}
+
+.social-block .social-box:hover {
+	color: #054977;
 }
 
 .social-block .social-box .social-holder {
@@ -4473,12 +4480,14 @@ top
 
 .social-block .social-box .title {
 	display: block;
-	color: inherit
+	color: inherit;
+	font-weight: 400;
+	font-family: "Roboto",Arial,sans-serif;
 }
 
 .social-block .social-box-youtube {
-	background: #d0072a;
-	color: #fff
+	/*background: #d0072a;*/
+	color: #d10000
 }
 
 .social-block .social-box-youtube:hover {
@@ -4486,8 +4495,8 @@ top
 }
 
 .social-block .social-box-facebook {
-	background: #3c5a99;
-	color: #fff
+	/*background: #3c5a99;*/
+	color: #3c5a99
 }
 
 .social-block .social-box-facebook:hover {
@@ -4511,9 +4520,9 @@ top
 		font-size: 37px
 	}
 	.social-block .social-box .title {
-		font-size: 24px;
+		font-size: 18px;
 		text-transform: uppercase;
-		padding-top: 10px
+		padding-top: 17px
 	}
 }
 
