@@ -1,15 +1,19 @@
 <?php
 if (! ini_get ( 'display_errors' )) {
-	ini_set ( 'display_errors', 1 );
+	ini_set ( 'display_errors', 0 );
 }
 // Report all PHP errors
-error_reporting ( - 1 );
+error_reporting ( 0 );
 
+include ('../../../wp-load.php');
 require_once 'functions.php';
 require __DIR__ . '/vendor/autoload.php';
 
 use Monolog\Logger;
 use Monolog\Handler\RotatingFileHandler;
+
+// Wordpress Ambassador Form Backend Id
+$form_id = 18;
 
 // create a log channel
 $log = new Logger ( 'Ambassador Log' );
@@ -58,6 +62,11 @@ if ($_SERVER ['REQUEST_METHOD'] === 'POST' && ! empty ( $_POST )) {
 		$messageBody = buildAdminMessageBodyFromPost ( $_POST );
 		$adminMail = SimpleMail::make ()->setTo ( $toEmail, 'Global Lyme Alliance' )->setFrom ( 'info@globallymealliance.org', 'Global Lyme Alliance' )->setSubject ( 'New Ambassador Submission' )->setMessage ( $messageBody )->setReplyTo ( 'info@globallymealliance.org', 'Global Lyme Alliance' )->setBcc ( $bccEmailList )->setHtml ()->setWrap ( 100 );
 		$send = $adminMail->send ();
+
+		// Manually create entries with Gravity Forms
+		$entry_id = insertEntryIntoWordpress ( $form_id, $_POST );
+		// Create Donor in DP
+		submit_form_to_dp( $_POST );
 		
 		$log->info ( "Ambassador Form  Admin Email Sent Status is: " . $send );
 		

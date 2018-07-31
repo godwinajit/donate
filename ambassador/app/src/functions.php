@@ -354,3 +354,300 @@ function buildUserMessageBodyFromPost($post){
 
 	return $messageBody;
 }
+
+function insertEntryIntoWordpress( $form_id, $post){
+		
+		$how_did = '';
+		if($post['how_did'] == 'opt1') { $how_did .= 'Family member or Friend'; }
+		if($post['how_did'] == 'opt2') { $how_did .= 'Online (article/other website)'; }
+		if($post['how_did'] == 'opt3') { $how_did .= 'Social media (Facebook, Twitter, Instagram, etc.)'; }
+		if($post['how_did'] == 'opt4') { $how_did .= 'Doctor/other medical professional recommendation'; }
+		if($post['how_did'] == 'opt5') { $how_did .= 'The Mighty blog'; }
+		if($post['how_did'] == 'opt6') { $how_did .= 'Google/Search Engine'; }
+		if($post['how_did'] == 'opt7') { $how_did .= 'Another non-profit'; }
+		if($post['how_did'] == 'opt8') { $how_did .= 'Newspaper/Magazine'; }
+		if($post['how_did'] == 'opt9') { $how_did .= 'Health Conference/Expo'; }
+		if($post['how_did'] == 'opt10') { $how_did .= 'Other'; }
+
+
+		if(isset($post['check01'])) { $check01 .= 'Endurance events'; }
+		if(isset($post['check02'])) { $check02 .= 'Grassroot event'; }
+		if(isset($post['check03'])) { $check03 .= 'Local community events (health fairs, etc.)'; }
+		if(isset($post['check04'])) { $check04 .= 'School presentations'; }
+		if(isset($post['check05']) && $post['check05'] != '') {
+			$check05 .= 'Others: '.$post['check05'];
+		}
+
+        $education = '';
+		if($post['education'] == 'opt1') { $education .= 'High School/GED'; }
+		if($post['education'] == 'opt2') { $education .= 'Some College'; }
+		if($post['education'] == 'opt3') { $education .= 'Associate Degree'; }
+		if($post['education'] == 'opt4') { $education .= 'Bachelor Degree'; }
+		if($post['education'] == 'opt5') { $education .= 'Graduate Degree'; }
+		if($post['education'] == 'opt6') { $education .= 'Doctorate'; }
+		if($post['education'] == 'opt7') { $education .= 'Other'; }
+
+
+        $speaking_publicly = '';
+        if($post['speaking_publicly'] == 'opt1') { $speaking_publicly .= 'Very comfortable'; }
+	    if($post['speaking_publicly'] == 'opt2') { $speaking_publicly .= 'Somewhat comfortable'; }
+	    if($post['speaking_publicly'] == 'opt3') { $speaking_publicly .= 'Comfortable'; }
+	    if($post['speaking_publicly'] == 'opt4') { $speaking_publicly .= 'Somewhat uncomfortable'; }
+	    if($post['speaking_publicly'] == 'opt5') { $speaking_publicly .= 'Uncomfortable'; }
+	    if($post['speaking_publicly'] == 'opt6') { $speaking_publicly .= 'Not sure'; }
+	// add entry
+	$entry = array(
+		"form_id" => $form_id,
+		"1" => $post['first_name'],
+		"2" => $post['last_name'],
+		"3" => $post['day'],
+		"4" => $post['month'],
+		"5" => $post['year'],
+		"6" => $post['telephone_1'],
+		"7" => $post['email'],
+		"8" => $post['address1'],
+		"9" => $post['city'],
+		"10" => $post['state'],
+		"11" => $post['zip'],
+		"12" => $post['diagnosed'],
+		"13" => $post['friend_diagnosed'],
+		"14" => $post['why_inter_edu_amb'],
+		"15" => $how_did,
+		"16" => $post['how_far'],
+		"17" => $post['lang'],
+		"18" => $post['language_1'],
+		"19.1" => $check01,
+		"19.2" => $check02,
+		"19.3" => $check03,
+		"19.4" => $check04,
+		"20" => $check05,
+		"21" => $education,
+		"22" => $post['current_occupation_1'],
+		"23" => $post['office_skills'],
+		"24" => $post['please_list_community'],
+		"25" => $post['why_gla_edu_amb'],
+		"26" => $speaking_publicly,
+		"27" => $post['msg2'],
+		"28" => $post['anything_else'],
+		"29" => $post['ref1_full_name'],
+		"30" => $post['ref1_relationship'],
+		"31" => $post['ref1_occupation'],
+		"32" => $post['ref1_telephone'],
+		"33" => $post['ref1_email'],
+		"34" => $post['ref2_full_name'],
+		"35" => $post['ref2_relationship'],
+		"36" => $post['ref2_occupation'],
+		"37" => $post['ref2_telephone'],
+		"38" => $post['ref2_email'],
+		"39" => $post['ref3_full_name'],
+		"40" => $post['ref3_relationship'],
+		"41" => $post['ref3_occupation'],
+		"42" => $post['ref3_telephone'],
+		"43" => $post['ref3_email']
+	);
+
+	return GFAPI::add_entry($entry);
+}
+
+
+// DP API Details
+define('DP_API_KEY_LIVE', 'HFCBGrK8x8aiXpEu50tVH31W7akQaoPOiUtFpsHiXH%2fUKsFZQ4uX3L1gaDHsywRmHwzAsalBDEVpMDsIs56kM%2brGU%2b1SS%2fzQCZodcSq7c6hokQPh1VZPUBRXN9ULnmYp' );
+define('DP_API_KEY_STAGING', 'je%2bXp6cgiCJxfTn0mJV03Nmxigk67oGD2RwFtAlAmjjHxyZYMHS1KhaMRZICl6hi0IhfD76St3UKnS74HUORHf48DNJB1OBs5KD2bGE5zGPbX8pQbuR5Vggp4STJvOXy' );
+define('DP_API_KEY_URL', 'https://www.donorperfect.net/prod/xmlrequest.asp?apikey=' );
+
+// Save form to DP
+function submit_form_to_dp( $post ) {
+
+ 	$firstName = $post['first_name'];
+	$lastName = $post['last_name'];
+	$dob_date_value = $post['year'] .''. $post['month'] .''. $post['day'];
+	$email = $post['email'];
+	$country = 'US';
+	$address1 = $post['address1'];
+	$city = $post['city'];
+	$state = $post['state'];
+	$postal = $post['zip'];
+	$homePhone = $post['telephone_1'];
+
+	$donorDetails = saveDonor( null, $firstName, $lastName, $email, null, null, $country, $address1, null, $city, null, $state, $postal, $homePhone, null );
+	error_log( 'nyc_marathon_form_to_dp after_submission: ' . print_r( $donorDetails, true ) );
+
+    if (isset($donorDetails->{'record'}->{'field'}[0])) {
+        $donorDetails = $donorDetails->{'record'}->{'field'}[0]->attributes()->{'value'};
+        $donorId = $donorDetails[0];
+		$flagDetails = saveDPFlag($donorId, 'LEAP');
+		error_log( 'nyc_marathon_form_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
+
+		if (is_wpe()) {
+			$UDFDetails = dp_save_udf_xml( $donorId, 'DOB', 'D', null, $dob_date_value, null);
+			error_log( 'nyc_marathon_form_to_dp_dob after_submission: ' . print_r( $UDFDetails, true ) );
+	    }else{
+			$UDFDetails = dp_save_udf_xml( $donorId, 'BIRTHDATE', 'D', null, $dob_date_value, null);
+			error_log( 'nyc_marathon_form_to_dp_dob after_submission: ' . print_r( $UDFDetails, true ) );
+		}
+	}
+}
+
+function saveDonor( $title = null, $firstName = null, $lastName = null, $email = null, $isCorp = null, $companyName = null, $country = null, $address1 = null, $address2 = null, $city = null, $cityStateProvince = null, $state = null, $postal = null, $phone = null , $professionalTitle = null){
+    
+    $title = dp_clean($title);
+    $firstName = dp_clean($firstName);
+    $lastName = dp_clean($lastName);
+    $email = dp_clean($email);
+    $isCorp = dp_clean($isCorp);
+    $companyName = dp_clean($companyName);
+    $country = dp_clean($country);
+    $address1 = dp_clean($address1);
+    $address2 = dp_clean($address2);
+    $city = dp_clean($city);
+    $cityStateProvince = dp_clean($cityStateProvince);
+    $state = dp_clean($state);
+    $postal = dp_clean($postal);
+    $phone = dp_clean($phone);
+    $professionalTitle = dp_clean($professionalTitle);
+
+    // Convert specific field's first character of each word to uppercase
+    $firstName = gla_ucwords($firstName);
+    $lastName = gla_ucwords($lastName);
+    $address1 = gla_ucwords($address1);
+    $address2 = gla_ucwords($address2);
+    $city = gla_ucwords($city);
+	$cityStateProvince = gla_ucwords($cityStateProvince);
+    
+    // Handle Corporate donation
+    $donor_type = 'IN';
+    $opt_line = ''; // Contact name
+    
+    if ($isCorp == 'Y') {
+        $donor_type = 'OR';
+        $opt_line = $firstName . ' ' . $lastName;
+        $firstName = '';
+        $lastName = $companyName;
+        $title = '';
+    }
+
+	if ($country != 'US') {
+		$city = $cityStateProvince;
+	}
+    
+    $dpAPIKey = DP_API_KEY_STAGING;
+    
+    if (is_wpe()) {
+        $dpAPIKey = DP_API_KEY_LIVE;
+    }
+    
+    $request = DP_API_KEY_URL . $dpAPIKey;
+    $request .= "&action=dp_savedonor&params=";
+    $request .= "0,"; // @donor_id
+	$firstName ? $request .= "'$firstName'," : $request .= "null,";// @first_name
+	$lastName ? $request .= "'$lastName'," : $request .= "null,"; // @last_name
+    $request .= "null,"; // @middle_name
+    $request .= "null,"; // @suffix
+	$title ? $request .= "'$title'," : $request .= "null,"; // @title
+    $request .= "null,"; // @salutation
+    $professionalTitle? $request .= "'$professionalTitle'," : $request .= "null,"; // @prof_title
+	$opt_line ? $request .= "'$opt_line'," : $request .= "null,";// @opt_line
+	$address1 ? $request .= "'$address1'," : $request .= "null,";// @address
+	$address2 ? $request .= "'$address2'," : $request .= "null,";// $address2
+	$city ? $request .= "'$city'," : $request .= "null,";// @city
+	$state ? $request .= "'$state'," : $request .= "null,";// @state
+	$postal ? $request .= "'$postal'," : $request .= "null,";// @zip
+	$country ? $request .= "'$country'," : $request .= "null,"; // @country
+    $request .= "null,"; // @address_type
+	$phone ? $request .= "'$phone'," : $request .= "null,"; // @home_phone
+    $request .= "null,"; // @business_phone
+    $request .= "null,"; // @fax_phone
+    $request .= "'',"; // @mobile_phone
+	$email ? $request .= "'$email'," : $request .= "null,";// @email
+	$isCorp ? $request .= "'$isCorp'," : $request .= "null,";// @org_rec
+	$donor_type ? $request .= "'$donor_type'," : $request .= "null,"; // @donor_type
+    $request .= "'N',"; // @nomail
+    $request .= "null,"; // @nomail_reason
+    $request .= "null,"; // @narrative
+    $request .= "'GLA API User'"; // @user_id
+    
+    $request = urlencode($request);
+    
+    $donorDetails;
+    try {
+        $donorDetails = simplexml_load_file($request);
+    } catch (Exception $e) {
+        error_log( 'nyc_marathon_form_to_dp error after_submission: ' . print_r( $e, true ) );
+    }
+    
+    return $donorDetails;
+}
+
+function saveDPFlag($donorId, $flag)
+{        
+	$dpAPIKey = DP_API_KEY_STAGING;
+        
+        if (is_wpe()) {
+            $dpAPIKey = DP_API_KEY_LIVE;
+        }
+        
+        $request = DP_API_KEY_URL . $dpAPIKey;
+        $request .= "&action=dp_saveflag_xml&params=";
+        $request .= "'$donorId',"; // @donor_id
+        $request .= "'$flag',"; // @flag
+        $request .= "'GLA API User'"; // @user_id
+        
+        $request = urlencode($request);
+        $flagDetails;
+        try {
+            $flagDetails = simplexml_load_file($request);
+        } catch (Exception $e) {
+	        error_log( 'nyc_marathon_form_to_dp_flag error after_submission: ' . print_r( $e, true ) );
+        }
+    
+    return $flagDetails;
+}
+
+function dp_save_udf_xml( $matching_id, $field_name, $data_type, $char_value, $date_value, $number_value) {
+	
+	$dpAPIKey = DP_API_KEY_STAGING;
+       
+	if (is_wpe()) {
+		$dpAPIKey = DP_API_KEY_LIVE;
+	}
+       
+	$request = DP_API_KEY_URL . $dpAPIKey;
+	$request .= "&action=dp_save_udf_xml&params=";
+	
+	$request .= "'$matching_id',"; // @matching_id numeric Specify either a donor_id value if updating a donor record, a gift_id value if updating a gift record or an other_id value if updating a dpotherinfo table value (see dp_saveotherinfo)
+	$request .= "'$field_name',"; // @field_name Nvarchar(20)
+	$request .= "'$data_type',"; // @data_type Nvarchar(1) C- Character, D-Date, N- Numeric
+	$char_value ? $request .= "'$char_value'," : $request .= "null,"; // @char_value Nvarchar(2000) Null if not a Character field
+	$date_value ? $request .= "'$date_value'," : $request .= "null,"; // @date_value datetime Null if not a Date field
+	$number_value ? $request .= "'$number_value'," : $request .= "null,";// @number_value numeric (18,4) Null if not a Number field
+	$request .= "'GLA API User'"; // @user_id Nvarchar(20) We recommend that you use a name here, such as the name of your API application, for auditing purposes. The user_id value does not need to match the name of an actual DPO user account.
+		
+	$request = urlencode ( $request );
+	$UDFDetails;
+	try {
+		$UDFDetails = simplexml_load_file ( $request );
+	} catch ( Exception $e ) {
+		error_log( 'nyc_marathon_form_to_dp_udf error after_submission: ' . print_r( $e, true ) );
+	}
+	
+	return $UDFDetails;
+}
+
+function dp_clean($string)
+{
+    $replaceArr = array(
+        ',',
+        '#',
+        '&',
+        '+'
+    );
+    
+    // Replace single quotes with double single quotes as mentioned n http://api.warrenbti.com/?q=node/10
+    $string = str_replace("'", "''", $string);
+    return str_replace($replaceArr, "", $string);
+}
+
+function gla_ucwords($string)
+{
+    return str_replace("' ", "'", ucwords(str_replace("'", "' ", $string)));
+}

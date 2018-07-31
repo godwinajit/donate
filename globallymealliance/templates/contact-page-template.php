@@ -64,19 +64,11 @@ get_header();
 
 				echo '<div class="content-form cf">'.do_shortcode('[gravityform id=7 title=false description=false ajax=true tabindex=149]').'</div>';
 
-				echo '<div class="bottom-event-address bottom-event-address-html">
+				echo '<div class="bottom-event-address bottom-event-address-html">';
 
-				<h4>gla mailing address &amp; contact information:</h4>
+				the_field('gla_mailing_address');
 
-				<p>Global Lyme Alliance<br>
-
-				222 Railroad Ave. #2B<br>
-
-				Greenwich, CT 06830<br>
-
-				Phone: <a title="Call" href="tel:2039691333">203.969.1333</a><br>
-
-				</div>';	
+				echo '</div>';	
 
 			?>
 
@@ -105,22 +97,7 @@ get_header();
  </div>
 
     <!-- Subscribe CTA -->
-                <section class="section-subscribe">
-                    <div class="wrapper container-fluid">
-                        <div class="row center-xs">
-                            <div class="col-xs-12 col-sm-11 col-md-10">
-                                <div class="subscribe-form">
-                                    <span class="icon icon-mail sm-visible"></span>
-                                    <h2><?php echo get_field('newsletter_text', 2); ?></h2>
-                                    <div class="form-row">
-	                                         <?php echo do_shortcode('[ctct form="7979"]'); ?> 
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+    <?php get_template_part( 'newsletter', 'form' ); ?>
 
 </div>
 </main>
