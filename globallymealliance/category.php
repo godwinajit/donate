@@ -1,300 +1,244 @@
 <?php
-
 /**
-
- * The template for displaying Category pages
-
+ * The main template file
  *
-
+ * This is the most generic template file in a WordPress theme and one of the
+ * two required files for a theme (the other being style.css).
+ * It is used to display a page when nothing more specific matches a query.
+ * For example, it puts together the home page when no home.php file exists.
+ *
  * @link https://codex.wordpress.org/Template_Hierarchy
-
  *
-
  * @package WordPress
-
  * @subpackage Twenty_Thirteen
-
  * @since Twenty Thirteen 1.0
-
  */
 
-
-
 get_header(); ?>
+<!-- Top banner -->
+<main class="mains">
+<div class="inner-pages search-page search-results-view">
+  <?php 
+    if (has_post_thumbnail()) {
+      $post_page_id = get_option( 'page_for_posts' );
+      $banneurl = wp_get_attachment_url( get_post_thumbnail_id($post_page_id) ); 
+    }else {
+      $banneurl = get_template_directory_uri().'/images/blog-banner-top.jpg';
+    }
+  ?>
 
-<div class="inner-pages">
 
- <?php 
+ <?php //echo do_shortcode('[IconSlider]'); ?>
+ <div class="container-section blog-pages search-results-view">
+  <div class="main main1058">
+  <div class="page">
+        <?php 
 
-	if (has_post_thumbnail()) {
+if(isset($_GET['category']))
 
-		$post_page_id = get_option( 'page_for_posts' );
-
-		$banneurl = wp_get_attachment_url( get_post_thumbnail_id($post_page_id) ); 
-
-	}else {
-
-		$banneurl = get_template_directory_uri().'/images/blog-banner-top.jpg';
-
-	}
-
+{
+   query_posts( array ( 'category_name' => $_GET['category'], 'posts_per_page' => -1 ) );
+   $year =  get_the_date( _x( 'Y', '', 'twentythirteen' ));
+}
 ?>
+      <?php if (!is_paged()) { ?>
 
- <div class="inner-banner" style="background-image:url(<?php echo $banneurl; ?>)">
 
-  <div class="main">
+  <!-- Start Featured Image -->
+      <?php  
+              $newargs = array(
+                  'posts_per_page' => 1,
+                  'meta_key' => 'meta-checkbox',
+                  'meta_value' => 'yes',
+              );
+              $featured = new WP_Query($newargs);
+           
+          if ($featured->have_posts()) : while($featured->have_posts()): $featured->the_post(); ?>
 
-   <div class="breadcrumb">
+       <div class="first-article">
+          <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+            <div class="blog-list-left">
+             <?php if ( ! post_password_required() && ! is_attachment() ) : ?>
+               <?php if ( $redirect_url ) : ?>
+                <a href="<?php echo $redirect_url; ?>" target="_blank" rel="bookmark">
+               <?php else : ?>
+                <a href="<?php the_permalink() ?>" rel="bookmark">  
+               <?php endif; ?>
+               <?php if ( has_post_thumbnail() && ! post_password_required() && ! is_attachment() ) : ?>
+                <?php the_post_thumbnail('blog-list-thumb'); ?>
+               <?php else : ?>
+                <img src="<?php echo get_template_directory_uri(); ?>/images/post-default.jpg" class="attachment-blog-list-thumb wp-post-image" alt="<?php the_title(); ?>" height="304" width="304">
+               <?php endif; ?>
+               </a>
+             <?php endif; ?>
+            </div>
+            <div class="blog-list-right">
+             <div class="entry-meta">
+              <div class="date-n-share cf">
+              <div class="share-div"><?php echo do_shortcode('[sharethis]'); ?></div>
+              <span class="dateofevent">
+               <?php the_time('F j, Y'); ?>
+               </span>
+              </div>
+             </div>
 
-    <?php /* bcn_display(); */ ?>
+              <h2> 
+              <?php if ( $redirect_url ) : ?>
+                <a href="<?php echo $redirect_url; ?>" target="_blank" rel="bookmark">
+              <?php else : ?>
+                <a href="<?php the_permalink() ?>" rel="bookmark">  
+              <?php endif; ?>
+                  <?php echo mb_strimwidth( get_the_title(), 0, 50, '...' ); ?>
 
-   </div>
+                </a> 
+              </h2>
+             <!-- .entry-meta -->
+             
+             <div class="entry-content">
+              <?php
+               the_excerpt(); 
+              ?>
+             </div>
+             <!-- .entry-content -->
+            </div>
+            
+            <!-- .entry-meta --> 
+           </article>
+           </div>
+           <?php endwhile; else:
+          endif;
+          ?>
+<!-- End Featured Image -->
+    <?php } ?>
 
-  </div>
 
- </div>
+<?php if (is_paged()) { ?>
 
- <?php echo do_shortcode('[IconSlider]'); ?>
+  <?php 
+    global $wp_query;
+     $args = array_merge( $wp_query->query_vars, ['posts_per_page' => 9] );
+     query_posts( $args ); ?>
 
- <div class="container-section blog-pages">
+  <?php } ?>
 
-  <div class="main main1196">
+  <?php if (!is_paged()) { ?>
 
-   <div class="content-left content-section-height">
+  <?php 
+    global $wp_query;
+     $args = array_merge( $wp_query->query_vars, ['posts_per_page' => 9] );
+     query_posts( $args ); ?>
 
-    <h1 class="page-title"> <?php printf( __( 'Category Archives: %s', 'twentythirteen' ), single_cat_title( '', false ) ); ?> </h1>
+  <?php } ?>
+
+
 
     <?php if ( have_posts() ) : ?>
 
     <?php /* The loop */ ?>
+        <!-- if paged show this container -->
+      <?php if (is_paged()) {
+        echo '<div class="blog-list-container masonary">';
+      }
+      ?>
 
-    <div class="blog-list-container">
 
-     <?php while ( have_posts() ) : the_post(); ?>
+    <?php while ( have_posts() ) : the_post(); ?>
+           <!-- #post -->
+           <div class="blog-list-container masonary">
+      <!-- show all other articles -->
 
-			<?php 
+             <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+              <div class="blog-list-left">
+               <?php if ( ! post_password_required() && ! is_attachment() ) : ?>
+                 <?php if ( $redirect_url ) : ?>
+                  <a href="<?php echo $redirect_url; ?>" target="_blank" rel="bookmark">
+                 <?php else : ?>
+                  <a href="<?php the_permalink() ?>" rel="bookmark">  
+                 <?php endif; ?>
+                 <?php if ( has_post_thumbnail() && ! post_password_required() && ! is_attachment() ) : ?>
+                  <?php the_post_thumbnail('blog-list-thumb'); ?>
+                 <?php else : ?>
+                  <img src="<?php echo get_template_directory_uri(); ?>/images/post-default.jpg" class="attachment-blog-list-thumb wp-post-image" alt="<?php the_title(); ?>" height="304" width="304">
+                 <?php endif; ?>
+                 </a>
+               <?php endif; ?>
+              </div>
+              <div class="blog-list-right">
+               <div class="entry-meta">
+                <div class="date-n-share cf"><span class="dateofevent">
+                 <?php the_time('F j, Y'); ?>
+                 </span>
+                 <div class="share-div"><?php echo do_shortcode('[sharethis]'); ?></div>
+                </div>
+               </div>
 
-			 $redirect_url = get_field('redirect_url'); 
+                <h2> 
+                <?php if ( $redirect_url ) : ?>
+                  <a href="<?php echo $redirect_url; ?>" target="_blank" rel="bookmark">
+                <?php else : ?>
+                  <a href="<?php the_permalink() ?>" rel="bookmark">  
+                <?php endif; ?>
+                          <?php echo mb_strimwidth( get_the_title(), 0, 50, '...' ); ?>
 
-			?>
-
-     <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-
-      <div class="blog-list-left">
-
-       <?php if ( ! post_password_required() && ! is_attachment() ) : ?>
-
-	       <?php if ( $redirect_url ) : ?>
-
-	       	<a href="<?php echo $redirect_url; ?>" target="_blank" rel="bookmark">
-
-	       <?php else : ?>
-
-	       	<a href="<?php the_permalink() ?>" rel="bookmark">	
-
-	       <?php endif; ?>
-
-	       <?php if ( has_post_thumbnail() && ! post_password_required() && ! is_attachment() ) : ?>
-
-	       	<?php the_post_thumbnail('blog-list-thumb'); ?>
-
-	       <?php else : ?>
-
-	       	<img src="<?php echo get_template_directory_uri(); ?>/images/post-default.jpg" class="attachment-blog-list-thumb wp-post-image" alt="<?php the_title(); ?>" height="304" width="304">
-
-	       <?php endif; ?>
-
-	       </a>
-
-       <?php endif; ?>
-
-      </div>
-
-      <div class="blog-list-right">
-
-       <?php if ( is_single() ) : ?>
-
-       <h3>
-
-        <?php the_title(); ?>
-
-       </h3>
-
-       <?php else : ?>
-
-       <h3> 
-
-       	<?php if ( $redirect_url ) : ?>
-
-       		<a href="<?php echo $redirect_url; ?>" target="_blank" rel="bookmark">
-
-       	<?php else : ?>
-
-       		<a href="<?php the_permalink() ?>" rel="bookmark">	
-
-       	<?php endif; ?>
-
-        <?php the_title(); ?>
-
-        </a> </h3>
-
-       <?php endif; // is_single() ?>
-
-       <div class="entry-meta">
-
-        <div class="date-n-share cf"><span class="dateofevent">
-
-         <?php the_time('F j, Y'); ?>
-
-         </span>
-
-         <div class="share-div"><?php echo do_shortcode('[sharethis]'); ?></div>
-
-         <?php //twentythirteen_entry_meta(); ?>
-
-         <?php //edit_post_link( __( 'Edit', 'twentythirteen' ), '<span class="edit-link">', '</span>' ); ?>
-
+                  </a> 
+                </h2>
+               <!-- .entry-meta -->
+               
+               <div class="entry-content">
+                <?php
+                 the_excerpt(); 
+                ?>
+               </div>
+               <!-- .entry-content -->
+              </div>
+              
+              <!-- .entry-meta --> 
+             </article>
         </div>
-
-       </div>
-
-       <!-- .entry-meta -->
-
-       
-
-       <?php if ( is_search() ) : // Only display Excerpts for Search ?>
-
-       <div class="entry-content">
-
-        <?php the_excerpt(); ?>
-
-       </div>
-
-       <!-- .entry-content -->
-
-       <?php else : ?>
-
-       <div class="entry-content">
-
-        <?php
-
-			/* translators: %s: Name of current post */
-
-			if(is_home()){
-
-				 the_excerpt();	
-
-			}else{
-
-				the_content( sprintf(
-
-				__( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'twentythirteen' ),
-
-				the_title( '<span class="screen-reader-text">', '</span>', false )
-
-			) );
-
-
-
-			wp_link_pages( array( 'before' => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'twentythirteen' ) . '</span>', 'after' => '</div>', 'link_before' => '<span>', 'link_after' => '</span>' ) ); 	
-
-			}
-
-			
-
-		?>
-
-       </div>
-
-       <!-- .entry-content -->
-
-       <?php endif; ?>
-
-      </div>
-
-      
-
-      <!-- .entry-meta --> 
-
-     </article>
-
-     <!-- #post -->
-
-     
-
+        
+    
+             <!-- #post -->
      <?php endwhile; ?>
-
-    </div>
-
-    <?php //twentythirteen_paging_nav(); ?>
-
-    <?php wp_pagenavi(); ?>
-
-    <?php else : ?>
-
-    <?php get_template_part( 'content', 'none' ); ?>
-
-    <?php endif; ?>
-
-   </div>
-
-   <div class="aside-right content-section-height">
-
-    <?php 
-
-    get_all_post_archive_category(); 
-
-   ?>
-
-    <?php dynamic_sidebar('blogvideo-sidebar'); ?>
-
-    <?php dynamic_sidebar('ga-sidebar'); ?>
-
-   </div>
-
-  </div>
-
-  <!-- #content --> 
-
- </div>
-
- <!-- #primary -->
-
- 
-
- <div class="sign-up-news-t">
-
-  <div class="main">
-
-   <div class="sign-up-news-container cf">
-
-    <div class="sign-uplabel"><?php echo get_field('newsletter_text', 2); ?></div>
-
-    <div class="gf_browser_gecko gform_wrapper"> 
-
-     
-
-     <!-- Constant Contact Start --> 
-
-	                                         <?php echo do_shortcode('[ctct form="7979"]'); ?> 
-
-     
-
-     <!-- Constant Contact End --> 
-
-    </div>
-
-   </div>
-
-  </div>
-
- </div>
-
+             <!-- close div if first next page -->
 </div>
-
+    <?php //twentythirteen_paging_nav(); ?>
+    </div>
+    </div>
+    <?php wp_pagenavi(); ?>
+    <?php else : ?>
+    <?php get_template_part( 'content', 'none' ); ?>
+    <?php endif; ?>
+   </div>
+   <!--div class="aside-right content-section-height">
+    <?php 
+    //get_all_post_archive_category(); 
+    //echo do_shortcode('[archive_category id=""]');
+   ?>
+   
+    <?php //dynamic_sidebar('blogvideo-sidebar'); ?>
+    <?php //dynamic_sidebar('ga-sidebar'); ?>
+   </div-->
+  </div>
+  <!-- #content --> 
+ </div>
+ </div>
+   <!-- Subscribe CTA -->
+                <section class="section-subscribe">
+                    <div class="wrapper container-fluid">
+                        <div class="row center-xs">
+                            <div class="col-xs-12 col-sm-11 col-md-10">
+                                <div class="subscribe-form">
+                                    <span class="icon icon-mail sm-visible"></span>
+                                    <h2><?php echo get_field('newsletter_text', 2); ?></h2>
+                                    <div class="form-row">
+	                                         <?php echo do_shortcode('[ctct form="7979"]'); ?> 
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+</div>
+</main>
 <?php get_footer(); ?>
-
-
-
-
-

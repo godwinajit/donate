@@ -161,173 +161,98 @@ get_header();
                 
 
                 <!-- Section News -->
-                <?php
-                  $recent_news_title = get_field('recent_news_title');
-                  $recent_news_desc = get_field('recent_news_desc');
-                  $recent_news_image_1 = get_field('recent_news_image_1');
-                  $recent_news_image_2 = get_field('recent_news_image_2');
-                  $recent_news_image_3 = get_field('recent_news_image_3');
-                  $recent_news_image_4 = get_field('recent_news_image_4');
-
-                ?>
                  <section class="section-news">
                     <div class="wrapper container-fluid">
                         <div class="row center-xs">
-                            <div class="col-xs-10">
-                                <h2><?php echo $recent_news_title; ?></h2>
-                                <h3><?php echo $recent_news_desc; ?></h3>
+                            <div class="col-xs-10 col-md-8 col-lg-7">
+                                <h2><?php the_field('news_section_title');?></h2>
                             </div>
                         </div>
                     </div>
 
-                <!-- News Block -->
-                    <div class="news-block">
-                        <div class="row">
-                            <div class="col-xs-6 col-md-4">
-                               <?php $select_news_title = get_field('select_news_title');
-                                  $select_news = get_field('select_news'); ?>
-                                
-                                  <?php 
-                                  if( $select_news ){
-                                    $post = $select_news;
-                                    setup_postdata( $post );
-                                    $thumbnail_image = get_field('thumbnail_image');
-                                  ?>   
-                                    <a class="news-box-link" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-                                    <div class="news-box news-box-image">
-                                      <div class="bg-stretch" style="background: #fff url('<?php echo $recent_news_image_1; ?>')  50% 50% no-repeat;  background-size: cover;"></div>                                 
-                                      </div>
-                                    <div class="news-box arrow-top">
-                                    <span class="text-holder">
-                                        <strong class="subtitle"><?php echo $select_news_title; ?></strong>
-                                        <span class="title"><?php the_title(); ?></span>
-                                    </span>
-                                    </div>
-                                    </a>
-
-                               <?php
-                                  }
-                                  wp_reset_postdata();
-                                ?>
-
-                                <a href="<?php echo get_field('video_link'); ?>" class="news-box news-box-video">
-<div class="bg-stretch" style="background: #fff url('<?php echo $recent_news_image_4; ?>')  50% 50% no-repeat; background-size: cover;"></div>
-                                    <span class="icon icon-play-circle"></span>
-                                </a>
-                            </div>
-
-
-
-
-                            <div class="col-xs-6 col-md-4">
-                            <?php $select_blog_title = get_field('select_blog_title');
-                            $select_blog = get_field('select_blog'); ?>
-                                
-                                  <?php 
-                                  if( $select_blog ){
-                                    $post = $select_blog;
-                                    setup_postdata( $post );
-                                    $thumbnail_image = get_field('thumbnail_image');
-                                  ?>                                
-                                    <a href="<?php the_permalink(); ?>" class="news-box-link">
-                                    <div class="news-box arrow-bottom">
-                                      <span class="text-holder">
-                                         <strong class="subtitle"><?php echo $select_blog_title; ?></strong>
-                                         <span class="title"><?php the_title(); ?></span>
-                                      </span>
-                                    </div>
-                                    <div class="news-box news-box-high news-box-image">
-                                          <div class="bg-stretch" style="background: #fff url('<?php echo $recent_news_image_3 ?>')  50% 50% no-repeat; background-size: cover;"></div>
-                                   </div>
-                                  </a>
-                                 
-                                  <?php
-                                  }
-                                  wp_reset_postdata();
-                                ?>
-                            </div>
-
-                            <div class="col-xs-12 col-md-4">
-                                    <?php $select_news_title_2 = get_field('select_news_title_2');
-                                    $select_news_2 = get_field('select_news_2'); ?>
-                                            <?php 
-                                        if( $select_news_2 ){
-                                          $post = $select_news_2;
-                                          setup_postdata( $post );
-                                          $thumbnail_image = get_field('thumbnail_image');
- 
-                                       ?>
-                                            <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="news-box-link">
-                                              <div class="news-box news-box-short news-box-image">
-                                                  <div class="bg-stretch" style="background: #fff url('<?php echo $recent_news_image_2; ?>') 50% 50% no-repeat; background-size: cover;">
-                                                    
-                                                  </div>
-                                              </div>
-                                               <div class="news-box news-box-short arrow-top-desktop arrow-right-mobile">
-                                                  <span class="text-holder">
-                                                       <strong class="subtitle"><?php echo $select_news_title_2; ?></strong>
-                                                       <span class="title"><?php the_title(); ?></span>
-                                                  </span>
-                                              </div>
-                                         
-
-                                              </a>
-                                          
-                                            <?php
-                                          }
-                                          wp_reset_postdata();
-                                        ?>
-
-                                  <!-- twitter box -->
-                                <?php
-                                                if(is_active_sidebar('twitter-home')){
-                                                  dynamic_sidebar('twitter-home');
-                                                }
-                                              ?>
-                            </div>
-                        </div>
-
-
-                        <!-- Social Block -->
-                          <?php
-                            $like_us_on_facebook_title = get_field('like_us_on_facebook_title');
-                            $like_us_on_facebook_link = get_field('like_us_on_facebook_link');
-                            $twitter_title = get_field('twitter_title');
-                            $twitter_button_link = get_field('twitter_button_link');
-                            $watch_video_title = get_field('watch_video_title');
-                            $video_link = get_field('video_link');
-                         ?>
-                        <div class="social-block">
+                    <!-- News Block -->
+                    <div class="news-items">
+                        <div class="wrapper">
                             <div class="row">
-                                <div class="col-xs-4">
-                                    <a href="<?php echo $video_link; ?>" class="social-box social-box-youtube">
-                                        <span class="social-holder">
-                                            <span class="icon icon-play-circle"></span>
-                                            <strong class="title md-visible"><?php echo  $watch_video_title; ?></strong>
-                                        </span>
-                                    </a>
+                                <?php
+                                if( have_rows('news_section_content') ):
+                                    while ( have_rows('news_section_content') ) : the_row();
+                                ?>
+                                <div class="item col-xs-6 col-md-3">
+                                   <div class="pic" style="background-image: url('<?php the_sub_field('news_image'); ?>');"></div>
+                                   <strong class="category">
+                                       <?php if( get_sub_field('news_category_url') != '' ) {?>
+                                       <a href="<?php the_sub_field('news_category_url'); ?>"><?php the_sub_field('news_category'); ?></a>
+                                       <?php } else {?>
+                                           <?php the_sub_field('news_category'); ?>
+                                       <?php }?>
+                                   </strong>
+                                   <h3>
+                                       <?php if( get_sub_field('news_link') != '' ) {?>
+                                       <a href="<?php the_sub_field('news_link'); ?>"><?php the_sub_field('news_title'); ?></a>
+                                       <?php } else {?>
+                                           <?php the_sub_field('news_title'); ?>
+                                       <?php }?>
+                                   </h3>
                                 </div>
-                                <div class="col-xs-4">
-                                    <a href="<?php echo $like_us_on_facebook_link; ?>" title="Like Us On Facebook" target="_blank" rel="nofollow" class="social-box social-box-facebook">
-                                        <span class="social-holder">
-                                            <span class="icon icon-facebook-square"></span>
-                                            <strong class="title md-visible"><?php echo $like_us_on_facebook_title; ?> </strong>
-                                        </span>
-                                    </a>
-                                </div>
-                                <div class="col-xs-4">
-                                    <a href="<?php echo $twitter_button_link; ?>" class="social-box social-box-twitter">
-                                        <span class="social-holder">
-                                            <span class="icon icon-twitter"></span>
-                                            <strong class="title md-visible"><?php echo $twitter_title; ?></strong>
-                                        </span>
-                                    </a>
+                                <?php
+                                    endwhile;
+                                endif;
+                                ?>
+                            </div>
+
+
+                            <!-- Social Block -->
+                              <?php
+                                $like_us_on_facebook_title = get_field('like_us_on_facebook_title');
+                                $like_us_on_facebook_link = get_field('like_us_on_facebook_link');
+                                $twitter_title = get_field('twitter_title');
+                                $twitter_button_link = get_field('twitter_button_link');
+                                $watch_video_title = get_field('watch_video_title');
+                                $video_link = get_field('video_link');
+                                $instagram_title = get_field('instagram_title');
+                                $instagram_link = get_field('instagram_link');
+                             ?>
+                            <div class="social-block">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <a href="<?php echo $video_link; ?>" title="<?php echo $watch_video_title; ?>" class="social-box social-box-youtube">
+                                            <span class="social-holder">
+                                                <span class="icon icon-play-circle"></span>
+                                                <strong class="title md-visible"><?php echo  $watch_video_title; ?></strong>
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <a href="<?php echo $like_us_on_facebook_link; ?>" title="<?php echo $like_us_on_facebook_title; ?>" target="_blank" rel="nofollow" class="social-box social-box-facebook">
+                                            <span class="social-holder">
+                                                <span class="icon icon-facebook-square"></span>
+                                                <strong class="title md-visible"><?php echo $like_us_on_facebook_title; ?> </strong>
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <a href="<?php echo $twitter_button_link; ?>" title="<?php echo $twitter_title; ?>" target="_blank" rel="nofollow" class="social-box social-box-twitter">
+                                            <span class="social-holder">
+                                                <span class="icon icon-twitter"></span>
+                                                <strong class="title md-visible"><?php echo $twitter_title; ?></strong>
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <a href="<?php echo $instagram_link; ?>"  title="<?php echo $instagram_title; ?>" target="_blank" rel="nofollow" class="social-box social-box-instagram">
+                                            <span class="social-holder">
+                                                <span class="icon icon-instagram"></span>
+                                                <strong class="title md-visible"><?php echo $instagram_title; ?></strong>
+                                            </span>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
-                <!-- Subscribe CTA -->
-                <?php get_template_part( 'newsletter', 'form' ); ?>
+                  <!-- Subscribe CTA -->
+                  <?php get_template_part( 'newsletter', 'form' ); ?>
 </main>
 <?php get_footer(); ?>

@@ -4503,6 +4503,14 @@ top
 	color: #4c8fcf
 }
 
+.social-block .social-box-instagram {
+	color: #d93175
+}
+
+.social-block .social-box-instagram:hover {
+	color: #a62659
+}
+
 @media only screen and (min-width:768px) {
 	.social-block .social-box {
 		padding-top: 100%

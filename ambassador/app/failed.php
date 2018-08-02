@@ -37,7 +37,7 @@ include ('../../wp-load.php');
 	</div>				
                 </div>
 </main>
-<!-- Subscribe CTA -->
+<!-- Subscribe CTA 
 <section class="section-subscribe">
 	<div class="wrapper container-fluid">
 		<div class="row center-xs">
@@ -52,7 +52,7 @@ include ('../../wp-load.php');
 			</div>
 		</div>
 	</div>
-</section>
+</section> -->
 <script src="js/jquery-1.11.2.min.js"></script>
 <script src="/ambassador/app/js/main.js"></script>
 <?php get_template_part( 'ambassadorfooter' ); ?>
