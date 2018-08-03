@@ -469,7 +469,7 @@ function submit_form_to_dp( $post ) {
 	$postal = $post['zip'];
 	$homePhone = $post['telephone_1'];
 
-	$matchingDonors = handleMatchingDonorByEmail($email, 'Ambassador Form');
+	$matchingDonors = handleMatchingDonorByEmail($email, 'Ambassador Form', null, $firstName, $lastName, null, null, $country, $address1, null, $city, null, $state, $postal, $homePhone, null, null, $dob_date_value, null, null, null, null, null, null);
 
 	if( !count($matchingDonors) ){
 		$donorDetails = saveDonor( null, $firstName, $lastName, $email, null, null, $country, $address1, null, $city, null, $state, $postal, $homePhone, null );
