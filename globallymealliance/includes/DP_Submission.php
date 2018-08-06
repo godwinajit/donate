@@ -7,7 +7,7 @@ if (is_wpe()) {
 	define('NOTIFICATION_BCC_EMAIL','goliver@mindtrustlabs.com');
 }else{
 	define('DP_API_KEY', 'je%2bXp6cgiCJxfTn0mJV03Nmxigk67oGD2RwFtAlAmjjHxyZYMHS1KhaMRZICl6hi0IhfD76St3UKnS74HUORHf48DNJB1OBs5KD2bGE5zGPbX8pQbuR5Vggp4STJvOXy' );
-	define('NOTIFICATION_TO_EMAIL','Casie.Richardson@globallymealliance.org');
+	define('NOTIFICATION_TO_EMAIL','goliver@mindtrustlabs.com');
 	define('NOTIFICATION_BCC_EMAIL','goliver@mindtrustlabs.com');
 }
 
@@ -27,7 +27,7 @@ function add_your_support_group_to_dp( $entry, $form ) {
 	$website = rgar( $entry, '10' );
 	$homePhone = rgar( $entry, '9' );
 
-	$matchingDonors = handleMatchingDonorByEmail($email, $form['title']);
+	$matchingDonors = handleMatchingDonorByEmail($email, $form['title'], null, $firstName, $lastName, null, null, $country, $address1, null, $city, $cityStateProvince, $state, $postal, $homePhone, null, $website, null, null, null, null, null, null, null, null, null, null, null, null);
 
 	if( !count($matchingDonors) ){
 		$donorDetails = saveDonor( null, $firstName, $lastName, $email, null, null, $country, $address1, null, $city, $cityStateProvince, $state, $postal, $homePhone, null );
@@ -65,7 +65,7 @@ function nyc_marathon_form_to_dp( $entry, $form ) {
 	$postal = rgar( $entry, '19' );
 	$dob_date_value = rgar( $entry, '4' );
 
-	$matchingDonors = handleMatchingDonorByEmail($email, $form['title']);
+	$matchingDonors = handleMatchingDonorByEmail($email, $form['title'], null, $firstName, $lastName, null, null, $country, $address1, null, $city, $cityStateProvince, $state, $postal, null, null, null, $dob_date_value, null, null, null, null, null, null, null, null, null, null, null);
 
 	if( !count($matchingDonors) ){
 		$donorDetails = saveDonor( null, $firstName, $lastName, $email, null, null, $country, $address1, null, $city, $cityStateProvince, $state, $postal, null, null );
@@ -109,7 +109,7 @@ function req_a_company_pre_to_dp( $entry, $form ) {
 	$professionalTitle = rgar( $entry, '4' );
 	$employer = rgar( $entry, '2' );
 
-	$matchingDonors = handleMatchingDonorByEmail($email, $form['title']);
+	$matchingDonors = handleMatchingDonorByEmail($email, $form['title'], null, $firstName, $lastName, null, null, $country, $address1, null, $city, $cityStateProvince, $state, $postal, null, $professionalTitle, null, null, $employer, null, null, null, null, null, null, null, null, null, null);
 
 	if( !count($matchingDonors) ){
 		$donorDetails = saveDonor( null, $firstName, $lastName, $email, null, null, $country, $address1, null, $city, $cityStateProvince, $state, $postal, null, $professionalTitle );
@@ -173,7 +173,7 @@ function contact_us_to_dp( $entry, $form ) {
 		$iamFlag = 'MDA';
 	}
 
-	$matchingDonors = handleMatchingDonorByEmail($email, $form['title']);
+	$matchingDonors = handleMatchingDonorByEmail($email, $form['title'], null, $firstName, $lastName, null, null, $country, $address1, $address2, $city, $cityStateProvince, $state, $postal, null, null, null, null, null, null, null, null, null, null, null, null, null, null, $iam);
 
 	if( !count($matchingDonors) ){
 		$donorDetails = saveDonor( null, $firstName, $lastName, $email, null, null, $country, $address1, $address2, $city, $cityStateProvince, $state, $postal, null, null );
@@ -243,7 +243,7 @@ function digital_education_form_to_dp( $entry, $form ) {
 		$iamFlag = 'MDA';
 	}
 
-	$matchingDonors = handleMatchingDonorByEmail($email, $form['title']);
+	$matchingDonors = handleMatchingDonorByEmail($email, $form['title'], null, $firstName, $lastName, null, null, $country, $address1, null, $city, $cityStateProvince, $state, $postal, null, null, null, null, null, null, null, null, null, null, null, null, null, null, $iam);
 
 	if( !count($matchingDonors) ){
 		$donorDetails = saveDonor( null, $firstName, $lastName, $email, null, null, $country, $address1, null, $city, $cityStateProvince, $state, $postal, null, null );
@@ -314,7 +314,7 @@ function download_free_resources_to_dp( $entry, $form ) {
 		$iamFlag = 'MDA';
 	}
 
-	$matchingDonors = handleMatchingDonorByEmail($email, $form['title']);
+	$matchingDonors = handleMatchingDonorByEmail($email, $form['title'], null, $firstName, $lastName, null, null, $country, $address1, null, $city, $cityStateProvince, $state, $postal, null, null, null, null, null, null, null, null, null, null, null, null, null, null, $iam);
 
 	if( !count($matchingDonors) ){
 		$donorDetails = saveDonor( null, $firstName, $lastName, $email, null, null, $country, $address1, null, $city, $cityStateProvince, $state, $postal, null, null );
@@ -378,7 +378,7 @@ function down_teach_student_resources_to_dp( $entry, $form ) {
 		$occupationCode = 'OTH';
 	}
 
-	$matchingDonors = handleMatchingDonorByEmail($email, $form['title']);
+	$matchingDonors = handleMatchingDonorByEmail($email, $form['title'], null, $firstName, $lastName, null, null, $country, $address1, null, $city, $cityStateProvince, $state, $postal, null, null, null, null, null, $curriculum1, $curriculum2, $curriculum3, $curriculum4, $occupation , null, null, null, null, null);
 
 	if( !count($matchingDonors) ){
 		$donorDetails = saveDonor( null, $firstName, $lastName, $email, null, null, $country, $address1, null, $city, $cityStateProvince, $state, $postal, null, null );
@@ -464,7 +464,7 @@ function find_a_medical_pro_to_dp( $entry, $form ) {
 		$iamFlag = 'MDA';
 	}
 
-	$matchingDonors = handleMatchingDonorByEmail($email, $form['title']);
+	$matchingDonors = handleMatchingDonorByEmail($email, $form['title'], null, $firstName, $lastName, null, null, $country, $address1, $address2, $city, $cityStateProvince, $state, $postal, null, null, null, null, null, null, null, null, null, null, null, null, null, null, $iam);
 
 	if( !count($matchingDonors) ){
 		$donorDetails = saveDonor( null, $firstName, $lastName, $email, null, null, $country, $address1, $address2, $city, $cityStateProvince, $state, $postal, null, null );
@@ -534,7 +534,7 @@ function view_video_resources_to_dp( $entry, $form ) {
 		$iamFlag = 'MDA';
 	}
 
-	$matchingDonors = handleMatchingDonorByEmail($email, $form['title']);
+	$matchingDonors = handleMatchingDonorByEmail($email, $form['title'], null, $firstName, $lastName, null, null, $country, $address1, null, $city, $cityStateProvince, $state, $postal, null, null, null, null, null, null, null, null, null, null, null, null, null, null, $iam);
 
 	if( !count($matchingDonors) ){
 		$donorDetails = saveDonor( null, $firstName, $lastName, $email, null, null, $country, $address1, null, $city, $cityStateProvince, $state, $postal, null, null );
@@ -572,7 +572,7 @@ function dp_newsletter_to_dp( $entry, $form ) {
 	$lastName = rgar( $entry, '2' );
 	$email = rgar( $entry, '4' );
 
-	$matchingDonors = handleMatchingDonorByEmail($email, $form['title']);
+	$matchingDonors = handleMatchingDonorByEmail($email, $form['title'], null, null, null, null, null, null, null, null, null,null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 
 	if( !count($matchingDonors) ){
 		$donorDetails = saveDonor( null, $firstName, $lastName, $email, null, null, null, null, null, null,null, null, null, null, null );
@@ -593,7 +593,7 @@ function dp_newsletter_to_dp( $entry, $form ) {
 	}
 }
 
-// Sponsor a Lyme prevention educational program Form
+// sponsor a Lyme prevention educational program Form
 add_action( 'gform_after_submission_15', 'spon_a_lyme_prevention_edu_prog_to_dp', 10, 2 );
 function spon_a_lyme_prevention_edu_prog_to_dp( $entry, $form ) {
 
@@ -612,7 +612,7 @@ function spon_a_lyme_prevention_edu_prog_to_dp( $entry, $form ) {
 	$sponsorship3 = rgar( $entry, '8.3' );
 	$sponsorship4 = rgar( $entry, '8.4' );
 
-	$matchingDonors = handleMatchingDonorByEmail($email, $form['title']);
+	$matchingDonors = handleMatchingDonorByEmail($email, $form['title'], null, $firstName, $lastName, null, null, $country, $address1, null, $city, $cityStateProvince, $state, $postal, null, null, null, null, $employer, null, null, null, null, null, $sponsorship1, $sponsorship2, $sponsorship3, $sponsorship4, null);
 
 	if( !count($matchingDonors) ){
 		$donorDetails = saveDonor( null, $firstName, $lastName, $email, null, null, $country, $address1, null, $city, $cityStateProvince, $state, $postal, null, null );
@@ -798,7 +798,7 @@ function dp_save_udf_xml( $matching_id, $field_name, $data_type, $char_value, $d
 }
 
 
-function handleMatchingDonorByEmail($email, $formTitle)
+function handleMatchingDonorByEmail($email, $formTitle, $title = null, $firstName = null, $lastName = null, $isCorp = null, $companyName = null, $country = null, $address1 = null, $address2 = null, $city = null, $cityStateProvince = null, $state = null, $postal = null, $phone = null , $professionalTitle = null, $website = null, $dob_date_value = null, $employer = null, $curriculum1 = null, $curriculum2 = null, $curriculum3 = null, $curriculum4 = null, $occupationCode = null, $sponsorship1 = null, $sponsorship2 = null, $sponsorship3 = null, $sponsorship4 = null, $iam = null)
 {
         $emailPost = $email . '%';
 
@@ -833,7 +833,35 @@ function handleMatchingDonorByEmail($email, $formTitle)
 			$subject = 'Duplicate Donor Submission from GLA Form';
 			$message = 'Duplicate Donor Found for mail Id: '.$email."\n\n";
 			$message .= 'Form Name: '.$formTitle."\n\n";
-			$message .= 'Duplicate Donor Ids: '.implode (", ", $matchingDonor);;
+			$message .= 'Duplicate Donor Ids: '.implode (", ", $matchingDonor)."\n\n";
+			$title ? $message .= 'Title: '.$title."\n\n" : '';
+			$firstName ? $message .= 'First Name: '.$firstName."\n\n" : '';
+			$lastName ? $message .= 'Last Name: '.$lastName."\n\n" : '';
+			$isCorp ? $message .= 'Is Corp: '.$isCorp."\n\n" : '';
+			$companyName ? $message .= 'Company Name: '.$companyName."\n\n" : '';
+			$country ? $message .= 'Country: '.$country."\n\n" : '';
+			$address1 ? $message .= 'Address1: '.$address1."\n\n" : '';
+			$address2 ? $message .= 'Address2: '.$address2."\n\n" : '';
+			$city ? $message .= 'City: '.$city."\n\n" : '';
+			$cityStateProvince ? $message .= 'City/State/Province: '.$cityStateProvince."\n\n" : '';
+			$state ? $message .= 'State: '.$state."\n\n" : '';
+			$postal ? $message .= 'Postal: '.$postal."\n\n" : '';
+			$phone ? $message .= 'Phone: '.$phone."\n\n" : '';
+			$professionalTitle ? $message .= 'Professional Title: '.$professionalTitle."\n\n" : '';
+			$website ? $message .= 'Website: '.$website."\n\n" : '';
+			$dob_date_value ? $message .= 'DOB: '.$dob_date_value."\n\n" : '';
+			$employer ? $message .= 'Employer: '.$employer."\n\n" : '';
+			$curriculum1 ? $message .= 'Curriculum: '.$curriculum1."\n\n" : '';
+			$curriculum2 ? $message .= 'Curriculum: '.$curriculum2."\n\n" : '';
+			$curriculum3 ? $message .= 'Curriculum: '.$curriculum3."\n\n" : '';
+			$curriculum4 ? $message .= 'Curriculum: '.$curriculum4."\n\n" : '';
+			$occupationCode ? $message .= 'Occupation: '.$occupationCode."\n\n" : '';
+			$sponsorship1 ? $message .= 'Sponsorship Interest: '.$sponsorship1."\n\n" : '';
+			$sponsorship2 ? $message .= 'Sponsorship Interest: '.$sponsorship2."\n\n" : '';
+			$sponsorship3 ? $message .= 'Sponsorship Interest: '.$sponsorship3."\n\n" : '';
+			$sponsorship4 ? $message .= 'Sponsorship Interest: '.$sponsorship4."\n\n" : '';
+			$iam ? $message .= 'I Am: '.$iam."\n\n" : '';
+
 
 			wp_mail( $to, $subject, $message, $headers);
 		}
