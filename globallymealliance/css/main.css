@@ -6198,3 +6198,35 @@ body>.jcf-select-drop.jcf-drop-flipped {
 .block .descript em {
 	font-style: normal;
 }
+
+/* fix alignment of social links */
+@media only screen and (min-width:1024px) {
+	.social-block {
+		padding-left: 84px;
+		padding-right: 84px;
+	}
+	.social-block .row {
+		-webkit-flex-wrap: nowrap;
+		-ms-flex-wrap: nowrap;
+		flex-wrap: nowrap;
+		-webkit-justify-content: space-around;
+		-ms-flex-pack: distribute;
+		justify-content: space-around;
+	}
+	.social-block .social-box {
+		padding-top: 27px;
+		padding-bottom: 26px;
+	}
+	.social-block .social-box .social-holder {
+		position: static;
+	}
+	.social-block .col-xs-3 {
+		width: auto;
+		max-width: none;
+		-ms-flex-preferred-size: auto;
+		flex-basis: auto;
+	}
+	.social-block .social-box .title {
+		white-space: nowrap;
+	}
+}
