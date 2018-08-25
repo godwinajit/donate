@@ -1,0 +1,137 @@
+.block {
+	border: 1px solid $block-border-color;
+	border-radius: $block-border-radius;
+	background: $white;
+	max-width: 300px;
+	margin: 20px auto 0;
+	&:first-child {
+		margin-top: 0;
+	}
+	> a {
+		display: block;
+		&:hover {
+			box-shadow: 0 4px 17px 0 rgba(0,0,0,0.7);
+			strong:after {
+				margin-right: -4px;
+			}
+		}
+	}
+	img {
+		vertical-align: top;
+		border-radius: $block-border-radius $block-border-radius 0 0;
+	}
+	.pic {
+		position: relative;
+		display: block;
+		border-bottom: 1px solid $block-border-color;
+	}
+	.descript {
+		color: $dark-gray;
+		padding: 20px 16px 24px;
+		font-size: $l-font-size;
+		line-height: $base-line-height;
+		letter-spacing: 1.2px;
+		display: block;
+		strong {
+			color: $block-tilte-color;
+			text-transform: uppercase;
+			display: block;
+			font-size: $l-font-size + 4;
+			line-height: $l-font-size + 8;
+			padding-bottom: 2px;
+			letter-spacing: 1.5px;
+		}
+		em {
+			font-style: normal;
+		}
+	}
+	&.program {
+		.descript {
+			letter-spacing: 0;
+			strong {
+				position: relative;
+				font-size: 20px;
+				line-height: 24px;
+				letter-spacing: .5px;
+				margin-bottom: 8px;
+				padding-right: 35px;
+				&:after {
+					content: "";
+					position: absolute;
+					top: 50%;
+					right: 0;
+					margin-top: -8px;
+					width: 28px;
+					height: 17px;
+					background: url('../images/icon-more.png') no-repeat;
+					background-size: 28px 17px;
+					transition: margin-right .25s ease-out;
+				}
+				&,
+				a {
+					color: #4c8fcf;
+					display: block;
+				}
+				a {
+					&:hover,
+					&:focus {
+						color: $dark-blue;
+					}
+					&:hover {
+						&:after {
+							margin-right: -4px;
+						}
+					}
+				}
+			}
+			em {
+				font: 14px/18px "Roboto", Arial, Helvetica, sans-serif;
+			}
+		}
+	}
+	&-text,
+	.container-section &-text {
+		max-width: 300px;
+		margin: 20px auto 0;
+		background: #f3f7fb;
+		text-align: center;
+		border: 1px solid #e1e1e1;
+		border-radius: 4px;
+		&:first-child {
+			margin-top: 0;
+		}
+		img:first-child,
+		h3:first-child {
+			border-radius: 4px 4px 0 0;
+		}
+		h3 {
+			color: #fff;
+			background: #054977;
+			padding: 15px 3px;
+			font: 700 24px/30px 'Roboto Condensed', Arial, sans-serif;
+		}
+		img {
+			width: 100%;
+			height: auto;
+			display: block;
+		}
+		p {
+			color: #6d6d6d;
+			font-size: 16px;
+			line-height: 20px;
+			margin: 0 0 10px;
+		}
+		.descript {
+			padding: 20px 15px 24px;
+		}
+	}
+}
+a.btn.btn-blue {
+	color: #fff;
+	background: #4c8fcf;
+	font-size: 20px;
+	&:hover {
+		color: #fff;
+		background: #054977;
+	}
+}
