@@ -36,6 +36,34 @@ form{
         }
     }
 
+    textarea {
+        display: block;
+        width: 100%;
+        background: $white;
+        border: 1px solid #acacac;
+        font-size: floor($base-font-size * 0.91);
+        line-height: $base-line-height;
+        padding: 9px 14px;
+        height: 35px;
+        color: $black;
+        border-radius: 4px;
+        @extend %transition;
+        margin-bottom: 17px;
+        resize: vertical;
+        @include placeholder{
+            color: #d6d6d6;
+        }
+
+        &:focus,
+        &:active{
+            border-color: $green;
+
+            @include placeholder{
+                color: transparent;
+            }
+        }
+    }
+
     input[type=submit],
     input[type=button]{
         border: 0;
@@ -69,11 +97,16 @@ form{
     }
 
     @media only screen and (min-width: $screen-sm){
-        input:not([type=submit],[type=button]){
+        input:not([type=submit],[type=button]), textarea{
             font-size: floor($base-font-size * 1.71);
             padding: 20px 28px;
             height: 70px;
             margin-bottom: 15px;
+        }
+
+        textarea {
+            min-height: 170px;
+            height: 170px;
         }
 
         label{
@@ -86,11 +119,16 @@ form{
     }
 
     @media only screen and (min-width: $screen-md){
-        input:not([type=submit],[type=button]){
+        input:not([type=submit],[type=button]), textarea{
             font-size: floor($base-font-size * 1.71);
             padding: 15px 28px;
             height: 60px;
             margin-bottom: 16px;
+        }
+
+        textarea {
+            min-height: 170px;
+            height: 170px;
         }
 
         label{

@@ -7,7 +7,6 @@ $bannerImage = wp_get_attachment_image_src($bannerurlId, 'banner-top')[0];
 
 if (!$bannerImage)
 $bannerImage = $bannerImageurl;
-
 global $wp_query;
 $args = array_merge( $wp_query->query_vars, ['posts_per_page' => 8] );
 query_posts( $args );
@@ -78,7 +77,7 @@ query_posts( $args );
 												<?php echo mb_strimwidth( get_the_content(), 0, 250, '...' ); ?>
 											</div>
 											<div class="resources-cat-readmore">
-												<a class="read-more" href="<?php the_permalink() ?>" target="_blank" title="Read More">READ MORE</a>
+												<a class="read-more" href="<?php the_permalink() ?>" title="Read More">READ MORE</a>
 											</div>
 										</div>
 										<?php endif; ?>
@@ -94,7 +93,21 @@ query_posts( $args );
 		</div>
 	</div>
 	<!-- Subscribe CTA -->
-    <?php get_template_part( 'newsletter', 'form' ); ?>
+	<section class="section-subscribe">
+		<div class="wrapper container-fluid">
+			<div class="row center-xs">
+				<div class="col-xs-12 col-sm-11 col-md-10">
+					<div class="subscribe-form">
+						<span class="icon icon-mail sm-visible"></span>
+						<h2><?php echo get_field('newsletter_text', 2); ?></h2>
+						<div class="form-row">
+	                                         <?php echo do_shortcode('[ctct form="7979"]'); ?> 
+                                    </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 </div>
 </main>
 <?php get_footer(); ?>

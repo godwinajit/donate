@@ -61,7 +61,6 @@
 
         Steps.prototype.toStep = function(nextIndexStep) {
             var self = this;
-
             if (self.isCanChange || nextIndexStep < 0 || nextIndexStep > self._steps.length - 1) {
                 return;
             }

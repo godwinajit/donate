@@ -21,6 +21,10 @@ body{
     @media only screen and (min-width: $screen-sm) {
         font-size: floor($base-font-size * 1.29)
     }
+
+    &.page {
+        position: relative;
+    }
 }
 
 img {
@@ -34,7 +38,8 @@ img[src*=".svg"] {
     height: auto;
 }
 
-.page{
+div.page,
+div#page{
     overflow: hidden;
     position: relative;
 }

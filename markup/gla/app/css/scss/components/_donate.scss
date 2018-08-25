@@ -1,4 +1,5 @@
-.donate-form{
+.donate-form,
+.ambassador-form{
     label{
         color: $black;
     }
@@ -788,4 +789,91 @@
             }
         }
     }
+}
+.ambassador-form-nav li {
+    width: 33.333%;
+}
+.ambassador-form-step {
+    // display: block;
+    .jcf-select .jcf-select-text {
+        text-align: left;
+    }
+}
+.ambassador-form-step label {
+    text-align: left;
+}
+.form-box {
+    position: relative;
+}
+.ambassador-form .action {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    @media only screen and (min-width: $screen-md){
+        padding-top: 56px;
+        padding-bottom: 56px;
+    }
+}
+.ambassador-form button.btn-primary-green {
+    background: #fff;
+}
+.ambassador-form h3 {
+    color: #191919;
+    font-weight: 700;
+    font-style: 18px;
+    line-height: 24px;
+    text-align: left;
+}
+.ambassador-form .form-note {
+    text-align: left;
+}
+.ambassador-form .panel {
+    & + .panel  {
+        margin-top: 40px;
+        padding-top: 40px;
+        border-top: 1px solid #f1f1f1;
+    }
+    .col-md-short {
+        border-left: 0;
+    }
+}
+.options-list {
+    margin: 0 0 0 -10px;
+    padding: 0;
+    list-style: none;
+    text-align: left;
+    li {
+        display: inline-block;
+        vertical-align: top;
+        margin: 0 0 20px 10px;
+    }
+    label {
+        display: inline-block;
+        vertical-align: middle;
+        padding-bottom: 0;
+    }
+}
+.page-title {
+    color: #6d6d6d;
+    padding: 40px 0 30px;
+    font: $font-weight-regular 16px/1.5 $base-font-family;
+    text-align: left;
+    h2 {
+        color: $dark-blue;
+        margin-bottom: 20px;
+        padding-bottom: 0;
+        font: 700 24px/1.211 "Roboto",Arial,sans-serif;
+    }
+    @media only screen and (min-width: $screen-sm) {
+        h2 {
+            font-size: 38px;
+            margin-bottom: 27px;
+        }
+    }
+}
+// fix
+.inner-banner {
+    height: 380px;
+    background-repeat: none;
+    background-position: 50% 50%;
+    background-size: cover;
 }

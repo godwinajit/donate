@@ -72,8 +72,7 @@ if(isset($_GET['category']))
             <ul id="ActiveYearMenu" class="search-year-menu">
               <li><label>Filter By Year</label></li>
               <li><a class="current_page_item" href="<?php echo get_post_type_archive_link('newsletters'); ?>">All</a></li>
-                <?php //echo do_shortcode('[SidebarNewslettersYear]'); ?>
-				  <?php wp_get_archives( array('post_type' => 'newsletters','post_status' => 'publish', 'type' => 'yearly','before' => '<ul>','after' => '</ul>', 'format' => 'html', 'show_post_count' => 0 ) ); ?>
+                <?php echo do_shortcode('[SidebarNewslettersYear]'); ?>
                 <li> <div class="select-mobile">
                   <select name="archive-dropdown" onchange="document.location.href=this.options[this.selectedIndex].value;">
                       <option value=""><?php echo esc_attr( __( 'Filter By Year' ) ); ?></option> 
@@ -246,7 +245,22 @@ if(isset($_GET['category']))
  </div>
  </div>
    <!-- Subscribe CTA -->
-    <?php get_template_part( 'newsletter', 'form' ); ?>
+                <section class="section-subscribe">
+                    <div class="wrapper container-fluid">
+                        <div class="row center-xs">
+                            <div class="col-xs-12 col-sm-11 col-md-10">
+                                <div class="subscribe-form">
+                                    <span class="icon icon-mail sm-visible"></span>
+                                    <h2><?php echo get_field('newsletter_text', 2); ?></h2>
+                                    <div class="form-row">
+	                                         <?php echo do_shortcode('[ctct form="7979"]'); ?> 
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 </div>
 </main>
 <?php get_footer(); ?>

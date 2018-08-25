@@ -31,7 +31,27 @@ get_header(); ?>
  <?php //echo do_shortcode('[IconSlider]'); ?>
  <div class="container-section blog-pages search-results-view">
   <div class="main main1058">
+  <div class="breadcrumbs-nav" typeof="BreadcrumbList" vocab="http://schema.org/">
+            <?php bcn_display();   ?>
+          </div>
   <div class="page">
+    <?php 
+      if (is_year()){
+        $data = explode('/', $_SERVER["REQUEST_URI"]);
+        end($data);
+        $year = prev($data);
+        echo '<h1 class="search-label">' . 'Yearly Blog Archives: ' . '</h1><h2 class="search-title">' .$year .'</h2>';
+    ?>
+    <?php 
+      }  else {
+    ?>
+     <!-- Title for News -->
+      <h1 class="title-center">Blog</h1>
+    <?php 
+      }
+    ?>  
+
+
         <?php 
 
 if(isset($_GET['category']))
@@ -40,7 +60,50 @@ if(isset($_GET['category']))
    query_posts( array ( 'category_name' => $_GET['category'], 'posts_per_page' => -1 ) );
    $year =  get_the_date( _x( 'Y', '', 'twentythirteen' ));
 }
-?>      
+?>
+
+      <section>
+        <div class="blognav nav">
+        <?php wp_nav_menu(array( 'theme_location' => 'blog-menu', 'menu_class' => 'nav-list' ) ); ?>
+      </div>
+      </section>
+     <section>
+        <div class="search-year-menu-container">
+            <ul class="search-year-menu">
+              <li class="blog-categories-select">
+				<form id="category-select" class="category-select" action="<?php echo esc_url( home_url( '/' ) ); ?>" method="get">
+					<?php
+						$args = array(
+							'show_option_none' => __( 'Select category' ),
+							'option_none_value'  => '0',
+							'show_count'       => 0,
+							'orderby'          => 'name',
+							'echo'             => 0,
+						);
+					?>
+					<?php $select  = wp_dropdown_categories( $args ); ?>
+					<?php $replace = "<select$1 onchange='return this.form.submit()'>"; ?>
+					<?php $select  = preg_replace( '#<select([^>]*)>#', $replace, $select ); ?>
+					<?php echo $select; ?>
+					<noscript>
+						<input type="submit" value="View" />
+					</noscript>
+				</form>
+			  </li>
+			  <li><label>Filter By Year</label></li>
+			  <li class="current_page_item"><a href="<?php echo get_post_type_archive_link('post'); ?>">All</a></li>
+               <?php echo do_shortcode('[SidebarBlogYear]') ?>
+                <li> <div class="select-mobile">
+                  <select name="archive-dropdown" onchange="document.location.href=this.options[this.selectedIndex].value;">
+                      <option value=""><?php echo esc_attr( __( 'Select Year' ) ); ?></option> 
+                      <?php wp_get_archives( array('type' => 'yearly', 'format' => 'option', 'show_post_count' => 1 ) ); ?>
+                 </select>  
+            </div></li>     
+            </ul>
+          </div>
+      </section>
+
+      
       <?php if (!is_paged()) { ?>
 
 

@@ -1432,5 +1432,5 @@ function setup_my_category_field_in_query( $query ){
     return $query;
 }
 
-/*------ For Gravity From DP submissions ------*/
+/*------ For Gravity From to DP submissions ------*/
 require get_template_directory() . '/includes/DP_Submission.php';

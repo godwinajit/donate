@@ -5,7 +5,31 @@ jQuery(function(){
     initRetinaCover();
     initEnquire();
     initPopup('search-nav','.search-opener');
+    initLightbox();
 });
+
+// fancybox modal popup init
+function initLightbox() {
+    jQuery('a.open-lightbox, a[rel*="open-lightbox"]').fancybox({
+        helpers: {
+            overlay: {
+                css: {
+                    background: 'rgba(0, 0, 0, 0.80)'
+                }
+            }
+        },
+        afterLoad: function(current, previous) {
+            // handle custom close button in inline modal
+            if(current.href.indexOf('#') === 0) {
+                jQuery(current.href).find('a.close').off('click.fb').on('click.fb', function(e){
+                    e.preventDefault();
+                    jQuery.fancybox.close();
+                });
+            }
+        },
+        padding: 0
+    });
+}
 
 function initCustomForms() {
     jcf.setOptions('Select', {

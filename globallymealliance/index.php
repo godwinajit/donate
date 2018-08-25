@@ -70,10 +70,30 @@ if(isset($_GET['category']))
      <section>
         <div class="search-year-menu-container">
             <ul class="search-year-menu">
-              <li><label>Filter By Year</label></li>
-              <li class="current_page_item"><a href="<?php echo get_post_type_archive_link('post'); ?>">All</a></li>
+              <li class="blog-categories-select">
+				<form id="category-select" class="category-select" action="<?php echo esc_url( home_url( '/' ) ); ?>" method="get">
+					<?php
+						$args = array(
+							'show_option_none' => __( 'Select category' ),
+							'option_none_value'  => '0',
+							'show_count'       => 0,
+							'orderby'          => 'name',
+							'echo'             => 0,
+						);
+					?>
+					<?php $select  = wp_dropdown_categories( $args ); ?>
+					<?php $replace = "<select$1 onchange='return this.form.submit()'>"; ?>
+					<?php $select  = preg_replace( '#<select([^>]*)>#', $replace, $select ); ?>
+					<?php echo $select; ?>
+					<noscript>
+						<input type="submit" value="View" />
+					</noscript>
+				</form>
+			  </li>
+			  <li><label>Filter By Year</label></li>
+			  <li class="current_page_item"><a href="<?php echo get_post_type_archive_link('post'); ?>">All</a></li>
                <?php //echo do_shortcode('[SidebarBlogYear]') ?>
-			   <?php wp_get_archives( array('post_status' => 'publish', 'type' => 'yearly','before' => '<ul>','after' => '</ul>', 'format' => 'html', 'show_post_count' => 0 ) ); ?>
+			   <?php wp_get_archives( array('post_type' => 'post','post_status' => 'publish', 'type' => 'yearly','before' => '<ul>','after' => '</ul>', 'format' => 'html', 'show_post_count' => 0 ) ); ?>
                 <li> <div class="select-mobile">
                   <select name="archive-dropdown" onchange="document.location.href=this.options[this.selectedIndex].value;">
                       <option value=""><?php echo esc_attr( __( 'Select Year' ) ); ?></option> 
@@ -169,7 +189,7 @@ if(isset($_GET['category']))
 
   <?php 
     global $wp_query;
-     $args = array_merge( $wp_query->query_vars, ['posts_per_page' => 10] );
+     $args = array_merge( $wp_query->query_vars, ['posts_per_page' => 9] );
      query_posts( $args ); ?>
 
   <?php } ?>
@@ -267,7 +287,22 @@ if(isset($_GET['category']))
  </div>
  </div>
    <!-- Subscribe CTA -->
-    <?php get_template_part( 'newsletter', 'form' ); ?>
+                <section class="section-subscribe">
+                    <div class="wrapper container-fluid">
+                        <div class="row center-xs">
+                            <div class="col-xs-12 col-sm-11 col-md-10">
+                                <div class="subscribe-form">
+                                    <span class="icon icon-mail sm-visible"></span>
+                                    <h2><?php echo get_field('newsletter_text', 2); ?></h2>
+                                    <div class="form-row">
+	                                         <?php echo do_shortcode('[ctct form="7979"]'); ?> 
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 </div>
 </main>
 <?php get_footer(); ?>

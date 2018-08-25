@@ -246,7 +246,21 @@ get_header();
 
     <div class="sign-uplabel"><?php echo get_field('newsletter_text', 2); ?></div>
  <!-- Subscribe CTA -->
-       <?php get_template_part( 'newsletter', 'form' ); ?>
+                <section class="section-subscribe">
+                    <div class="wrapper container-fluid">
+                        <div class="row center-xs">
+                            <div class="col-xs-12 col-sm-11 col-md-10">
+                                <div class="subscribe-form">
+                                    <span class="icon icon-mail sm-visible"></span>
+                                    <h2><?php echo get_field('newsletter_text', 2); ?></h2>
+                                    <div class="form-row">
+	                                         <?php echo do_shortcode('[ctct form="7979"]'); ?> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
    </div>
 

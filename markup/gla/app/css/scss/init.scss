@@ -5,6 +5,7 @@
 
 //vendors
 @import 'vendors/flexboxgrid';
+@import 'vendors/fancybox';
 
 //global things
 @import 'general/normalize';
@@ -30,3 +31,6 @@
 @import 'components/donate';
 @import 'components/_jcf';
 @import 'components/toggle-content';
+@import 'components/staff';
+@import 'components/resources';
+@import 'components/videos';
