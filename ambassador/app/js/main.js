@@ -175,6 +175,23 @@ function initPieChart(e, t) {
     }), void $(".chart").addClass("chart-activated"))
 }
 jQuery(function(e) {
+    //Added by Gabrial for State update based on Country
+    $("#country").on("change", function(){
+        if( this.value == 'US' ){
+            $("#stateProvince1").show();
+            $("#cityLabel1").html("* City");
+            $("#state").prop('disabled', false);
+            $("#zippostal1").addClass("col-sm-6");
+            $("#zippostal1").removeClass("col-sm-12");
+        }else{
+            $("#stateProvince1").hide();
+            $("#cityLabel1").html("* City/State/Province");
+            $("#state").prop('disabled', true);
+            $("#zippostal1").addClass("col-sm-12");
+            $("#zippostal1").removeClass("col-sm-6");
+        }
+    });
+
         var t = e("#ambassador-form");
         if (t.length) {
             var i = t.validate({

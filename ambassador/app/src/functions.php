@@ -54,6 +54,12 @@ function buildAdminMessageBodyFromPost($post){
 	<td>'.$post['address1'].'</td>
 </tr>';
 	}
+    if(isset($post['country']) && $post['country'] != '') {
+        $messageBody .= '<tr>
+	<td>Country:</td>
+	<td>'.$post['country'].'</td>
+</tr>';
+    }
 	if(isset($post['city']) && $post['city'] != '') {
 		$messageBody .= '<tr>
 	<td>City:</td>
@@ -406,6 +412,7 @@ function insertEntryIntoWordpress( $form_id, $post){
 		"6" => $post['telephone_1'],
 		"7" => $post['email'],
 		"8" => $post['address1'],
+        "44" => $post['country'],
 		"9" => $post['city'],
 		"10" => $post['state'],
 		"11" => $post['zip'],
@@ -462,9 +469,9 @@ function submit_form_to_dp( $post ) {
 	$lastName = $post['last_name'];
 	$dob_date_value = $post['year'] .''. $post['month'] .''. $post['day'];
 	$email = $post['email'];
-	$country = 'US';
 	$address1 = $post['address1'];
 	$city = $post['city'];
+    $country = $post['country'];
 	$state = $post['state'];
 	$postal = $post['zip'];
 	$homePhone = $post['telephone_1'];
@@ -472,7 +479,7 @@ function submit_form_to_dp( $post ) {
 	$matchingDonors = handleMatchingDonorByEmail($email, 'Ambassador Form', null, $firstName, $lastName, null, null, $country, $address1, null, $city, null, $state, $postal, $homePhone, null, null, $dob_date_value, null, null, null, null, null, null);
 
 	if( !count($matchingDonors) ){
-		$donorDetails = saveDonor( null, $firstName, $lastName, $email, null, null, $country, $address1, null, $city, null, $state, $postal, $homePhone, null );
+		$donorDetails = saveDonor( null, $firstName, $lastName, $email, null, null, $country, $address1, null, $city, $city, $state, $postal, $homePhone, null );
 		error_log( 'nyc_marathon_form_to_dp after_submission: ' . print_r( $donorDetails, true ) );
 
 	    if (isset($donorDetails->{'record'}->{'field'}[0])) {
