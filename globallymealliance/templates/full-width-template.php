@@ -26,11 +26,6 @@ get_header();
 
 	}
 
-	// Add the pageID which should not show the Hero Banner images 
-	$pagesToExcludeBannerImage = array(9002);
-	$current_page_id = get_queried_object_id();
-	if (!in_array($current_page_id, $pagesToExcludeBannerImage))
-	{
 ?>
 
  <div class="inner-banner" style="background-image:url(<?php echo $banneurl; ?>)">
@@ -47,7 +42,7 @@ get_header();
   </div>
 
  </div>
-<?php } ?>
+
  <?php //echo do_shortcode('[IconSlider]'); ?> 
 
  <!-- conatiner section -->
@@ -422,22 +417,7 @@ get_header();
 
 
 <!-- Subscribe CTA -->
-                <section class="section-subscribe">
-                    <div class="wrapper container-fluid">
-                        <div class="row center-xs">
-                            <div class="col-xs-12 col-sm-11 col-md-10">
-                                <div class="subscribe-form">
-                                    <span class="icon icon-mail sm-visible"></span>
-                                    <h2><?php echo get_field('newsletter_text', 2); ?></h2>
-                                    <div class="form-row">
-                                         <?php echo do_shortcode('[ctct form="7979"]'); ?> 
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+    <?php get_template_part( 'newsletter', 'form' ); ?>
 </main>
 <?php get_footer(); ?>
 

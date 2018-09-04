@@ -115,7 +115,7 @@
 <!--Ajax Search Code -->
 <script type="text/javascript">var BASE = "<?php echo home_url() ?>";</script>
 <?php wp_footer(); ?>
-<script src="<?php echo plugin_dir_url( ); ?>constant-contact-forms/assets/js/ctct-plugin-frontend.min.js" type="text/javascript"></script>
+<script src="<?php echo plugin_dir_url(''); ?>constant-contact-forms/assets/js/ctct-plugin-frontend.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 $(window).load(function(e) {

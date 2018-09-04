@@ -111,21 +111,7 @@ get_header();
                     </div>
                 </div>
                 <!-- Subscribe CTA -->
-                <section class="section-subscribe">
-                    <div class="wrapper container-fluid">
-                        <div class="row center-xs">
-                            <div class="col-xs-12 col-sm-11 col-md-10">
-                                <div class="subscribe-form">
-                                    <span class="icon icon-mail sm-visible"></span>
-                                    <h2><?php echo get_field('educational_pages_newsletter_text', 4185); ?></h2>
-                                    <div class="form-row">
-	                                         <?php echo do_shortcode('[ctct form="7979"]'); ?> 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                <?php get_template_part( 'newsletter', 'form' ); ?>
             </main>
             <div class="popup-holder">
             <div class="lightbox lightbox-download" id="popup-download">
