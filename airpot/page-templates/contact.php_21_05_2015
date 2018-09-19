@@ -1,0 +1,185 @@
+<?php 
+/*
+		Template Name:Contact Page
+	*/
+$content1 = get_field('content1');
+$content2 = get_field('content2');
+$content3 = get_field('content3');
+$content4 = get_field('content4');
+$content5 = get_field('content5');
+?>
+	<?php get_header ();?>	
+		<main role="main" id="main">
+			<div class="link-group inner">
+				<a href="#" class="model3d-link"><span><img src="<?php echo get_template_directory_uri () ?>/images/ico04.png" alt="image description">Create Your Own 3D Model</span></a>
+			</div>
+			<div class="main-section inner">
+				<div class="container">
+					<div class="headline text-uppercase">
+						<h1>Contact Us</h1>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<p>Thank you for your interest in Airpot Corporation. Please fill out the following form and we will respond within 24 hours of the next business day.</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-4">							
+							<?php echo do_shortcode( '[contact-form-7 id="59" title="Contact form 1"]' );?>		
+						</div>
+						<div class="col-sm-8">
+							<div class="well well-lg contact">
+							<?php if($content1):?><?php echo $content1;?><?php endif;?>
+							
+							</div>
+							<ul class="contact-list list-unstyled">
+								<li class="icon-phone">
+								<?php if($content2):?><?php echo $content2;?><?php endif;?>
+								
+								</li>
+								<li class="icon-envelop">
+								<?php if($content3):?><?php echo $content3;?><?php endif;?>
+									
+								</li>
+								<li class="icon-phone">
+								<?php if($content4):?><?php echo $content4;?><?php endif;?>
+								
+								</li>
+								<li class="icon-fax">
+								<?php if($content5):?><?php echo $content5;?><?php endif;?>
+									
+								</li>
+							</ul>
+							
+							
+<?php
+$location = get_field('map');
+if( ! empty($location) ):
+?>
+<div id="map" style="width: 100%; height: 450px;margin-bottom:20px;"></div>
+<script src='http://maps.googleapis.com/maps/api/js?sensor=false' type='text/javascript'></script>
+
+<script type="text/javascript">
+  //<![CDATA[
+	function load() {
+	var lat = <?php echo $location['lat']; ?>;
+	var lng = <?php echo $location['lng']; ?>;
+// coordinates to latLng
+	var latlng = new google.maps.LatLng(lat, lng);
+// map Options
+	var myOptions = {
+	zoom: 14,
+	center: latlng,
+	mapTypeId: google.maps.MapTypeId.ROADMAP
+   };
+//draw a map
+	var map = new google.maps.Map(document.getElementById("map"), myOptions);
+	var marker = new google.maps.Marker({
+	position: map.getCenter(),
+	map: map
+   });
+}
+// call the function
+   load();
+//]]>
+</script>
+<?php endif; ?> 
+							
+							<div class="row">
+								<div class="col-md-12">
+									<div class="col-xs-6 col-sm-4 people-info">
+										<div class="thumbnail">
+											<img src="<?php echo get_template_directory_uri () ?>/images/img38.jpg" height="169" width="139" alt="img">
+											<div class="caption">
+												<h4><a href="#">Mark Gaberman</a></h4>
+												<span class="position">President</span>
+												<a class="icon-envelop" href="mailto:&#109;&#097;&#103;&#064;&#097;&#105;&#114;&#112;&#111;&#116;&#046;&#099;&#111;&#109;">&#109;&#097;&#103;&#064;&#097;&#105;&#114;&#112;&#111;&#116;&#046;&#099;&#111;&#109;</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-6 col-sm-4 people-info">
+										<div class="thumbnail">
+											<img src="<?php echo get_template_directory_uri () ?>/images/img38.jpg" height="169" width="139" alt="img">
+											<div class="caption">
+												<h4><a href="#">Tom Lee</a></h4>
+												<span class="position">VP Engineering</span>
+												<a class="icon-envelop" href="mailto:&#116;&#108;&#101;&#101;&#064;&#097;&#105;&#114;&#112;&#111;&#116;&#046;&#099;&#111;&#109;">&#116;&#108;&#101;&#101;&#064;&#097;&#105;&#114;&#112;&#111;&#116;&#046;&#099;&#111;&#109;</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-6 col-sm-4 people-info">
+										<div class="thumbnail">
+											<img src="<?php echo get_template_directory_uri () ?>/images/img38.jpg" height="169" width="139" alt="img">
+											<div class="caption">
+												<h4><a href="#">Eda Webb</a></h4>
+												<span class="position">Office Manager</span>
+												<a class="icon-envelop" href="mailto:&#101;&#100;&#097;&#064;&#097;&#105;&#114;&#112;&#111;&#116;&#046;&#099;&#111;&#109;">&#101;&#100;&#097;&#064;&#097;&#105;&#114;&#112;&#111;&#116;&#046;&#099;&#111;&#109;</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-6 col-sm-4 people-info">
+										<div class="thumbnail">
+											<img src="<?php echo get_template_directory_uri () ?>/images/img38.jpg" height="169" width="139" alt="img">
+											<div class="caption">
+												<h4><a href="#">Adam Gentile</a></h4>
+												<span class="position">Purchasing Manager</span>
+												<a class="icon-envelop" href="mailto:&#097;&#100;&#097;&#109;&#064;&#097;&#105;&#114;&#112;&#111;&#116;&#046;&#099;&#111;&#109;">&#097;&#100;&#097;&#109;&#064;&#097;&#105;&#114;&#112;&#111;&#116;&#046;&#099;&#111;&#109;</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-6 col-sm-4 people-info">
+										<div class="thumbnail">
+											<img src="<?php echo get_template_directory_uri () ?>/images/img38.jpg" height="169" width="139" alt="img">
+											<div class="caption">
+												<h4><a href="#">Rod McKenna</a></h4>
+												<span class="position">Plant Manager</span>
+												<a class="icon-envelop" href="mailto:&#114;&#111;&#100;&#064;&#097;&#105;&#114;&#112;&#111;&#116;&#046;&#099;&#111;&#109;">&#114;&#111;&#100;&#064;&#097;&#105;&#114;&#112;&#111;&#116;&#046;&#099;&#111;&#109;</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- <div class="two-column">
+								<h3>Find a Representative or Distributor</h3>
+								<p>Please select a product line and then click on country, state, or territory to find your local sales representative or distributor. All of our products can be purchased direct from the factory.</p>
+								<form class="form-horizontal" role="form">
+									<div class="form-group">
+										<label for="a1" class="col-sm-2 control-label">Product Line:</label>
+										<div class="col-sm-4">
+											<select name="select" id="a1">
+												<option value="default">Select</option>
+												<option value="1">1</option>
+												<option value="2">2</option>
+												<option value="3">3</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="a2" class="col-sm-2 control-label">Location:</label>
+										<div class="col-sm-4">
+											<select name="select" id="a2">
+												<option value="default">Select</option>
+												<option value="1">1</option>
+												<option value="2">2</option>
+												<option value="3">3</option>
+											</select>
+										</div>
+										<div class="col-sm-4">
+											<select name="select" id="a3">
+												<option value="default">Select</option>
+												<option value="1">1</option>
+												<option value="2">2</option>
+												<option value="3">3</option>
+											</select>
+										</div>
+									</div>
+								</form>
+								<img src="<?php echo get_template_directory_uri () ?>/images/img39.jpg" height="211" width="831" alt="">
+							</div>  -->
+						</div>
+					</div>
+				</div>
+			</div>
+			<?php dynamic_sidebar( 'sidebar-contactus' );?>
+		</main>
+<?php get_footer ();?>

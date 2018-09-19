@@ -1,0 +1,22 @@
+/*
+Theme Name: Airpot
+Author URI: www.airpot.com
+Description: Airpot responsive Theme
+Version: 1.0
+Text Domain: Airpot
+*/
+
+/* Note: Main stylesheet is in css/style.css -- this stylesheet is for plugin edits and other secondary declarations and quick solutions */
+
+.radio-337 span.wpcf7-list-item { display: block; margin-bottom: 5px; }
+
+#CONFIGFORM ul { margin: 0 0 0 10px; }
+#CONFIGFORM li { display: block; clear: both; }
+#CONFIGFORM div[class^="col-xs-"] { float: none; display: inline-block; vertical-align: middle; }
+#CONFIGFORM .col-xs-1 { text-align: center; }
+#CONFIGFORM .col-xs-2 { float: none; display: inline-block; vertical-align: middle; width: 20px; }
+#CONFIGFORM .col-xs-11 { margin-right: 11px; width: 80%; }
+#CONFIGFORM .col-xs-9 { margin-right: -2px; }
+#CONFIGFORM .col-xs-10 { margin-right: 3px; }
+
+#slideshow .item.active img { width: auto!important; max-height: 150px; } /* Temp. hack-y solution; should find another way of dealing with thumbnail dimensions. */
