@@ -430,7 +430,7 @@ include('../../wp-load.php');
                     </div>
                 </section>               
 		</form>
-		   <!-- Subscribe CTA -->
+		   <!-- Subscribe CTA 
                 <section class="section-subscribe" id="section-subscribe">
                     <div class="wrapper container-fluid">
                         <div class="row center-xs">
@@ -446,7 +446,7 @@ include('../../wp-load.php');
                             </div>
                         </div>
                     </div>
-                </section>
+                </section> -->
 			</div>
 		</main>
 	
