@@ -55,6 +55,7 @@ jQuery(function($) {
     // stepper
     var stepper = new Steps('#ambassador-form', {
         steps: '.ambassador-form-step',
+        btnPrev: '.js-btn-step-prev',
         btnNext: '.js-btn-step-next',
         activeClass: 'active',
         isCanChange: function(curentStepIndex, nextStepIndex) {
@@ -4754,6 +4755,7 @@ if ( $.ajaxPrefilter ) {
     var Steps = (function() {
         var defaults = {
             steps: '.step',
+            btnPrev: '.prev',
             btnNext: '.next',
             transition: 'none',
             activeClass: 'active-step',
@@ -4782,6 +4784,11 @@ if ( $.ajaxPrefilter ) {
             self._currentIndex = 0;
 
             self._steps.eq(self._currentIndex).addClass(self._options.activeClass);
+
+            self.$holder.on('click', self._options.btnPrev, function(e) {
+                e.preventDefault();
+                self.prevStep();
+            });
 
             self.$holder.on('click', self._options.btnNext, function(e) {
                 e.preventDefault();
