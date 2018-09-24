@@ -6089,7 +6089,7 @@ body>.jcf-select-drop.jcf-drop-flipped {
 	}
 }
 @media only screen and (min-width:768px) {
-	 .toggle-content-opener{
+	.toggle-content-opener {
 		padding-top: 18px;
 		padding-bottom: 16px;
 		font-size: 28px
@@ -6132,86 +6132,5 @@ body>.jcf-select-drop.jcf-drop-flipped {
 	}
 	.gform_fields .ginput_container .gfield_checkbox > li {
 		width: 24% !important;
-	}
-}
-
-/* the opener styles on the second step of the donate page */
-form .error, form .jcf-hidden.error+.jcf-select {
-	border-width: 2px !important;
-}
-.toggle-checkbox-content {
-	text-align: center;
-}
-.toggle-checkbox-content .toggle-content-slide {
-	text-align: left;
-	padding-top: 40px;
-}
-.toggle-content-opener.toggle-checkbox {
-	color: #191919;
-	position: relative;
-	display: inline-block;
-	vertical-align: top;
-	cursor: default;
-	background: transparent;
-	text-transform: none;
-	line-height: 21px;
-	padding: 0;
-	margin: 0;
-	border: 0;
-}
-.toggle-content-opener.toggle-checkbox:hover,
-.toggle-content-opener.toggle-checkbox:active {
-    color: #191919;
-}
-.toggle-checkbox .ico-check{
-	position: relative;
-	display: inline-block;
-	vertical-align: top;
-	border: 1px solid #6d6d6d;
-	margin: 0 8px 0 0;
-	height: 20px;
-	width: 20px;
-	overflow: hidden;
-	border-radius: 3px;
-}
-.toggle-checkbox .ico-check:after {
-	content: "";
-	position: absolute;
-	display: none;
-	height: 5px;
-	width: 10px;
-	top: 50%;
-	left: 50%;
-	margin: -3px 0 0 -5px;
-	border: 2px solid #6d6d6d;
-	border-width: 0 0 2px 2px;
-	-ms-transform: rotate(-45deg);
-	-webkit-transform: rotate(-45deg);
-	transform: rotate(-45deg);
-}
-.toggle-content.expanded .toggle-checkbox .ico-check:after {
-	display: block;
-}
-.toggle-checkbox .icon-plus,
-.toggle-checkbox .icon-minus,
-.toggle-checkbox .answer{
-	display: none;
-	font-size: 0;
-	line-height: 0;
-	text-indent: -9999px;
-	overflow: hidden;
-	width: 0;
-	height: 0;
-	visibility: hidden;
-}
-@media only screen and (min-width: 1024px) {
-	.toggle-checkbox .ico-check {
-		width: 15px;
-		height: 15px;
-		margin-top: 3px;
-	}
-	.toggle-checkbox .ico-check:after {
-		margin-top: -4px;
-		margin-left: -6px;
 	}
 }
