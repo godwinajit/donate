@@ -7,8 +7,12 @@ if ($_SERVER ['SERVER_NAME'] === 'globallymealliance.org') {
 	$donorEmailList	= array('Casie Richardson' => 'Casie.Richardson@globallymealliance.org', 'Christine Llewellyn' => 'Christine.Llewellyn@globallymealliance.org', 'Gabriel Oliver' => 'goliver@mindtrustlabs.com');
 }else{
 	$environment	= "test";
-	$emailList		= array('Sheni' => 'shenigodwin@gmail.com', 'Gabriel Oliver' => 'goliver@mindtrustlabs.com');
-	$donorEmailList	= array('Godwin Ajit' => 'godwin.ajith@gmail.com', 'Sheni' => 'shenigodwin@gmail.com');
+	//$emailList		= array('Sheni' => 'shenigodwin@gmail.com', 'Gabriel Oliver' => 'goliver@mindtrustlabs.com');
+	//$donorEmailList	= array('Godwin Ajit' => 'godwin.ajith@gmail.com', 'Sheni' => 'shenigodwin@gmail.com');
+	//Admin Email List
+	$emailList		= array('Casie Richardson' => 'Casie.Richardson@globallymealliance.org', 'Christine Llewellyn' => 'Christine.Llewellyn@globallymealliance.org', 'Gabriel Oliver' => 'goliver@mindtrustlabs.com');
+	// Donor Email Bcc List
+	$donorEmailList	= array('Casie Richardson' => 'Casie.Richardson@globallymealliance.org', 'Christine Llewellyn' => 'Christine.Llewellyn@globallymealliance.org', 'Gabriel Oliver' => 'goliver@mindtrustlabs.com');
 }
 
 $dpConfig = [];

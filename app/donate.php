@@ -218,23 +218,23 @@ include('../../wp-load.php');
 									</div>
 								</div>
 							</div>
-							<div class="toggle-content <?php if(retriveDonorField($transactionStatus,'tributeEnabled') === 'YES') echo 'expanded';?>">
-								<a href="#" id="isATributeID" class="toggle-content-opener">IS THIS DONATION IN
-									tribute OF SOMEONE?<span class="icon icon-plus"></span><span
-									class="icon icon-minus"></span> <span class="answer md-visible">Yes</span>
+							<div class="toggle-content toggle-checkbox-content <?php if(retriveDonorField($transactionStatus,'tributeEnabled') === 'YES') echo 'expanded';?>">
+								<a href="#" id="isATributeID" class="toggle-content-opener toggle-checkbox"><span class="ico-check"></span> Is this donation in
+									tribute of someone?
+									<!-- <span class="answer md-visible">Yes</span> -->
 								</a>
 								<div class="toggle-content-slide" style="<?php if(retriveDonorField($transactionStatus,'tributeEnabled') === 'YES') echo 'display:block;';?>">
 									<div class="row">
 										<div class="col-xs-12 col-md-6  col-md-short">
-											<label>Type of Tribute</label>
+											<label>* Type of Tribute</label>
 											<input type="hidden"  id="tributeEnabled" name="tributeEnabled" value="<?php if( ( retriveDonorField($transactionStatus,'tributeEnabled') ) ) echo retriveDonorField($transactionStatus,'tributeEnabled'); else echo 'NO';?>">
-											<select name="merchant-defined-field-9">
+											<select name="merchant-defined-field-9" required>
 												<option value="" class="hideme">Select one</option>
 												<option <?php if( ( retriveDonorField($transactionStatus,'merchant-defined-field-9') == 'M' ) ) echo 'selected="selected"';?> value="M">In Memory of</option>
 												<option <?php if( ( retriveDonorField($transactionStatus,'merchant-defined-field-9') == 'H' ) ) echo 'selected="selected"';?> value="H">In Honor of</option>
 											</select>
 											<label for="input09">* First name</label>
-											<input type="text" id="input09" name="merchant-defined-field-6" required 
+											<input type="text" id="input09" name="merchant-defined-field-6" required
 											value="<?php if( ( retriveDonorField($transactionStatus,'merchant-defined-field-6') ) ) echo retriveDonorField($transactionStatus,'merchant-defined-field-6');?>">
 											
 											<label for="input10">Last Name</label>
@@ -274,8 +274,8 @@ include('../../wp-load.php');
 												value="<?php if( ( retriveDonorField($transactionStatus,'tributePostal') ) ) echo retriveDonorField($transactionStatus,'tributePostal');?>">
 											</div>
 										</div>
-										<div class="form-note" style="display: none">* Complete the
-											required fields</div>
+										<!-- <div class="form-note" style="display: none">* Complete the
+											required fields</div> -->
 									</div>
 								</div>
 							</div>
