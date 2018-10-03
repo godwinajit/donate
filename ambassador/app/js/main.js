@@ -222,6 +222,7 @@ jQuery(function(e) {
             });
             var n = new Steps("#ambassador-form", {
                 steps: ".ambassador-form-step",
+		        btnPrev: '.js-btn-step-prev',
                 btnNext: ".js-btn-step-next",
                 activeClass: "active",
                 isCanChange: function(e, i) {
@@ -2837,10 +2838,13 @@ jQuery(function(e) {
                 var s = this;
                 return s.$holder = e(t), s._options = e.extend({}, i, n), s._steps = e(s._options.steps), s._steps.length ? (s._currentIndex = 0, s._steps.eq(s._currentIndex).addClass(s._options.activeClass), void s.$holder.on("click", s._options.btnNext, function(e) {
                     e.preventDefault(), s.nextStep()
+                }), void s.$holder.on("click", s._options.btnPrev, function(e) {
+                    e.preventDefault(), s.prevStep()
                 })) : void console.error(new Error("Steps is not defined"))
             }
             var i = {
                     steps: ".step",
+		            btnPrev: '.prev',
                     btnNext: ".next",
                     transition: "none",
                     activeClass: "active-step",

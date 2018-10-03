@@ -25,7 +25,7 @@ $bccEmailList = array (
 );
 
 if ($_SERVER ['SERVER_NAME'] === 'globallymealliance.org') {
-	$toEmail = 'godwin.ajith@gmail.com';
+	$toEmail = 'education@gla.org';
 } else {
 	$toEmail = 'godwin.ajith@gmail.com';
 }

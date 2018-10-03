@@ -756,6 +756,7 @@ include ('../../wp-load.php');
 					<div class="row center-xs">
 						<div class="col-xs-11 col-md-10">
 							<div class="action">
+                                <button type="submit" class="btn btn-primary btn-primary-green js-btn-step-prev">Go back</button>
 								<button type="submit"
 									class="btn btn-primary btn-primary-green btn-continue js-btn-step-next">Continue</button>
 							</div>
@@ -883,6 +884,7 @@ include ('../../wp-load.php');
 			<div class="row center-xs">
 				<div class="col-xs-11 col-md-10">
 					<div class="action">
+						<button type="submit" class="btn btn-primary btn-primary-green js-btn-step-prev">Go back</button>
 						<input type="submit" value="Continue"
 							class="btn btn-default btn-continue">
 					</div>
