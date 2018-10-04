@@ -467,7 +467,7 @@ function submit_form_to_dp( $post ) {
 
  	$firstName = $post['first_name'];
 	$lastName = $post['last_name'];
-	$dob_date_value = $post['year'] .''. $post['month'] .''. $post['day'];
+	$dob_date_value = $post['month'] .'/'. $post['day'] .'/'. $post['year'];
 	$email = $post['email'];
 	$address1 = $post['address1'];
 	$city = $post['city'];
