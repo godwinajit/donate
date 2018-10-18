@@ -1,0 +1,86 @@
+// custom variables
+
+$container-large-desktop: 1200px;
+$screen-lg: 1230px;
+
+$brand-primary: #f47a20;
+
+$gray-darker: #18191a;
+$gray: #4c4c4c;
+$gray-light: #b8b8b8;
+$gray-dark: #666565;
+$gray-lighter: #f3f3f3;
+$gray-blue: #617d8b;
+$white: #fff;
+$bd-color:#c2c2c2;
+$bd-color-light:#cacaca;
+
+$text-color: #000;
+$body-bg: $gray-lighter;
+
+$link-color: $brand-primary;
+$link-hover-color: $link-color;
+
+
+$font-size-base: 13px;
+$line-height-base: 1.85;
+$font-family-base: 'Exo', Arial, Helvetica, sans-serif;
+$font-libre-italic: 'Libre Baskerville', serif;
+
+$font-size-h1: floor(($font-size-base * 3.7)); // ~48px
+$font-size-h2: floor(($font-size-base * 2.47)); // ~32px
+$font-size-h3: ceil(($font-size-base * 1.84)); // ~24px
+$font-size-h4: $font-size-base; // ~13px
+$font-size-h5: ceil(($font-size-base * 0.84)); // ~11px
+$font-size-h6: ceil(($font-size-base * 0.69)); // ~9px
+$headings-line-height: 1.1;
+
+$btn-font-weight: 800;
+$btn-default-color: $brand-primary;
+$btn-default-bg: transparent;
+$btn-default-border: $brand-primary;
+
+$padding-base-vertical: 8px;
+$padding-base-horizontal: 12px;
+
+$padding-large-vertical: 16px;
+$padding-large-horizontal: 28px;
+
+$padding-small-vertical: 4px;
+$padding-small-horizontal: 10px;
+
+$input-border: $gray;
+$border-radius-base: 4px;
+$input-height-base: $font-size-base*1.5 + 2*(1+$padding-base-vertical);
+$input-color: #000;
+$input-color-placeholder: inherit;
+
+$carousel-text-shadow: none;
+$carousel-indicator-active-bg: $gray-light;
+$carousel-control-width: 50px;
+$carousel-control-opacity: 0;
+
+//== Panels
+//
+//##
+
+$panel-bg:                    none;
+$panel-body-padding:          17px 24px 12px;
+$panel-heading-padding:       14px 15px 12px;
+$panel-border-radius:         0;
+$panel-primary-text:          $text-color;
+$panel-primary-border:        none;
+$panel-primary-heading-bg:    $white;
+
+//== Breadcrumbs
+//
+//##
+
+$breadcrumb-padding-vertical:   8px !default;
+$breadcrumb-padding-horizontal: 8px;
+//** Breadcrumb background color
+$breadcrumb-bg:                 none;
+//** Breadcrumb text color
+$breadcrumb-color:              $text-color;
+//** Text color of current page in the breadcrumb
+$breadcrumb-active-color:       $text-color;

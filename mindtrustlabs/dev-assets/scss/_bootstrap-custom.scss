@@ -1,0 +1,90 @@
+// custom variables
+
+//== Colors
+//
+//## Gray and brand colors for use across Bootstrap.
+
+$gray-base:#6d6d6d;
+$gray-dark:#6d6d6d;
+$brand-primary:#3b93af;
+$link-hover-color:#285e8e;
+$white:#fff;
+
+
+//== Typography
+//
+//## Font, line-height, and color for body text, headings, and more.
+
+$font-family-sans-serif: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+$font-family-serif:"Roboto Slab",Georgia,serif;
+$font-family-title-sans-serif:"Lato","Helvetica Neue",Helvetica,Arial,sans-serif;;
+$font-size-base:15px;
+
+$font-size-h1:floor(($font-size-base * 6.8)) !default; // ~102
+$font-size-h2:floor(($font-size-base * 3.2)) !default; // ~48px
+$font-size-h3:ceil(($font-size-base * 2)) !default; // ~28px
+
+$line-height-base:1.94;
+
+$headings-font-family:$font-family-serif;
+$headings-font-weight:400;
+$headings-line-height:1.23333em;
+$headings-color:#4a4a4a;
+
+//== Buttons
+
+$btn-default-color:#fff;
+$btn-default-bg:$brand-primary;
+$btn-default-border:transparent;
+
+$btn-primary-color:$brand-primary;
+$btn-primary-bg:#fff;
+$btn-primary-border:$brand-primary;
+
+//== Forms
+
+$input-color:#bbb;
+$input-border:transparent;
+$input-border-radius:0;
+$input-border-focus:transparent;
+$input-color-placeholder:#bbb;
+$input-height-base:52;
+
+
+
+//== Navbar
+//
+//##
+
+// Basics of a navbar
+$navbar-height:auto;
+$navbar-margin-bottom:0;
+$navbar-border-radius:0;
+$navbar-padding-horizontal:15px;
+$navbar-padding-vertical:0;
+$navbar-collapse-max-height:auto;
+
+$navbar-default-color:#fff;
+$navbar-default-bg:transparent;
+$navbar-default-border:transparent;
+
+// Navbar links
+$navbar-default-link-color:#fff;
+$navbar-default-link-hover-color:#fff;
+$navbar-default-link-hover-bg:transparent;
+$navbar-default-link-active-color:#fff;
+$navbar-default-link-active-bg:transparent;
+
+// Navbar brand label
+$navbar-default-brand-color:#fff;
+$navbar-default-brand-hover-color:#fff;
+
+// Navbar toggle
+$navbar-default-toggle-hover-bg:transparent;
+$navbar-default-toggle-icon-bar-bg:#fff;
+$navbar-default-toggle-border-color:transparent;
+
+//== Navs
+//=== Shared nav styles
+$nav-link-padding:0 0 12px;
+$nav-link-hover-bg:transparent;

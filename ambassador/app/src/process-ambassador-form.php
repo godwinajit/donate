@@ -37,6 +37,13 @@ $log->info ( "Ambassador Form Remote Address: " . $_SERVER ['REMOTE_ADDR'] );
 $log->info ( "Ambassador Form request time: " . $_SERVER ['REQUEST_TIME'] );
 
 if ($_SERVER ['REQUEST_METHOD'] === 'POST' && ! empty ( $_POST )) {
+	
+	if(count($_POST['language_1'])){
+		$_POST['language_1'] = implode (", ", $_POST['language_1']);
+	}else{
+		$_POST['language_1'] = '';
+	}
+
 	try {
 		$log->info ( "Ambassador Form POST information: " );
 		$log->info ( print_r($_POST, true) );

@@ -1,0 +1,110 @@
+/* custom select styles */
+.jcf-select{
+	display:block;
+	position:relative;
+	background:#fff;
+	min-width:50px;
+	width:100%;
+	text-align:left;
+	border-radius:4px;
+	margin:0 0 15px;
+}
+.jcf-select select{
+	z-index:1;
+	left:0;
+	top:0;
+}
+.jcf-select .jcf-select-text{
+	padding:8px 35px 8px 15px;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	overflow:hidden;
+	cursor:default;
+	display:block;
+	font-size:16px;
+	line-height:22px;
+	color:#646464;
+}
+.jcf-select .jcf-select-opener{
+	position:absolute;
+	text-align:center;
+	cursor:default;
+	font-size:18px;
+	padding:6px 0;
+	color:#646464;
+	width:35px;
+	bottom:0;
+	right:0;
+	top:0;
+}
+.jcf-select .jcf-select-opener:before{
+	display:inline-block;
+	vertical-align:middle;
+	content:'\e617';
+}
+/*
+.jcf-select .jcf-select-drop{
+	position:absolute;
+	z-index:9999;
+	top:100%;
+	left:0px;
+	right:0px;
+	margin:-4px 0 0;
+}*/
+
+.jcf-select .jcf-select-drop {
+  left: -1px;
+  margin: 0;
+  position: absolute;
+  right: -1px;
+  top: 94%;
+  z-index: 9999;
+}
+
+.jcf-select .jcf-drop-flipped{
+	bottom:100%;
+	top:auto;
+	margin:0 0 -4px;
+}
+/* select options styles */
+.jcf-select-drop-content{
+	width:100%;
+}
+.jcf-list{
+	padding:4px 0 0;
+	background:#fff;
+	font-size:16px;
+	line-height:21px;
+	width:100%;
+	border-radius:0 0 4px 4px;
+	overflow:hidden;
+}
+.jcf-select .jcf-drop-flipped .jcf-list{
+	padding:0 0 4px;
+	border-radius:4px 4px 0 0;
+}
+.jcf-list .jcf-list-content{
+	display:block;
+	overflow:auto;
+}
+.jcf-list ul{
+	list-style:none;
+	padding:0;
+	margin:0;
+}
+.jcf-list ul li{
+	overflow:hidden;
+}
+.jcf-list .jcf-overflow{overflow:auto;}
+.jcf-list .jcf-option{
+	overflow:hidden;
+	cursor:default;
+	display:block;
+	padding:5px 15px;
+	width:100%;
+	color:#646464;
+}
+.jcf-select-drop .jcf-hover{
+	background:#3b93af;
+	color:#fff;
+}

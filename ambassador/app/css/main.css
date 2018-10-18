@@ -5659,6 +5659,11 @@ top
 	margin-bottom: 17px
 }
 
+.jcf-select.jcf-compact-multiple {
+	height: auto;
+	min-height: 35px;
+}
+
 .jcf-select select {
 	z-index: 1;
 	left: 0;
@@ -5677,6 +5682,11 @@ top
 	color: #191919
 }
 
+.jcf-select.jcf-compact-multiple .jcf-select-text {
+	white-space: normal;
+	text-overflow: clip;
+}
+
 @media only screen and (min-width:768px) {
 	.jcf-select {
 		height: 70px
@@ -5684,6 +5694,10 @@ top
 	.jcf-select .jcf-select-text {
 		font-size: 23px;
 		padding: 20px 28px
+	}
+	.jcf-select.jcf-compact-multiple {
+		height: auto;
+		min-height: 70px;
 	}
 }
 
@@ -5694,6 +5708,10 @@ top
 	}
 	.jcf-select .jcf-select-text {
 		padding: 15px 28px
+	}
+	.jcf-select.jcf-compact-multiple {
+		height: auto;
+		min-height: 60px;
 	}
 }
 

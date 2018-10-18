@@ -1,0 +1,164 @@
+#footer {
+	color: #9a9da3;
+	background: $gray-darker;
+	h3 {
+		font-size: ceil(($font-size-base * 1.23));
+		margin-bottom: 20px;
+		font-weight: 600;
+	}
+	padding-top: 50px;
+}
+.footer-block {
+	margin-bottom: 25px;
+	address {
+		font-style: normal;
+		line-height: 1.4;
+		.holder {
+			position: relative;
+			padding: 0 0 17px 30px;
+			.fa {
+				position: absolute;
+				top: 3px;
+				left: 0;
+				font-size: 14px;
+			}
+		}
+		a {color: inherit;}
+	}
+	@include breakpoint($mobile) {
+		[class*=col-] {margin-bottom: 20px;}
+	}
+}
+.socials-block {
+	padding-top: 20px;
+}
+.socials {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	li {
+		display: inline-block;
+		vertical-align: top;
+		margin: 0 2px 6px 0;
+		padding: 0;
+	}
+	a {
+		display: block;
+		width: 32px;
+		height: 32px;
+		text-align: center;
+		border: 1px solid lighten($gray-darker, 10%);
+		padding: 3px;
+		background: lighten($gray-darker, 15%);
+		transition: all ease-in-out .3s;
+		color: #fff;
+		.fa {
+			display: block;
+			line-height: 24px;
+			font-size: 16px;
+		}
+		&:hover {
+			text-decoration: none;
+			background: $brand-primary;
+			border-color: $brand-primary;
+		}
+	}
+}
+.news-list {
+	margin-left: 0;
+	> li {
+		padding: 18px 0 6px;
+		border-top: 1px solid lighten($gray-darker, 10%);
+		&:first-child {
+			padding-top: 0;
+			border-top: none;
+		}
+	}
+	h4 {
+		color: #fff;
+		text-transform: uppercase;
+		font-weight: 800;
+		margin-bottom: 1px;
+		a {
+			transition: all ease-in-out .3s;
+			&:hover {
+				text-decoration: none;
+				color: $brand-primary;
+			}
+		}
+	}
+	.info {margin-bottom: 6px;}
+}
+.works-list {
+	margin-left: 0;
+	li {
+		position: relative;
+		display: inline-block;
+		vertical-align: top;
+		width: 66px;
+		height: 66px;
+		padding: 0;
+		margin: 0 -2px 1px 0;
+		a {
+			display: block;
+			&:before,
+			&:after {
+				transition: opacity ease-in-out .3s;
+				opacity: 0;
+			}
+			&:hover:before,
+			&:hover:after {opacity: 1;}
+			&:after {
+				content: '\f196';
+				font: 14px/1 FontAwesome;
+				position: absolute;
+				text-align: center;
+				width: 20px;
+				top: 50%;
+				left: 50%;
+				margin: -6px 0 0 -10px;
+				color: #fff;
+				z-index: 5;
+			}
+			&:before {
+				position: absolute;
+				content: '';
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				background: $brand-primary;
+				z-index: 4;
+			}
+		}
+	}
+	img {
+		width: 100%;
+	}
+}
+.footer-bar {
+	background: #000;
+	position: relative;
+	padding: 26px 0 24px;
+	.backtotop {
+		color: inherit;
+		.fa {
+			font-size: 10px;
+		}
+	}
+	.copyright {
+		margin: 0;
+		@include breakpoint($mobile) {
+			margin-bottom: 10px;
+		}
+	}
+}
+.f-logo {
+	display: block;
+	margin: 20px 0;
+	a {
+		display: inline-block;
+		vertical-align: middle;
+		max-width: 100%;
+	}
+}
