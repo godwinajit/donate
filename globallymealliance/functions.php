@@ -982,7 +982,7 @@ function my_front_end_login_fail( $username ) {
    $referrer = $_SERVER['HTTP_REFERER'];  // where did the post submission come from?
    // if there's a valid referrer, and it's not the default log-in screen
    if ( !empty($referrer) && !strstr($referrer,'wp-login') && !strstr($referrer,'wp-admin') ) {
-      wp_redirect( 'http://lyme.npgdev.com/registration/' );  // let's append some information (login=failed) to the URL for the theme to use
+      wp_redirect( home_url('/registration') );  // let's append some information (login=failed) to the URL for the theme to use
       exit;
  }
 }
@@ -1039,33 +1039,42 @@ add_action('wp_ajax_dhemy_ajax_search','dhemy_ajax_search');
 function dhemy_ajax_search(){
 
 // creating a search query
-$args = array(
+/*$args = array(
 	//'post_type', array( 'page', 'any', 'videos', 'post', 'press_releases', 'news', 'events', 'newsletters'),
 	//'order' => 'DESC',
 	//'orderby' => 'date',
 	'post_status' => 'publish',
 	's' =>$_POST['term'],
 	'posts_per_page' =>5
-	);
- 
-	$query = new WP_Query( $args );
-	// display results
-	//need to display pages and post with the most number of keywords in post.
-	if($query->have_posts()){
-		while ($query->have_posts()) {
-			$query->the_post();
-			$key = wp_specialchars($s, 1); 
-			?>
-				<li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
-			<?php
-			}
-		} 
+	);*/
 
-		else {
+    $query = new WP_Query();
+    $query->query_vars['s'] = $_POST['term'];
+    $query->query_vars['post_status'] = 'publish';
+    $query->query_vars['posts_per_page'] = 5;
+    relevanssi_do_query($query);
+
+    // display results
+    //need to display pages and post with the most number of keywords in post.
+    if($query->have_posts()){
+        while ($query->have_posts()) {
+            $query->the_post();
+            $redirect_url = get_field('redirect_url');
+            if ( ! post_password_required() && ! is_attachment() ) :
+                ?>
+                <?php if ( $redirect_url ) : ?>
+                <li><a href="<?php echo $redirect_url; ?>" target="_blank" rel="bookmark"><?php the_title(); ?></a></li>
+            <?php else : ?>
+                <li><a href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a></li>
+            <?php endif; ?>
+            <?php endif;
+        }
+    }
+    else {
 		?>
 			<li><a href="#">Please try again, no results were found...</a></li>
 		<?php
-		}
+	}
 	exit;
 	}
 
@@ -1414,7 +1423,7 @@ add_filter( 'tribe_events_pre_get_posts', 'setup_my_category_field_in_query', 10
  
 function setup_my_category_field_in_query( $query ){
 	if ( ! $query->tribe_is_event ) {
-		// don’t add the query args to other queries besides events queries
+		// donï¿½t add the query args to other queries besides events queries
 		return;
 	}
 

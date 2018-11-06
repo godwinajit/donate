@@ -29,7 +29,6 @@ get_header();
 									<?php if(!empty(get_the_content())){?>
                                         <div class="content-left content-section-height">
                                             <h1><?php the_title(); ?></h1>
-											<div class="row">&nbsp;</div>
                                             <?php the_content();?>
 											<div class="row">&nbsp;</div>
                                         </div>
