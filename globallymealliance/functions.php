@@ -1391,6 +1391,12 @@ function nyc_marathon__change_message( $message, $form ) {
     return '<div class="gform_validation_error">Please enter all the fields.</div><br>';
 }
 
+add_filter( 'gform_validation_message_8', 'popup_newsletter__change_message', 10, 2 );
+function popup_newsletter__change_message( $message, $form ) {
+    return '<div class="gform_validation_error">Please enter a valid Email.</div><br>';
+}
+
+
 add_filter( 'tribe-events-bar-filters',  'setup_my_field_in_bar', 1, 1 );
  
 function setup_my_field_in_bar( $filters ) {
@@ -1440,6 +1446,8 @@ function setup_my_category_field_in_query( $query ){
     }
     return $query;
 }
+
+add_filter( 'widget_text', 'do_shortcode' );
 
 /*------ For Gravity From DP submissions ------*/
 require get_template_directory() . '/includes/DP_Submission.php';

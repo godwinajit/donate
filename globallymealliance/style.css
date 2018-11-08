@@ -7955,3 +7955,35 @@ ul.grid-sm {
 		padding-bottom: 60px;
 	}
 }
+
+/*Popup news letter*/
+#popup-subscribe-newsletter div > h2, #popup-subscribe-newsletter div > p
+{
+	text-align: center;
+}
+#popup-subscribe-newsletter div > p
+{
+	margin-bottom: 0px !important;
+	font-size: 17px;
+}
+#gform_wrapper_8{
+	margin-top: 0px;
+	padding-top: 0px;
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+}
+#input_8_1::placeholder
+{
+	text-align: left;
+}
+
+.gform_confirmation_message_8{
+	margin-top: 20px;
+	text-align: center;
+}
+
+@media only screen and (min-width:768px) {
+	#popup-subscribe-newsletter p {
+		white-space: nowrap;
+	}
+}
