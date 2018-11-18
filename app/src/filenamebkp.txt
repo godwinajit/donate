@@ -1,0 +1,38 @@
+Array
+(
+    [wsl::plugin] => WordPress Social Login 2.3.3
+    [merchant-defined-field-12] => single
+    [donate] => 100
+    [merchant-defined-field-3] => 
+    [merchant-defined-field-1] => Gabriel
+    [merchant-defined-field-2] => Oliver
+    [email] => Gabriel@mtl.com
+    [company] => Company name
+    [address1] => Address 1
+    [address2] => Address 2
+    [country] => US
+    [city] => CIty
+    [state] => AB
+    [postal] => POSTAL
+    [phone] => PHONE Number
+    [tributeEnabled] => NO
+    [merchant-defined-field-9] => 
+    [merchant-defined-field-6] => 
+    [merchant-defined-field-7] => 
+    [tributeEmail] => 
+    [tributeAddress] => 
+    [tributeCity] => 
+    [tributeState] => AB
+    [tributePostal] => 
+    [billing-first-name] => Card First Name
+    [billing-last-name] => Card Last Name
+    [billing-cc-number] => 
+    [billing-cc-exp] => 
+    [billing-cvv] => 
+    [billing-address1] => Address 1
+    [billing-country] => US
+    [billing-city] => kjkj
+    [billing-state] => AB
+    [billing-postal] => POSTAL
+    [merchant-defined-field-8] => Y
+)

@@ -9,7 +9,7 @@ if (empty(retriveDonorField($_SESSION,'donate')) || (retriveDonorField($_SESSION
 include('../../wp-load.php');
 ?>
 <?php //get_header();?>
-<?php get_template_part( 'donateheader' ); ?>
+<?php get_template_part( 'donateheadersuccess' ); ?>
 		<main class="main">
 		<div class="breadcrumbs">
 			<div class="wrapper container-fluid">

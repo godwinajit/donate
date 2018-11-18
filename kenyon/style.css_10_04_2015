@@ -1,0 +1,355 @@
+/*
+Theme Name: Kenyon
+Description: Custom wordpress theme.
+Text Domain: kenyon
+Tags: one-column, two-columns
+Theme URI:
+*/
+
+/* =WordPress Core
+-------------------------------------------------------------- */
+.alignnone {
+	margin: 5px 20px 20px 0;
+}
+
+.aligncenter,
+div.aligncenter {
+	display: block;
+	margin: 5px auto 5px auto;
+}
+
+.alignright {
+	float:right;
+	margin: 5px 0 20px 20px;
+}
+
+.alignleft {
+	float: left;
+	margin: 5px 20px 20px 0;
+}
+
+.aligncenter {
+	display: block;
+	margin: 5px auto 5px auto;
+}
+
+a img.alignright {
+	float: right;
+	margin: 5px 0 20px 20px;
+}
+
+a img.alignnone {
+	margin: 5px 20px 20px 0;
+}
+
+a img.alignleft {
+	float: left;
+	margin: 5px 20px 20px 0;
+}
+
+a img.aligncenter {
+	display: block;
+	margin-left: auto;
+	margin-right: auto
+}
+
+.wp-caption {
+	background: #fff;
+	border: 1px solid #f0f0f0;
+	max-width: 96%; /* Image does not overflow the content area */
+	padding: 5px 3px 10px;
+	text-align: center;
+}
+
+.wp-caption.alignnone {
+	margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignleft {
+	margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignright {
+	margin: 5px 0 20px 20px;
+}
+
+.wp-caption img {
+	border: 0 none;
+	height: auto;
+	margin: 0;
+	max-width: 98.5%;
+	padding: 0;
+	width: auto;
+}
+
+.wp-caption p.wp-caption-text,
+.gallery-caption {
+	font-size: 11px;
+	line-height: 17px;
+	margin: 0;
+	padding: 0 4px 5px;
+}
+
+.sticky,
+.bypostauthor{
+	display:block;
+}
+
+
+.drop-language ul a img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.nof-found .search-form {
+    margin: 0 0 20px;
+}
+.edit-link {
+    clear: both;
+}
+.form-allowed-tags {
+    clear: both;
+    width: 300px;
+}
+.form-allowed-tags code {
+    white-space: normal;
+}
+.addthis_toolbox,
+.addthis_toolbox .custom_images {
+    float: left;
+}
+.side-nav .btn {
+    white-space: normal;
+}
+.price_slider_amount {
+    display: none;
+}
+
+.rating-box .rating .rating-value {
+    display: none;
+}
+
+.woocommerce-tabs .panel {
+    display: block;
+    background: none;
+    border: 0;
+    box-shadow: none;
+    margin: 0;
+}
+
+.woocommerce-tabs .nav-tabs > li > a {
+    padding: 8px 10px 10px;
+}
+
+.review-rating .rating-box {
+    margin: 0 0 7px;
+}
+.product-info .variations_form .variations_button .qty {
+    width: 141px;
+    background: #fff;
+    display: inline-block;
+    font-weight: 700;
+}
+.woocommerce .cart .product-quantity .qty {
+    width: 62px;
+    background: #fff;
+    display: inline-block;
+    font-weight: 700;
+}
+.input-text {
+    display: block;
+    margin-bottom: 8px;
+    width: 100%;
+}
+.select-area {
+    width: 100% !important;
+}
+.payment .cart_totals .btn {
+	width:100%;
+}
+.shipping_calculator p {
+	width:25%;
+}
+.woocommerce .login {
+	width:66%;
+	margin:0 17%;
+}
+.ytcplayer-fixwidthwrapper {
+    border-bottom: 4px solid #f1eeed;
+    margin: 0 0 20px;
+    padding:30px 0 20px;
+	/*width:937px !important;*/
+}
+.ytcplayer-fixwidthwrapper:after{
+	content:'';
+	display:block;
+	clear:both;
+}
+.ytcplayer-fixwidthwrapper .video-wrap{
+	float:left;
+	width:66%;
+	padding-left:10px;
+	padding-right:10px;
+}
+.ytcplayer-fixwidthwrapper .ytcplayer-wrapper {
+	/*width:65% !important;*/
+	padding-bottom:0 !important;
+	float:left;
+	height: auto !important;
+	margin-bottom: 0 !important;
+}
+.ytcplayer-wrapper iframe.ytcplayer {
+	height:344px !important;
+	position: static !important;
+}
+#video-sidebar { 
+	float:right;
+}
+.ytcplayer-fixwidthwrapper .social-networks li{margin:0 9px 0 0;}
+.ytcshort ul.ytchagallery a.ytcthumb {
+	width:100% !important;
+}
+.ytcshort ul.ytchagallery .ytc-row{width:100% !important;}
+.ytcshort ul.ytchagallery a.ytcthumb .ytcplay {
+    border: 4px solid #fff;
+    bottom: 5px;
+    left: 5px;
+    overflow: hidden;
+    padding: 10px;
+    position: absolute;
+    right: 5px;
+    text-align: center;
+    top: 5px;
+	height: auto !important;
+	width:auto !important;
+	margin:6px;
+}
+.ytcshort ul.ytchagallery li .ytcliinner {
+	padding:0 10px 10px !important;
+}
+.ytcshort ul.ytchagallery .ytccf li div.ytcthumb-cont{
+	width:100% !important;
+	margin:0 !important;
+	float:none !important;
+}
+.ytcshort .ytchagallery {
+	/*width:946px !important;*/
+}
+.video-section {
+	border-bottom: none !important;
+	padding:0 !important;
+}
+.ytcthumb-cont .ytcthumb .ytcplay a {
+	color:#fff;
+	padding-top:30px;
+	line-height:20px;
+}
+.icons-list-floatleft {
+	float:left !important;
+}
+.woocommerce {
+	padding-left:10px;
+}
+.woocommerce .account {
+	padding-left:0 !important;
+}
+.woocommerce .account .col-sm-4 {
+	padding-left:0 !important;
+}
+.image-area {
+	margin:0;		
+}
+.image-area p {
+	margin-top:10px;	
+}
+#add_payment_method {
+    border-color: #e7e7e7;
+    border-image: none;
+    border-style: solid;
+    border-width: 1px 0 0;
+    padding: 15px 18px 19px;
+
+    margin-bottom: 15px;
+    margin-left: -18px;
+    margin-right: -18px;
+}
+#add_payment_method h3 {
+    border-bottom: 1px solid #e7e7e7;
+    margin: 0 -10px 19px -18px;
+    padding: 0 18px 15px;
+}
+#back-to-online-dealers {
+	display:none;
+	margin:20px 0;
+	font-size:25px;	
+}
+#single-dealer li span {
+	font-size:20px;
+	margin-top:20px;
+	margin-bottom:10px;
+}
+#single-dealer li p.single-dealer-filed {
+	
+}
+@media only screen and (max-width: 767px){
+	.ytcplayer-fixwidthwrapper .video-wrap{
+		width:100%;
+	}
+	.ytcshort ul.ytchagallery li{width:50% !important;}
+}
+
+.admin-bar .goog-te-banner-frame {
+	top: 33px;
+}
+
+.lang-en .skiptranslate {
+	display: none;
+}
+
+.lang-en {
+	top: 0 !important;
+}
+
+.carousel .text-block a {
+	color: #b3b6b9;
+}
+.carousel .title a:hover {
+	text-decoration: none;
+}
+
+.contact-form {
+	margin-top: 20px;
+}
+.contact-form .alert {
+	margin: 4px 0;
+}
+.contact-form .ajax-loader {
+	display: none !important;
+}
+.contact-form .wpcf7-response-output {
+	margin: 4px 0;
+}
+.contact-form .wpcf7-response-output {
+	padding: 15px;
+}
+.product-video-btn-holder {
+	margin-bottom: 30px;
+}
+#main .single-dealer h1 {
+	color: #f99400;
+}
+#main .international-dealers .flag-holder {
+	margin: 4px -1px 0 2.2%;
+	float: right;
+}
+#main .results_entry .location_name {
+  color: #f99400;
+}
+.single_variation .stock, .product-info .stock{
+	display:none;
+}
+#ydesc { word-break:break-word;}
+.checkout .alert.alert-danger:first-child{
+	margin-top : 10px;
+}

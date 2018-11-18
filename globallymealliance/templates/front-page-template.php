@@ -4,8 +4,6 @@ get_header();
 ?>
 <!-- HERO BANNERS -->
    <main class="mains">
-     <div class="home-banner announcements-page">
-      <section class="section-intro">
 		
 
 <!--  Home Slider Start -->
@@ -13,7 +11,12 @@ get_header();
     $home_page_slider = get_field('home_page_slider'); 
 
     if($home_page_slider){
-      foreach($home_page_slider as $slider){
+      foreach($home_page_slider as $slider){ 
+		  if(!$slider['is_video']){
+		  ?>
+     <div class="home-banner announcements-page">
+      <section class="section-intro">
+	  <?php
         if($slider['large_image']){
           echo '<div class="bg-stretch">
                         <span data-srcset="'.$slider['mobile_image'].', '.$slider['smallest_image'].' 2x"></span>
@@ -26,31 +29,61 @@ get_header();
                         <span data-srcset="'.get_template_directory_uri().'/images/bg-intro-medium.jpg" data-media="(min-width: 768px)"></span>
                         <span data-srcset="'.get_template_directory_uri().'/images/bg-intro-large.jpg" data-media="(min-width: 1024px)"></span>
                     </div>';
-		  }?>
-                 <div class="text-layer">
+		  }
+                 echo '<div class="text-layer">
                         <div class="wrapper container-fluid">
                             <div class="row center-xs bottom-xs start-sm middle-sm">
                                 <div class="col-xs-10 col-sm-6 col-md-6 col-lg-8 col-sm-offset-1">
                   <div class="text-box">
-                   <?php echo $slider['title'];?>
-                   <?php echo $slider['description'];?>
-				   <?php if($slider['button_text']){?>
-					   <?php if($slider['is_video']){?>
-							   <a class="btn btn-default open-lightbox fancybox.iframe" title="" href="<?php echo $slider['button_url'];?>" target="_blank" rel="noopener"><?php echo $slider['button_text'];?></a>
-					   <?php } else {?>
-				               <a class="btn btn-primary" href="<?php echo $slider['button_url'];?>" title="<?php echo $slider['button_text'];?>"><?php echo $slider['button_text'];?></a>
-					   <?php } ?>
-				   <?php } ?>
-				    </div>
+                   <h1>'.$slider['title'].'</h1>
+                   '.$slider['description'].'
+                   <a class="btn btn-primary" href="'.$slider['button_url'].'" title="Learn More">'.$slider['button_text'].'</a> </div>
                  </div>
-                </div>
+                </div>';
 					
-      <?php }	
-    }
-   ?>
- 
+      ?>
 </section>
 </div>
+	  <?php
+	  }else{?>
+	  <section class="hero-video">
+<?php
+if($slider['large_image']){
+          echo '<div class="bg-stretch">
+                        <span data-srcset="'.$slider['mobile_image'].', '.$slider['smallest_image'].' 2x"></span>
+                        <span data-srcset="'.$slider['ipad_image'].'" data-media="(min-width: 768px)"></span>
+                        <span data-srcset="'.$slider['large_image'].'" data-media="(min-width: 1024px)"></span>
+                    </div>';
+					} else {
+		 echo '<div class="bg-stretch">
+                        <span data-srcset="'.get_template_directory_uri().'/images/bg-intro-small.jpg, '.get_template_directory_uri().'images/bg-intro-small-2x.jpg 2x"></span>
+                        <span data-srcset="'.get_template_directory_uri().'/images/bg-intro-medium.jpg" data-media="(min-width: 768px)"></span>
+                        <span data-srcset="'.get_template_directory_uri().'/images/bg-intro-large.jpg" data-media="(min-width: 1024px)"></span>
+                    </div>';
+		  }
+	  ?>
+	<div class="hero-video_frame">
+      <div class="wrapper">
+        <div class="row center-xs">
+          <div class="col-xs-12 col-md-10">
+            <div class="hero-video_title">
+              <h1><?php echo $slider['title'];?></h1>
+            </div>
+            <div class="hero-video_button">
+              <a href="<?php echo $slider['button_url'];?>" class="open-lightbox fancybox.iframe">
+                <img src="./wp-content/themes/globallymealliance/temp/video01.jpg" srcset="./wp-content/themes/globallymealliance/temp/video01-2x.jpg 2x" alt="video description">
+                <span class="icon"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+	  </section>
+	  <?php }
+    }
+    }
+   ?>
 <!-- Announcements Section Start-->
 <section class="section-announcements posts-panel">
   <div class="main">

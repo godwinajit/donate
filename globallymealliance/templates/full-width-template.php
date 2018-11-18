@@ -25,11 +25,6 @@ get_header();
 		$banneurl = get_template_directory_uri().'/images/template-banner.jpg';
 
 	}
-	// Add the pageID which should not show the Hero Banner images 
-	$pagesToExcludeBannerImage = array(9635);
-	$current_page_id = get_queried_object_id();
-	if (!in_array($current_page_id, $pagesToExcludeBannerImage))
-	{
 
 ?>
 
@@ -47,8 +42,6 @@ get_header();
   </div>
 
  </div>
-
- <?php } ?>
 
  <?php //echo do_shortcode('[IconSlider]'); ?> 
 

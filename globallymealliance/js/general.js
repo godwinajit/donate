@@ -127,29 +127,20 @@ var $ = jQuery.noConflict(),
                         scrollTop: d - e
                     }, 800), !1
                 }
-            }), a(".search-field").keyup(function(b) {
-                a(".dhemy-ajax-search").empty();
+            }), a(".search-field").keypress(function(b) {
                 a(this).attr("autocomplete", "off");
                 var c = a(this).val();
-                var currentRequest = null;
-                if( c.length > 2 ) {
-                    currentRequest = jQuery.ajax({
-                        url: BASE + "/wp-admin/admin-ajax.php",
-                        type: "POST",
-                        data: {
-                            action: "dhemy_ajax_search",
-                            term: c
-                        },
-                        beforeSend : function()    {
-                            if(currentRequest != null) {
-                                currentRequest.abort();
-                            }
-                        },
-                        success: function (b) {
-                            a(".dhemy-ajax-search").fadeIn().html(b)
-                        }
-                    })
-                }
+                c.length > 2 && jQuery.ajax({
+                    url: BASE + "/wp-admin/admin-ajax.php",
+                    type: "POST",
+                    data: {
+                        action: "dhemy_ajax_search",
+                        term: c
+                    },
+                    success: function(b) {
+                        a(".dhemy-ajax-search").fadeIn().html(b)
+                    }
+                })
             })
     }), a(window).load(function() {
         a("#site-loader").delay(100).fadeOut("slow"), a(".research-funding").length && a(window).scrollTop() > a(".research-funding").offset().top - a(window).height() + a("#masthead").height() && c(), a(".wppb-progress.fixed > span").width(0), a(".diagnosis-dilemma").length && a(window).scrollTop() > a(".diagnosis-dilemma").offset().top - a(window).height() + a("#masthead").height() && d(), a(".sub-committee-members .committee-members-name").length && a(".sub-committee-members .committee-members-name").equalHeight(), a(".financial-committee-members .committee-members-name").length && a(".financial-committee-members .committee-members-name").equalHeight()
