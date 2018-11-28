@@ -32,8 +32,8 @@ get_header();
 		  }
                  echo '<div class="text-layer">
                         <div class="wrapper container-fluid">
-                            <div class="row center-xs bottom-xs start-sm middle-sm">
-                                <div class="col-xs-10 col-sm-6 col-md-6 col-lg-8 col-sm-offset-1">
+                            <div class="row start-sm middle-xs">
+                                <div class="col-xs-9 col-sm-6 col-sm-offset-1 col-md-6 col-lg-8">
                   <div class="text-box">
                    <h1>'.$slider['title'].'</h1>
                    '.$slider['description'].'
@@ -69,6 +69,10 @@ if($slider['large_image']){
             <div class="hero-video_title">
               <h1><?php echo $slider['title'];?></h1>
             </div>
+          </div>
+        </div>
+        <div class="row center-xs">
+          <div class="col-xs-10 col-sm-8 col-md-6">
             <div class="hero-video_button">
               <a href="<?php echo $slider['button_url'];?>" class="open-lightbox fancybox.iframe">
                 <img src="./wp-content/themes/globallymealliance/temp/video01.jpg" srcset="./wp-content/themes/globallymealliance/temp/video01-2x.jpg 2x" alt="video description">

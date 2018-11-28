@@ -593,6 +593,35 @@ function dp_newsletter_to_dp( $entry, $form ) {
 	}
 }
 
+// DP Newsletter Form
+add_action( 'gform_after_submission_8', 'dp_popup_newsletter_to_dp', 10, 2 );
+function dp_popup_newsletter_to_dp( $entry, $form ) {
+
+    $firstName = '';
+    $lastName = rgar( $entry, '1' );
+    $email = rgar( $entry, '1' );
+
+    $matchingDonors = handleMatchingDonorByEmail($email, $form['title'], null, null, null, null, null, null, null, null, null,null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+
+    if( !count($matchingDonors) ){
+        $donorDetails = saveDonor( null, $firstName, $lastName, $email, null, null, null, null, null, null,null, null, null, null, null );
+        error_log( 'dp_newsletter_to_dp after_submission: ' . print_r( $donorDetails, true ) );
+
+        if (isset($donorDetails->{'record'}->{'field'}[0])) {
+            $donorDetails = $donorDetails->{'record'}->{'field'}[0]->attributes()->{'value'};
+            $donorId = $donorDetails[0];
+            //Newsletter Flag for DP is commented out i.e no flags will be added/updated in DP for Newsletter Form submissions
+            /*$flagDetails = saveDPFlag($donorId, 'NLTR');
+            error_log( 'dp_newsletter_to_dp after_submission: ' . print_r( $flagDetails, true ) );*/
+        }
+    } else {
+        foreach($matchingDonors as $donorId){
+            /*$flagDetails = saveDPFlag($donorId, 'NLTR');
+            error_log( 'dp_newsletter_to_dp after_submission: ' . print_r( $flagDetails, true ) );*/
+        }
+    }
+}
+
 // sponsor a Lyme prevention educational program Form
 add_action( 'gform_after_submission_15', 'spon_a_lyme_prevention_edu_prog_to_dp', 10, 2 );
 function spon_a_lyme_prevention_edu_prog_to_dp( $entry, $form ) {

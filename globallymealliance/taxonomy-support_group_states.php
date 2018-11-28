@@ -74,15 +74,16 @@ if (! $bannerImage || $bannerImage == '')
 									</ul>
 								</div>
 							</div>
-						<div style="margin-top: 15px;">
+						<div class="support-groups-cat-masonary">
 							<?php if ( have_posts() ) : ?>
 					            <?php while (have_posts() ) : the_post(); ?>
 									<div class="support-groups-cat-article">
+										<div style="display: block; padding: 20px;">
 											<?php if (get_field('show_title') == 'yes') {?>
 												<h4><?php echo mb_strimwidth( get_the_title(), 0, 50, '...' ); ?></h4>
 										    <?php }?>
-													<?php if (get_field('address')){?>
-                                                        <div><?php the_field('address');?></div>
+													<?php if (get_field('address')){ ?>
+                                                        <div style="margin-bottom: 0px;"><?php the_field('address');?></div>
                                                     <?php }?>
                                                     <?php if (get_field('city')){ ?>
                                                         <strong>City: </strong>
@@ -98,7 +99,7 @@ if (! $bannerImage || $bannerImage == '')
                                                     <?php }?>
                                                     <?php if (get_field('contacts')){ ?>
                                                         <br> <strong>Contacts:</strong>
-                                                        <div><?php the_field('contacts');?></div>
+                                                        <div style="p margin-bottom: 0px;"><?php the_field('contacts');?></div>
                                                     <?php }?>
 													<?php if (!get_field('contacts')){ ?>
                                                         <br>
@@ -107,6 +108,7 @@ if (! $bannerImage || $bannerImage == '')
                                                         <strong>Website:</strong> 
 															<a href="<?php the_field('website');?>"><?php the_field('website');?></a>
                                                     <?php }?>
+                                                 </div>
 									</div>
                                         <?php endwhile; ?>
 									<?php else:?>
@@ -131,3 +133,9 @@ if (! $bannerImage || $bannerImage == '')
 		</div>
 	</div>
 <?php get_footer(); ?>
+<script>
+$('.support-groups-cat-masonary').masonry({
+  // options
+  itemSelector: '.support-groups-cat-article'
+});
+</script>
