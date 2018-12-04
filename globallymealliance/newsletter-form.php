@@ -227,7 +227,7 @@
 
 </style>
 <meta name="viewport" content="width=device-width">
-<section class="section-subscribe">
+<section class="section-subscribe" id="newsletter-subscribe">
     <div class="wrapper container-fluid">
         <div class="row center-xs">
             <div class="col-xs-12 col-sm-11 col-md-10">
@@ -236,7 +236,7 @@
                     <h2><?php echo get_field('newsletter_text', 2); ?></h2>
                     <div class="form-row">
                         <?php //echo do_shortcode('[ctct form="7979"]'); ?>
-                        <?php echo do_shortcode('[gravityform id=19 title=false description=false ajax=true tabindex=49]'); ?>
+                        <?php echo do_shortcode('[gravityform id=19 title=false description=false ajax=true]'); ?>
                     </div>
                 </div>
             </div>

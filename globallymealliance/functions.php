@@ -1448,6 +1448,7 @@ function setup_my_category_field_in_query( $query ){
 }
 
 add_filter( 'widget_text', 'do_shortcode' );
+add_filter( 'gform_tabindex_19', '__return_false' );
 
 /*------ For Gravity From DP submissions ------*/
 require get_template_directory() . '/includes/DP_Submission.php';
