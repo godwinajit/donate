@@ -7966,18 +7966,18 @@ ul.grid-sm {
 	margin-bottom: 0px !important;
 	font-size: 17px;
 }
-#gform_wrapper_8{
+#gform_wrapper_8, #gform_wrapper_20{
 	margin-top: 0px;
 	padding-top: 0px;
 	margin-bottom: 0px;
 	padding-bottom: 0px;
 }
-#input_8_1::placeholder
+#input_8_1::placeholder, #input_20_1::placeholder
 {
 	text-align: left;
 }
 
-.gform_confirmation_message_8{
+.gform_confirmation_message_8, .gform_confirmation_message_20{
 	margin-top: 20px;
 	text-align: center;
 }

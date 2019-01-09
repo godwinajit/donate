@@ -2,7 +2,8 @@
 
     @media only screen and (max-width: 640px)
     {
-        #gform_wrapper_19 .gform_body .gform_fields .gfield input[type="text"]
+        #gform_wrapper_19 .gform_body .gform_fields .gfield input[type="text"],
+		#gform_wrapper_19 .gform_body .gform_fields .gfield input[type="email"]
 
         {
             margin:2px !important;
@@ -22,7 +23,8 @@
     }
     @media only screen and (min-width: 641px) and (max-width: 660px)
     {
-        #gform_wrapper_19 .gform_body .gform_fields .gfield input[type="text"]
+        #gform_wrapper_19 .gform_body .gform_fields .gfield input[type="text"],
+		#gform_wrapper_19 .gform_body .gform_fields .gfield input[type="email"]
 
         {
             width:250px !important;
@@ -37,7 +39,8 @@
     }
     @media only screen and (min-width: 661px) and (max-width: 680px)
     {
-        #gform_wrapper_19 .gform_body .gform_fields .gfield input[type="text"]
+        #gform_wrapper_19 .gform_body .gform_fields .gfield input[type="text"],
+		#gform_wrapper_19 .gform_body .gform_fields .gfield input[type="email"]
 
         {
             width:250px !important;
@@ -52,7 +55,8 @@
     }
     @media only screen and (min-width: 681px) and (max-width: 719px)
     {
-        #gform_wrapper_19 .gform_body .gform_fields .gfield input[type="text"]
+        #gform_wrapper_19 .gform_body .gform_fields .gfield input[type="text"],
+		#gform_wrapper_19 .gform_body .gform_fields .gfield input[type="email"]
 
         {
             width:270px !important;
@@ -66,7 +70,8 @@
     }
     @media only screen and (min-width: 720px) and (max-width: 740px)
     {
-        #gform_wrapper_19 .gform_body .gform_fields .gfield input[type="text"]
+        #gform_wrapper_19 .gform_body .gform_fields .gfield input[type="text"],
+		#gform_wrapper_19 .gform_body .gform_fields .gfield input[type="email"]
 
         {
             width:290px !important;
@@ -80,7 +85,8 @@
     }
     @media only screen and (min-width: 741px) and (max-width: 767px)
     {
-        #gform_wrapper_19 .gform_body .gform_fields .gfield input[type="text"]
+        #gform_wrapper_19 .gform_body .gform_fields .gfield input[type="text"],
+		#gform_wrapper_19 .gform_body .gform_fields .gfield input[type="email"]
 
         {
             width:290px !important;
@@ -94,7 +100,8 @@
     }
     @media only screen and (min-width: 768px) and (max-width: 810px)
     {
-        #gform_wrapper_19 .gform_body .gform_fields .gfield input[type="text"]
+        #gform_wrapper_19 .gform_body .gform_fields .gfield input[type="text"],
+		#gform_wrapper_19 .gform_body .gform_fields .gfield input[type="email"]
 
         {
             width:270px !important;
@@ -108,7 +115,8 @@
     }
     @media only screen and (min-width: 811px) and (max-width: 850px)
     {
-        #gform_wrapper_19 .gform_body .gform_fields .gfield input[type="text"]
+        #gform_wrapper_19 .gform_body .gform_fields .gfield input[type="text"],
+		#gform_wrapper_19 .gform_body .gform_fields .gfield input[type="email"]
 
         {
             width:290px !important;
@@ -121,7 +129,8 @@
     }
     @media only screen and (min-width: 851px) and (max-width: 890px)
     {
-        #gform_wrapper_19 .gform_body .gform_fields .gfield input[type="text"]
+        #gform_wrapper_19 .gform_body .gform_fields .gfield input[type="text"],
+		#gform_wrapper_19 .gform_body .gform_fields .gfield input[type="email"]
 
         {
             width:310px !important;
@@ -135,7 +144,8 @@
     }
     @media only screen and (min-width: 891px) and (max-width: 930px)
     {
-        #gform_wrapper_19 .gform_body .gform_fields .gfield input[type="text"]
+        #gform_wrapper_19 .gform_body .gform_fields .gfield input[type="text"],
+		#gform_wrapper_19 .gform_body .gform_fields .gfield input[type="email"]
 
         {
             width:330px !important;
@@ -148,7 +158,8 @@
     }
     @media only screen and (min-width: 931px) and (max-width: 970px)
     {
-        #gform_wrapper_19 .gform_body .gform_fields .gfield input[type="text"]
+        #gform_wrapper_19 .gform_body .gform_fields .gfield input[type="text"],
+		#gform_wrapper_19 .gform_body .gform_fields .gfield input[type="email"]
 
         {
             width:350px !important;
@@ -161,7 +172,8 @@
     }
     @media only screen and (min-width: 971px) and (max-width: 1010px)
     {
-        #gform_wrapper_19 .gform_body .gform_fields .gfield input[type="text"]
+        #gform_wrapper_19 .gform_body .gform_fields .gfield input[type="text"],
+		#gform_wrapper_19 .gform_body .gform_fields .gfield input[type="email"]
 
         {
             width:370px !important;
@@ -174,7 +186,8 @@
     }
     @media only screen and (min-width: 1011px) and (max-width: 1050px)
     {
-        #gform_wrapper_19 .gform_body .gform_fields .gfield input[type="text"]
+        #gform_wrapper_19 .gform_body .gform_fields .gfield input[type="text"],
+		#gform_wrapper_19 .gform_body .gform_fields .gfield input[type="email"]
 
         {
             width:350px !important;
@@ -187,7 +200,8 @@
     }
     @media only screen and (min-width: 1051px) and (max-width: 1090px)
     {
-        #gform_wrapper_19 .gform_body .gform_fields .gfield input[type="text"]
+        #gform_wrapper_19 .gform_body .gform_fields .gfield input[type="text"],
+		#gform_wrapper_19 .gform_body .gform_fields .gfield input[type="email"]
 
         {
             width:370px !important;
@@ -200,7 +214,8 @@
     }
     @media only screen and (min-width: 1091px) and (max-width: 1207px)
     {
-        #gform_wrapper_19 .gform_body .gform_fields .gfield input[type="text"]
+        #gform_wrapper_19 .gform_body .gform_fields .gfield input[type="text"],
+		#gform_wrapper_19 .gform_body .gform_fields .gfield input[type="email"]
 
         {
             width:390px !important;
@@ -213,7 +228,8 @@
     }
     @media only screen and (min-width: 1208px) and (max-width: 1240px)
     {
-        #gform_wrapper_19 .gform_body .gform_fields .gfield input[type="text"]
+        #gform_wrapper_19 .gform_body .gform_fields .gfield input[type="text"],
+		#gform_wrapper_19 .gform_body .gform_fields .gfield input[type="email"]
 
         {
             width:410px !important;

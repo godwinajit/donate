@@ -10,12 +10,15 @@ $supportGroupsContent = array_shift($supportGroupsContent);
 
 $bannerImage = wp_get_attachment_url( get_post_thumbnail_id($supportGroupsContent->ID) );
 
-if (! $bannerImage || $bannerImage == '')
+/*if (! $bannerImage || $bannerImage == ''){
 	$bannerImage = $bannerImageurl;
+}*/
 ?>
 <main class="mains">
 <div class="inner-pages common-content-page">
-	<div class="inner-banner" style="background-image:url(<?php echo $bannerImage; ?>)"></div>
+	<?php if($bannerImage){?>
+		<div class="inner-banner" style="background-image:url(<?php echo $bannerImage; ?>)"></div>
+	<? }?>
 	<div class="container-section support-groups-cat-container">
 		<div class="wrapper container-fluid">
 			<div class="row center-xs">

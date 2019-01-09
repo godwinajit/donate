@@ -1447,6 +1447,18 @@ function setup_my_category_field_in_query( $query ){
     return $query;
 }
 
+add_action( 'gform_after_submission_20', 'tick_table_download_after_submission', 10, 2 );
+function tick_table_download_after_submission( $entry, $form ) {
+	$cookie_name = "tick-table-download-cookie";
+	$cookie_value = "true";
+	setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+}
+
+add_filter( 'gform_validation_message_20', 'tick_table_download_change_message', 10, 2 );
+function tick_table_download_change_message( $message, $form ) {
+    return '<div class="gform_validation_error">Please enter all required fields.</div><br>';
+}
+
 add_filter( 'widget_text', 'do_shortcode' );
 add_filter( 'gform_tabindex_19', '__return_false' );
 
