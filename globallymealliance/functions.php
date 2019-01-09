@@ -1447,6 +1447,15 @@ function setup_my_category_field_in_query( $query ){
     return $query;
 }
 
+function all_posts_per_page_for_archive_page( $query ) {
+    if (!is_admin() && ( $query->is_archive('support-groups') ) && $query->is_main_query()) {
+            $query->set('posts_per_page', -1);
+   }
+
+   return $query;
+}
+add_filter( 'pre_get_posts', 'all_posts_per_page_for_archive_page' );
+
 add_action( 'gform_after_submission_20', 'tick_table_download_after_submission', 10, 2 );
 function tick_table_download_after_submission( $entry, $form ) {
 	$cookie_name = "tick-table-download-cookie";
@@ -1457,6 +1466,19 @@ function tick_table_download_after_submission( $entry, $form ) {
 add_filter( 'gform_validation_message_20', 'tick_table_download_change_message', 10, 2 );
 function tick_table_download_change_message( $message, $form ) {
     return '<div class="gform_validation_error">Please enter all required fields.</div><br>';
+}
+
+function getCategoryNamesString($postId, $taxonomy){
+	$categories = get_the_terms($postId, $taxonomy);
+	$cls = '';
+
+	if ( ! empty( $categories ) ) {
+	  foreach ( $categories as $cat ) {
+		$cls .= $cat->name . '';
+	  }
+	}
+
+	return $cls;
 }
 
 add_filter( 'widget_text', 'do_shortcode' );
