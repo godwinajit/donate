@@ -95,6 +95,107 @@ function santaenergy_main_widgets_init() {
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>',
 	) );
+
+	//Top Most Header Sidebar
+	register_sidebar( array(
+		'name'          => esc_html__( 'Top Header', 'santaenergy-main' ),
+		'id'            => 'header-top',
+		'description'   => esc_html__( 'Add widgets here.', 'santaenergy-main' ),
+		'before_widget' => '',
+		'after_widget'  => '',
+		'before_title'  => '<h2 class="hide-element">',
+		'after_title'   => '</h2>',
+	) );
+
+	//Top Menu Sidebar
+	register_sidebar( array(
+		'name'          => esc_html__( 'Header Menu', 'santaenergy-main' ),
+		'id'            => 'header-menu',
+		'description'   => esc_html__( 'Add widgets here.', 'santaenergy-main' ),
+		'before_widget' => '',
+		'after_widget'  => '',
+		'before_title'  => '<h2 class="hide-element">',
+		'after_title'   => '</h2>',
+	) );
+
+	//Footer Content One
+	register_sidebar( array(
+		'name'          => esc_html__( 'Footer Column One', 'santaenergy-main' ),
+		'id'            => 'footer-content-1',
+		'description'   => esc_html__( 'Add widgets here.', 'santaenergy-main' ),
+		// 'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'before_widget' => '',
+		'after_widget'  => '</div>',
+		'before_title'  => '<div class="sidebar-title"><a href="#" class="sidebar-opener"></a><h4 class="footer-title footer-content-1">',
+		'after_title'   => '</h4></div><div class="sidebar-content">',
+	) );
+
+	//Footer Content Two
+	register_sidebar( array(
+		'name'          => esc_html__( 'Footer Column Two', 'santaenergy-main' ),
+		'id'            => 'footer-content-2',
+		'description'   => esc_html__( 'Add widgets here.', 'santaenergy-main' ),
+		'before_widget' => '',
+		'after_widget'  => '</div>',
+		'before_title'  => '<div class="sidebar-title"><a href="#" class="sidebar-opener"></a><h4 class="footer-title footer-content-2">',
+		'after_title'   => '</h4></div><div class="sidebar-content">',
+	) );
+
+	//Footer Content Three
+	register_sidebar( array(
+		'name'          => esc_html__( 'Footer Column Three', 'santaenergy-main' ),
+		'id'            => 'footer-content-3',
+		'description'   => esc_html__( 'Add widgets here.', 'santaenergy-main' ),
+		'before_widget' => '',
+		'after_widget'  => '</div>',
+		'before_title'  => '<div class="sidebar-title"><a href="#" class="sidebar-opener"></a><h4 class="footer-title footer-content-3">',
+		'after_title'   => '</h4></div><div class="sidebar-content">',
+	) );
+
+	//Footer Content Four
+	register_sidebar( array(
+		'name'          => esc_html__( 'Footer Column Four', 'santaenergy-main' ),
+		'id'            => 'footer-content-4',
+		'description'   => esc_html__( 'Add widgets here.', 'santaenergy-main' ),
+		'before_widget' => '',
+		'after_widget'  => '</div>',
+		'before_title'  => '<div class="sidebar-title"><a href="#" class="sidebar-opener"></a><h4 class="footer-title footer-content-4">',
+		'after_title'   => '</h4></div><div class="sidebar-content">',
+	) );
+
+	//Footer Content Five
+	register_sidebar( array(
+		'name'          => esc_html__( 'Footer Column Five', 'santaenergy-main' ),
+		'id'            => 'footer-content-5',
+		'description'   => esc_html__( 'Add widgets here.', 'santaenergy-main' ),
+		'before_widget' => '',
+		'after_widget'  => '</div><div>',
+		'before_title'  => '<div class="sidebar-title"><a href="#" class="sidebar-opener"></a><h4 class="footer-title footer-content-5">',
+		'after_title'   => '</h4></div><div class="sidebar-content">',
+	) );
+
+	//Footer Content Six
+	register_sidebar( array(
+		'name'          => esc_html__( 'Footer Column Six', 'santaenergy-main' ),
+		'id'            => 'footer-content-6',
+		'description'   => esc_html__( 'Add widgets here.', 'santaenergy-main' ),
+		'before_widget' => '',
+		'after_widget'  => '</div><div>',
+		'before_title'  => '<div class="sidebar-title"><a href="#" class="sidebar-opener"></a><h4 class="footer-title footer-content-6">',
+		'after_title'   => '</h4></div><div class="sidebar-content">',
+	) );
+
+	//Footer Copy Right
+	register_sidebar( array(
+		'name'          => esc_html__( 'Footer Copyright', 'santaenergy-main' ),
+		'id'            => 'footer-content-7',
+		'description'   => esc_html__( 'Add widgets here.', 'santaenergy-main' ),
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h4 class="hide-element">',
+		'after_title'   => '</h4></div>',
+	) );
+
 }
 add_action( 'widgets_init', 'santaenergy_main_widgets_init' );
 
@@ -109,6 +210,11 @@ function santaenergy_main_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'santaenergy_main_scripts' );
+
+function remove_revslider_meta_tag() { return''; }
+add_filter( 'revslider_meta_generator', 'remove_revslider_meta_tag' );
+
+show_admin_bar(false);
 
 /**
  * Functions which enhance the theme by hooking into WordPress.

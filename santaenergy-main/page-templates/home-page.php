@@ -5,268 +5,226 @@
 get_header();
 
 ?>
-
-
     <!--==========================
       Intro Section
     ============================-->
-    <section id="home-section-2">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6 col-md-6">
-            <i aria-hidden="true" class="fa fa-quote-right"></i>
-            <div class="quate">
-              <p>Santa is as committed to my family’s comfort as I am.</p>
-              <h5>Jaron H.</h5>
-              <h6>Fairfield, CT</h6><a href="#">Get My Quote</a>
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6" style="background-image: url('<?php echo get_template_directory_uri(); ?>/img/santa_home_main_image.png');"></div>
-        </div>
-      </div>
-    </section><!--==========================
+	<section id="home-intro">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-5 col-md-5">
+					<?php the_content();?>
+				</div>
+				<div class="col-lg-7 col-md-7 hero-right-section"
+				style="background-image: url('<?php echo get_the_post_thumbnail_url(get_the_ID(),'full');?>');"></div>
+			</div>
+		</div>
+	</section><!--==========================
      Home Section 2
     ============================-->
-    <section id="home-section-2">
+    <section id="home-section-2" class="default-padding ">
       <div class="container">
         <div class="row">
-          <div class="col-lg-12 col-md-12">
-            <h2>Santa is Comfort You Can Count On</h2>
-            <p>Home heating is critical to the comfort of families in Fairfield and New Haven counties. Santa delivers more than heating oil and propane . . .</p>
-            <ul>
-              <li>With Santa, you get</li>
-              <li>Quality</li>
-            </ul>
+          <div class="col-lg-12 col-md-12 text-center">
+			<?php the_field('home_page_content_two_text');?>
           </div>
         </div>
       </div>
     </section><!--==========================
       Differenece  Section
     ============================-->
-    <section id="difference-section">
+    <section id="difference-section" class=" left-title">
       <div class="container">
         <div class="row">
           <div class="col-lg-3 col-md-3">
             <div class="section-header">
-              <img alt="santa" src="<?php echo get_template_directory_uri(); ?>/img/santa_home_symbol-logo.svg">
-              <h2>The Santa Difference</h2>
-              <p>Your home is the heart of your family. Keeping it warm is the heart of Santa.</p>
+              <?php the_field('home_page_content_three_text');?>
             </div>
           </div>
           <div class="col-lg-9 col-md-9">
-            <ul id="faq-list">
-              <li>
-                <a class="collapsed" data-toggle="collapse" href="#faq1">Knowledge & Experience<i class="fa fa-minus-circle"></i></a>
-                <div class="collapse" data-parent="#faq-list" id="faq1">
-                  <h3>Reliability & Dependability</h3>
-                  <p>Santa Fuel has a large fleet of well maintained and up-to-date vehicles. We own and manage our own Fuel Terminal, so we can closely monitor the quality of the product being delivered. You can reach a live person in our headquarters in Bridgeport, CT 24/7/365. We have a team of emergency service technicians on-call 24/7/365 to respond immediately to a customer’s needs.</p>
-                </div>
-              </li>
-              <li>
-                <a class="collapsed" data-toggle="collapse" href="#faq2">One Stop Heating & Cooling Shop <i class="fa fa-minus-circle"></i></a>
-                <div class="collapse" data-parent="#faq-list" id="faq2">
-                  <h3>Reliability & Dependability</h3>
-                  <p>Santa Fuel has a large fleet of well maintained and up-to-date vehicles. We own and manage our own Fuel Terminal, so we can closely monitor the quality of the product being delivered. You can reach a live person in our headquarters in Bridgeport, CT 24/7/365. We have a team of emergency service technicians on-call 24/7/365 to respond immediately to a customer’s needs.</p>
-                </div>
-              </li>
-            </ul>
+		  <?php
+			if( have_rows('home_page_content_three_repeater') ): ?>
+				<ul class="faq-list">
+			    <?php $collapsedCount = 1; while ( have_rows('home_page_content_three_repeater') ) : the_row();
+					if ( $collapsedCount == 1 ) $collapsedContent = 'active'; else $collapsedContent = '';
+					echo '<li class="faq-item '.get_sub_field('accordion_icon'). ' ' .$collapsedContent .'">';
+					echo '<a href="#" class="faq-item-opener">'.get_sub_field('accordion_title').'<i class="icon icon-plus"></i><i class="icon icon-close"></i></a>';
+					echo '<div class="faq-item-content">'.get_sub_field('accordion_content').'</div>';
+					echo '</li>';
+					$collapsedCount++;
+				endwhile; ?>
+	            </ul>
+			<?php endif; ?>
           </div>
         </div>
       </div>
-    </section><!--==========================
+    </section>
+
+    <!--==========================
       Product Section
     ============================-->
-    <section id="product-section">
+    <section id="product-section" class="left-title default-padding">
       <div class="container">
         <div class="row">
           <div class="col-lg-3 col-md-3">
             <div class="section-header">
               <img alt="santa" src="<?php echo get_template_directory_uri(); ?>/img/santa_home_symbol-logo.svg">
-              <h2>Products & Services</h2>
-              <p>The products you need with the service you deserve. When quality matters, choose Santa.</p>
+              <h2><?php the_field('home_page_content_four_title');?></h2>
+	              <?php the_field('home_page_content_four_text');?>
             </div>
           </div>
-          <div class="col-lg-9 col-md-9">
-            <div class="two-col-pro&quot;" style="background-image: url('<?php echo get_template_directory_uri(); ?>/img/santa_home_image4.png');">
-              <a href="#">Propane</a>
-            </div>
-            <div class="two-col-pro&quot;" style="background-image: url('<?php echo get_template_directory_uri(); ?>/img/santa_home_image4.png');">
-              <a href="#">Propane</a>
-            </div>
-            <div class="two-col-pro&quot;" style="background-image: url('<?php echo get_template_directory_uri(); ?>/img/santa_home_image4.png');">
-              <a href="#">Propane</a>
-            </div>
-            <div class="two-col-pro&quot;" style="background-image: url('<?php echo get_template_directory_uri(); ?>/img/santa_home_image4.png');">
-              <a href="#">Propane</a>
-            </div>
-            <div class="two-col-pro&quot;" style="background-image: url('<?php echo get_template_directory_uri(); ?>/img/santa_home_image4.png');">
-              <a href="#">Propane</a>
-            </div>
-            <div class="two-col-pro&quot;" style="background-image: url('<?php echo get_template_directory_uri(); ?>/img/santa_home_image4.png');">
-              <a href="#">Propane</a>
+          <div class="col-lg-9 col-md-9 right-product-section">
+            <div class="product-area">
+                <?php
+                if( have_rows('home_page_content_four_repeater') ): ?>
+                  <?php while ( have_rows('home_page_content_four_repeater') ) : the_row(); 
+                    $content_four_image_id = get_sub_field('section_image');
+                    $content_four_image_size = "santa-main-thumb-476-234";
+                    $content_four_image = wp_get_attachment_image_src( $content_four_image_id, $content_four_image_size );
+                    ?>
+                        <div class="two-col-pro" style="background-image: url('<?php echo $content_four_image[0];?>');">
+                      <a href="<?php echo get_sub_field('section_url');?>"><p><?php echo get_sub_field('section_title');?></p></a>
+                          </div>
+                  <?php endwhile; ?>
+                <?php endif; ?>
             </div>
           </div>
         </div>
       </div>
-    </section><!--==========================
+    </section>
+
+    <!--==========================
       Contact Form Section
     ============================-->
-    <section id="form-section">
+
+	<!--
+    <section id="form-section" class="">
       <div class="container">
         <div class="row">
-          <div class="col-lg-6 col-md-6">
-            <div class="section-header">
-              <img alt="santa" src="<?php echo get_template_directory_uri(); ?>/img/santa_home_symbol-logo.svg">
-              <h2>Downloadable Tips For Your Home</h2>
-              <p>Lorem ipsum tincidunt Praesent eu accumsan justo, facilisis. Turpis risus neque tortor condimentum lorem. Vitae dolor. Nibh iaculis nunc vitae. Sed elit. Ultrices Vestibulum Aliquam lorem. Pharetra in vehicula laoreet, vel tempus.</p>
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6" style="background-image: url('<?php echo get_template_directory_uri(); ?>/img/santa_home_image.png')"></div>
+			<?php the_field('home_page_content_five_text');?>
         </div>
       </div>
-    </section><!--==========================
+    </section>
+	-->
+
+    <!--==========================
       News And Slider Section
     ============================-->
     <section id="news-section" style="background-color: #243550;">
       <div class="container">
-        <div class="section-header">
-          <h2>Latest News</h2>
+        <div class="section-header text-center">
+          <h2><?php the_field('news_section_title');?></h2>
+        </div>
+      </div>
+      <div class="news-area">
+        <div class="container">
+          <div class="row mobile-slider">
+  		<?php 
+  			$latestNewsPosts = get_field('news_section_select');
+  			if( $latestNewsPosts ): ?>
+  				<?php foreach( $latestNewsPosts as $post):?>
+  				<?php setup_postdata($post); 
+  				?>
+  				<div class="col-lg-4 col-md-4">
+	            <div class="section-cat">
+                <a href="<?php the_permalink(); ?>">
+		              <div class="section-cat-img" style="background-image: url('<?php echo get_the_post_thumbnail_url(get_the_ID(),'santa-main-thumb-349-180'); ?>');"></div>
+                  <div class="news-det">
+			              <h3><?php the_title(); ?></h3>
+						        <?php echo wp_trim_words( get_the_content(), 30, '...' ); ?>
+					          <span class="news-link">page link</span>
+                  </div>
+                </a>
+	            </div>
+  				</div>
+  			    <?php endforeach; ?>
+  				<?php wp_reset_postdata();?>
+  			<?php endif; ?> 
+          </div>
         </div>
       </div>
       <div class="container">
-        <div class="row">
-          <div class="col-lg-4 col-md-6">
-            <div class="section-cat">
-              <div class="section-cat-img"><img alt="Residential" class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/img/santa_home_image5.png"></div>
-              <h3>Facts About Bioheat Heating Oil</h3>
-              <p>For propane users, the Propane Education and Research Council (PERC), is an excellent resource for propane education.</p><a href="#">page link</a>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="section-cat">
-              <div class="section-cat-img"><img alt="Residential" class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/img/santa_home_image5.png"></div>
-              <h3>Facts About Bioheat Heating Oil</h3>
-              <p>For propane users, the Propane Education and Research Council (PERC), is an excellent resource for propane education.</p><a href="#">page link</a>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="section-cat">
-              <div class="section-cat-img"><img alt="Residential" class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/img/santa_home_image5.png"></div>
-              <h3>Facts About Bioheat Heating Oil</h3>
-              <p>For propane users, the Propane Education and Research Council (PERC), is an excellent resource for propane education.</p><a href="#">page link</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="row">
           <div class="testimonial_slider">
-            <div class="slider-item">
-              <div class="slide-image"><img alt="" src="<?php echo get_template_directory_uri(); ?>/img/slide.png"></div>
+            <div class="slides">
+
+		  <?php
+			if( have_rows('home_page_slider_section_repeater') ): ?>
+				<?php while ( have_rows('home_page_slider_section_repeater') ) : the_row(); 
+					$content_slider_image_id = get_sub_field('slider_image');
+					$content_slider_image_size = "santa-main-thumb-350-180";
+					$content_slider_image = wp_get_attachment_image_src( $content_slider_image_id, $content_slider_image_size );
+					?>
+					<div class="slider-item">
+            <div class="slider-frame">
+  						<!-- <div class="slide-image" style="background-image: url('<?php echo $content_slider_image[0];?>');"></div> -->
+              <div class="testimonial-descr"><?php echo get_sub_field('slider_description');?></div>
               <div class="testimonial-details">
-                <p>Sophie Garza <span>Lake Krystinafurt</span></p>
+                 <p><?php echo get_sub_field('slider_title');?></p>
               </div>
-              <p>Lorem ipsum mattis torquent metus non Vestibulum vitae tincidunt metus sit ultrices semper. Risus. At lacus erat, quis.</p>
             </div>
-            <div class="slider-item">
-              <div class="slide-image"><img alt="" src="<?php echo get_template_directory_uri(); ?>/img/slide.png"></div>
-              <div class="testimonial-details">
-                <p>Sophie Garza <span>Lake Krystinafurt</span></p>
-              </div>
-              <p>Lorem ipsum mattis torquent metus non Vestibulum vitae tincidunt metus sit ultrices semper. Risus. At lacus erat, quis.</p>
+					</div>
+				<?php endwhile; ?>
+			<?php endif; ?>
             </div>
-            <div class="slider-item">
-              <div class="slide-image"><img alt="" src="<?php echo get_template_directory_uri(); ?>/img/slide.png"></div>
-              <div class="testimonial-details">
-                <p>Sophie Garza <span>Lake Krystinafurt</span></p>
-              </div>
-              <p>Lorem ipsum mattis torquent metus non Vestibulum vitae tincidunt metus sit ultrices semper. Risus. At lacus erat, quis.</p>
-            </div>
+          <div class="pagination-holder">
+              <!-- pagination generated here -->
           </div>
         </div>
       </div>
-    </section><!--==========================
+    </section>
+
+
+    <!--==========================
       Category Section
     ============================-->
     <section id="cateegory-section">
       <div class="container">
         <div class="row">
-          <div class="col-lg-4 col-md-6">
-            <div class="section-cat">
-              <div class="section-cat-img"><img alt="Residential" class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/img/santa_home_image5.png"></div>
-              <h3><a href="#">Residential</a></h3>
-              <div class="section-details">
-                <ul>
-                  <li>Heating oil</li>
-                  <li>Propane</li>
-                  <li>HVAC equipment installation</li>
-                  <li>24/7 emergency service</li>
-                </ul><a href="#">Learn More</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="section-cat">
-              <div class="section-cat-img"><img alt="Residential" class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/img/santa_home_image5.png"></div>
-              <h3><a href="#">Residential</a></h3>
-              <div class="section-details">
-                <ul>
-                  <li>Heating oil</li>
-                  <li>Propane</li>
-                  <li>HVAC equipment installation</li>
-                  <li>24/7 emergency service</li>
-                </ul><a href="#">Learn More</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="section-cat">
-              <div class="section-cat-img"><img alt="Residential" class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/img/santa_home_image5.png"></div>
-              <h3><a href="#">Residential</a></h3>
-              <div class="section-details">
-                <ul>
-                  <li>Heating oil</li>
-                  <li>Propane</li>
-                  <li>HVAC equipment installation</li>
-                  <li>24/7 emergency service</li>
-                </ul><a href="#">Learn More</a>
-              </div>
-            </div>
-          </div>
+
+		  <?php
+			if( have_rows('purpose_section_repeater') ): ?>
+				<?php while ( have_rows('purpose_section_repeater') ) : the_row(); 
+					$content_purpose_image_id = get_sub_field('purpose_image');
+					$content_purpose_image_size = "santa-main-thumb-350-208";
+					$content_purpose_image = wp_get_attachment_image_src( $content_purpose_image_id, $content_purpose_image_size );
+					?>
+					<div class="col-lg-4 col-md-4">
+						<div class="section-cat-3">
+              <a href="<?php echo get_sub_field('purpose_url');?>">
+                <div class="section-cat-img" style="background-image: url('<?php echo $content_purpose_image[0];?>');">
+                    <p ><?php echo get_sub_field('purpose_title');?></p>
+                </div>
+                <div class="section-details">
+                  <ul>
+                  <?php if( have_rows('purposes_repeater') ): ?>
+                    <?php while ( have_rows('purposes_repeater') ) : the_row(); ?>
+                      <li><?php echo get_sub_field('purposes');?></li>
+                    <?php endwhile; ?>
+                  <?php endif; ?>
+                   </ul>
+                   <span class="more">Learn More</span>
+                </div>
+              </a>
+						</div>
+				  </div>
+
+				<?php endwhile; ?>
+			<?php endif; ?>
+
         </div>
       </div>
-    </section><!--==========================
+    </section>
+
+    <!--==========================
         MAP SECTION
   ============================-->
     <section id="home-map">
       <div class="map-container">
-        <iframe allowfullscreen frameborder="0" height="563" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3003.533496369479!2d-73.2046991!3d41.1665297!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e80e16893b8781%3A0xee95550e783af15c!2s154+Admiral+St%2C+Bridgeport%2C+CT+06605%2C+USA!5e0!3m2!1sen!2sin!4v1542471797951" style="border:0" width="1440"></iframe>
+        <iframe allowfullscreen frameborder="0" height="563" src="<?php the_field('map_embed'); ?>" style="border:0" width="1440"></iframe>
       </div>
       <div class="container">
         <div class="row">
           <div class="col-lg-4 col-md-4 map-info">
-            <h3>Find Us</h3>
-            <p>154 Admiral Street Bridgeport, CT 06605</p>
-            <p>CT State Lic. # S1-0406878</p>
-            <p>HOD 000299</p>
-            <p>HIC 0624601</p>
-            <h3>Call Us</h3><a href="#">800.937.2682</a>
-            <div class="col-lg-12 col-md-12 map-logo"><img alt="Santa" src="<?php echo get_template_directory_uri(); ?>/img/santa_home_logo_color.svg"> <img alt="Santa" src="<?php echo get_template_directory_uri(); ?>/img/santa_home_logo_color.svg"> <img alt="Santa" src="<?php echo get_template_directory_uri(); ?>/img/santa_home_logo_color.svg"></div>
-            <h3>Follow Us</h3>
-            <ul>
-              <li>
-                <a href="#"><i aria-hidden="true" class="fa fa-facebook"></i></a>
-              </li>
-              <li>
-                <a href="#"><i aria-hidden="true" class="fa fa-facebook"></i></a>
-              </li>
-              <li>
-                <a href="#"><i aria-hidden="true" class="fa fa-facebook"></i></a>
-              </li>
-              <li>
-                <a href="#"><i aria-hidden="true" class="fa fa-facebook"></i></a>
-              </li>
-            </ul>
+            <?php the_field('map_content'); ?>
           </div>
         </div>
       </div>

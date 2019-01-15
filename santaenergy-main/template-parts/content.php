@@ -22,14 +22,12 @@
 			?>
 			<div class="entry-meta">
 				<?php
-				santaenergy_main_posted_on();
-				santaenergy_main_posted_by();
 				?>
 			</div><!-- .entry-meta -->
 		<?php endif; ?>
 	</header><!-- .entry-header -->
 
-	<?php santaenergy_main_post_thumbnail(); ?>
+	<?php  ?>
 
 	<div class="entry-content">
 		<?php
@@ -54,6 +52,6 @@
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">
-		<?php santaenergy_main_entry_footer(); ?>
+		<?php ?>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-<?php the_ID(); ?> -->

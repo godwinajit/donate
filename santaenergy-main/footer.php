@@ -17,189 +17,64 @@
     Footer
   ============================-->
   <footer id="footer">
-    <div class="footer-top">
+    <div class="footer-bar">
       <div class="container">
-        <div class="row">
-          <div class="col-lg-1 col-md-1 footer-info"><img alt="Santa" src="img/santa_home_logo_color.svg"></div>
-          <div class="col-lg-2 col-md-2 footer-links">
-            <h4>Products</h4>
-            <h5>Heating Oil</h5>
-            <ul>
-              <li>
-                <a href="#">Air Conditioning</a>
-              </li>
-              <li>
-                <a href="#">Propane</a>
-              </li>
-              <li>
-                <a href="#">Generators</a>
-              </li>
-            </ul>
-            <h5>Heating Oil</h5>
-            <ul>
-              <li>
-                <a href="#">Delivery</a>
-              </li>
-              <li>
-                <a href="#">Equipment</a>
-              </li>
-              <li>
-                <a href="#">Prices</a>
-              </li>
-              <li>
-                <a href="#">Servicing</a>
-              </li>
-              <li>
-                <a href="#">Price Protection</a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-lg-2 col-md-2 footer-links">
-            <h4>Products</h4>
-            <h5>Heating Oil</h5>
-            <ul>
-              <li>
-                <a href="#">Air Conditioning</a>
-              </li>
-              <li>
-                <a href="#">Propane</a>
-              </li>
-              <li>
-                <a href="#">Generators</a>
-              </li>
-            </ul>
-            <h5>Heating Oil</h5>
-            <ul>
-              <li>
-                <a href="#">Delivery</a>
-              </li>
-              <li>
-                <a href="#">Equipment</a>
-              </li>
-              <li>
-                <a href="#">Prices</a>
-              </li>
-              <li>
-                <a href="#">Servicing</a>
-              </li>
-              <li>
-                <a href="#">Price Protection</a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-lg-2 col-md-2 footer-links">
-            <h4>Products</h4>
-            <ul>
-              <li>
-                <a href="#">Air Conditioning</a>
-              </li>
-              <li>
-                <a href="#">Propane</a>
-              </li>
-              <li>
-                <a href="#">Generators</a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-lg-2 col-md-2 footer-links">
-            <h4>Products</h4>
-            <ul>
-              <li>
-                <a href="#">Air Conditioning</a>
-              </li>
-              <li>
-                <a href="#">Propane</a>
-              </li>
-              <li>
-                <a href="#">Generators</a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-lg-3 col-md-3 footer-links">
-            <h4>Products</h4>
-            <h5>Heating Oil</h5>
-            <ul>
-              <li>
-                <a href="#">Air Conditioning</a>
-              </li>
-              <li>
-                <a href="#">Propane</a>
-              </li>
-              <li>
-                <a href="#">Generators</a>
-              </li>
-            </ul>
-            <h5>Heating Oil</h5>
-            <ul>
-              <li>
-                <a href="#">Delivery</a>
-              </li>
-              <li>
-                <a href="#">Equipment</a>
-              </li>
-              <li>
-                <a href="#">Prices</a>
-              </li>
-              <li>
-                <a href="#">Servicing</a>
-              </li>
-              <li>
-                <a href="#">Price Protection</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="container">
-      <div class="row">
-        <div class=" col-md-6">
-          <a href="#">Privacy Policy</a>
-        </div>
-        <div class=" col-md-6 text-right">
-          <p>All marks are the property of Santa Energy Corporation. ©2018 Santa Energy Corporation. All rights reserved.</p>
+        <div class="footer-logo"><a href="<?php echo network_site_url();?>"><img alt="Santa" src="<?php echo get_template_directory_uri(); ?>/img/santa_home_logo_color.svg" width="109"></a></div>
+        <div class="footer-nav-holder">
+          <ul class="footer-nav">
+            <li>
+                <?php dynamic_sidebar('footer-content-1');?>
+            </li><li>
+                <?php dynamic_sidebar('footer-content-2');?>
+            </li><li>
+                <?php dynamic_sidebar('footer-content-3');?>
+            </li><li>
+                <?php dynamic_sidebar('footer-content-4');?>
+            </li><li class="last border-btm">
+                <?php dynamic_sidebar('footer-content-5');?>
+            </li><li class="last">
+                <?php dynamic_sidebar('footer-content-6');?>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
   </footer><!-- #footer -->
+
+<div class="top-header mobile-display">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center foot-bottom-menu top-menu-section">
+          <?php dynamic_sidebar('header-top');?>
+        </div>
+      </div>
+      </div>
+      </div>
+
+
+
+     <div class="foot-bottom">
+    <div class="container">
+      <div class="row">
+        <?php dynamic_sidebar('footer-content-7');?>
+      </div>
+    </div>
+  </div>
+  
+  <?php wp_footer();?>
   <!-- JavaScript Libraries -->
 
   
-  <script src="https://use.fontawesome.com/6af3da97fb.js">
-  </script> 
-  <script src="<?php echo get_template_directory_uri(); ?>/lib/jquery/jquery.min.js">
+  <script src="https://use.fontawesome.com/6af3da97fb.js"></script> 
+  <script src="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js" type="text/javascript"></script>
+  <!-- <script src="<?php echo get_template_directory_uri(); ?>/lib/jquery/jquery.min.js">
   </script> 
   <script src="<?php echo get_template_directory_uri(); ?>/lib/jquery/jquery-migrate.min.js">
-  </script> 
+  </script>  -->
   <script src="<?php echo get_template_directory_uri(); ?>/lib/bootstrap/js/bootstrap.bundle.min.js">
   </script> <!-- Template Main Javascript File -->
    
-  <script src="js/main.js">  </script>
-  <script type="text/javascript">
-    jQuery(document).ready(function( $ ) {
-  $('.testimonial_slider').slick({
-  arrows :true,
-  dots: true,
-  slidesToShow:1,
-  responsive: [
-  {
-  breakpoint:1024,
-  settings:{
-  arrows :true,
-  slidesToShow:1
-  }
-  },
-  {
-  breakpoint:768,
-  settings:{
-  arrows :true,
-  slidesToShow:1
-  }
-  }
-  ]
-  });
-  });
-  </script>
+  <script src="<?php echo get_template_directory_uri(); ?>/js/main.js">  </script>
 
 </body>
 </html>
