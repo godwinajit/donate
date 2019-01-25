@@ -772,6 +772,154 @@ function spon_a_lyme_prevention_edu_prog_to_dp( $entry, $form ) {
 	}
 }
 
+// Spin the wheel
+add_action( 'gform_after_submission_24', 'spin_the_wheel_form_to_dp', 10, 2 );
+function spin_the_wheel_form_to_dp( $entry, $form ) {
+
+ 	$firstName = rgar( $entry, '1' );
+	$lastName = rgar( $entry, '2' );
+	$email = rgar( $entry, '24' );
+	$homePhone = rgar( $entry, '23' );
+	$iam = rgar( $entry, '12' );
+	$address1 = rgar( $entry, '19' );
+	$country = rgar( $entry, '5' );
+	$city = rgar( $entry, '6' );
+	$cityStateProvince = rgar( $entry, '10' );
+	$state = rgar( $entry, '8' );
+	$postal = rgar( $entry, '9' );
+	$iamFlag = '';
+
+	if ($iam == 'Lyme patient') {
+		$iamFlag = 'PAT';
+	} elseif ($iam == 'Caregiver: parent') {
+		$iamFlag = 'CGP';
+	} elseif ($iam == 'Caregiver: spouse') {
+		$iamFlag = 'CGS';
+	} elseif ($iam == 'Physician') {
+		$iamFlag = 'PHY';
+	} elseif ($iam == 'Nurse') {
+		$iamFlag = 'NUR';
+	} elseif ($iam == 'Psychiatrist/psychologist') {
+		$iamFlag = 'PSY';
+	} elseif ($iam == 'Pharma/Diagnostic Rep') {
+		$iamFlag = 'PHRM';
+	} elseif ($iam == 'Teacher') {
+		$iamFlag = 'TCH';
+	} elseif ($iam == 'Camp counselor') {
+		$iamFlag = 'CMP';
+	} elseif ($iam == 'Researcher') {
+		$iamFlag = 'RSRCH';
+	} elseif ($iam == 'Media') {
+		$iamFlag = 'MDA';
+	}
+
+	$matchingDonors = handleMatchingDonorByEmail($email, $form['title'], null, $firstName, $lastName, null, null, $country, $address1, null, $city, $cityStateProvince, $state, $postal, $homePhone, null, null, null, null, null, null, null, null, null, null, null, null, null, $iam);
+
+	if( !count($matchingDonors) ){
+		$donorDetails = saveDonor( null, $firstName, $lastName, $email, null, null, $country, $address1, null, $city, $cityStateProvince, $state, $postal, null, null );
+		error_log( 'spin_the_wheel_form_to_dp after_submission: ' . print_r( $donorDetails, true ) );
+
+	    if (isset($donorDetails->{'record'}->{'field'}[0])) {
+		    $donorDetails = $donorDetails->{'record'}->{'field'}[0]->attributes()->{'value'};
+			$donorId = $donorDetails[0];
+			
+			// No Flag yet for this form
+			//$flagDetails = saveDPFlag($donorId, 'WSDIG');
+			//error_log( 'digital_education_form_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
+		
+			if ($iamFlag != ''){
+				$iAMflagDetails = saveDPFlag($donorId, $iamFlag);
+				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $iAMflagDetails, true ) );
+			}
+		}
+	} else {
+		foreach($matchingDonors as $donorId){
+			//No Flag yet for this form
+			//$flagDetails = saveDPFlag($donorId, 'WSDIG');
+			//error_log( 'digital_education_form_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
+
+			if ($iamFlag != ''){
+				$iAMflagDetails = saveDPFlag($donorId, $iamFlag);
+				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $iAMflagDetails, true ) );
+			}
+		}
+	}
+}
+
+// Survey Landing Page
+add_action( 'gform_after_submission_21', 'survey_landing_page_to_dp', 10, 2 );
+function survey_landing_page_to_dp( $entry, $form ) {
+
+ 	$firstName = rgar( $entry, '1' );
+	$lastName = rgar( $entry, '2' );
+	$email = rgar( $entry, '24' );
+	$homePhone = rgar( $entry, '23' );
+	$iam = rgar( $entry, '12' );
+	$address1 = rgar( $entry, '19' );
+	$country = rgar( $entry, '5' );
+	$city = rgar( $entry, '6' );
+	$cityStateProvince = rgar( $entry, '10' );
+	$state = rgar( $entry, '8' );
+	$postal = rgar( $entry, '9' );
+	$iamFlag = '';
+
+	if ($iam == 'Lyme patient') {
+		$iamFlag = 'PAT';
+	} elseif ($iam == 'Caregiver: parent') {
+		$iamFlag = 'CGP';
+	} elseif ($iam == 'Caregiver: spouse') {
+		$iamFlag = 'CGS';
+	} elseif ($iam == 'Physician') {
+		$iamFlag = 'PHY';
+	} elseif ($iam == 'Nurse') {
+		$iamFlag = 'NUR';
+	} elseif ($iam == 'Psychiatrist/psychologist') {
+		$iamFlag = 'PSY';
+	} elseif ($iam == 'Pharma/Diagnostic Rep') {
+		$iamFlag = 'PHRM';
+	} elseif ($iam == 'Teacher') {
+		$iamFlag = 'TCH';
+	} elseif ($iam == 'Camp counselor') {
+		$iamFlag = 'CMP';
+	} elseif ($iam == 'Researcher') {
+		$iamFlag = 'RSRCH';
+	} elseif ($iam == 'Media') {
+		$iamFlag = 'MDA';
+	}
+
+	$matchingDonors = handleMatchingDonorByEmail($email, $form['title'], null, $firstName, $lastName, null, null, $country, $address1, null, $city, $cityStateProvince, $state, $postal, $homePhone, null, null, null, null, null, null, null, null, null, null, null, null, null, $iam);
+
+	if( !count($matchingDonors) ){
+		$donorDetails = saveDonor( null, $firstName, $lastName, $email, null, null, $country, $address1, null, $city, $cityStateProvince, $state, $postal, null, null );
+		error_log( 'survey_landing_page_to_dp after_submission: ' . print_r( $donorDetails, true ) );
+
+	    if (isset($donorDetails->{'record'}->{'field'}[0])) {
+		    $donorDetails = $donorDetails->{'record'}->{'field'}[0]->attributes()->{'value'};
+			$donorId = $donorDetails[0];
+			
+			// No Flag yet for this form
+			//$flagDetails = saveDPFlag($donorId, 'WSDIG');
+			//error_log( 'digital_education_form_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
+		
+			if ($iamFlag != ''){
+				$iAMflagDetails = saveDPFlag($donorId, $iamFlag);
+				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $iAMflagDetails, true ) );
+			}
+		}
+	} else {
+		foreach($matchingDonors as $donorId){
+			//No Flag yet for this form
+			//$flagDetails = saveDPFlag($donorId, 'WSDIG');
+			//error_log( 'digital_education_form_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
+
+			if ($iamFlag != ''){
+				$iAMflagDetails = saveDPFlag($donorId, $iamFlag);
+				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $iAMflagDetails, true ) );
+			}
+		}
+	}
+}
+
 function saveDonor( $title = null, $firstName = null, $lastName = null, $email = null, $isCorp = null, $companyName = null, $country = null, $address1 = null, $address2 = null, $city = null, $cityStateProvince = null, $state = null, $postal = null, $phone = null , $professionalTitle = null){
     
     $title = dp_clean($title);
