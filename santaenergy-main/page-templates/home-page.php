@@ -21,7 +21,7 @@ get_header();
 	</section><!--==========================
      Home Section 2
     ============================-->
-    <section id="home-section-2" class="default-padding ">
+    <section id="home-section-2" class="default-padding home-section-2">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 col-md-12 text-center">
@@ -109,7 +109,7 @@ get_header();
     <!--==========================
       News And Slider Section
     ============================-->
-    <section id="news-section" style="background-color: #243550;">
+    <section class="news-section bg-darkblue mt-60">
       <div class="container">
         <div class="section-header text-center">
           <h2><?php the_field('news_section_title');?></h2>

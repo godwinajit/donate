@@ -1113,3 +1113,16 @@ window.ResponsiveHelper = (function($){
     }
   };
 }(jQuery));
+
+document.addEventListener( 'wpcf7submit', function( event ) {
+    if ( '4108' == event.detail.contactFormId ) {
+        var inputs = event.detail.inputs;
+
+		jQuery('#popup-name').val('');
+		jQuery('#popup-email').val('');
+		jQuery('#popup-phone').val(inputs[0].value);
+		jQuery('#popup-city').val('');
+
+    initFocusClass();
+    }
+}, false );
