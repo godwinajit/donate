@@ -7067,8 +7067,16 @@ a.btn.btn-blue:hover {
 		padding-right: 20px;
 	}
 	/*  list view */
+	.tribe-events-event-meta .tribe-events-venue-details {
+		display: block;
+		margin-bottom: 10px;
+	}
+	.tribe-events-event-meta .tribe-address {
+		display: block;
+	}
 	.tribe-events-event-meta .tribe-events-gmap {
-		float: right;
+		display: inline-block;
+		vertical-align: top;
 	}
 	.tribe-events-single-section .tribe-events-gmap {
 		float: none;
@@ -7143,11 +7151,18 @@ a.btn.btn-blue:hover {
 		margin-left: -10px;
 		display: block;
 	}
+	.tribe-events-meta-group-gmap {
+		position: relative;
+		z-index: 5;
+	}
 	.filter-row .btn.btn-default,
 	.container-section .filter-row .btn.btn-default {
 		padding-top: 22px;
 		padding-bottom: 21px;
 		font-size: 20px;
+	}
+	.single-tribe_events .tribe-events-meta-group + .tribe-events-meta-group + .tribe-events-meta-group-gmap {
+		padding-left: 0;
 	}
 }
 @media (min-width:816px) {
@@ -8243,11 +8258,11 @@ ul.grid-sm {
 }
 @media only screen and (min-width: 375px) {
   .home-banner .section-intro .text-box {
-    max-width: 250px;
+    max-width: 212px; /* 250px */
   }
   .home-banner .section-intro .btn-primary {
-    font-size: 24px;
-    padding: 15px 29px;
+    font-size: 22px;
+    padding: 12px 20px;
     letter-spacing: 2.5px;
   }
   .home-banner .section-intro h1 {
@@ -8256,6 +8271,10 @@ ul.grid-sm {
   }
 }
 @media only screen and (min-width: 640px) {
+  .home-banner .section-intro .btn-primary {
+  	font-size: 24px;
+    padding: 15px 20px;
+  }
   .home-banner .section-intro h1 {
     font-size: 36px;
     line-height: 42px;
@@ -8827,6 +8846,9 @@ ul.gfield_checkbox li label {
 	top: -12px;
 	right: 0;
 }
+.pl-60 {
+	padding-left: 20px;
+}
 @media only screen and (min-width: 375px) {
 	.home .fancybox-opened .fancybox-skin {
 		padding-left: 40px !important;
@@ -8836,11 +8858,17 @@ ul.gfield_checkbox li label {
 		top: -8px;
 		right: 15px;
 	}
+	.pl-60 {
+		padding-left: 40px;
+	}
 }
 @media only screen and (min-width: 767px) {
 	.home .fancybox-close {
 		top: -12px;
 		right: 12px;
+	}
+	.pl-60 {
+		padding-left: 60px;
 	}
 }
 .support-groups-cat-article .contact-info + p {
@@ -8848,4 +8876,8 @@ ul.gfield_checkbox li label {
 }
 .spin-the-wheel .mains {
 	min-height: calc(100vh - 271px);
+}
+/* fix bg */
+.home-banner .section-intro .bg-stretch {
+	background-position: 100% 50%;
 }

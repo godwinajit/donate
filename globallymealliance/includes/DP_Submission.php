@@ -93,6 +93,49 @@ function nyc_marathon_form_to_dp( $entry, $form ) {
 	}
 }
 
+// Apply NYC Marathon Form 2019
+add_action( 'gform_after_submission_25', 'nyc_marathon_form_2019_to_dp', 10, 2 );
+function nyc_marathon_form_2019_to_dp( $entry, $form ) {
+
+ 	$firstName = rgar( $entry, '14' );
+	$lastName = rgar( $entry, '15' );
+	$email = rgar( $entry, '13' );
+	$country = rgar( $entry, '16' );
+	$address1 = rgar( $entry, '3' );
+	$city = rgar( $entry, '17' );
+	$cityStateProvince = rgar( $entry, '20' );
+	$state = rgar( $entry, '21' );
+	$postal = rgar( $entry, '19' );
+	$dob_date_value = rgar( $entry, '4' );
+
+	$matchingDonors = handleMatchingDonorByEmail($email, $form['title'], null, $firstName, $lastName, null, null, $country, $address1, null, $city, $cityStateProvince, $state, $postal, null, null, null, $dob_date_value, null, null, null, null, null, null, null, null, null, null, null);
+
+	if( !count($matchingDonors) ){
+		$donorDetails = saveDonor( null, $firstName, $lastName, $email, null, null, $country, $address1, null, $city, $cityStateProvince, $state, $postal, null, null );
+		error_log( 'nyc_marathon_form_2019_to_dp after_submission: ' . print_r( $donorDetails, true ) );
+
+	    if (isset($donorDetails->{'record'}->{'field'}[0])) {
+		    $donorDetails = $donorDetails->{'record'}->{'field'}[0]->attributes()->{'value'};
+			$donorId = $donorDetails[0];
+			$flagDetails = saveDPFlag($donorId, 'NYMAP');
+			error_log( 'nyc_marathon_form_2019_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
+
+			if (is_wpe()) {
+				$UDFDetails = dp_save_udf_xml( $donorId, 'DOB', 'D', null, $dob_date_value, null);
+				error_log( 'nyc_marathon_form_2019_to_dp_dob after_submission: ' . print_r( $UDFDetails, true ) );
+		    }else{
+				$UDFDetails = dp_save_udf_xml( $donorId, 'BIRTHDATE', 'D', null, $dob_date_value, null);
+				error_log( 'nyc_marathon_form_2019_to_dp_dob after_submission: ' . print_r( $UDFDetails, true ) );
+			}
+		}
+	} else {
+		foreach($matchingDonors as $donorId){
+			$flagDetails = saveDPFlag($donorId, 'NYMAP');
+			error_log( 'nyc_marathon_form_2019_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
+		}
+	}
+}
+
 // Contact GLA to request a company presentation
 add_action( 'gform_after_submission_14', 'req_a_company_pre_to_dp', 10, 2 );
 function req_a_company_pre_to_dp( $entry, $form ) {
