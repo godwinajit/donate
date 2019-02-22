@@ -203,7 +203,7 @@ function santaenergy_main_widgets_init() {
 		'id'            => 'footer-content-5',
 		'description'   => esc_html__( 'Add widgets here.', 'santaenergy-main' ),
 		'before_widget' => '',
-		'after_widget'  => '</div><div>',
+		'after_widget'  => '</div>',
 		'before_title'  => '<div class="sidebar-title"><a href="#" class="sidebar-opener"></a><h4 class="footer-title footer-content-5">',
 		'after_title'   => '</h4></div><div class="sidebar-content">',
 	) );
@@ -214,7 +214,7 @@ function santaenergy_main_widgets_init() {
 		'id'            => 'footer-content-6',
 		'description'   => esc_html__( 'Add widgets here.', 'santaenergy-main' ),
 		'before_widget' => '',
-		'after_widget'  => '</div><div>',
+		'after_widget'  => '</div>',
 		'before_title'  => '<div class="sidebar-title"><a href="#" class="sidebar-opener"></a><h4 class="footer-title footer-content-6">',
 		'after_title'   => '</h4></div><div class="sidebar-content">',
 	) );
@@ -255,3 +255,8 @@ add_filter( 'revslider_meta_generator', 'remove_revslider_meta_tag' );
  */
 require get_template_directory() . '/inc/template-functions.php';
 
+// Function to remove empty Paragraph tags
+function remove_empty_p($content){
+    $content = force_balance_tags($content);
+    return preg_replace('#<p>\s*+(<br\s*/*>)?\s*</p>#i', '', $content);
+}

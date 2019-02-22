@@ -12,7 +12,7 @@ get_header();
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-5 col-md-5">
-					<?php the_content();?>
+					<?php echo remove_empty_p(apply_filters( 'the_content', get_the_content()));?>
 				</div>
 				<div class="col-lg-7 col-md-7 hero-right-section"
 				style="background-image: url('<?php echo get_the_post_thumbnail_url(get_the_ID(),'full');?>');"></div>
@@ -25,7 +25,7 @@ get_header();
       <div class="container">
         <div class="row">
           <div class="col-lg-12 col-md-12 text-center">
-			<?php the_field('home_page_content_two_text');?>
+			<?php echo remove_empty_p(get_field('home_page_content_two_text'));?>
           </div>
         </div>
       </div>
