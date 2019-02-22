@@ -86,13 +86,25 @@ add_action( 'after_setup_theme', 'santaenergy_main_content_width', 0 );
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
 function santaenergy_main_widgets_init() {
+	// Left Sidebar One
 	register_sidebar( array(
-		'name'          => esc_html__( 'Sidebar', 'santaenergy-main' ),
+		'name'          => esc_html__( 'Sidebar One', 'santaenergy-main' ),
 		'id'            => 'sidebar-1',
 		'description'   => esc_html__( 'Add widgets here.', 'santaenergy-main' ),
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</section>',
-		'before_title'  => '<h2 class="widget-title">',
+		'before_widget' => '<div class="section-header icon-logo">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h2>',
+		'after_title'   => '</h2>',
+	) );
+
+	// Left Sidebar Two
+	register_sidebar( array(
+		'name'          => esc_html__( 'Sidebar Two', 'santaenergy-main' ),
+		'id'            => 'sidebar-2',
+		'description'   => esc_html__( 'Add widgets here.', 'santaenergy-main' ),
+		'before_widget' => '<div class="section-header icon-logo">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h2>',
 		'after_title'   => '</h2>',
 	) );
 
@@ -116,6 +128,28 @@ function santaenergy_main_widgets_init() {
 		'after_widget'  => '',
 		'before_title'  => '<h2 class="hide-element">',
 		'after_title'   => '</h2>',
+	) );
+
+	//Blog Details Sidebar
+	register_sidebar( array(
+		'name'          => esc_html__( 'Blog Details Sidebar', 'santaenergy-main' ),
+		'id'            => 'blog-details',
+		'description'   => esc_html__( 'Add widgets here.', 'santaenergy-main' ),
+		'before_widget' => '<div class="blog-sidebar-widget">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h2 class="sidebar-title">',
+		'after_title'   => '</h2>',
+	) );
+
+	//Bottom Content
+	register_sidebar( array(
+		'name'          => esc_html__( 'Bottom Content', 'santaenergy-main' ),
+		'id'            => 'bottom-content-1',
+		'description'   => esc_html__( 'Add widgets here.', 'santaenergy-main' ),
+		'before_widget' => '',
+		'after_widget'  => '',
+		'before_title'  => '',
+		'after_title'   => '',
 	) );
 
 	//Footer Content One
@@ -214,7 +248,7 @@ add_action( 'wp_enqueue_scripts', 'santaenergy_main_scripts' );
 function remove_revslider_meta_tag() { return''; }
 add_filter( 'revslider_meta_generator', 'remove_revslider_meta_tag' );
 
-show_admin_bar(false);
+//show_admin_bar(false);
 
 /**
  * Functions which enhance the theme by hooking into WordPress.

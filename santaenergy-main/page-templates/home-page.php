@@ -47,9 +47,9 @@ get_header();
 			    <?php $collapsedCount = 1; while ( have_rows('home_page_content_three_repeater') ) : the_row();
 					if ( $collapsedCount == 1 ) $collapsedContent = 'active'; else $collapsedContent = '';
 					echo '<li class="faq-item '.get_sub_field('accordion_icon'). ' ' .$collapsedContent .'">';
-					echo '<a href="#" class="faq-item-opener">'.get_sub_field('accordion_title').'<i class="icon icon-plus"></i><i class="icon icon-close"></i></a>';
+					echo '<a href="#" class="faq-item-opener">'.get_sub_field('accordion_title').'<i class="icon icon-plus"></i><i class="icon icon-close"></i></a><div class="faq-slide">';
 					echo '<div class="faq-item-content">'.get_sub_field('accordion_content').'</div>';
-					echo '</li>';
+					echo '</div></li>';
 					$collapsedCount++;
 				endwhile; ?>
 	            </ul>
@@ -110,38 +110,7 @@ get_header();
       News And Slider Section
     ============================-->
     <section class="news-section bg-darkblue mt-60">
-      <div class="container">
-        <div class="section-header text-center">
-          <h2><?php the_field('news_section_title');?></h2>
-        </div>
-      </div>
-      <div class="news-area">
-        <div class="container">
-          <div class="row mobile-slider">
-  		<?php 
-  			$latestNewsPosts = get_field('news_section_select');
-  			if( $latestNewsPosts ): ?>
-  				<?php foreach( $latestNewsPosts as $post):?>
-  				<?php setup_postdata($post); 
-  				?>
-  				<div class="col-lg-4 col-md-4">
-	            <div class="section-cat">
-                <a href="<?php the_permalink(); ?>">
-		              <div class="section-cat-img" style="background-image: url('<?php echo get_the_post_thumbnail_url(get_the_ID(),'santa-main-thumb-349-180'); ?>');"></div>
-                  <div class="news-det">
-			              <h3><?php the_title(); ?></h3>
-						        <?php echo wp_trim_words( get_the_content(), 30, '...' ); ?>
-					          <span class="news-link">page link</span>
-                  </div>
-                </a>
-	            </div>
-  				</div>
-  			    <?php endforeach; ?>
-  				<?php wp_reset_postdata();?>
-  			<?php endif; ?> 
-          </div>
-        </div>
-      </div>
+      <?php get_template_part('template-parts/latestNewsPosts'); ?>
       <div class="container">
           <div class="testimonial_slider">
             <div class="slides">
@@ -218,16 +187,7 @@ get_header();
         MAP SECTION
   ============================-->
     <section id="home-map">
-      <div class="map-container">
-        <iframe allowfullscreen frameborder="0" height="563" src="<?php the_field('map_embed'); ?>" style="border:0" width="1440"></iframe>
-      </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-4 col-md-4 map-info">
-            <?php the_field('map_content'); ?>
-          </div>
-        </div>
-      </div>
+		<?php dynamic_sidebar('bottom-content-1');?>
     </section>
 
 

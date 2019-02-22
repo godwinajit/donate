@@ -19,7 +19,7 @@
   <footer id="footer">
     <div class="footer-bar">
       <div class="container">
-        <div class="footer-logo"><a href="<?php echo network_site_url();?>"><img alt="Santa" src="<?php echo get_template_directory_uri(); ?>/img/santa_home_logo_color.svg" width="109"></a></div>
+        <div class="footer-logo"><a href="<?php echo get_bloginfo( 'url' )?>"><img alt="Santa" src="<?php echo get_template_directory_uri(); ?>/img/santa_home_logo_color.svg" width="109"></a></div>
         <div class="footer-nav-holder">
           <ul class="footer-nav">
             <li>

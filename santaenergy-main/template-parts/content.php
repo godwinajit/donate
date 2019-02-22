@@ -1,57 +1,32 @@
 <?php
 /**
- * Template part for displaying posts
+ * Template part for displaying posts in Loop
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
  * @package santaenergy-main
  */
-
+$featured_img_url = get_the_post_thumbnail_url(get_the_ID(), 'santa-main-thumb-370-180'); 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<?php
-		if ( is_singular() ) :
-			the_title( '<h1 class="entry-title">', '</h1>' );
-		else :
-			the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
-		endif;
-
-		if ( 'post' === get_post_type() ) :
-			?>
-			<div class="entry-meta">
-				<?php
-				?>
-			</div><!-- .entry-meta -->
-		<?php endif; ?>
-	</header><!-- .entry-header -->
-
-	<?php  ?>
-
-	<div class="entry-content">
-		<?php
-		the_content( sprintf(
-			wp_kses(
-				/* translators: %s: Name of current post. Only visible to screen readers */
-				__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'santaenergy-main' ),
-				array(
-					'span' => array(
-						'class' => array(),
-					),
-				)
-			),
-			get_the_title()
-		) );
-
-		wp_link_pages( array(
-			'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'santaenergy-main' ),
-			'after'  => '</div>',
-		) );
-		?>
-	</div><!-- .entry-content -->
-
-	<footer class="entry-footer">
-		<?php ?>
-	</footer><!-- .entry-footer -->
-</article><!-- #post-<?php the_ID(); ?> -->
+<div class="col-sm-6 col-lg-4">
+   <article class="blog">
+      <a href="<?php the_permalink();?>" class="blog-link">
+         <div class="blog-pic">
+            <div class="bg-stretch">
+				<?php if($featured_img_url){?>
+					<span data-srcset="<?php echo $featured_img_url; ?>"></span>
+				<?php }else{?>
+					<span data-srcset="/wp-content/uploads/2013/07/comm_petro_products.jpg"></span>
+				<?php }?>
+            </div>
+            <?php santa_get_post_tags();?>
+         </div>
+         <div class="blog-content">
+            <h3><?php the_title();?></h3>
+            <p><?php echo wp_trim_words( get_the_excerpt(), 30, '...' );?></p>
+            <i class="icon-next"></i>
+         </div>
+      </a>
+   </article>
+</div>

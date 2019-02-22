@@ -15,19 +15,37 @@
 get_header();
 ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main">
+<div class="page-header text-center bg-red">
+  <div class="container">
+    <div class="breadcrumbs">
+      <a href="<?php echo network_site_url();?>" class="go-back d-md-none"><i class="icon-back"></i>Home</a>
+      <ul class="d-none d-md-block">
+        <?php if(function_exists('bcn_display'))
+				{
+					bcn_display();
+				}
+		?>
+      </ul>
+    </div>
+	<?php if(get_field('banner_title', get_option( 'page_for_posts' ))){?>
+	    <h1><?php the_field('banner_title', get_option( 'page_for_posts' ))?></h1>
+	<?php }?>
+	<?php if(get_field('banner_sub_title', get_option( 'page_for_posts' ))){?>
+	    <p><?php the_field('banner_sub_title', get_option( 'page_for_posts' ))?></p>
+	<?php }?>
+	<?php if(get_field('banner_cta_text', get_option( 'page_for_posts' ))){?>
+		<a href="<?php the_field('banner_cta_link', get_option( 'page_for_posts' ))?>" class="button" <?php echo get_field('banner_cta_link_new_window') == 'yes' ? 'target="_blank"' : '';?>><?php the_field('banner_cta_text', get_option( 'page_for_posts' ))?></a>
+	<?php }?>
+  </div>
+</div>
 
+<div class="blogs border-btm">
+  <div class="container container-wider">
+    <?php get_latest_post_for_archive();?>
+    <section class="blog-grid">
+      <div class="row">
 		<?php
 		if ( have_posts() ) :
-
-			if ( is_home() && ! is_front_page() ) :
-				?>
-				<header>
-					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-				</header>
-				<?php
-			endif;
 
 			/* Start the Loop */
 			while ( have_posts() ) :
@@ -38,11 +56,11 @@ get_header();
 				 * If you want to override this in a child theme, then include a file
 				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
 				 */
-				get_template_part( 'template-parts/content', get_post_type() );
+				get_template_part( 'template-parts/content' );
 
 			endwhile;
 
-			the_posts_navigation();
+			//the_posts_navigation();
 
 		else :
 
@@ -50,10 +68,15 @@ get_header();
 
 		endif;
 		?>
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
+      </div>
+    </section>
+	<div class="pager">
+      <div class="pager-frame">
+		<?php wp_pagenavi(); ?>
+      </div>
+    </div>
+  </div>
+</div>
 
 <?php
-get_sidebar();
 get_footer();
