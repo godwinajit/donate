@@ -175,12 +175,15 @@ function twentythirteen_scripts_styles() {
 
 	// Add Source Sans Pro and Bitter fonts, used in the main stylesheet.
 	wp_enqueue_style( 'twentythirteen-fonts', twentythirteen_fonts_url(), array(), null );
+	
+	if( is_page('gla-events') )
+		wp_enqueue_style( 'gla-calendar', plugins_url( 'the-events-calendar/src/resources/css/tribe-events-full.min.css') , array(), null );
 
 	// Add Genericons font, used in the main stylesheet.
 	wp_enqueue_style( 'genericons', get_template_directory_uri() . '/genericons/genericons.css', array(), '3.03' );
 
 	// Loads our main stylesheet.
-	wp_enqueue_style( 'twentythirteen-style', get_stylesheet_uri(), array(), '2013-07-18' );
+	wp_enqueue_style( 'twentythirteen-style', get_stylesheet_uri(), array(), '2019-02-12' );
 
 	// Loads the Internet Explorer specific stylesheet.
 	//wp_enqueue_style( 'twentythirteen-ie', get_template_directory_uri() . '/css/ie.css', array( 'twentythirteen-style' ), '2013-07-18' );

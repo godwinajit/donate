@@ -6489,9 +6489,9 @@ a.btn.btn-blue:hover {
 @font-face {
   font-family: 'icomoon2';
   src:
-    url('fonts/icomoon2.ttf?rwsk3b') format('truetype'),
-    url('fonts/icomoon2.woff?rwsk3b') format('woff'),
-    url('fonts/icomoon2.svg?rwsk3b#icomoon') format('svg');
+    url('fonts/icomoon2.ttf?hrt60w') format('truetype'),
+    url('fonts/icomoon2.woff?hrt60w') format('woff'),
+    url('fonts/icomoon2.svg?hrt60w#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -6673,6 +6673,12 @@ a.btn.btn-blue:hover {
 	white-space: normal;
 }
 
+/* GLA EVENTS */
+.tribe-events-page-small-title {
+	margin: 0 0 25px !important;
+    font-size: 25px !important;
+    text-transform: capitalize !important;
+}
 /* event page */
 #tribe-events-content.tribe-events-single {
 	padding-left: 80px;
@@ -7338,6 +7344,19 @@ a.btn.btn-blue:hover {
 		padding-left: 30px;
 		padding-right: 30px;
 	}
+}
+.gla-events .tribe-events-list .type-tribe_events {
+	border: none;
+	padding: 0;
+}
+@media (max-width:767px) {
+	.gla-events .tribe-events-list .type-tribe_events {
+		padding-top: 36px;
+		padding-bottom: 0;
+	}
+}
+.gla-events .tribe-events-list .type-tribe_events .read-more {
+	display: none;
 }
 
 .tribe-events-sub-nav li, .tribe-events-nav-next a{
