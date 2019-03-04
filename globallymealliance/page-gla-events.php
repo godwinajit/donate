@@ -54,6 +54,7 @@
 		'posts_per_page'=>3,
 		//order by startdate from newest to oldest
 		'meta_key'=>'_EventStartDate',
+		'tribe_events_cat'=>'GLA Fundraiser',
 		'orderby'=>'_EventStartDate',
 		'order'=>'ASC',
 		//required in 3.x
