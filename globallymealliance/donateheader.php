@@ -55,7 +55,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <!--styles -->
 <link rel="stylesheet" href="/donate/dist/css/main.css">
 <link rel="stylesheet" href="/donate/app/css/donate.css">
-<link rel="stylesheet" href="<?php echo plugin_dir_url( ); ?>constant-contact-forms/assets/css/style.css">
 </head>
 <body <?php body_class(); ?>>
 <!-- Google Tag Manager (noscript) 09202017start-->

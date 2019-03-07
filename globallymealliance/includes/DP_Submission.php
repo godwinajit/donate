@@ -50,7 +50,7 @@ function add_your_support_group_to_dp( $entry, $form ) {
 	}
 }
 
-// Apply NYC Marathon Form
+// Apply NYC Marathon Form 2018
 add_action( 'gform_after_submission_16', 'nyc_marathon_form_to_dp', 10, 2 );
 function nyc_marathon_form_to_dp( $entry, $form ) {
 
@@ -653,14 +653,13 @@ function dp_popup_newsletter_to_dp( $entry, $form ) {
         if (isset($donorDetails->{'record'}->{'field'}[0])) {
             $donorDetails = $donorDetails->{'record'}->{'field'}[0]->attributes()->{'value'};
             $donorId = $donorDetails[0];
-            //Newsletter Flag for DP is commented out i.e no flags will be added/updated in DP for Newsletter Form submissions
-            /*$flagDetails = saveDPFlag($donorId, 'NLTR');
-            error_log( 'dp_newsletter_to_dp after_submission: ' . print_r( $flagDetails, true ) );*/
+            $flagDetails = saveDPFlag($donorId, 'NLPU');
+            error_log( 'dp_newsletter_to_dp after_submission: ' . print_r( $flagDetails, true ) );
         }
     } else {
         foreach($matchingDonors as $donorId){
-            /*$flagDetails = saveDPFlag($donorId, 'NLTR');
-            error_log( 'dp_newsletter_to_dp after_submission: ' . print_r( $flagDetails, true ) );*/
+            $flagDetails = saveDPFlag($donorId, 'NLPU');
+            error_log( 'dp_newsletter_to_dp after_submission: ' . print_r( $flagDetails, true ) );
         }
     }
 }
@@ -856,6 +855,13 @@ function spin_the_wheel_form_to_dp( $entry, $form ) {
 		$iamFlag = 'MDA';
 	}
 
+	
+	$interested1 = rgar( $entry, '20.1' );
+	$interested2 = rgar( $entry, '20.2' );
+	$interested3 = rgar( $entry, '20.3' );
+	$interested4 = rgar( $entry, '20.4' );
+	$interested5 = rgar( $entry, '20.5' );
+
 	$matchingDonors = handleMatchingDonorByEmail($email, $form['title'], null, $firstName, $lastName, null, null, $country, $address1, null, $city, $cityStateProvince, $state, $postal, $homePhone, null, null, null, null, null, null, null, null, null, null, null, null, null, $iam);
 
 	if( !count($matchingDonors) ){
@@ -866,24 +872,64 @@ function spin_the_wheel_form_to_dp( $entry, $form ) {
 		    $donorDetails = $donorDetails->{'record'}->{'field'}[0]->attributes()->{'value'};
 			$donorId = $donorDetails[0];
 			
-			// No Flag yet for this form
-			//$flagDetails = saveDPFlag($donorId, 'WSDIG');
-			//error_log( 'digital_education_form_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
+			$flagDetails = saveDPFlag($donorId, 'STW');
+			error_log( 'digital_education_form_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
 		
 			if ($iamFlag != ''){
 				$iAMflagDetails = saveDPFlag($donorId, $iamFlag);
 				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $iAMflagDetails, true ) );
 			}
+
+			if ($interested1 != ''){
+				$interestedFlagDetails = saveDPFlag($donorId, 'INED');
+				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $interestedFlagDetails, true ) );
+			}
+			if ($interested2 != ''){
+				$interestedFlagDetails = saveDPFlag($donorId, 'INFR');
+				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $interestedFlagDetails, true ) );
+			}
+			if ($interested3 != ''){
+				$interestedFlagDetails = saveDPFlag($donorId, 'INPS');
+				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $interestedFlagDetails, true ) );
+			}
+			if ($interested4 != ''){
+				$interestedFlagDetails = saveDPFlag($donorId, 'INEV');
+				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $interestedFlagDetails, true ) );
+			}
+			if ($interested5 != ''){
+				$interestedFlagDetails = saveDPFlag($donorId, 'INRN');
+				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $interestedFlagDetails, true ) );
+			}
 		}
 	} else {
 		foreach($matchingDonors as $donorId){
-			//No Flag yet for this form
-			//$flagDetails = saveDPFlag($donorId, 'WSDIG');
-			//error_log( 'digital_education_form_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
+			$flagDetails = saveDPFlag($donorId, 'STW');
+			error_log( 'digital_education_form_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
 
 			if ($iamFlag != ''){
 				$iAMflagDetails = saveDPFlag($donorId, $iamFlag);
 				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $iAMflagDetails, true ) );
+			}
+
+			if ($interested1 != ''){
+				$interestedFlagDetails = saveDPFlag($donorId, 'INED');
+				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $interestedFlagDetails, true ) );
+			}
+			if ($interested2 != ''){
+				$interestedFlagDetails = saveDPFlag($donorId, 'INFR');
+				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $interestedFlagDetails, true ) );
+			}
+			if ($interested3 != ''){
+				$interestedFlagDetails = saveDPFlag($donorId, 'INPS');
+				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $interestedFlagDetails, true ) );
+			}
+			if ($interested4 != ''){
+				$interestedFlagDetails = saveDPFlag($donorId, 'INEV');
+				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $interestedFlagDetails, true ) );
+			}
+			if ($interested5 != ''){
+				$interestedFlagDetails = saveDPFlag($donorId, 'INRN');
+				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $interestedFlagDetails, true ) );
 			}
 		}
 	}
@@ -930,6 +976,12 @@ function survey_landing_page_to_dp( $entry, $form ) {
 		$iamFlag = 'MDA';
 	}
 
+	$interested1 = rgar( $entry, '20.1' );
+	$interested2 = rgar( $entry, '20.2' );
+	$interested3 = rgar( $entry, '20.3' );
+	$interested4 = rgar( $entry, '20.4' );
+	$interested5 = rgar( $entry, '20.5' );
+
 	$matchingDonors = handleMatchingDonorByEmail($email, $form['title'], null, $firstName, $lastName, null, null, $country, $address1, null, $city, $cityStateProvince, $state, $postal, $homePhone, null, null, null, null, null, null, null, null, null, null, null, null, null, $iam);
 
 	if( !count($matchingDonors) ){
@@ -940,24 +992,196 @@ function survey_landing_page_to_dp( $entry, $form ) {
 		    $donorDetails = $donorDetails->{'record'}->{'field'}[0]->attributes()->{'value'};
 			$donorId = $donorDetails[0];
 			
-			// No Flag yet for this form
-			//$flagDetails = saveDPFlag($donorId, 'WSDIG');
-			//error_log( 'digital_education_form_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
+
+			$flagDetails = saveDPFlag($donorId, 'WE');
+			error_log( 'digital_education_form_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
 		
 			if ($iamFlag != ''){
 				$iAMflagDetails = saveDPFlag($donorId, $iamFlag);
 				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $iAMflagDetails, true ) );
 			}
+
+			if ($interested1 != ''){
+				$interestedFlagDetails = saveDPFlag($donorId, 'INED');
+				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $interestedFlagDetails, true ) );
+			}
+			if ($interested2 != ''){
+				$interestedFlagDetails = saveDPFlag($donorId, 'INFR');
+				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $interestedFlagDetails, true ) );
+			}
+			if ($interested3 != ''){
+				$interestedFlagDetails = saveDPFlag($donorId, 'INPS');
+				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $interestedFlagDetails, true ) );
+			}
+			if ($interested4 != ''){
+				$interestedFlagDetails = saveDPFlag($donorId, 'INEV');
+				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $interestedFlagDetails, true ) );
+			}
+			if ($interested5 != ''){
+				$interestedFlagDetails = saveDPFlag($donorId, 'INRN');
+				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $interestedFlagDetails, true ) );
+			}
 		}
 	} else {
 		foreach($matchingDonors as $donorId){
-			//No Flag yet for this form
-			//$flagDetails = saveDPFlag($donorId, 'WSDIG');
-			//error_log( 'digital_education_form_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
+
+			$flagDetails = saveDPFlag($donorId, 'WE');
+			error_log( 'digital_education_form_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
 
 			if ($iamFlag != ''){
 				$iAMflagDetails = saveDPFlag($donorId, $iamFlag);
 				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $iAMflagDetails, true ) );
+			}
+
+			if ($interested1 != ''){
+				$interestedFlagDetails = saveDPFlag($donorId, 'INED');
+				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $interestedFlagDetails, true ) );
+			}
+			if ($interested2 != ''){
+				$interestedFlagDetails = saveDPFlag($donorId, 'INFR');
+				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $interestedFlagDetails, true ) );
+			}
+			if ($interested3 != ''){
+				$interestedFlagDetails = saveDPFlag($donorId, 'INPS');
+				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $interestedFlagDetails, true ) );
+			}
+			if ($interested4 != ''){
+				$interestedFlagDetails = saveDPFlag($donorId, 'INEV');
+				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $interestedFlagDetails, true ) );
+			}
+			if ($interested5 != ''){
+				$interestedFlagDetails = saveDPFlag($donorId, 'INRN');
+				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $interestedFlagDetails, true ) );
+			}
+		}
+	}
+}
+
+// Registration form - Professional Education
+add_action( 'gform_after_submission_26', 'registration_form_professional_education_to_dp', 10, 2 );
+function registration_form_professional_education_to_dp( $entry, $form ) {
+
+ 	$firstName = rgar( $entry, '2' );
+	$lastName = rgar( $entry, '3' );
+	$email = rgar( $entry, '12' );
+	$homePhone = '';
+	$iam = rgar( $entry, '1' );
+	$address1 = rgar( $entry, '5' );
+	$country = rgar( $entry, '6' );
+	$city = rgar( $entry, '7' );
+	$cityStateProvince = rgar( $entry, '9' );
+	$state = rgar( $entry, '8' );
+	$postal = rgar( $entry, '10' );
+	$speciality	= rgar( $entry, '13' );
+	$degree	= rgar( $entry, '14' );
+	$degreeOther = rgar( $entry, '15' );
+	$yearsInPractice = rgar( $entry, '16' );
+	$practiceType = rgar( $entry, '17' );
+	
+	$iamFlag = '';
+
+	if ($iam == 'Lyme patient') {
+		$iamFlag = 'PAT';
+	} elseif ($iam == 'Caregiver: parent') {
+		$iamFlag = 'CGP';
+	} elseif ($iam == 'Caregiver: spouse') {
+		$iamFlag = 'CGS';
+	} elseif ($iam == 'Physician') {
+		$iamFlag = 'PHY';
+	} elseif ($iam == 'Nurse') {
+		$iamFlag = 'NUR';
+	} elseif ($iam == 'Psychiatrist/psychologist') {
+		$iamFlag = 'PSY';
+	} elseif ($iam == 'Pharma/Diagnostic Rep') {
+		$iamFlag = 'PHRM';
+	} elseif ($iam == 'Teacher') {
+		$iamFlag = 'TCH';
+	} elseif ($iam == 'Camp counselor') {
+		$iamFlag = 'CMP';
+	} elseif ($iam == 'Researcher') {
+		$iamFlag = 'RSRCH';
+	} elseif ($iam == 'Media') {
+		$iamFlag = 'MDA';
+	}
+
+	$matchingDonors = handleMatchingDonorByEmail($email, $form['title'], null, $firstName, $lastName, null, null, $country, $address1, null, $city, $cityStateProvince, $state, $postal, $homePhone, null, null, null, null, null, null, null, null, null, null, null, null, null, $iam);
+
+	if( !count($matchingDonors) ){
+		$donorDetails = saveDonor( null, $firstName, $lastName, $email, null, null, $country, $address1, null, $city, $cityStateProvince, $state, $postal, null, null );
+		error_log( 'registration_form_professional_education_to_dp after_submission: ' . print_r( $donorDetails, true ) );
+
+	    if (isset($donorDetails->{'record'}->{'field'}[0])) {
+		    $donorDetails = $donorDetails->{'record'}->{'field'}[0]->attributes()->{'value'};
+			$donorId = $donorDetails[0];
+			
+
+			$flagDetails = saveDPFlag($donorId, 'EDPRO');
+			error_log( 'registration_form_professional_education_to_dp after_submission: ' . print_r( $flagDetails, true ) );
+		
+			if ($iamFlag != ''){
+				$iAMflagDetails = saveDPFlag($donorId, $iamFlag);
+				error_log( 'registration_form_professional_education_to_dp after_submission: ' . print_r( $iAMflagDetails, true ) );
+			}
+
+			if ($speciality != '') {
+				$WEBUDFDetails = dp_save_udf_xml( $donorId, 'SPLTY', 'C', $speciality, null, null);
+				error_log( 'registration_form_professional_education_to_dp after_submission: ' . print_r( $WEBUDFDetails, true ) );
+			}
+
+			if ($yearsInPractice != '') {
+				$WEBUDFDetails = dp_save_udf_xml( $donorId, 'YRS', 'C', $yearsInPractice, null, null);
+				error_log( 'registration_form_professional_education_to_dp after_submission: ' . print_r( $WEBUDFDetails, true ) );
+			}
+
+			if ($degreeOther != '') {
+				$WEBUDFDetails = dp_save_udf_xml( $donorId, 'OTHDGR', 'C', $degreeOther, null, null);
+				error_log( 'registration_form_professional_education_to_dp after_submission: ' . print_r( $WEBUDFDetails, true ) );
+			}
+
+			if ($degree != '') {
+				$WEBUDFDetails = dp_save_udf_xml( $donorId, 'DGR', 'C', $degree, null, null);
+				error_log( 'registration_form_professional_education_to_dp after_submission: ' . print_r( $WEBUDFDetails, true ) );
+			}
+
+			if ($practiceType != '') {
+				$WEBUDFDetails = dp_save_udf_xml( $donorId, 'TPYP', 'C', $practiceType, null, null);
+				error_log( 'registration_form_professional_education_to_dp after_submission: ' . print_r( $WEBUDFDetails, true ) );
+			}
+		}
+	} else {
+		foreach($matchingDonors as $donorId){
+
+			$flagDetails = saveDPFlag($donorId, 'EDPRO');
+			error_log( 'registration_form_professional_education_to_dp after_submission: ' . print_r( $flagDetails, true ) );
+
+			if ($iamFlag != ''){
+				$iAMflagDetails = saveDPFlag($donorId, $iamFlag);
+				error_log( 'registration_form_professional_education_to_dp after_submission: ' . print_r( $iAMflagDetails, true ) );
+			}
+
+			if ($speciality != '') {
+				$WEBUDFDetails = dp_save_udf_xml( $donorId, 'SPLTY', 'C', $speciality, null, null);
+				error_log( 'registration_form_professional_education_to_dp after_submission: ' . print_r( $WEBUDFDetails, true ) );
+			}
+
+			if ($yearsInPractice != '') {
+				$WEBUDFDetails = dp_save_udf_xml( $donorId, 'YRS', 'C', $yearsInPractice, null, null);
+				error_log( 'registration_form_professional_education_to_dp after_submission: ' . print_r( $WEBUDFDetails, true ) );
+			}
+
+			if ($degreeOther != '') {
+				$WEBUDFDetails = dp_save_udf_xml( $donorId, 'OTHDGR', 'C', $degreeOther, null, null);
+				error_log( 'registration_form_professional_education_to_dp after_submission: ' . print_r( $WEBUDFDetails, true ) );
+			}
+
+			if ($degree != '') {
+				$WEBUDFDetails = dp_save_udf_xml( $donorId, 'DGR', 'C', $degree, null, null);
+				error_log( 'registration_form_professional_education_to_dp after_submission: ' . print_r( $WEBUDFDetails, true ) );
+			}
+
+			if ($practiceType != '') {
+				$WEBUDFDetails = dp_save_udf_xml( $donorId, 'TPYP', 'C', $practiceType, null, null);
+				error_log( 'registration_form_professional_education_to_dp after_submission: ' . print_r( $WEBUDFDetails, true ) );
 			}
 		}
 	}
