@@ -6927,7 +6927,9 @@ body.sidebar-offer-open:before {
     background-color: rgba(35, 36, 39, .5);
     z-index: 111;
 }
-
+#mySidenav .image-block {
+    margin-bottom: 16px;
+}
 .sidenav {
     height: 100%;
     width: 300px;
@@ -8818,4 +8820,23 @@ body .product-info .variations_form .variations_button .qty{
 }
 .pro-image-slider .slick-disabled {
     opacity: .5;
+}
+
+#payment .payment_methods label img.__processed {
+    max-width: 140px;
+}
+
+body.single-product .product-info {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+}
+
+body.single-product .product-info p#learn-more {
+    order: 10;
+    margin-top: 10px;
 }
