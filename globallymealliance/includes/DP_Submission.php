@@ -214,6 +214,8 @@ function contact_us_to_dp( $entry, $form ) {
 		$iamFlag = 'RSRCH';
 	} elseif ($iam == 'Media') {
 		$iamFlag = 'MDA';
+	} elseif ($iam == 'Medical Representative') {
+		$iamFlag = 'MR';
 	}
 
 	$matchingDonors = handleMatchingDonorByEmail($email, $form['title'], null, $firstName, $lastName, null, null, $country, $address1, $address2, $city, $cityStateProvince, $state, $postal, null, null, null, null, null, null, null, null, null, null, null, null, null, null, $iam);
@@ -284,6 +286,8 @@ function digital_education_form_to_dp( $entry, $form ) {
 		$iamFlag = 'RSRCH';
 	} elseif ($iam == 'Media') {
 		$iamFlag = 'MDA';
+	} elseif ($iam == 'Medical Representative') {
+		$iamFlag = 'MR';
 	}
 
 	$matchingDonors = handleMatchingDonorByEmail($email, $form['title'], null, $firstName, $lastName, null, null, $country, $address1, null, $city, $cityStateProvince, $state, $postal, null, null, null, null, null, null, null, null, null, null, null, null, null, null, $iam);
@@ -355,6 +359,8 @@ function download_free_resources_to_dp( $entry, $form ) {
 		$iamFlag = 'RSRCH';
 	} elseif ($iam == 'Media') {
 		$iamFlag = 'MDA';
+	} elseif ($iam == 'Medical Representative') {
+		$iamFlag = 'MR';
 	}
 
 	$matchingDonors = handleMatchingDonorByEmail($email, $form['title'], null, $firstName, $lastName, null, null, $country, $address1, null, $city, $cityStateProvince, $state, $postal, null, null, null, null, null, null, null, null, null, null, null, null, null, null, $iam);
@@ -505,6 +511,8 @@ function find_a_medical_pro_to_dp( $entry, $form ) {
 		$iamFlag = 'RSRCH';
 	} elseif ($iam == 'Media') {
 		$iamFlag = 'MDA';
+	} elseif ($iam == 'Medical Representative') {
+		$iamFlag = 'MR';
 	}
 
 	$matchingDonors = handleMatchingDonorByEmail($email, $form['title'], null, $firstName, $lastName, null, null, $country, $address1, $address2, $city, $cityStateProvince, $state, $postal, null, null, null, null, null, null, null, null, null, null, null, null, null, null, $iam);
@@ -575,6 +583,8 @@ function view_video_resources_to_dp( $entry, $form ) {
 		$iamFlag = 'RSRCH';
 	} elseif ($iam == 'Media') {
 		$iamFlag = 'MDA';
+	} elseif ($iam == 'Medical Representative') {
+		$iamFlag = 'MR';
 	}
 
 	$matchingDonors = handleMatchingDonorByEmail($email, $form['title'], null, $firstName, $lastName, null, null, $country, $address1, null, $city, $cityStateProvince, $state, $postal, null, null, null, null, null, null, null, null, null, null, null, null, null, null, $iam);
@@ -705,6 +715,8 @@ function tick_table_download_to_dp( $entry, $form ) {
 		$iamFlag = 'RSRCH';
 	} elseif ($iam == 'Media') {
 		$iamFlag = 'MDA';
+	} elseif ($iam == 'Medical Representative') {
+		$iamFlag = 'MR';
 	}
 
 	$matchingDonors = handleMatchingDonorByEmail($email, $form['title'], null, $firstName, $lastName, null, null, $country, $address1, null, $city, $cityStateProvince, $state, $postal, null, null, null, null, null, null, null, null, null, null, null, null, null, null, $iam);
@@ -853,6 +865,8 @@ function spin_the_wheel_form_to_dp( $entry, $form ) {
 		$iamFlag = 'RSRCH';
 	} elseif ($iam == 'Media') {
 		$iamFlag = 'MDA';
+	} elseif ($iam == 'Medical Representative') {
+		$iamFlag = 'MR';
 	}
 
 	
@@ -974,6 +988,8 @@ function survey_landing_page_to_dp( $entry, $form ) {
 		$iamFlag = 'RSRCH';
 	} elseif ($iam == 'Media') {
 		$iamFlag = 'MDA';
+	} elseif ($iam == 'Medical Representative') {
+		$iamFlag = 'MR';
 	}
 
 	$interested1 = rgar( $entry, '20.1' );
@@ -1102,6 +1118,8 @@ function registration_form_professional_education_to_dp( $entry, $form ) {
 		$iamFlag = 'RSRCH';
 	} elseif ($iam == 'Media') {
 		$iamFlag = 'MDA';
+	} elseif ($iam == 'Medical Representative') {
+		$iamFlag = 'MR';
 	}
 
 	$matchingDonors = handleMatchingDonorByEmail($email, $form['title'], null, $firstName, $lastName, null, null, $country, $address1, null, $city, $cityStateProvince, $state, $postal, $homePhone, null, null, null, null, null, null, null, null, null, null, null, null, null, $iam);

@@ -1484,6 +1484,16 @@ function getCategoryNamesString($postId, $taxonomy){
 	return $cls;
 }
 
+function my_acf_google_map_api( $api ){
+	
+	$api['key'] = 'AIzaSyC4wptsDOrtZSpPfUdi3u4O0YlmPOY3bWk';
+	
+	return $api;
+	
+}
+
+add_filter('acf/fields/google_map/api', 'my_acf_google_map_api');
+
 add_filter( 'widget_text', 'do_shortcode' );
 add_filter( 'gform_tabindex_19', '__return_false' );
 
