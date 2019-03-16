@@ -37,7 +37,7 @@ $log->info ( "Ambassador Form Remote Address: " . $_SERVER ['REMOTE_ADDR'] );
 $log->info ( "Ambassador Form request time: " . $_SERVER ['REQUEST_TIME'] );
 
 if ($_SERVER ['REQUEST_METHOD'] === 'POST' && ! empty ( $_POST )) {
-	
+		
 	if(count($_POST['language_1'])){
 		$_POST['language_1'] = implode (", ", $_POST['language_1']);
 	}else{
@@ -48,6 +48,10 @@ if ($_SERVER ['REQUEST_METHOD'] === 'POST' && ! empty ( $_POST )) {
 		$log->info ( "Ambassador Form POST information: " );
 		$log->info ( print_r($_POST, true) );
 	} catch ( Exception $e ) {
+	}
+
+	if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) || !filter_var($_POST['ref1_email'], FILTER_VALIDATE_EMAIL) || !filter_var($_POST['ref2_email'],		FILTER_VALIDATE_EMAIL) || ( ( trim($_POST['ref3_email']) != '' ) && !filter_var($_POST['ref3_email'], FILTER_VALIDATE_EMAIL) ) ) {
+	  redirect_to_url ( 'https://' . $_SERVER ['SERVER_NAME'] . '/ambassador/app/ambassador', true );
 	}
 
 	if( isset($_POST['email']) && $_POST['email'] != '' && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))

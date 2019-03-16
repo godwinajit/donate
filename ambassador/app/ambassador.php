@@ -18,7 +18,7 @@ include ('../../wp-load.php');
 	</div>
 </div>
 <div class="inner-banner"
-	style="background-image: url(http://globallymealliance.org/wp-content/uploads/2017/11/ambassador-hero.jpg)"></div>
+	style="background-image: url(https://globallymealliance.org/wp-content/uploads/2017/11/ambassador-hero.jpg)"></div>
 <div class="container-section">
 	<div class="wrapper container-fluid">
 		<div class="row center-xs">
@@ -71,9 +71,6 @@ include ('../../wp-load.php');
 								<div class="col-xs-12">
 									<label>* Birthdate (applicants must be over 18 years old)</label>
 								</div>
-
-
-						
 								<div class="col-xs-4">
 									<select name="month" required="" class=""
 										aria-required="true" aria-invalid="false">
@@ -92,8 +89,7 @@ include ('../../wp-load.php');
 										<option value="12">12</option>
 									</select>
 								</div>
-
-										<div class="col-xs-4">
+								<div class="col-xs-4">
 									<select name="day" required="" class=""
 										aria-required="true" aria-invalid="false">
 										<option value="" class="hideme">Day</option>
@@ -787,24 +783,17 @@ include ('../../wp-load.php');
 		<div class="wrapper container-fluid">
 			<div class="row center-xs">
 				<div class="col-xs-11 col-md-10">
-				  <div class="panel">
-					<div class="row">
-						<!------------------
+				<div class="panel">
+						<div class="row">
 							<div class="col-xs-12 col-sm-6 col-md-short">
 								<label>* Why do you want to be a GLA Education Ambassador?</label>
 								<textarea name="why_gla_edu_amb" required></textarea>
 							</div>
-						------------->	
-
-						 <div class="col-xs-12 col-sm-6 col-md-short">
-						<!--------- --------->
-						
-							<div class="row">
-							   <div class="col-xs-12">
-
-								<!--------- --------->
-
-
+							<div class="col-xs-12 col-sm-6 col-md-short">
+								<label>* Why do you think you would be a good Ambassador?</label>
+								<textarea name="msg2" required></textarea>
+							</div>
+							<div class="col-xs-12 col-sm-6 col-md-short">
 								<label>* Please describe your comfort level speaking publicly:</label>
 								<select name="speaking_publicly" class="" aria-invalid="false" required="" >
 									<option value="" class="hideme">Select one</option>
@@ -815,50 +804,11 @@ include ('../../wp-load.php');
 									<option value="opt5">Uncomfortable</option>
 									<option value="opt6">Not sure</option>
 								</select>
-							    </div>
-
-									<!--------- --------->
-						
-							  </div>
-
-								<!--------- --------->
-
-							<!---------- <div class="col-xs-12 col-sm-6 col-md-short">  -->
-
-
-							<!--------- --------->
-						
-							<div class="row">
-								<div class="col-xs-12">
-
-								<!--------- --------->
-								<label>* Why do you think you would be a good Ambassador?</label>
-								<textarea name="msg2" required></textarea>
-							    </div>
-
-									<!--------- --------->
-						
-							  </div>
-						  </div>
-
-								<!--------- --------->			
-							
-						 <div class="col-xs-12 col-sm-6 col-md-short"> 
-							 <!--------- --------->
-						
-							<div class="row">
-								<div class="col-xs-12">
-
-								<!--------- --------->
+							</div>
+							<div class="col-xs-12 col-sm-6 col-md-short">
 								<label>Anything else that you would like us to know about you?</label>
 								<textarea name="anything_else"></textarea>
-								<!--------- --------->
-						
-							     </div>
-							 </div>
-
-								<!--------- --------->	
-						</div>
+							</div>
 						</div>
 					</div>
 					<div class="row"><h2>&nbsp;</h2></div>
