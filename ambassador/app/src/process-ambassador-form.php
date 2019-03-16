@@ -27,7 +27,7 @@ $bccEmailList = array (
 if ($_SERVER ['SERVER_NAME'] === 'globallymealliance.org') {
 	$toEmail = 'education@gla.org';
 } else {
-	$toEmail = 'godwin.ajith@gmail.com';
+	$toEmail = 'goliver@mindtrustlabs.com';
 }
 
 $log->info ( "Submitting the Ambassador Form ...." );
@@ -50,7 +50,7 @@ if ($_SERVER ['REQUEST_METHOD'] === 'POST' && ! empty ( $_POST )) {
 	} catch ( Exception $e ) {
 	}
 
-	if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) || !filter_var($_POST['ref1_email'], FILTER_VALIDATE_EMAIL) || !filter_var($_POST['ref2_email'],		FILTER_VALIDATE_EMAIL) || ( ( trim($_POST['ref3_email']) != '' ) && !filter_var($_POST['ref3_email'], FILTER_VALIDATE_EMAIL) ) ) {
+	if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) || !filter_var($_POST['ref1_email'], FILTER_VALIDATE_EMAIL) || !filter_var($_POST['ref2_email'], FILTER_VALIDATE_EMAIL) || ( ( trim($_POST['ref3_email']) != '' ) && !filter_var($_POST['ref3_email'], FILTER_VALIDATE_EMAIL) ) ) {
 	  redirect_to_url ( 'https://' . $_SERVER ['SERVER_NAME'] . '/ambassador/app/ambassador', true );
 	}
 

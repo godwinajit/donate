@@ -6167,6 +6167,10 @@ h2.sm-h2-header {
 	margin-top: 15px;
 	margin-bottom: 10px;
 }
+.ambassador-form .action .g-recaptcha {
+	margin-top: 0;
+	margin-bottom: 0;
+}
 /* New Constant Contacct Newsletter CSS End*/
 
 /* fix form */
@@ -6196,9 +6200,17 @@ h2.sm-h2-header {
 .subscribe-form .g-recaptcha {
 	margin: 0 0 18px;
 }
+.ambassador-form .action > div {
+	display: inline-block;
+	vertical-align: middle;
+}
 @media (max-width:767px) {
 	.subscribe-form .g-recaptcha {
 		padding-top: 0.5em;
+	}
+	.ambassador-form .action .btn-default {
+		padding-top: 12px;
+		padding-bottom: 12px;
 	}
 }
 @media (max-width:480px) {
@@ -6234,6 +6246,11 @@ h2.sm-h2-header {
 		width: 328px;
 		padding: 0 12px;
 	}
+	.ambassador-form .action .btn.g-recaptcha {
+		float: none;
+		min-width: 255px;
+		width: auto;
+	}
 	p.ctct-form-field-submit,
 	.ctct-form-field-submit {
 		float: none;
@@ -6242,6 +6259,10 @@ h2.sm-h2-header {
 	}
 	.ctct-disclosure {
 		width: 100%;
+	}
+	.ambassador-form .action .btn-default {
+		padding-top: 15px;
+		padding-bottom: 15px;
 	}
 }
 
@@ -6864,4 +6885,8 @@ a.btn.btn-blue:hover {
 
 .ambassador-form input {
 	font-family: Roboto,Arial,sans-serif;
+}
+
+.grecaptcha-badge{
+	z-index: 100 !important;
 }

@@ -895,8 +895,9 @@ include ('../../wp-load.php');
 				<div class="col-xs-11 col-md-10">
 					<div class="action">
 						<button type="submit" class="btn btn-primary btn-primary-green js-btn-step-prev">Go back</button>
-						<input type="submit" value="Continue"
-							class="btn btn-default btn-continue">
+						<button id="step3-submit" class="g-recaptcha btn btn-default btn-continue" data-sitekey="6LeBrFIUAAAAACyFm2dZMWhT-AoAueatWYnBjlgh" data-callback="submitAmbassadorForm">
+								Continue
+							</button>
 					</div>
 				</div>
 				<div class="col-xs-11 col-md-10">
@@ -925,4 +926,5 @@ include ('../../wp-load.php');
 </section> -->
 <script src="js/jquery-1.11.2.min.js"></script>
 <script src="/ambassador/app/js/main.js"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <?php get_template_part( 'ambassadorfooter' ); ?>
