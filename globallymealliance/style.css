@@ -8953,7 +8953,7 @@ a.btn.btn-sm:focus {
 	border: 1px solid #E8E8E8;
 }
 .tabs-panel .jcf-scrollable {
-	height: 280px;
+	height: 180px;
 	overflow: auto;
 	width: auto !important;
 }
@@ -9184,7 +9184,7 @@ html:not(.mobile) .jcf-scrollable .group-locations-list li:hover,
 }
 /* popup */
 .map-popup {
-	width: 300px;
+	width: 278px; /* 300px */
 	padding-bottom: 41px;
 	overflow: hidden;
 }
@@ -9211,6 +9211,11 @@ html:not(.mobile) .jcf-scrollable .group-locations-list li:hover,
 .popup {
 	position: absolute;
 	left: -9999px;
+}
+.details-popup > img {
+	position: absolute !important;
+	top: 0;
+	right: 0;
 }
 .map-popup address {
 	font-style: normal;
@@ -9706,4 +9711,30 @@ html:not(.mobile) .jcf-scrollable .group-locations-list li:hover,
 .list-pics .ava-item img {
 	vertical-align: top;
 	border-radius: 50%;
+}
+p.map-note {
+	line-height: 1.5;
+}
+@media (min-width: 1024px) {
+	p.map-note {
+		padding-left: 14px;
+		padding-right: 40px;
+	}
+}
+
+/* fix map layout */
+@media only screen and (min-width: 768px) {
+	.boards.d-flex {
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+	}
+	.boards.d-flex .aside-right {
+		margin-left: 3%;
+	}
+}
+@media only screen and (min-width: 1441px) {
+	.boards.d-flex .aside-right {
+		margin-left: 5%;
+	}
 }

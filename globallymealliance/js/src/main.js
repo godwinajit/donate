@@ -1,3 +1,129 @@
+function initTabs() {
+    jQuery('.map-section .tabset').tabset();
+    initOpenClose();
+    initSelectAllOption();
+}
+
+// init select all option
+function initSelectAllOption() {
+    jQuery('.form-optional [multiple]').each(function() {
+        var select = jQuery(this);
+        var optionAll = select.find('option[value="*"]');
+        var textSelectAll = select.attr('data-select') || 'Select All';
+        var textUnSelectAll = select.attr('data-unselect') || 'Unselect All';
+
+        function changeHandler() {
+            var select = jQuery(this);
+            var options = select.find('option');
+            var flag = true;
+            var firstOption = options.eq(0);
+
+            if (select.val() == '*' || select.val()[0] == '*') {
+                flag = false;
+
+                options.filter(function(a, b) {
+                    return a > 0 ? true : false;
+
+                }).prop('selected', true);
+                firstOption.prop('selected', false);
+                firstOption.text(textUnSelectAll);
+                firstOption.val('**');
+                jcf.getInstance(select).instance.hideDropdown();
+            } else if (select.val()[0] == '**' && flag) {
+                flag = false;
+                firstOption.text(textSelectAll);
+                firstOption.val('*');
+                options.prop('selected', false);
+                jcf.getInstance(select).instance.hideDropdown();
+            } else if (flag) {
+                firstOption.text(textSelectAll);
+                firstOption.val('*');
+                jcf.getInstance(select).instance.hideDropdown();
+            }
+            jcf.replace(select);
+        }
+        select.on('change', changeHandler);
+    });
+}
+
+
+// slide block
+function initOpenClose() {
+    var block = jQuery('.open-close');
+    if (!block.length) {
+        return;
+    }
+    var activeClass = 'slide-active';
+    var visibleHeight = 96;
+    var animFlag = false;
+    var speedAnimation = 500;
+
+    block.each(function() {
+        var currentBlock = jQuery(this);
+        var frame = currentBlock.find('.frame');
+
+        if (frame.outerHeight() <= visibleHeight) {
+            currentBlock.addClass('hide-link');
+
+            return true;
+        }
+
+        var currentOpener = currentBlock.find('.opener');
+
+        var currentSlideBlock = currentBlock.find('.slide').css('height', visibleHeight);
+
+        function togglePanel() {
+            if(!currentBlock.hasClass(activeClass)) {
+                currentSlideBlock.animate({
+                    height: getHeight()
+                }, {
+                    duration:speedAnimation,
+                    complete: function() {
+                        animFlag = false;
+                        currentBlock.addClass(activeClass);
+                        jQuery(this).css('height', '');
+                    }
+                });
+            } else {
+                var delta = 20;
+                var holder = currentBlock.closest('.post');
+                var headerHeight = jQuery('#site-header').outerHeight() + delta;
+
+                // currentSlideBlock.animate({height:visibleHeight}, {duration:speedAnimation, complete: function() {
+
+                //     animFlag = false;
+                //     currentBlock.removeClass(activeClass);
+
+                //     jQuery('body, html').animate({
+                //         scrollTop: holder.offset().top - headerHeight
+                //         // scrollTop: holder.is(':last-child') ? holder.offset().top - headerHeight : holder.next('.post').offset().top - headerHeight
+                //     }, 300);
+                // }});
+
+                jQuery('body, html').animate({scrollTop: holder.offset().top - headerHeight}, {duration:speedAnimation, complete: function() {
+
+                    currentSlideBlock.animate({height:visibleHeight}, {duration:speedAnimation / 2, complete: function() {
+                        animFlag = false;
+                        currentBlock.removeClass(activeClass);
+                    }});
+                }});
+            }
+        }
+        function getHeight() {
+            return currentSlideBlock.find('.frame').outerHeight();
+        }
+
+        currentOpener.on('click', function(e){
+            e.preventDefault();
+
+            if (!animFlag) {
+                animFlag = true;
+                togglePanel();
+            }
+        });
+    });
+}
+
 function initCustomForms() {
     jcf.setOptions("Select", {
         wrapNative: !1
@@ -190,7 +316,7 @@ function initSameHeight() {
 }
 
 jQuery(function() {
-    initSameHeight(), initToggleContent(), initCustomForms(), initRetinaCover(), initEnquire(), initLightbox(), initPopup("search-nav", ".search-opener")
+    initSameHeight(), initToggleContent(), initCustomForms(), initRetinaCover(), initEnquire(), initLightbox(), initPopup("search-nav", ".search-opener"), initTabs()
 });
 
 
@@ -318,3 +444,182 @@ jQuery(function() {
         return calcHeight;
     }
 }(jQuery));
+
+
+;(function($, $win) {
+    'use strict';
+
+    function Tabset($holder, options) {
+        this.$holder = $holder;
+        this.options = options;
+
+        this.init();
+    }
+
+    Tabset.prototype = {
+        init: function() {
+            this.$tabLinks = this.$holder.find(this.options.tabLinks);
+
+            this.setStartActiveIndex();
+            this.setActiveTab();
+
+            if (this.options.autoHeight) {
+                this.$tabHolder = $(this.$tabLinks.eq(0).attr(this.options.attrib)).parent();
+            }
+        },
+
+        setStartActiveIndex: function() {
+            var $classTargets = this.getClassTarget(this.$tabLinks);
+            var $activeLink = $classTargets.filter('.' + this.options.activeClass);
+            var $hashLink = this.$tabLinks.filter('[' + this.options.attrib + '="' + location.hash + '"]');
+            var activeIndex;
+
+            if (this.options.checkHash && $hashLink.length) {
+                $activeLink = $hashLink;
+            }
+
+            activeIndex = $classTargets.index($activeLink);
+
+            this.activeTabIndex = this.prevTabIndex = (activeIndex === -1 ? (this.options.defaultTab ? 0 : null) : activeIndex);
+        },
+
+        setActiveTab: function() {
+            var self = this;
+
+            this.$tabLinks.each(function(i, link) {
+                var $link = $(link);
+                var $classTarget = self.getClassTarget($link);
+                var $tab = $($link.attr(self.options.attrib));
+
+                if (i !== self.activeTabIndex) {
+                    $classTarget.removeClass(self.options.activeClass);
+                    $tab.addClass(self.options.tabHiddenClass).removeClass(self.options.activeClass);
+                } else {
+                    $classTarget.addClass(self.options.activeClass);
+                    $tab.removeClass(self.options.tabHiddenClass).addClass(self.options.activeClass);
+                }
+
+                self.attachTabLink($link, i);
+            });
+        },
+
+        attachTabLink: function($link, i) {
+            var self = this;
+
+            $link.on(this.options.event + '.tabset', function(e) {
+                e.preventDefault();
+
+                if (self.activeTabIndex === self.prevTabIndex && self.activeTabIndex !== i) {
+                    self.activeTabIndex = i;
+                    self.switchTabs();
+                }
+                self.$holder.closest('.map-section').removeClass('hide-map');
+                if($link.parent().hasClass('last')){
+                    self.$holder.closest('.map-section').addClass('hide-map');
+                }
+            });
+        },
+
+        resizeHolder: function(height) {
+            var self = this;
+
+            if (height) {
+                this.$tabHolder.height(height);
+                setTimeout(function() {
+                    self.$tabHolder.addClass('transition');
+                }, 10);
+            } else {
+                self.$tabHolder.removeClass('transition').height('');
+            }
+        },
+
+        switchTabs: function() {
+            var self = this;
+
+            var $prevLink = this.$tabLinks.eq(this.prevTabIndex);
+            var $nextLink = this.$tabLinks.eq(this.activeTabIndex);
+
+            var $prevTab = this.getTab($prevLink);
+            var $nextTab = this.getTab($nextLink);
+
+            $prevTab.removeClass(this.options.activeClass);
+
+            if (self.haveTabHolder()) {
+                this.resizeHolder($prevTab.outerHeight());
+            }
+
+            setTimeout(function() {
+                self.getClassTarget($prevLink).removeClass(self.options.activeClass);
+
+                $prevTab.addClass(self.options.tabHiddenClass);
+                $nextTab.removeClass(self.options.tabHiddenClass).addClass(self.options.activeClass);
+
+                self.getClassTarget($nextLink).addClass(self.options.activeClass);
+
+                if (self.haveTabHolder()) {
+                    self.resizeHolder($nextTab.outerHeight());
+
+                    setTimeout(function() {
+                        self.resizeHolder();
+                        self.prevTabIndex = self.activeTabIndex;
+                    }, self.options.animSpeed);
+                } else {
+                    self.prevTabIndex = self.activeTabIndex;
+                }
+            }, this.options.autoHeight ? this.options.animSpeed : 1);
+        },
+
+        getClassTarget: function($link) {
+            return this.options.addToParent ? $link.parent() : $link;
+        },
+
+        getActiveTab: function() {
+            return this.getTab(this.$tabLinks.eq(this.activeTabIndex));
+        },
+
+        getTab: function($link) {
+            return $($link.attr(this.options.attrib));
+        },
+
+        haveTabHolder: function() {
+            return this.$tabHolder && this.$tabHolder.length;
+        },
+
+        destroy: function() {
+            var self = this;
+
+            this.$tabLinks.off('.tabset').each(function() {
+                var $link = $(this);
+
+                self.getClassTarget($link).removeClass(self.options.activeClass);
+                $($link.attr(self.options.attrib)).removeClass(self.options.activeClass + ' ' + self.options.tabHiddenClass);
+            });
+
+            this.$holder.removeData('Tabset');
+        }
+    };
+
+    $.fn.tabset = function(options) {
+        options = $.extend({
+            activeClass: 'active',
+            addToParent: false,
+            autoHeight: false,
+            checkHash: false,
+            defaultTab: true,
+            animSpeed: 500,
+            tabLinks: 'a',
+            attrib: 'href',
+            event: 'click',
+            tabHiddenClass: 'js-tab-hidden'
+        }, options);
+        options.autoHeight = options.autoHeight && $.support.opacity;
+
+        return this.each(function() {
+            var $holder = $(this);
+
+            if (!$holder.data('Tabset')) {
+                $holder.data('Tabset', new Tabset($holder, options));
+            }
+        });
+    };
+}(jQuery, jQuery(window)));
