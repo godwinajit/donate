@@ -98,11 +98,17 @@ $banner_image = get_field('banner_image', $currentPractice);
 							),
 							
 							'meta_key'			=> 'designation',
-							'orderby'			=> 'meta_value_num',
+							'orderby'			=> 'meta_value meta_value_num',
 							'order'				=> 'DESC'
 					));
 
 					if ( $attorneys ) :
+					// This is a temporary fix for the attorney custom sorting. 
+					if($currentPractice->slug == 'business-restructuring-liquidations'){
+						$tempAttorneys = $attorneys[1];
+						$attorneys[1]  = $attorneys[3];
+						$attorneys[3]  = $tempAttorneys;
+					}
 					?>
 				<div class="staff-section clearfix">
 					<h3>Our Team</h3>

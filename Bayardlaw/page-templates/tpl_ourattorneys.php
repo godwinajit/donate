@@ -88,7 +88,7 @@ if(isset($_GET['designation']) && !empty($_GET['designation'])){
 				</div>
 			</div>
 			<div class="content-section">
-				<div class="row">
+				<div class="row person-grid">
 				<?php 
 					$args = array( 'post_type' => 'attorney','posts_per_page'   =>100,
 							'meta_query' => $query_array,'meta_key'			=> 'last_name');

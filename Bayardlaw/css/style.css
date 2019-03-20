@@ -5399,3 +5399,9 @@ body:not(.m-devices) .tile h3 {
 		width: 25%;
 	}
 }
+
+@media screen and (min-width: 1024px) {
+	.person-grid > div:nth-child(3n+1) {
+		clear: left;
+	}
+}
