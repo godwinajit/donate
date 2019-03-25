@@ -5,7 +5,6 @@ function submitAmbassadorForm(token) {
 		$form.submit();
 	}
 }
-
 function initLightbox() {
     jQuery('a.open-lightbox, a[rel*="open-lightbox"]').fancybox({
         helpers: {
