@@ -1484,6 +1484,55 @@ function getCategoryNamesString($postId, $taxonomy){
 	return $cls;
 }
 
+function getCategoryNamesForPosts($postId, $taxonomy, $separator, $isLink){
+	$terms = get_the_terms( $postId, $taxonomy );
+	$returnText = '';
+	// init counter
+	$i = 1;
+
+	foreach ( $terms as $term ) {
+		$term_link = get_term_link( $term, $taxonomy );
+
+		if( is_wp_error( $term_link ) ) continue;
+	
+		if( $isLink ){ 
+			$returnText .= '<a href="' . $term_link . '">' . $term->name . '</a>';
+		} else {
+			$returnText .= ' ' . $term->name;
+		}
+		//  Add separator (except after the last theme)
+	    $returnText .= ($i < count($terms))? $separator." " : "";
+		
+		// Increment counter
+		$i++;
+	}
+
+	return $returnText;
+}
+
+function getCategoryMultiSelect( $taxonomy, $name, $placeholder, $defaultValue){
+	$terms = get_terms( $taxonomy );
+	// Set the current Taxonomy as the selected value if it is taxonomy page
+	if( get_query_var( 'term' ) != '') $defaultValue[] = get_query_var( 'term' );
+	$isSelected = '';
+	$returnText = '<select data-select="Select All '.$placeholder.'s" data-unselect="Unselect All '.$placeholder.'s" multiple placeholder="'.$placeholder.'" name="'.$name.'[]" id="multi-selectid-'.$name.'">';
+	$returnText .= '<option value="*">Select All '.$placeholder.'s</option>';
+
+	foreach ( $terms as $term ) {
+		if( is_wp_error( $term_link ) ) continue;
+
+		$isSelected = '';
+		
+		if( is_array($defaultValue) && (in_array($term->slug, $defaultValue)) ) $isSelected = 'selected';
+
+		$returnText .= '<option '.$isSelected.' value="'.$term->slug.'">'.$term->name.'</option>';
+	}
+
+	$returnText .= '</select>';
+
+	return $returnText;
+}
+
 function my_acf_google_map_api( $api ){
 	
 	$api['key'] = 'AIzaSyC4wptsDOrtZSpPfUdi3u4O0YlmPOY3bWk';

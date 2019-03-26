@@ -5341,6 +5341,11 @@ html body .subscribe-form #cc_form_2 input.t {
 	color: #000;
 	background: transparent;
 }
+.boards h1 strong,
+.boards h2 strong,
+.boards h3.c-blue {
+	color: #054977;
+}
 .ticks {
 	width: 148px;
 	padding-top: 18px;
@@ -9445,6 +9450,9 @@ html:not(.mobile) .jcf-scrollable .group-locations-list li:hover,
 	}
 	.jcf-select-drop.jcf-compact-multiple .jcf-option:after {
 		left: 32px;
+	}
+	.tabs-panel .jcf-scrollable {
+		height: 280px;
 	}
 }
 @media (min-width: 1024px) {

@@ -5790,7 +5790,7 @@ body>.jcf-select-drop.jcf-drop-flipped {
 	display: inline-block;
 	vertical-align: top;
 	position: relative;
-	line-height: 14px;
+	line-height: 18px;
 	font-size: 12px
 }
 
@@ -5833,13 +5833,15 @@ body>.jcf-select-drop.jcf-drop-flipped {
 @media only screen and (min-width:768px) {
 	.jcf-list .jcf-option {
 		font-size: 23px;
-		padding: 20px 28px
+		line-height: 28px;
+		padding-left: 28px;
+		padding-right: 28px;
 	}
 }
 
 @media only screen and (min-width:1024px) {
 	.jcf-list .jcf-option {
-		padding: 15px 28px
+		/*padding: 15px 28px*/
 	}
 }
 
