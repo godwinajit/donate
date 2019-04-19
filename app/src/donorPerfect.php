@@ -262,7 +262,7 @@ class DonorPerfect {
 		
 		$email = $billingetails->{'email'} ? $billingetails->{'email'} : '';
 		
-		$donateMail = SimpleMail::make ()->setTo ( $email )->setFrom ( 'info@globallymealliance.org', 'Global Lyme Alliance' )->setSubject ( 'Thank you from Global Lyme Alliance' )->setMessage ( $message )->setReplyTo ( 'info@globallymealliance.org', 'Global Lyme Alliance' )->setBcc ( $this->donorEmailList )->setHtml ()->setWrap ( 100 );
+		$donateMail = SimpleMail::make ()->setTo ( $email, $firstName . ' ' . $lastName )->setFrom ( 'info@globallymealliance.org', 'Global Lyme Alliance' )->setSubject ( 'Thank you from Global Lyme Alliance' )->setMessage ( $message )->setReplyTo ( 'info@globallymealliance.org', 'Global Lyme Alliance' )->setBcc ( $this->donorEmailList )->setHtml ()->setWrap ( 100 );
 		$send = $donateMail->send ();
 		
 		$send ? $this->log->info ( 'Email sent successfully' ) : $this->log->info ( 'Could not send email' );
