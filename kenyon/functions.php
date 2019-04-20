@@ -1720,4 +1720,39 @@ function mytheme_comment($comment, $args, $depth) {
     <?php endif; ?>
     <?php
     }
- ?>
+
+if(version_compare(get_option( 'woocommerce_version' ),"2.5.5","<=") && version_compare(get_bloginfo( 'version' ),"5.1.1","=") ){
+    function fix_request_query_args_for_woocommerce( $query_args ) {
+    	if ( isset( $query_args['post_status'] ) && empty( $query_args['post_status'] ) ) {
+    		unset( $query_args['post_status'] );
+    	}
+    	return $query_args;
+    }
+    add_filter( 'request', 'fix_request_query_args_for_woocommerce', 1, 1 );
+}
+
+/* Add Proposition 65 Alert checkbox in general product data section*/    
+add_action( 'woocommerce_product_options_general_product_data', 'proposition_65_alert');
+function proposition_65_alert(){
+ 
+	woocommerce_wp_checkbox( array(
+		'id'      => 'proposition_65',
+		'value'   => get_post_meta( get_the_ID(), 'proposition_65', true ),
+		'label'   => 'California Proposition 65?',
+		'desc_tip' => true,
+		'description' => 'Check this box if you want to display the Proposition 65 alert in the product description.',
+	) );
+ 
+}
+
+add_action( 'woocommerce_process_product_meta', 'prop65_save_fields', 10, 2 );
+function prop65_save_fields( $id, $post ){
+ 
+	//if( !empty( $_POST['proposition_65'] ) ) {
+		update_post_meta( $id, 'proposition_65', $_POST['proposition_65'] );
+	//} else {
+	//	delete_post_meta( $id, 'proposition_65' );
+	//}
+ 
+}
+?>

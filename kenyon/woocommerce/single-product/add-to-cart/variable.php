@@ -14,6 +14,17 @@ global $woocommerce, $product, $post;
 
 <?php do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 
+<!-- Production Varient Image and Description start -->
+<div class="kenyon-product-var-image-desc-wrap" style="text-align: center;">
+	<div class="kenyon-product-var-image-wrap">
+		<img src="" srcset="" class="kenyon-product-var-image-src" alt="">
+	</div>
+	<div class="kenyon-product-var-desc">
+	</div>
+	<br>
+</div>
+<!-- Production Varient Image and Description End -->
+
 <form class="variations_form cart option-form" method="post" enctype='multipart/form-data' data-product_id="<?php echo $post->ID; ?>" data-product_variations="<?php echo esc_attr( json_encode( $available_variations ) ) ?>">
     <fieldset>
 	<?php if ( ! empty( $available_variations ) ) : ?>
@@ -90,6 +101,7 @@ global $woocommerce, $product, $post;
                     </div>
                     <?php endif; ?>
 		        <?php endforeach;?>
+				<?php woocommerce_quantity_input(); ?>
 		</div>
 
 		<?php do_action( 'woocommerce_before_add_to_cart_button' ); ?>
@@ -102,7 +114,6 @@ global $woocommerce, $product, $post;
 			<div class="single_variation"></div>
 
 			<div class="variations_button">
-				<?php woocommerce_quantity_input(); ?>
 				
 				<button type="submit" class="single_add_to_cart_button button alt btn btn-default btn-block"><?php echo $product->single_add_to_cart_text(); ?></button>
 				<span class="button-disabled">

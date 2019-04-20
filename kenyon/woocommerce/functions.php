@@ -1,6 +1,6 @@
 <?php
 
-add_action( 'widgets_init', array( $this, 'addmy_widgets' ) );
+add_action( 'widgets_init', array( 'addmy_widgets' ) );
 	
 add_filter('woocommerce_enqueue_styles', '__return_false');
 

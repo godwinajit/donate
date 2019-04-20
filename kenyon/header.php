@@ -232,7 +232,7 @@ if( have_rows('todays_offers', 25) ):
 						</div>
 
 						<div class="open-search-form-mobile">
-						<div class="form-mob-close"><img src="http://www.cookwithkenyon.com/wp-content/uploads/2018/06/close-white.svg"></div><?php get_search_form(); ?>
+						<div class="form-mob-close"><img src="/wp-content/uploads/2018/06/close-white.svg"></div><?php get_search_form(); ?>
 					</div>
 
 					</div>

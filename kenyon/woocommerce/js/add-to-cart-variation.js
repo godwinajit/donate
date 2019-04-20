@@ -63,6 +63,15 @@
 				if ( $dimensions.attr( 'data-o_dimensions' ) )
 					$dimensions.text( $dimensions.attr( 'data-o_dimensions' ) );
 
+				// Production Varient Image and Description start
+					$('.kenyon-product-var-image-desc-wrap').hide('slow');
+					$('.kenyon-product-var-image-src')
+						.attr( 'src', '' )
+						.attr( 'alt', '' )
+						.attr( 'title', '' );
+					$('.kenyon-product-var-desc').html('');
+				// Production Varient Image and Description end
+
 				return false;
 			} )
 
@@ -300,9 +309,9 @@
 				$variation_form.trigger( 'woocommerce_update_variation_values' );
 
 			} )
-
 			// Show single variation details (price, stock, image)
 			.on( 'found_variation', function( event, variation ) {
+				if( !variation ) return;
 				var $variation_form = $( this ),
 					$product = $( this ).closest( '.product' ),
 					$product_img = $product.find( 'div.images img:eq(0)' ),
@@ -315,6 +324,30 @@
 					variation_link  = variation.image_link,
 					variation_title = variation.image_title,
 					variation_alt = variation.image_alt;
+
+				// Production Varient Image and Description start
+				variation_description = variation.variation_description;
+
+				if ( variation_link && variation_link.length > 1 ) {
+					$('.kenyon-product-var-image-desc-wrap').show('slow');
+					$('.kenyon-product-var-image-src')
+						.attr( 'src', variation_link )
+						.attr( 'alt', variation_alt )
+						.attr( 'width', 330 )
+						.attr( 'title', variation_title );
+				}else {
+					$('.kenyon-product-var-image-src')
+						.attr( 'src', '' )
+						.attr( 'alt', '' )
+						.attr( 'title', '' );
+				}
+
+				if ( variation_description && variation_description.length > 1 ) {
+					$('.kenyon-product-var-desc').html(variation_description);
+				}else {
+					$('.kenyon-product-var-desc').html('');
+				}
+				// Production Varient Image and Description end
 
 				$variation_form.find( '.variations_button' ).show();
 				$variation_form.find( '.single_variation' ).html( variation.price_html + variation.availability_html );

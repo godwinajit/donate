@@ -55,6 +55,9 @@ var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(glc
 	body.cookies-accepted #cookie-notice {
     display: none;
 }
+body {
+    background: #f99400;
+}
 
 #lp-head {
     padding: 16px 0;
@@ -88,7 +91,7 @@ var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(glc
 
 
 .lp-hero-section {
-    min-height: 458px;
+    height: 458px;
     background-size: cover;
     background-position: center center;
     position: relative;
@@ -101,6 +104,7 @@ var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(glc
     -webkit-justify-content: flex-end;
     justify-content: flex-end;
     text-align: center;
+    overflow: hidden;
 }
 /*.lp-hero-section:before {
     content: '';
@@ -123,6 +127,7 @@ background: -ms-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(0,0,0,0) 0%, r
 background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.58) 58%, rgba(0,0,0,0.9) 90%, rgba(0,0,0,1) 100%);
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#000000', GradientType=0 );
     z-index: -1;
+    bottom: 0px;
 }
 .lp-block-holder {
     max-width: 732px;
@@ -153,14 +158,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 /*=========== SECTION 2 LP ========== */
 .lp-section-2 {
     padding: 30px 0 80px;
+    overflow: hidden;
+    background-color: #fff;
 }
 
 .lp-section-2 .row .lp-two-col-section {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
     flex-basis: 47.4%;
     -webkit-flex-basis: 47.4%;
     float: left;
@@ -225,8 +227,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 
 /*===================== LP SECTION 3 ================= */
 #lp-third {
-    background-color: rgba(179, 182, 185, .3);
+    /*background-color: rgba(179, 182, 185, .3);*/
+    background-color: #fff;
     padding: 80px 0;
+    overflow: hidden;
 }
 #third:before {
     position: absolute;
@@ -318,6 +322,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 /*================= lp VIDEO SECTION ========== */
 #lp-video {
     padding: 80px 0;
+    background-color: #fff;
 }
 
 #lp-video .video-sec iframe {
@@ -369,6 +374,7 @@ body.page-template-template-landingpage.cookies-not-set:before {
 
 .lp-footer {
     padding: 50px 0 31px;
+    background-color: #fff;
 }
 .lp-f-social ul li {
     display: inline-block;
@@ -428,7 +434,7 @@ body.page-template-template-landingpage.cookies-not-set:before {
 li.lp-call:before {
     content: '';
     position: absolute;
-    background-image: url(http://kenyongrills.staging.wpengine.com/wp-content/uploads/2019/01/phone.svg);
+    background-image: url(/wp-content/uploads/2019/01/phone.svg);
     width: 18px;
     height: 18px;
     background-repeat: no-repeat;
@@ -444,7 +450,7 @@ li.lp-call:before {
 .lp-f-contact li.lp-fax:before {
     content: '';
     position: absolute;
-    background-image: url(http://kenyongrills.staging.wpengine.com/wp-content/uploads/2019/01/fax.svg);
+    background-image: url(/wp-content/uploads/2019/01/fax.svg);
     width: 18px;
     height: 18px;
     background-repeat: no-repeat;
@@ -550,30 +556,22 @@ body .lp-section-2 {
 body .lp-two-col-section h2 {
     font-size: 32px;
 }
-.lp-section-2 .row {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    flex-direction: column-reverse;
-    -webkit-flex-direction: column-reverse;
-}
-.lp-section-2 .row .lp-two-col-section {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    flex-basis: 100%;
-    -webkit-flex-basis: 100%;
-    float: left;
+.lp-section-2 >.container>.row{
+    display: block;
     margin-right: 0;
+}
+body .lp-section-2 .row .lp-two-col-section {
+    display: block;
+    margin-right: 0;
+    float: none;
     margin-top: 0px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     position: relative;
+    flex-basis: 100%;
+    -webkit-flex-basis: 100%;
+    width: 100%;
 }
 body .lp-img-content {
     min-height: 173px;
@@ -583,6 +581,7 @@ body .lp-img-content {
 }
 body .lp-two-col-section .text-block {
     padding-right: 0;
+    display: block;
 }
 body.page-template-template-landingpage .home-shop-section {
     padding: 106px 20px;
@@ -670,7 +669,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						</div>
 
 						<div class="col-md-2 lp-button">
-							<a href="#">SHOP NOW</a>
+							<a href="<?php the_field('shop_button_link', 'option'); ?>"><?php the_field('shop_button_text', 'option'); ?></a>
 						</div>
 
 
