@@ -41,6 +41,8 @@ if (! empty ( $_GET ['token-id'] )) {
 		$log->info("Saving details to Doner Perfect ...");
 		$donorDetails = $donorPerfect->saveDonorDetails($transactionDetails, $_SESSION);
 		$transactionStatus = $transactionDetails->{'result-text'};
+		$transactionID = (string) $transactionDetails->{'transaction-id'};
+		$_SESSION['transactionid'] = $transactionID;
 		header("Location: success.php"); /* Redirect browser */
 		exit();
 	}else{
