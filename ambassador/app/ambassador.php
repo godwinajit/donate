@@ -243,7 +243,7 @@ include ('../../wp-load.php');
 							</div>
 							<div class="row">
 								<div class="col-xs-12">
-									<label>* Phone Number</label> <input type="tel" data-rule-number="true" required
+									<label>* Phone Number</label> <input type="text" required
 										name="telephone_1">
 								</div>
 								<!-- <div class="col-xs-12 col-sm-6">
@@ -822,7 +822,7 @@ include ('../../wp-load.php');
 							</div>
 							<div class="col-xs-12 col-sm-6 col-md-short">
 								<label>* Telephone</label> <input name="ref1_telephone"
-									type="text" data-rule-number="true" required>
+									type="text" required>
 							</div>
 							<div class="col-xs-12 col-sm-6 col-md-short">
 								<label>* Relationship</label> <input name="ref1_relationship"
@@ -847,7 +847,7 @@ include ('../../wp-load.php');
 							</div>
 							<div class="col-xs-12 col-sm-6 col-md-short">
 								<label>* Telephone</label> <input name="ref2_telephone"
-									type="text" data-rule-number="true" required>
+									type="text" required>
 							</div>
 							<div class="col-xs-12 col-sm-6 col-md-short">
 								<label>* Relationship</label> <input name="ref2_relationship"
@@ -872,7 +872,7 @@ include ('../../wp-load.php');
 							</div>
 							<div class="col-xs-12 col-sm-6 col-md-short">
 								<label>Telephone</label> <input name="ref3_telephone"
-									type="text" data-rule-number="true">
+									type="text">
 							</div>
 							<div class="col-xs-12 col-sm-6 col-md-short">
 								<label>Relationship</label> <input name="ref3_relationship"
@@ -885,19 +885,21 @@ include ('../../wp-load.php');
 								<label>Occupation</label> <input name="ref3_occupation"
 									type="text">
 							</div>
+							<div class="col-xs-12 col-sm-6 col-md-short">
+								<label></label>
+								<div class="g-recaptcha" data-sitekey="6LeBrFIUAAAAACyFm2dZMWhT-AoAueatWYnBjlgh"></div>
+							</div>
 						</div>
 					</div>
-					<div class="form-note" style="display: none">* Complete the
-						required fields</div>
+					<div class="form-note" style="display: none">* Complete the required fields</div>
+					<div class="form-note-recaptcha" style="display: none">* Please check I'm not a robot</div>
 				</div>
 			</div>
 			<div class="row center-xs">
 				<div class="col-xs-11 col-md-10">
 					<div class="action">
 						<button type="submit" class="btn btn-primary btn-primary-green js-btn-step-prev">Go back</button>
-						<button id="step3-submit" class="g-recaptcha btn btn-default btn-continue" data-sitekey="6LeBrFIUAAAAACyFm2dZMWhT-AoAueatWYnBjlgh" data-callback="submitAmbassadorForm">
-								Continue
-							</button>
+						<button id="step3-submit" class="btn btn-default btn-continue">Continue</button>
 					</div>
 				</div>
 				<div class="col-xs-11 col-md-10">

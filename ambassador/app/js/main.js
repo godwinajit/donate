@@ -1,10 +1,35 @@
-function submitAmbassadorForm(token) {
+function submitAmbassadorForm() {
 	var $form = $('#ambassador-form');
 
-	if ($form.valid()) {
-		$form.submit();
+	var grecaptcha_response = grecaptcha.getResponse();
+	if (grecaptcha_response.length == 0) {
+		$(".form-note-recaptcha").show();
+		return false;
+	}else{
+		$(".form-note-recaptcha").hide();
+		return true;
 	}
 }
+/*
+$( document ).ready(function() {
+	var $form = $('#ambassador-form');
+	$form.submit(function(){
+		var grecaptcha_response = grecaptcha.getResponse();
+		console.log(grecaptcha_response);
+		if (grecaptcha_response.length == 0) {
+			$(".form-note-recaptcha").show();
+			return false;
+		}else{
+			$(".form-note-recaptcha").hide();
+			if ($form.valid()) {
+				$form.submit();
+			}else{
+				return false;
+			}
+		}
+	});
+});
+*/
 function initLightbox() {
     jQuery('a.open-lightbox, a[rel*="open-lightbox"]').fancybox({
         helpers: {
@@ -214,8 +239,9 @@ jQuery(function(e) {
                 validClass: "valid"
             });
             t.on("submit", function(s) {
+            	if(!submitAmbassadorForm()){ s.preventDefault()}
                 /*s.preventDefault(),*/ t.valid() && (t.addClass("sending"), e.post(/*t.attr("action"), t.serialize()*/).done(function() {
-                    n.nextStep(), s.currentTarget.reset(), i.resetForm(), t.find(".form-note").hide()
+                    n.nextStep()/*, s.currentTarget.reset()*/, i.resetForm(), t.find(".form-note").hide()
                 }).fail(function(e) {
                     console.error(e)
                 }).always(function() {
@@ -2614,7 +2640,7 @@ jQuery(function(e) {
                     return this.checkable(i) ? this.getLength(t, i) > 0 : t.length > 0
                 },
                 email: function(e, t) {
-                    return this.optional(t) || /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(e)
+                    return this.optional(t) || /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(e)
                 },
                 url: function(e, t) {
                     return this.optional(t) || /^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})).?)(?::\d{2,5})?(?:[\/?#]\S*)?$/i.test(e)

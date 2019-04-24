@@ -50,7 +50,13 @@ if ($_SERVER ['REQUEST_METHOD'] === 'POST' && ! empty ( $_POST )) {
 	} catch ( Exception $e ) {
 	}
 
-	if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) || !filter_var($_POST['ref1_email'], FILTER_VALIDATE_EMAIL) || !filter_var($_POST['ref2_email'],		FILTER_VALIDATE_EMAIL) || ( ( trim($_POST['ref3_email']) != '' ) && !filter_var($_POST['ref3_email'], FILTER_VALIDATE_EMAIL) ) ) {
+	if (!$_POST['g-recaptcha-response'] || trim($_POST['g-recaptcha-response']) == ''){
+		$log->info ( "Redirecting due to ivalid g-recaptcha-response ...." );
+		redirect_to_url ( 'https://' . $_SERVER ['SERVER_NAME'] . '/ambassador/app/ambassador', true );
+	}
+
+	if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) || !filter_var($_POST['ref1_email'], FILTER_VALIDATE_EMAIL) || !filter_var($_POST['ref2_email'], FILTER_VALIDATE_EMAIL) || ( ( trim($_POST['ref3_email']) != '' ) && !filter_var($_POST['ref3_email'], FILTER_VALIDATE_EMAIL) ) ) {
+		$log->info ( "Redirecting due to ivalid email ...." );
 	  redirect_to_url ( 'https://' . $_SERVER ['SERVER_NAME'] . '/ambassador/app/ambassador', true );
 	}
 

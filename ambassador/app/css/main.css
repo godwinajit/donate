@@ -2277,7 +2277,7 @@ form .error, form .jcf-hidden.error+.jcf-select {
 	border-color: #ffa0a0 !important
 }
 
-form .form-note {
+form .form-note, form .form-note-recaptcha {
 	color: #e60000
 }
 

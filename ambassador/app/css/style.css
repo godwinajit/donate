@@ -6450,7 +6450,7 @@ a.btn.btn-blue:hover {
     line-height: 24px;
     text-align: left;
 }
-.ambassador-form .form-note {
+.ambassador-form .form-note, .ambassador-form .form-note-recaptcha {
     text-align: left;
     font: 400 18px/1.25 "Roboto", Arial, sans-serif;
 }
