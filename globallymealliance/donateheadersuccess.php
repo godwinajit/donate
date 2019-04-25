@@ -14,6 +14,14 @@
 
 <head>
 <!-- Google Tag Manager 09202017start-->
+<?php if( retriveDonorField($_SESSION,'donate') ) {?>
+<script>
+	dataLayer = [{
+    	'transactionId': <?php echo "'".retriveDonorField($_SESSION,'transactionid')."'";?>, // Transaction ID - Type:String - Required 
+	    'transactionTotal': <?php echo retriveDonorField($_SESSION,'donate');?> //total revenue - Type:Numeric - Required
+	}];
+</script>
+<?php }?>
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -30,11 +38,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   gtag('config', 'UA-70990108-2');
 </script>
 <!-- Global site tag (gtag.js) - Google Analytics End -->
-<!-- Event snippet for Donation Adwords conversion page --> 
-<script> gtag('event', 'conversion',
-
-{ 'send_to': 'AW-860444499/7iGZCIjPsYsBENOupZoD', 'value': 1.0, 'currency': 'USD', 'transaction_id': '' }
-); </script>
 <!-- FullStory Script start -->
 <script> window['_fs_debug'] = false; window['_fs_host'] = 'fullstory.com'; window['_fs_org'] = 'AE344'; window['_fs_namespace'] = 'FS'; (function(m,n,e,t,l,o,g,y){ if (e in m) {if(m.console && m.console.log) { m.console.log('FullStory namespace conflict. Please set window["_fs_namespace"].');} return;} g=m[e]=function(a,b){g.q?g.q.push([a,b]):g._api(a,b);};g.q=[]; o=n.createElement(t);o.async=1;o.src='https://'+_fs_host+'/s/fs.js'; y=n.getElementsByTagName(t)[0];y.parentNode.insertBefore(o,y); g.identify=function(i,v){g(l,{uid:i});if(v)g(l,v)};g.setUserVars=function(v){g(l,v)}; y="rec";g.shutdown=function(i,v){g(y,!1)};g.restart=function(i,v){g(y,!0)}; g.identifyAccount=function(i,v){o='account';v=v||{};v.acctId=i;g(o,v)}; g.clearUserCookie=function(){}; })(window,document,window['_fs_namespace'],'script','user'); </script>
 <!-- FullStory Script end -->
