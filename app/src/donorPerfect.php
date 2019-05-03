@@ -68,7 +68,7 @@ class DonorPerfect {
 			$this->log->info ( "Error Adding New Donor to DP" );
 
 			$dpSaveFailMail = SimpleMail::make ()->setFrom ( 'info@globallymealliance.org', 'Global Lyme Alliance' )->setSubject ( 'Error Adding New Donor to DP' )
-				->setMessage ( "Error Adding New Donor to DP. See Log file for More details" )->setReplyTo ( 'info@globallymealliance.org', 'Global Lyme Alliance' )->setHtml ()->setWrap ( 100 );
+				->setMessage ( "Error Adding New Donor to DP. See Log file for More details" )->setReplyTo ( 'info@globallymealliance.org', 'Global Lyme Alliance' )->setHtml ()->setWrap ( 100 )->addGenericHeader('Message-Id', "<" . md5(uniqid(microtime())) . "@globallymealliance.org>");
 			
 			foreach ( $this->emailList as $name => $email ) {
 				$dpSaveFailMail->setTo ( $email, $name );
@@ -262,7 +262,7 @@ class DonorPerfect {
 		
 		$email = $billingetails->{'email'} ? $billingetails->{'email'} : '';
 		
-		$donateMail = SimpleMail::make ()->setTo ( $email, $firstName . ' ' . $lastName )->setFrom ( 'info@globallymealliance.org', 'Global Lyme Alliance' )->setSubject ( 'Thank you from Global Lyme Alliance' )->setMessage ( $message )->setReplyTo ( 'info@globallymealliance.org', 'Global Lyme Alliance' )->setBcc ( $this->donorEmailList )->setHtml ()->setWrap ( 100 );
+		$donateMail = SimpleMail::make ()->setTo ( $email, $firstName . ' ' . $lastName )->setFrom ( 'info@globallymealliance.org', 'Global Lyme Alliance' )->setSubject ( 'Thank you from Global Lyme Alliance' )->setMessage ( $message )->setReplyTo ( 'info@globallymealliance.org', 'Global Lyme Alliance' )->setBcc ( $this->donorEmailList )->setHtml ()->setWrap ( 100 )->addGenericHeader('Message-Id', "<" . md5(uniqid(microtime())) . "@globallymealliance.org>");
 		$send = $donateMail->send ();
 		
 		$send ? $this->log->info ( 'Email sent successfully' ) : $this->log->info ( 'Could not send email' );
