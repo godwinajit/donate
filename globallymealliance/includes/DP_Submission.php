@@ -1133,7 +1133,7 @@ function registration_form_professional_education_to_dp( $entry, $form ) {
 			$donorId = $donorDetails[0];
 			
 
-			$flagDetails = saveDPFlag($donorId, 'EDPRO');
+			$flagDetails = saveDPFlag($donorId, 'CMEPEDIATRIC');
 			error_log( 'registration_form_professional_education_to_dp after_submission: ' . print_r( $flagDetails, true ) );
 		
 			if ($iamFlag != ''){
@@ -1169,7 +1169,7 @@ function registration_form_professional_education_to_dp( $entry, $form ) {
 	} else {
 		foreach($matchingDonors as $donorId){
 
-			$flagDetails = saveDPFlag($donorId, 'EDPRO');
+			$flagDetails = saveDPFlag($donorId, 'CMEPEDIATRIC');
 			error_log( 'registration_form_professional_education_to_dp after_submission: ' . print_r( $flagDetails, true ) );
 
 			if ($iamFlag != ''){
