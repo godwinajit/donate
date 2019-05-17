@@ -1205,6 +1205,103 @@ function registration_form_professional_education_to_dp( $entry, $form ) {
 	}
 }
 
+// GLA Physician Referral Directory Landing Page
+add_action( 'gform_after_submission_28', 'physician_referral_directory_landing_page_to_dp', 10, 2 );
+function physician_referral_directory_landing_page_to_dp( $entry, $form ) {
+
+ 	$firstName = rgar( $entry, '51' );
+	$lastName = rgar( $entry, '52' );
+	$email = rgar( $entry, '18' );
+	$homePhone = rgar( $entry, '20' );
+	$address1 = rgar( $entry, '10' );
+	$country = rgar( $entry, '12' );
+	$city = rgar( $entry, '13' );
+	$cityStateProvince = rgar( $entry, '16' );
+	$state = rgar( $entry, '15' );
+	$postal = rgar( $entry, '17' );
+	$credentials = rgar( $entry, '53' );
+	$yearsPractice = rgar( $entry, '54' );
+	$typePractice = rgar( $entry, '27' );
+	$typePracticeOther = rgar( $entry, '28' );
+
+	$matchingDonors = handleMatchingDonorByEmail($email, $form['title'], null, $firstName, $lastName, null, null, $country, $address1, null, $city, $cityStateProvince, $state, $postal, $homePhone, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+
+	if( !count($matchingDonors) ){
+		$donorDetails = saveDonor( null, $firstName, $lastName, $email, null, null, $country, $address1, null, $city, $cityStateProvince, $state, $postal, null, null );
+		error_log( 'survey_landing_page_to_dp after_submission: ' . print_r( $donorDetails, true ) );
+
+	    if (isset($donorDetails->{'record'}->{'field'}[0])) {
+		    $donorDetails = $donorDetails->{'record'}->{'field'}[0]->attributes()->{'value'};
+			$donorId = $donorDetails[0];
+			
+			$flagDetails = saveDPFlag($donorId, 'DRAPPL');
+			error_log( 'physician_referral_directory_landing_page_to_dp after_submission: ' . print_r( $flagDetails, true ) );
+
+			if ($credentials != '') {
+				$WEBUDFDetails = dp_save_udf_xml( $donorId, 'DGR', 'C', $credentials, null, null);
+				error_log( 'physician_referral_directory_landing_page_to_dp after_submission: ' . print_r( $WEBUDFDetails, true ) );
+			}
+
+			if ($yearsPractice != '') {
+				$WEBUDFDetails = dp_save_udf_xml( $donorId, 'YRS', 'C', $yearsPractice, null, null);
+				error_log( 'physician_referral_directory_landing_page_to_dp after_submission: ' . print_r( $WEBUDFDetails, true ) );
+			}
+
+			if ($typePractice != '') {
+				$WEBUDFDetails = dp_save_udf_xml( $donorId, 'TPYP', 'C', $typePractice, null, null);
+				error_log( 'physician_referral_directory_landing_page_to_dp after_submission: ' . print_r( $WEBUDFDetails, true ) );
+			}
+
+			if ($typePracticeOther != '') {
+				$WEBUDFDetails = dp_save_udf_xml( $donorId, 'TYPE', 'C', $typePracticeOther, null, null);
+				error_log( 'physician_referral_directory_landing_page_to_dp after_submission: ' . print_r( $WEBUDFDetails, true ) );
+			}
+
+			for ( $i = 0; $i <= 50; $i++ ){
+				$specialty = rgar( $entry, '5.'.$i );
+				if ($specialty != '') {
+					$WEBUDFDetails = dp_savemultivalue_xml( $donorId, 'SPLTYCB', $specialty);
+					error_log( 'physician_referral_directory_landing_page_to_dp after_submission: ' . print_r( $WEBUDFDetails, true ) );
+				}
+			}
+		}
+	} else {
+		foreach($matchingDonors as $donorId){
+
+			$flagDetails = saveDPFlag($donorId, 'DRAPPL');
+			error_log( 'digital_education_form_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
+			
+			if ($credentials != '') {
+				$WEBUDFDetails = dp_save_udf_xml( $donorId, 'DGR', 'C', $credentials, null, null);
+				error_log( 'physician_referral_directory_landing_page_to_dp after_submission: ' . print_r( $WEBUDFDetails, true ) );
+			}
+
+			if ($yearsPractice != '') {
+				$WEBUDFDetails = dp_save_udf_xml( $donorId, 'YRS', 'C', $yearsPractice, null, null);
+				error_log( 'physician_referral_directory_landing_page_to_dp after_submission: ' . print_r( $WEBUDFDetails, true ) );
+			}
+
+			if ($typePractice != '') {
+				$WEBUDFDetails = dp_save_udf_xml( $donorId, 'TPYP', 'C', $typePractice, null, null);
+				error_log( 'physician_referral_directory_landing_page_to_dp after_submission: ' . print_r( $WEBUDFDetails, true ) );
+			}
+
+			if ($typePracticeOther != '') {
+				$WEBUDFDetails = dp_save_udf_xml( $donorId, 'TYPE', 'C', $typePracticeOther, null, null);
+				error_log( 'physician_referral_directory_landing_page_to_dp after_submission: ' . print_r( $WEBUDFDetails, true ) );
+			}
+
+			for ( $i = 0; $i <= 50; $i++ ){
+				$specialty = rgar( $entry, '5.'.$i );
+				if ($specialty != '') {
+					$WEBUDFDetails = dp_savemultivalue_xml( $donorId, 'SPLTYCB', $specialty);
+					error_log( 'physician_referral_directory_landing_page_to_dp after_submission: ' . print_r( $WEBUDFDetails, true ) );
+				}
+			}
+		}
+	}
+}
+
 function saveDonor( $title = null, $firstName = null, $lastName = null, $email = null, $isCorp = null, $companyName = null, $country = null, $address1 = null, $address2 = null, $city = null, $cityStateProvince = null, $state = null, $postal = null, $phone = null , $professionalTitle = null){
     
     $title = dp_clean($title);
@@ -1322,7 +1419,7 @@ function dp_save_udf_xml( $matching_id, $field_name, $data_type, $char_value, $d
 	$request .= "'GLA API User'"; // @user_id Nvarchar(20) We recommend that you use a name here, such as the name of your API application, for auditing purposes. The user_id value does not need to match the name of an actual DPO user account.
 		
 	$request = urlencode ( $request );
-	$UDFDetails;
+	$UDFDetails = '';
 	try {
 		$UDFDetails = simplexml_load_file ( $request );
 	} catch ( Exception $e ) {
@@ -1332,6 +1429,26 @@ function dp_save_udf_xml( $matching_id, $field_name, $data_type, $char_value, $d
 	return $UDFDetails;
 }
 
+function dp_savemultivalue_xml( $matching_id, $field_name, $code) {
+
+    $request = DP_API_KEY_URL . DP_API_KEY;
+    $request .= "&action=dp_savemultivalue_xml&params=";
+
+    $request .= "'$matching_id',"; // @matching_id numeric Specify either a donor_id value if updating a donor record, a gift_id value if updating a gift record or an other_id value if updating a dpotherinfo table value (see dp_saveotherinfo)
+    $request .= "'$field_name',"; // @field_name Nvarchar(20)
+    $request .= "'$code',"; // @code Varchar(30)Enter the Code value of the checkbox entry you wish to set
+    $request .= "'GLA API User'"; // @user_id Nvarchar(20) We recommend that you use a name here, such as the name of your API application, for auditing purposes. The user_id value does not need to match the name of an actual DPO user account.
+
+    $request = urlencode ( $request );
+    $UDFDetails = '';
+    try {
+        $UDFDetails = simplexml_load_file ( $request );
+    } catch ( Exception $e ) {
+        error_log( 'nyc_marathon_form_to_dp_udf error after_submission: ' . print_r( $e, true ) );
+    }
+
+    return $UDFDetails;
+}
 
 function handleMatchingDonorByEmail($email, $formTitle, $title = null, $firstName = null, $lastName = null, $isCorp = null, $companyName = null, $country = null, $address1 = null, $address2 = null, $city = null, $cityStateProvince = null, $state = null, $postal = null, $phone = null , $professionalTitle = null, $website = null, $dob_date_value = null, $employer = null, $curriculum1 = null, $curriculum2 = null, $curriculum3 = null, $curriculum4 = null, $occupationCode = null, $sponsorship1 = null, $sponsorship2 = null, $sponsorship3 = null, $sponsorship4 = null, $iam = null)
 {
