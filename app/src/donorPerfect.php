@@ -107,8 +107,8 @@ class DonorPerfect {
 		}
 		
 		// Convert specific field's first character of each word to uppercase
-		$firstName = gla_ucwords ( $firstName );
-		$lastName = gla_ucwords ( $lastName );
+		$firstName = gla_ucwords ( strtolower($firstName) );
+		$lastName = gla_ucwords ( strtolower($lastName) );
 		$address1 = gla_ucwords ( $address1 );
 		$address2 = gla_ucwords ( $address2 );
 		$city = gla_ucwords ( $city );
@@ -300,8 +300,8 @@ class DonorPerfect {
 		$phone = $this->clean ( $transactionDetails->{'merchant-defined-field-18'} ? $transactionDetails->{'merchant-defined-field-18'} : '' );
 		
 		// Convert specific field's first character of each word to uppercase
-		$firstName = gla_ucwords ( $firstName );
-		$lastName = gla_ucwords ( $lastName );
+		$firstName = gla_ucwords ( strtolower($firstName) );
+		$lastName = gla_ucwords ( strtolower($lastName) );
 		$address1 = gla_ucwords ( $address1 );
 		$address2 = gla_ucwords ( $address2 );
 		$city = gla_ucwords ( $city );
@@ -384,8 +384,8 @@ class DonorPerfect {
 		$this->log->info ( "Pledge Last Name :" . $glname );
 		
 		// Convert specific field's first character of each word to uppercase
-		$firstName = gla_ucwords ( $firstName );
-		$lastName = gla_ucwords ( $lastName );
+		$firstName = gla_ucwords ( strtolower($firstName) );
+		$lastName = gla_ucwords ( strtolower($lastName) );
 		$gfname = gla_ucwords ( $gfname );
 		$glname = gla_ucwords ( $glname );
 		
@@ -458,8 +458,8 @@ class DonorPerfect {
 		$glname = $this->clean ( $transactionDetails->{'merchant-defined-field-7'} ? $transactionDetails->{'merchant-defined-field-7'} : '' );
 		
 		// Convert specific field's first character of each word to uppercase
-		$firstName = gla_ucwords ( $firstName );
-		$lastName = gla_ucwords ( $lastName );
+		$firstName = gla_ucwords ( strtolower($firstName) );
+		$lastName = gla_ucwords ( strtolower($lastName) );
 		$gfname = gla_ucwords ( $gfname );
 		$glname = gla_ucwords ( $glname );
 		
@@ -552,7 +552,7 @@ class DonorPerfect {
 		}
 		
 		// Convert specific field's first character of each word to uppercase
-		$firstName = gla_ucwords ( $firstName );
+		$firstName = gla_ucwords ( strtolower($firstName) );
 		$lastName = '';
 		$address1 = gla_ucwords ( $address1 );
 		$city = gla_ucwords ( $city );
@@ -702,13 +702,14 @@ class DonorPerfect {
 		$cardState = $this->clean ( $billingetails->{'state'} ? $billingetails->{'state'} : '' );
 		$cardZip = $this->clean ( $billingetails->{'postal'} ? $billingetails->{'postal'} : '' );
 		$date = date ( "m/d/Y" );
-		
+		$accountType  =   gla_get_card_type($cardNumber);
+
 		$customerVaultId = $transactionDetails->{'customer-vault-id'} ? $transactionDetails->{'customer-vault-id'} : '0';
 		
 		// Convert specific field's first character of each word to uppercase
-		$firstName = gla_ucwords ( $firstName );
-		$lastName = gla_ucwords ( $lastName );
-		$cardHolderName = gla_ucwords ( $cardHolderName );
+		$firstName = gla_ucwords ( strtolower($firstName) );
+		$lastName = gla_ucwords ( strtolower($lastName) );
+		$cardHolderName = gla_ucwords ( strtolower($cardHolderName) );
 		$cardaddress = gla_ucwords ( $cardaddress );
 		$cardCity = gla_ucwords ( $cardCity );
 		
@@ -719,7 +720,7 @@ class DonorPerfect {
 		$request .= "'$customerVaultId',"; // @CustomerVaultID Nvarchar(55) Enter -0 to create a new Customer Vault ID record
 		$request .= "'$donorDetails',"; // @donor_id int
 		$request .= "1,"; // @IsDefault bit Bit Enter 1 if this is will be the default EFT payment method
-		$request .= "null,"; // @AccountType Nvarchar(256) e.g. ‘Visa’
+		$request .= "'$accountType',"; // @AccountType Nvarchar(256) e.g. ‘Visa’
 		$request .= "'creditcard',"; // @dpPaymentMethodTypeID Nvarchar(20) e.g.; ‘creditcard’
 		$request .= "'$cardNumber',"; // @CardNumberLastFour Nvarchar(16) e.g.; ‘4xxxxxxxxxxx1111
 		$request .= "'$cardExp',"; // @CardExpirationDate Nvarchar(10) e.g.; ‘0810’
@@ -856,8 +857,8 @@ class DonorPerfect {
 		$lastName = $this->clean ( $transactionDetails->{'merchant-defined-field-2'} ? $transactionDetails->{'merchant-defined-field-2'} : '' );
 		
 		// Convert specific field's first character of each word to uppercase
-		$firstName = gla_ucwords ( $firstName );
-		$lastName = gla_ucwords ( $lastName );
+		$firstName = gla_ucwords ( strtolower($firstName) );
+		$lastName = gla_ucwords ( strtolower($lastName) );
 		
 		$request = "https://www.donorperfect.net/prod/xmlrequest.asp?apikey=" . $this->dpAPIKey;
 		$request .= "&action=dp_save_udf_xml&params=";
@@ -927,13 +928,13 @@ class DonorPerfect {
 		$cardZip = $sessionData ['billing-postal'];
 		
 		// Convert specific field's first character of each word to uppercase
-		$firstName = gla_ucwords ( $firstName );
-		$lastName = gla_ucwords ( $lastName );
+		$firstName = gla_ucwords ( strtolower($firstName) );
+		$lastName = gla_ucwords ( strtolower($lastName) );
 		$address1 = gla_ucwords ( $address1 );
 		$address2 = gla_ucwords ( $address2 );
 		$city = gla_ucwords ( $city );
-		$cardHolderFirstName = gla_ucwords ( $cardHolderFirstName );
-		$cardHolderLastName = gla_ucwords ( $cardHolderLastName );
+		$cardHolderFirstName = gla_ucwords ( strtolower($cardHolderFirstName) );
+		$cardHolderLastName = gla_ucwords ( strtolower($cardHolderLastName) );
 		$cardaddress = gla_ucwords ( $cardaddress );
 		$cardCity = gla_ucwords ( $cardCity );
 		

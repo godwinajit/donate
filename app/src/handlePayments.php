@@ -67,3 +67,25 @@ function gla_ucwords($string) {
 	return str_replace("' ","'",ucwords(str_replace("'","' ",$string)));
 	//return preg_replace("/\w[\w']*/e", "ucwords('\\0')", $string);
 }
+
+function gla_get_card_type($cardNumber) {
+    
+    $cardFirstChar = mb_substr($cardNumber, 0, 1, "UTF-8");
+    $cardType = '';
+    
+    //Visa Starts with 4 - VISA
+    //MasterCard Starts with 5 - MASTERCARD
+    //Amex (American Express) Starts with 3 - AMEX
+    //Discover Starts with 6  -   DISCOVER
+    if($cardFirstChar == '4'){
+        $cardType = 'VISA';
+    }elseif($cardFirstChar == '5'){
+        $cardType = 'MASTERCARD';
+    }elseif($cardFirstChar == '3'){
+        $cardType = 'AMEX';
+    }elseif($cardFirstChar == '6'){
+        $cardType = 'DISCOVER';
+    }
+    
+    return $cardType;
+}
