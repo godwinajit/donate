@@ -64,7 +64,7 @@ if ($_SERVER ['REQUEST_METHOD'] === 'POST' && ! empty ( $_POST )) {
 	{
 		try {
 			$messageBody = buildUserMessageBodyFromPost ( $_POST );
-			$userMail = SimpleMail::make ()->setTo ( $_POST['email'], $_POST['first_name'] )->setFrom ( 'education@GLA.org', 'Global Lyme Alliance' )->setSubject ( 'Lyme Education Ambassador Submission' )->setMessage ( $messageBody )->setReplyTo ( 'education@GLA.org', 'Global Lyme Alliance' )->setBcc ( $bccEmailList )->setHtml ()->setWrap ( 100 );
+			$userMail = SimpleMail::make ()->setTo ( $_POST['email'], $_POST['first_name'] )->setFrom ( 'education@GLA.org', 'Global Lyme Alliance' )->setSubject ( 'Lyme Education Ambassador Submission' )->setMessage ( $messageBody )->setReplyTo ( 'education@GLA.org', 'Global Lyme Alliance' )->setBcc ( $bccEmailList )->setHtml ()->setWrap ( 100 )->addGenericHeader('Message-Id', "<" . md5(uniqid(microtime())) . "@globallymealliance.org>");
 			$userEmailSend = $userMail->send ();
 		
 			$log->info ( "Ambassador Form User Email Sent Status is: " . $userEmailSend );
@@ -77,7 +77,7 @@ if ($_SERVER ['REQUEST_METHOD'] === 'POST' && ! empty ( $_POST )) {
 	
 	try {
 		$messageBody = buildAdminMessageBodyFromPost ( $_POST );
-		$adminMail = SimpleMail::make ()->setTo ( $toEmail, 'Global Lyme Alliance' )->setFrom ( 'info@globallymealliance.org', 'Global Lyme Alliance' )->setSubject ( 'New Ambassador Submission' )->setMessage ( $messageBody )->setReplyTo ( 'info@globallymealliance.org', 'Global Lyme Alliance' )->setBcc ( $bccEmailList )->setHtml ()->setWrap ( 100 );
+		$adminMail = SimpleMail::make ()->setTo ( $toEmail, 'Global Lyme Alliance' )->setFrom ( 'info@globallymealliance.org', 'Global Lyme Alliance' )->setSubject ( 'New Ambassador Submission' )->setMessage ( $messageBody )->setReplyTo ( 'info@globallymealliance.org', 'Global Lyme Alliance' )->setBcc ( $bccEmailList )->setHtml ()->setWrap ( 100 )->addGenericHeader('Message-Id', "<" . md5(uniqid(microtime())) . "@globallymealliance.org>");
 		$send = $adminMail->send ();
 
 		// Manually create entries with Gravity Forms
