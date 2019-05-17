@@ -8246,13 +8246,24 @@ ul.grid-sm {
 }
 
 /* update home banner */
+
 .home-banner .section-intro .btn.btn-primary {
-	color: #4F8ECA;
+	color: #041f4c;
 	background: #fff;
+	text-transform: none;
 }
 .home-banner .section-intro .btn.btn-primary:hover {
 	color: #406c9a;
 }
+
+/*Change by GL-55*/
+.home-banner .text-box h1 p {
+    font-family: Roboto Condensed;
+    font-size: 40px;
+    line-height: 47px;
+    font-weight: bolder;
+}
+
 @media only screen and (max-width:767px) {
 	.home-banner .text-box p {
 		font-size: 18px;
@@ -8262,7 +8273,16 @@ ul.grid-sm {
 		padding-bottom: 60px;
 	}
 }
-
+/*Change by GL-55*/
+@media only screen and (max-width:375px) {
+	.home-banner .text-box h1 p {
+        font-size: 30px;
+        line-height: 35px;
+	}
+	.home-banner .section-intro .text-box {
+		text-align: center;
+	}
+}
 /*Popup news letter*/
 #popup-subscribe-newsletter div > h2, #popup-subscribe-newsletter div > p
 {
@@ -8504,23 +8524,33 @@ ul.grid-sm {
 .home-banner .section-intro .text-box {
   padding: 20px 0;
 }
+/*Change by GL-55*/
 .home-banner .section-intro .text-box p {
-  font-size: 16px;
-  line-height: 20px;
+  /*font-size: 16px;
+  line-height: 20px;*/
   letter-spacing: 0.3px;
   margin-bottom: 24px;
 }
 .home-banner .section-intro .btn-primary {
   min-width: auto;
 }
+@media only screen and (max-width: 465px) {
+	  .home-banner .section-intro .col-xs-9  {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+ .home-banner .section-intro .text-box  {
+    text-align:center;
+  }
+}
 @media only screen and (min-width: 375px) {
   .home-banner .section-intro .text-box {
-    max-width: 212px; /* 250px */
+    /* max-width: 212px; 250px */
   }
   .home-banner .section-intro .btn-primary {
     font-size: 22px;
     padding: 12px 20px;
-    letter-spacing: 2.5px;
+    /*letter-spacing: 2.5px;*/
   }
   .home-banner .section-intro h1 {
     font-size: 24px;
@@ -8559,7 +8589,7 @@ ul.grid-sm {
 @media only screen and (min-width: 1200px) {
   .home-banner .section-intro .text-box {
     padding-right: 0;
-    max-width: 500px;
+    max-width: 525px;
   }
 }
 
