@@ -3403,6 +3403,9 @@ span.slp_result_address{padding:0 0 8px !important;}
 	font-weight: bold;
 	margin-bottom: 17px;
 }
+.payment_method_affirm img {
+    max-width: 190px;
+}
 .add-method .holder {margin: 0 -4px 8px 0;}
 .add-method .holder:after {
 	content: '';
