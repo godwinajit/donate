@@ -1721,15 +1721,6 @@ function mytheme_comment($comment, $args, $depth) {
     <?php
     }
 
-if(version_compare(get_option( 'woocommerce_version' ),"2.5.5","<=") && version_compare(get_bloginfo( 'version' ),"5.1.1","=") ){
-    function fix_request_query_args_for_woocommerce( $query_args ) {
-    	if ( isset( $query_args['post_status'] ) && empty( $query_args['post_status'] ) ) {
-    		unset( $query_args['post_status'] );
-    	}
-    	return $query_args;
-    }
-    add_filter( 'request', 'fix_request_query_args_for_woocommerce', 1, 1 );
-}
 
 /* Add Proposition 65 Alert checkbox in general product data section*/    
 add_action( 'woocommerce_product_options_general_product_data', 'proposition_65_alert');

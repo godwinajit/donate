@@ -4,14 +4,14 @@
  *
  * @author 		WooThemes
  * @package 	WooCommerce/Templates
- * @version     1.6.4
+ * @version     3.0.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 global $product, $woocommerce, $woocommerce_loop;
 
-$crosssells = WC()->cart->get_cross_sells();
+$crosssells = WC()->cart->get_cross_sell_ids();
 
 if ( sizeof( $crosssells ) == 0 ) return;
 

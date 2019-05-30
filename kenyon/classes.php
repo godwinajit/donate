@@ -6,8 +6,8 @@ class Theme_Walker_Nav_Top extends Walker_Nav_Menu {
 	
 	function __construct() {
 		
-		$this->cart_page_id = woocommerce_get_page_id('cart');
-		$this->myaccount_page_id = woocommerce_get_page_id('myaccount');
+		$this->cart_page_id = wc_get_page_id('cart');
+		$this->myaccount_page_id = wc_get_page_id('myaccount');
 		
 	}
 	
@@ -148,8 +148,8 @@ class Theme_Walker_Nav_Mega_Dropdown extends Walker_Nav_Menu {
 
                 // TODO: maybe also need support for common categories
                 if ($item->object == 'product_cat') {
-                    if (function_exists('get_woocommerce_term_meta')) {
-                        if ($image_id = get_woocommerce_term_meta( $item->object_id, 'thumbnail_id', true )) {
+                    if (function_exists('get_term_meta')) {
+                        if ($image_id = get_term_meta( $item->object_id, 'thumbnail_id', true )) {
                             $image = wp_get_attachment_image($image_id, 'full');
                         }
                     }

@@ -134,8 +134,8 @@ function initMapField() {
 
 function initWooCommercePriceRange() {
     jQuery('body').on('price_slider_create', function(event, min, max){
-        jQuery('.slider-wrap .ui-slider-handle').eq(0).html('<strong class="first-value">' + woocommerce_price_slider_params.currency_symbol + '<span class="v1">' + min + '</span></strong>');
-        jQuery('.slider-wrap .ui-slider-handle').eq(1).html('<strong class="last-value">' + woocommerce_price_slider_params.currency_symbol + '<span class="v2">' + max + '</span></strong>');
+        jQuery('.slider-wrap .ui-slider-handle').eq(0).html('<strong class="first-value">' + woocommerce_price_slider_params.currency_format_symbol + '<span class="v1">' + min + '</span></strong>');
+        jQuery('.slider-wrap .ui-slider-handle').eq(1).html('<strong class="last-value">' + woocommerce_price_slider_params.currency_format_symbol + '<span class="v2">' + max + '</span></strong>');
     });
 
     jQuery('body').on('price_slider_slide', function(event, min, max){

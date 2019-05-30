@@ -6,7 +6,7 @@
  *
  * @author      WooThemes
  * @package     WooCommerce/Templates
- * @version     1.6.4
+ * @version     3.6.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
@@ -34,7 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
             <?php
     global $product;
 
-    $attachment_ids = $product->get_gallery_attachment_ids();
+    $attachment_ids = $product->get_gallery_image_ids();
 
     foreach( $attachment_ids as $attachment_id ) {
         $image_link = wp_get_attachment_url( $attachment_id );
@@ -207,11 +207,11 @@ a#MagicZoomPlusImage_Main {
         while ( have_rows('product_gallery') ) : the_row();
             
             $video_url = get_sub_field('product_gallery_video_id');
-            $image_title = get_sub_field('product_gallery_image')[title];
+            $image_title = get_sub_field('product_gallery_image')['title'];
             $image_set = get_sub_field('product_gallery_image');
             if($image_set){
-                $image_url = get_sub_field('product_gallery_image')[url];
-                $image_size_urls = get_sub_field('product_gallery_image')[sizes];
+                $image_url = get_sub_field('product_gallery_image')['url'];
+                $image_size_urls = get_sub_field('product_gallery_image')['sizes'];
                 $gallery_image_url = $image_size_urls['product-image-with-video'];
                 }else
                 {

@@ -15,7 +15,7 @@ $featured_query = new WP_Query(array(
 
     <?php while ($featured_query->have_posts()) :
         $featured_query->the_post();
-        $product = get_product( $featured_query->post->ID ); ?>
+        $product = wc_get_product( $featured_query->post->ID ); ?>
 
         <div class="promo-box promo-box-alt">
             <?php if ($promotion_title || $promotion_subtitle) : ?>

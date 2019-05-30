@@ -4,7 +4,7 @@
  *
  * @author 		WooThemes
  * @package 	WooCommerce/Templates
- * @version     2.1.7
+ * @version     3.4.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
@@ -20,7 +20,7 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 		<tbody>
 			<?php
 				foreach ( $grouped_products as $product_id ) :
-					$product = get_product( $product_id );
+					$product = wc_get_product( $product_id );
 					$post    = $product->post;
 					setup_postdata( $post );
 					?>
@@ -58,7 +58,7 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 
 				// Reset to parent grouped product
 				$post    = $parent_product_post;
-				$product = get_product( $parent_product_post->ID );
+				$product = wc_get_product( $parent_product_post->ID );
 				setup_postdata( $parent_product_post );
 			?>
 		</tbody>

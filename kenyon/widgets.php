@@ -3,10 +3,10 @@
 // Custom Text Widget without <div>
 class Custom_Widget_Text extends WP_Widget {
 
-	function Custom_Widget_Text() {
+	function  __construct() {
 		$widget_ops = array('classname' => 'widget_text', 'description' => __('Arbitrary text or HTML', 'kenyon'));
 		$control_ops = array('width' => 400, 'height' => 350);
-		$this->WP_Widget('text', __('Text', 'kenyon'), $widget_ops, $control_ops);
+		parent::__construct('text', __('Text', 'kenyon'), $widget_ops, $control_ops);
 	}
 
 	function widget( $args, $instance ) {
@@ -51,8 +51,12 @@ class Custom_Widget_Text extends WP_Widget {
 	}
 }
 
-add_action('widgets_init', create_function('', 'unregister_widget("WP_Widget_Text"); return register_widget("Custom_Widget_Text");'));
-
+//add_action('widgets_init', create_function('', 'unregister_widget("WP_Widget_Text"); return register_widget("Custom_Widget_Text");'));
+add_action('widgets_init', 'ken_unreg_wp_widget_text');
+function ken_unreg_wp_widget_text(){
+	unregister_widget("WP_Widget_Text");
+	return register_widget("Custom_Widget_Text");
+}
 
 //Custom widget Recent Posts From Specific Category
 class Widget_Recent_Posts_From_Category extends WP_Widget {
@@ -145,6 +149,9 @@ class Widget_Recent_Posts_From_Category extends WP_Widget {
     }
 }
 
-add_action('widgets_init', create_function('', 'return register_widget("Widget_Recent_Posts_From_Category");'));
-
+//add_action('widgets_init', create_function('', 'return register_widget("Widget_Recent_Posts_From_Category");'));
+add_action('widgets_init', 'ken_unreg_rec_posts_widg');
+function ken_unreg_rec_posts_widg(){
+	return register_widget("Widget_Recent_Posts_From_Category");
+}
 

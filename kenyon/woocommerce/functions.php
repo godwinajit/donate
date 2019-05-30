@@ -103,7 +103,7 @@ function theme_replace_wc_widgets() {
             if ( ! taxonomy_exists( $taxonomy ) )
                 return;
 
-            $get_terms_args = array( 'hide_empty' => '1' );
+            $get_terms_args = array( 'hide_empty' => true );
 
             $orderby = wc_attribute_orderby( $taxonomy );
 
@@ -123,8 +123,11 @@ function theme_replace_wc_widgets() {
             }
 
             $terms = get_terms( $taxonomy, $get_terms_args );
-
             if ( count( $terms ) > 0 ) {
+                
+                $term_counts          = $this->get_filtered_term_product_counts( wp_list_pluck( $terms, 'term_id' ), $taxonomy, $query_type );
+                $_chosen_attributes   = WC_Query::get_layered_nav_chosen_attributes();
+                $current_values = isset( $_chosen_attributes[ $taxonomy ]['terms'] ) ? $_chosen_attributes[ $taxonomy ]['terms'] : array();
 
                 ob_start();
 
@@ -135,7 +138,9 @@ function theme_replace_wc_widgets() {
                 // Force found when option is selected - do not force found on taxonomy attributes
                 if ( ! is_tax() && is_array( $_chosen_attributes ) && array_key_exists( $taxonomy, $_chosen_attributes ) )
                     $found = true;
-
+				
+				
+				
                 if ( $display_type == 'dropdown' ) {
 
                     // skip when viewing the taxonomy
@@ -210,62 +215,40 @@ function theme_replace_wc_widgets() {
                     }
 
                 } elseif ( $display_type == 'radio' ) {
-
+					$term_counts          = $this->get_filtered_term_product_counts( wp_list_pluck( $terms, 'term_id' ), $taxonomy, $query_type );
+					$_chosen_attributes   = WC_Query::get_layered_nav_chosen_attributes();
+                    $current_values = isset( $_chosen_attributes[ $taxonomy ]['terms'] ) ? $_chosen_attributes[ $taxonomy ]['terms'] : array();
                     // skip when viewing the taxonomy
                     if ( $current_tax && $taxonomy == $current_tax ) {
-
                         $found = false;
 
                     } else {
-
                         $taxonomy_filter = str_replace( 'pa_', '', $taxonomy );
 
                         $found = false;
 
                         echo '<ul class="check-list">';
-						
 									
                         echo '<li><input id="dropdown_layered_nav_' . $taxonomy_filter . '_all" name="dropdown_layered_nav_' . $taxonomy_filter . '" type="radio" value="" '. ((!isset( $_GET[ 'filter_' . $taxonomy_filter ] ) || empty($_GET[ 'filter_' . $taxonomy_filter ])) ? ' checked="checked"' : '') . ' /> <label for="dropdown_layered_nav_' . $taxonomy_filter . '_all">' . sprintf( __( 'Any %s', 'woocommerce' ), wc_attribute_label( $taxonomy ) ) .'</label></li>';
 
                         foreach ( $terms as $term ) {
-
-                            // If on a term page, skip that term in widget list
+                          // If on a term page, skip that term in widget list
                             if ( $term->term_id == $current_term )
                                 continue;
 
                             // Get count based on current view - uses transients
-                            $transient_name = 'wc_ln_count_' . md5( sanitize_key( $taxonomy ) . sanitize_key( $term->term_id ) );
-
-                            if ( false === ( $_products_in_term = get_transient( $transient_name ) ) ) {
-
-                                $_products_in_term = get_objects_in_term( $term->term_id, $taxonomy );
-
-                                set_transient( $transient_name, $_products_in_term, YEAR_IN_SECONDS );
-                            }
-
-                            $option_is_set = ( isset( $_chosen_attributes[ $taxonomy ] ) && in_array( $term->term_id, $_chosen_attributes[ $taxonomy ]['terms'] ) );
-
-                            // If this is an AND query, only show options with count > 0
-                            if ( $query_type == 'and' ) {
-
-                                $count = sizeof( array_intersect( $_products_in_term, WC()->query->filtered_product_ids ) );
-
-                                if ( $count > 0 )
-                                    $found = true;
-
-                                if ( $count == 0 && ! $option_is_set )
-                                    continue;
-
-                                // If this is an OR query, show all options so search can be expanded
-                            } else {
-
-                                $count = sizeof( array_intersect( $_products_in_term, WC()->query->unfiltered_product_ids ) );
-
-                                if ( $count > 0 )
-                                    $found = true;
-
+                            // Get count based on current view.
+                            $option_is_set = in_array( $term->slug, $current_values, true );
+                            $count         = isset( $term_counts[ $term->term_id ] ) ? $term_counts[ $term->term_id ] : 0;
+                            // Only show options with count > 0.
+                            if ( 0 < $count ) {
+                                $found = true;
+                            } elseif ( 0 === $count && ! $option_is_set ) {
+                                continue;
                             }
 							
+							$arg = 'filter_' . sanitize_title( $instance['attribute'] );
+
 							//Skip Marine Use only
 							$class = "" ;
 							if( strtoupper($term->name) ==  strtoupper("Marine Use Only") )
@@ -273,20 +256,13 @@ function theme_replace_wc_widgets() {
 								$class = "style=display:none;";
 							}
 							
-                            echo '<li '. $class .'><input id="dropdown_layered_nav_' . $taxonomy_filter . '_'.$term->term_id.'" name="dropdown_layered_nav_' . $taxonomy_filter . '" type="radio" value="' . esc_attr( $term->term_id ) . '" '.checked( isset( $_GET[ 'filter_' . $taxonomy_filter ] ) ? $_GET[ 'filter_' .$taxonomy_filter ] : '' , $term->term_id, false ) . ' /> <label for="dropdown_layered_nav_' . $taxonomy_filter . '_'.$term->term_id.'">' . $term->name . '</label></li>';
+                            echo '<li '. $class .'><input id="dropdown_layered_nav_' . $taxonomy_filter . '_'.$term->term_id.'" name="dropdown_layered_nav_' . $taxonomy_filter . '" type="radio" value="' . esc_attr( $term->slug ) . '" '.checked( isset( $_GET[ 'filter_' . $taxonomy_filter ] ) ? $_GET[ 'filter_' .$taxonomy_filter ] : '' , $term->slug, false ) . ' /> <label for="dropdown_layered_nav_' . $taxonomy_filter . '_'.$term->term_id.'">' . $term->name . '</label></li>';
+							
                         }
 
                         echo '</ul>';
 
-                        wc_enqueue_js("
-
-						jQuery('input[name=dropdown_layered_nav_" . $taxonomy_filter . "]').change(function(){
-						
-							location.href = '" . esc_url_raw( preg_replace( '%\/page/[0-9]+%', '', add_query_arg('filtering', '1', remove_query_arg( array( 'page', 'filter_' . $taxonomy_filter ) ) ) ) ) . "&filter_$taxonomy_filter=' + jQuery(this).val();
-
-						});
-
-					    ");
+                        $this->enqueScript('input[name=dropdown_layered_nav_', $taxonomy_filter);
 
                     }
 
@@ -443,6 +419,18 @@ function theme_replace_wc_widgets() {
                     echo ob_get_clean();
             }
         }
+
+        function enqueScript ($jquery_filter, $taxonomy_filter){
+            wc_enqueue_js("
+
+            jQuery('$jquery_filter" . $taxonomy_filter . "]').change(function(){
+            
+                location.href = '" . esc_url_raw( preg_replace( '%\/page/[0-9]+%', '', add_query_arg('filtering', '1', remove_query_arg( array( 'page', 'filter_' . $taxonomy_filter ) ) ) ) ) . "&filter_$taxonomy_filter=' + jQuery(this).val();
+
+            });
+
+            ");
+        }
     }
 
     unregister_widget('WC_Widget_Layered_Nav');
@@ -458,11 +446,12 @@ function theme_replace_wc_widgets() {
             if ( ! is_post_type_archive( 'product' ) && ! is_tax( get_object_taxonomies( 'product' ) ) )
                 return;
 
-            if ( sizeof( WC()->query->unfiltered_product_ids ) == 0 )
-                return; // None shown - return
+			// If there are not posts and we're not filtering, hide the widget.
+            if ( ! WC()->query->get_main_query()->post_count && ! isset( $_GET['min_price'] ) && ! isset( $_GET['max_price'] ) ) { // WPCS: input var ok, CSRF ok.
+                return;
+            }
 
-            $min_price = isset( $_GET['min_price'] ) ? esc_attr( $_GET['min_price'] ) : '';
-            $max_price = isset( $_GET['max_price'] ) ? esc_attr( $_GET['max_price'] ) : '';
+            
 
             wp_enqueue_script( 'wc-price-slider' );
 
@@ -498,7 +487,13 @@ function theme_replace_wc_widgets() {
 
             $min = $max = 0;
             $post_min = $post_max = '';
-
+			
+            $prices = $this->get_filtered_price();
+            $min = intval($prices->min_price);
+            $max = intval($prices->max_price);
+			$min_price = isset( $_GET['min_price'] ) ? esc_attr( $_GET['min_price'] ) : $min;
+            $max_price = isset( $_GET['max_price'] ) ? esc_attr( $_GET['max_price'] ) : $max;
+/*
             if ( sizeof( WC()->query->layered_nav_product_ids ) === 0 ) {
                 $min = floor( $wpdb->get_var(
                     $wpdb->prepare('
@@ -550,7 +545,7 @@ function theme_replace_wc_widgets() {
 				', $wpdb->posts, $wpdb->postmeta, '_price'
                     ) ) );
             }
-
+*/
             if ( $min == $max )
                 return;
 
@@ -567,11 +562,11 @@ function theme_replace_wc_widgets() {
 				    <div class="price_slider" style="display:none;"></div>
 				</div>
 				<div class="price_slider_amount">
-					<input type="text" id="min_price" name="min_price" value="' . esc_attr( $min_price ) . '" data-min="'.esc_attr( $min ).'" placeholder="'.__('Min price', 'woocommerce' ).'" />
-					<input type="text" id="max_price" name="max_price" value="' . esc_attr( $max_price ) . '" data-max="'.esc_attr( $max ).'" placeholder="'.__( 'Max price', 'woocommerce' ).'" />
+					<input type="text" id="min_price" name="min_price" value="' . esc_attr( $min_price ) . '" data-min="' . esc_attr( $min ) . '" placeholder="' . esc_attr__( 'Min price', 'woocommerce' ) . '" />
+					<input type="text" id="max_price" name="max_price" value="' . esc_attr( $max_price ) . '" data-max="' . esc_attr( $max ) . '" placeholder="' . esc_attr__( 'Max price', 'woocommerce' ) . '" />
 					<button type="submit" class="button">'.__( 'Filter', 'woocommerce' ).'</button>
 					<div class="price_label" style="display:none;">
-						'.__( 'Price:', 'woocommerce' ).' <span class="from"></span> &mdash; <span class="to"></span>
+						' . esc_html__( 'Price:', 'woocommerce' ) . ' <span class="from"></span> &mdash; <span class="to"></span>
 					</div>
 					' . $fields . '
 					<div class="clear"></div>

@@ -6,12 +6,12 @@
  *
  * @author      WooThemes
  * @package     WooCommerce/Templates
- * @version     2.0.0
+ * @version     3.4.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-if(isset($_POST['ajax'])) {
+/*if(isset($_POST['ajax'])) {
     while ( have_posts() ) : the_post(); 
         wc_get_template_part( 'content', 'product' );
     endwhile; 
@@ -19,7 +19,7 @@ if(isset($_POST['ajax'])) {
     woocommerce_pagination();
     
     die();
-}
+}*/
 
 get_header( 'shop' ); ?>
     <div class="container">
@@ -51,7 +51,7 @@ get_header( 'shop' ); ?>
         
         <?php do_action( 'woocommerce_archive_description' ); ?>
 
-        <?php if ( have_posts() ) : ?>
+        <?php if ( woocommerce_product_loop() ) : ?>
 
             <?php
                 /**

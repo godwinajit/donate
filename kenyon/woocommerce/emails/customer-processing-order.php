@@ -4,7 +4,7 @@
  *
  * @author 		WooThemes
  * @package 	WooCommerce/Templates/Emails
- * @version     2.5.0
+ * @version     3.5.4
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly ?>

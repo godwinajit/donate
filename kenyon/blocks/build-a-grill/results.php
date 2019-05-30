@@ -10,8 +10,8 @@
 
     <?php while (have_posts()) : the_post(); ?>
 		<?php 
-			$product = get_product($post);
-			$cross_sells = array_merge($product->get_cross_sells(), $cross_sells); 
+			$product = wc_get_product($post);
+			$cross_sells = array_merge($product->get_cross_sell_ids(), $cross_sells); 
 		?>
         <?php woocommerce_get_template_part( 'content', 'product_build' ); ?>
     <?php endwhile; ?>

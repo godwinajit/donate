@@ -39,7 +39,7 @@ _fbq('track', 'Search');
 	//echo '<div style="display:none">'.$wp_query->request.'</div>';
 	while ( $loop1->have_posts() ) : 
 		$loop1->the_post() ; 
-		$product = get_product( $post->ID ); 
+		$product = wc_get_product( $post->ID ); 
 			array_push($arr,$post->ID); 
 	endwhile;
 	echo '<div style="display:none">Loop1<br>';
@@ -117,7 +117,7 @@ _fbq('track', 'Search');
 				<div class="row">
 					<?php while ($loop1->have_posts()) : $loop1->the_post() ; ?>
 						<?php 
-								$product = get_product( $post->ID ); 
+								$product = wc_get_product( $post->ID ); 
 						?>
 									<?php theme_print_each(3, '</div><div class="row">') ?>
 									<div class="col-md-4 col-sm-4">

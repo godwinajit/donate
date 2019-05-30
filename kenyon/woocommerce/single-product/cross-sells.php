@@ -11,7 +11,9 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 global $product, $woocommerce, $woocommerce_loop;
 
-$crosssells = $product->get_cross_sells();
+if ( !isset( $product ) ) return;
+
+$crosssells = $product->get_cross_sell_ids();
 
 if ( sizeof( $crosssells ) == 0 ) return;
 

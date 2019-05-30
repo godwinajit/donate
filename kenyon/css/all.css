@@ -1,4 +1,4 @@
-©@font-face{
+@font-face{
 	font-family:'ClearSans';
 	src:url('../fonts/clearsans-regular-webfont.eot');
 	src:url('../fonts/clearsans-regular-webfont.eot?#iefix') format('embedded-opentype'),
@@ -3404,7 +3404,7 @@ span.slp_result_address{padding:0 0 8px !important;}
 	margin-bottom: 17px;
 }
 .payment_method_affirm img {
-    max-width: 190px;
+   max-width: 190px;
 }
 .add-method .holder {margin: 0 -4px 8px 0;}
 .add-method .holder:after {
