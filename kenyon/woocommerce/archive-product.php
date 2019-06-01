@@ -11,7 +11,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-/*if(isset($_POST['ajax'])) {
+if(isset($_POST['ajax'])) {
     while ( have_posts() ) : the_post(); 
         wc_get_template_part( 'content', 'product' );
     endwhile; 
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
     woocommerce_pagination();
     
     die();
-}*/
+}
 
 get_header( 'shop' ); ?>
     <div class="container">

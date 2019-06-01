@@ -1581,14 +1581,14 @@ function custom_wpcf7_before_send_mail ($WPCF7_ContactForm) {
 	// nothing's here... do nothing...
 	if(empty($data)) return;
 	// extract posted data
-	$name     = isset($data['name'])     ? $data['name']     : "";
+	$name     = isset($data['yourname'])     ? $data['yourname']     : "";
 	$email  = isset($data['email'])       ? $data['email']       : "";
 	$company    = isset($data['company'])         ? $data['company']         : "";
 	$phone  = isset($data['phone'])       ? $data['phone']       : "";
 	$zip  = isset($data['zip'])       ? $data['zip']       : "";
 	$message  = isset($data['message'])       ? $data['message']       : "";
 
-	$mailbody.="<table><tr><td>You have received a  request.\r\n</br></br></td></tr>";
+	$mailbody.="<table><tr><td>You have received a request.\r\n</br></br></td></tr>";
 	$mailbody.="<tr><td>Name :". $name."\r\n</br></td></tr>";
 	$mailbody.="<tr><td>Email :". $email."\r\n</br></td></tr>";
 	$mailbody.="<tr><td>Company :". $company."\r\n</br></td></tr>";

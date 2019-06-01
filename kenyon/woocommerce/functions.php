@@ -89,6 +89,11 @@ function theme_replace_wc_widgets() {
             global $_chosen_attributes;
 
             extract( $args );
+            
+            // If there are not posts and we're not filtering, hide the widget.
+            if ( ! WC()->query->get_main_query()->post_count ) { // WPCS: input var ok, CSRF ok.
+                return;
+            }
 
             if ( ! is_post_type_archive( 'product' ) && ! is_tax( get_object_taxonomies( 'product' ) ) )
                 return;
@@ -1028,11 +1033,11 @@ function hide_shipping_based_on_class( $available_methods ) {
 	$total = $woocommerce->cart->cart_contents_total;
 	if($total >= 50){
 		unset( $available_methods['usps:I_FIRST_CLASS'] );
-		if ( in_array( WC()->customer->get_state(), $states ) ) {
+		if ( in_array( WC()->customer->get_billing_state(), $states ) ) {
 			unset( $available_methods['free_shipping'] );
 		} 
 	}else{
-		if ( in_array( WC()->customer->get_state(), $states ) ) {
+	    if ( in_array( WC()->customer->get_billing_state(), $states ) ) {
 			unset( $available_methods['mh_wc_table_rate'] );
 			//$available_methods = wp_filter_object_list( $available_methods, array( 'method_id' => $carrier ), 'NOT' );
 		}else if(WC()->customer->get_country()=="US"){

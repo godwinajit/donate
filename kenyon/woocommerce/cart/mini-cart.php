@@ -17,7 +17,7 @@ global $woocommerce;
 <div class="order-block">
     <h2>
         <?php _e( 'You have', 'woocommerce' ); ?>
-        <a href="<?php print $woocommerce->cart->get_cart_url(); ?>"><?php echo sprintf(_n('%d item', '%d items', $woocommerce->cart->cart_contents_count, 'woothemes'), $woocommerce->cart->cart_contents_count);?></a>
+        <a href="<?php print wc_get_cart_url(); ?>"><?php echo sprintf(_n('%d item', '%d items', $woocommerce->cart->cart_contents_count, 'woothemes'), $woocommerce->cart->cart_contents_count);?></a>
         <?php _e( 'in your cart', 'woocommerce' ); ?>
     </h2>
 
@@ -68,7 +68,7 @@ global $woocommerce;
 	
 	<?php do_action( 'woocommerce_widget_shopping_cart_before_buttons' ); ?>
 
-		<a href="<?php echo WC()->cart->get_cart_url(); ?>" class="btn-cart"><?php _e( 'View Cart', 'woocommerce' ); ?></a>
+		<a href="<?php echo wc_get_cart_url(); ?>" class="btn-cart"><?php _e( 'View Cart', 'woocommerce' ); ?></a>
 
 <?php endif; ?>
 	</div>
