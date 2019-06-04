@@ -22,7 +22,7 @@ if ( ! $checkout->enable_signup && ! $checkout->enable_guest_checkout && ! is_us
 }
 
 // filter hook for include new pages inside the payment method
-$get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->get_checkout_url() ); ?>
+$get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', wc_get_checkout_url() ); ?>
 
 <?php global $woocommerce; ?>
 
@@ -32,7 +32,7 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
 <div class="clearfix"></div>
 
     <div class="col-sm-4">
-     <?php woocommerce_get_template( 'cart/mini-cart.php' )?> 
+     <?php wc_get_template( 'cart/mini-cart.php' )?> 
     </div>
     <div class="col-sm-8">
 		

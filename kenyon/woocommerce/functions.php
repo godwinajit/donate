@@ -780,10 +780,10 @@ function woocommerce_form_field_modified( $key, $args, $value = null ) {
 		} elseif ( is_user_logged_in() ) {
 			$current_cc = get_user_meta( get_current_user_id() , $country_key, true );
 			if ( ! $current_cc) {
-				$current_cc = apply_filters('default_checkout_country', (WC()->customer->get_country()) ? WC()->customer->get_country() : WC()->countries->get_base_country());
+				$current_cc = apply_filters('default_checkout_country', (WC()->customer->get_billing_country()) ? WC()->customer->get_billing_country() : WC()->countries->get_base_country());
 			}
 		} elseif ( $country_key == 'billing_country' ) {
-			$current_cc = apply_filters('default_checkout_country', (WC()->customer->get_country()) ? WC()->customer->get_country() : WC()->countries->get_base_country());
+			$current_cc = apply_filters('default_checkout_country', (WC()->customer->get_billing_country()) ? WC()->customer->get_billing_country() : WC()->countries->get_base_country());
 		} else {
 			$current_cc = apply_filters('default_checkout_country', (WC()->customer->get_shipping_country()) ? WC()->customer->get_shipping_country() : WC()->countries->get_base_country());
 		}
@@ -1026,8 +1026,9 @@ function wc_order_cancelled($order_id) {
 add_filter( 'woocommerce_package_rates', 'hide_shipping_based_on_class' , 10, 2 );
 function hide_shipping_based_on_class( $available_methods ) {
 	global $woocommerce;
-	
-	$carrier = 'mh_wc_table_rate';
+	//echo '<pre>';
+ 	//print_r($available_methods);exit; 
+	//echo '</pre>';
 	$states = array( 'AK', 'HI', 'GU', 'PR', 'VI' );
 	
 	$total = $woocommerce->cart->cart_contents_total;
@@ -1038,15 +1039,14 @@ function hide_shipping_based_on_class( $available_methods ) {
 		} 
 	}else{
 	    if ( in_array( WC()->customer->get_billing_state(), $states ) ) {
-			unset( $available_methods['mh_wc_table_rate'] );
-			//$available_methods = wp_filter_object_list( $available_methods, array( 'method_id' => $carrier ), 'NOT' );
-		}else if(WC()->customer->get_country()=="US"){
-			unset( $available_methods['ups:03'] );
-			unset( $available_methods['ups:12'] );
-			unset( $available_methods['ups:02'] );
-			unset( $available_methods['ups:01'] );
-			unset( $available_methods['ups:14'] );
-			unset( $available_methods['ups:13'] );
+			unset( $available_methods['betrs_shipping:14-1'] );
+		}else if(WC()->customer->get_billing_country()=="US"){
+			unset( $available_methods['ups:8:03'] );
+			unset( $available_methods['ups:8:12'] );
+			unset( $available_methods['ups:8:02'] );
+			unset( $available_methods['ups:8:01'] );
+			unset( $available_methods['ups:8:14'] );
+			unset( $available_methods['ups:8:13'] );
 			
 		}
 	}

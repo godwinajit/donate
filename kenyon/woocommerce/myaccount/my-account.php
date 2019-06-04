@@ -22,7 +22,7 @@ wc_print_notices(); ?>
             <li><?php printf( __( '<a class="password" href="%s">Change password</a>.', 'woocommerce' ), wc_customer_edit_account_url() ); ?></li>
             <li><?php printf(__( '<a href="%2$s">Sign out</a>.', 'woocommerce' ) . ' ',"",wp_logout_url( get_permalink( wc_get_page_id( 'myaccount' ) ) )); ?></li>
         </ul>
-       <?php woocommerce_get_template( 'cart/mini-cart.php' )?> 
+       <?php wc_get_template( 'cart/mini-cart.php' )?> 
        
     </div>
     <div class="col-sm-8">

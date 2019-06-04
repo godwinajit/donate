@@ -118,7 +118,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 			<?php	}
 				} else {
 
-					if ( ! WC()->customer->get_country() )
+				    if ( ! WC()->customer->get_billing_country() )
 						$no_gateways_message = __( 'Please fill in your details above to see available payment methods.', 'woocommerce' );
 					else
 						$no_gateways_message = __( 'Sorry, it seems that there are no available payment methods for your state. Please contact us if you require assistance or wish to make alternate arrangements.', 'woocommerce' );
