@@ -1757,7 +1757,7 @@ h1.page-title{color:#3c81c6;font-size:44px;font-weight:400;letter-spacing:-0.005
 
 .container-section p em{font-size:16px;}
 
-.container-section .content-left ol li,.container-section .content-left ul li{font-size:18px;color:#000;/*font-weight:400;font-family:'Source Sans Pro',sans-serif;*/line-height:1.275;}
+.container-section .content-left ol li,.container-section .content-left ul li{/*font-size:18px;color:#000;font-weight:400;font-family:'Source Sans Pro',sans-serif;line-height:1.275;*/}
 
 /*.container-section .content-left ol li:first-child,.container-section .content-left ul li:first-child {margin-top: 0;}*/
 
