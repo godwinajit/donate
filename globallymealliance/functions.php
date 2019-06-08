@@ -1320,7 +1320,7 @@ function sk_query_offset( &$query ) {
 add_filter( 'found_posts', 'sk_adjust_offset_pagination', 1, 2 );
 function sk_adjust_offset_pagination( $found_posts, $query ) {
 
-if ($query->query['post_type'] == 'tribe_events'){
+if (($query->query['post_type'] == 'tribe_events') || ($query->query['post_type'] == 'grantees')){
 	return $found_posts;
 }
 

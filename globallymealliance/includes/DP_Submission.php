@@ -1321,8 +1321,8 @@ function saveDonor( $title = null, $firstName = null, $lastName = null, $email =
     $professionalTitle = dp_clean($professionalTitle);
 
     // Convert specific field's first character of each word to uppercase
-    $firstName = gla_ucwords_gravity($firstName);
-    $lastName = gla_ucwords_gravity($lastName);
+    $firstName = gla_ucwords_gravity(strtolower($firstName));
+    $lastName = gla_ucwords_gravity(strtolower($lastName));
     $address1 = gla_ucwords_gravity($address1);
     $address2 = gla_ucwords_gravity($address2);
     $city = gla_ucwords_gravity($city);

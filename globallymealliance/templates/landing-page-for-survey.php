@@ -169,6 +169,30 @@ if (has_post_thumbnail()) {
 		</div>
 	</div>
 </footer>
+		<script>
+// Window load event used just in case window height
+jQuery(window).bind("load", function() {
+	positionFooter();
+	jQuery('.mains').one("DOMSubtreeModified", positionFooter);
+	jQuery(window)
+	.scroll(positionFooter)
+	.resize(positionFooter)
+	
+});
+
+function positionFooter() {
+	var footerHeight = 0,
+	$footer = $(".footer");
+	footerHeight = $footer.height();
+		if ( (jQuery(document.body).height()+footerHeight) < jQuery(window).height()) {
+		$footer.css({
+					position: "fixed",
+					bottom: 0,
+					  width: "100%"
+					                  });
+	}
+}
+</script>
 <!-- #colophon -->
 <div class="preload"> <img src="<?php echo get_template_directory_uri(); ?>/images/minus.png" alt="Preload" /> </div>
 </div>
