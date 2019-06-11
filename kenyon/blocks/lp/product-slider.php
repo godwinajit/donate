@@ -150,7 +150,7 @@ autoplay: true
     position: absolute;
     bottom: 0;
     left: 52%;
-    background-image: url(http://kenyongrills.staging.wpengine.com/wp-content/uploads/2019/01/right-grey.svg);
+    background-image: url(http://www.cookwithkenyon.com/wp-content/uploads/2019/06/right-grey-1.svg);
     font-size: 0;
     padding: 20px;
     background-color: transparent;
@@ -166,12 +166,12 @@ autoplay: true
     background-color: transparent;
     border: 0;
     background-repeat: no-repeat;
-    background-image: url(http://kenyongrills.staging.wpengine.com/wp-content/uploads/2019/01/left-grey.svg);
+    background-image: url(http://www.cookwithkenyon.com/wp-content/uploads/2019/06/left-grey.svg);
 }
 .lp-slides-wrap button.slick-next.slick-arrow:hover {
-    background-image: url(http://kenyongrills.staging.wpengine.com/wp-content/uploads/2019/01/right.svg);
+    background-image: url(http://www.cookwithkenyon.com/wp-content/uploads/2019/06/right.svg);
 }
 .lp-slides-wrap button.slick-prev.slick-arrow:hover {
-    background-image: url(http://kenyongrills.staging.wpengine.com/wp-content/uploads/2019/01/left.svg);
+    background-image: url(http://www.cookwithkenyon.com/wp-content/uploads/2019/06/left.svg);
 }
 </style>

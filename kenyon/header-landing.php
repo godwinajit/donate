@@ -88,7 +88,12 @@ body {
     border-radius: 4px;
 }
 
-
+.foot-logo-lp img {
+    max-width: 182px;
+}
+.lp-f-social img {
+    max-width: 28px;
+}
 
 .lp-hero-section {
     height: 458px;
@@ -434,7 +439,7 @@ body.page-template-template-landingpage.cookies-not-set:before {
 li.lp-call:before {
     content: '';
     position: absolute;
-    background-image: url(/wp-content/uploads/2019/01/phone.svg);
+    background-image: url(/wp-content/uploads/2019/06/phone@2x.png);
     width: 18px;
     height: 18px;
     background-repeat: no-repeat;
@@ -450,7 +455,7 @@ li.lp-call:before {
 .lp-f-contact li.lp-fax:before {
     content: '';
     position: absolute;
-    background-image: url(/wp-content/uploads/2019/01/fax.svg);
+    background-image: url(/wp-content/uploads/2019/06/fax@2x.png);
     width: 18px;
     height: 18px;
     background-repeat: no-repeat;

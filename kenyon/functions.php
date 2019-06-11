@@ -1600,7 +1600,7 @@ function custom_wpcf7_before_send_mail ($WPCF7_ContactForm) {
 	$mailbody.="<tr><td colspan=3>Interested products</td></tr>";
 	if(count($data['qty'])>0) {
 	for($i=0;$i<count($data['qty']);$i++){
-		$mailbody.="<tr><td>Qty: ".$data['qty'][$i] ." | </td><td>Modal:".$data['modal'][$i] ."</td><td>Description:".$data['description'][$i] ." </td><tr>";
+		$mailbody.="<tr><td>Qty: ".$data['qty'][$i] ." | </td><td>Model:".$data['modal'][$i] ."</td><td>Description:".$data['description'][$i] ." </td><tr>";
 	}
 	}
 	$mailbody.="<tr><td><table>";
