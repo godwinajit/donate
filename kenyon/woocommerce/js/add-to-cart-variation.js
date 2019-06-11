@@ -320,18 +320,18 @@
 					o_title = $product_img.attr( 'data-o_title' ),
 					o_alt = $product_img.attr( 'data-o_alt' ),
 					o_href = $product_link.attr( 'data-o_href' ),
-					variation_image = variation.image_src,
-					variation_link  = variation.image_link,
-					variation_title = variation.image_title,
-					variation_alt = variation.image_alt;
+					variation_image = variation.image.src,
+					variation_link  = variation.image.link,
+					variation_title = variation.image.title,
+					variation_alt = variation.image.alt;
 
 				// Production Varient Image and Description start
 				variation_description = variation.variation_description;
 
-				if ( variation_link && variation_link.length > 1 ) {
+				if ( variation_image && variation_image.length > 1 ) {
 					$('.kenyon-product-var-image-desc-wrap').show('slow');
 					$('.kenyon-product-var-image-src')
-						.attr( 'src', variation_link )
+						.attr( 'src', variation_image )
 						.attr( 'alt', variation_alt )
 						.attr( 'width', 330 )
 						.attr( 'title', variation_title );
