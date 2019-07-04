@@ -1,0 +1,32 @@
+<div class="event-popup">
+	<h3><%= eventTitle %></h3>
+	<div class="wrap">
+		<% if(eventImage.length){ %>
+			<span class="event-image">
+				<img src="<%= eventImage %>" alt="<%= eventImageAlt %>" class="alignright" />
+			</span>
+		<% }; %>
+		<div class="info-box">
+			<dl class="events-info">
+				<dt><%= dayName %> -</dt>
+				<dd><%= month + '/'+ day.toString().formatNum(2) + '/' + year.toString().substring(2) %></dd>
+				<!--<dt>Doors: </dt>
+				<dd><%= new Date(parseInt(door)).getFullTime() %></dd>-->
+				<dt>Show: </dt>
+				<dd><%= new Date(parseInt(start)).getFullTime() %></dd>
+			</dl>
+			<% if(typeof(priceDescription) != 'undefined'){ %>
+				<span class="price"><%= priceDescription %></span>
+			<% }; %>
+			<% if(typeof(priceAdvance) != 'undefined'){ %>
+				<span class="price"><%= priceAdvance %> In advance</span>
+			<% }; %>
+			<% if(typeof(pricePerformance) != 'undefined'){ %>
+				<span class="price"><%= pricePerformance %> day of performance</span>
+			<% }; %>
+		</div>
+	</div>
+	<div class="txt-box">
+		<p><%= title %> <a href="<%= url %>">read more</a></p>
+	</div>
+</div>

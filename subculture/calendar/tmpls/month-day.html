@@ -1,0 +1,43 @@
+<% var curentDate = new Date(data_day) %>
+<% curentDate.setMinutes(curentDate.getMinutes() + curentDate.getTimezoneOffset()) %>
+<% var dayName = cal.locale['ds' + curentDate.getDay()] %>
+<% var year = curentDate.getFullYear() %>
+<% var month = curentDate.getMonth()+1 %>
+
+<div class="cal-month-day <%= cls %>">
+	<div class="day-head">
+		<span class="pull-left" data-cal-date="<%= dayName %>" ><%= dayName %></span>
+		<span class="pull-left" data-cal-date="<%= data_day %>" ><%= day.toString().formatNum(2) %></span>
+	</div>
+	<% if (events.length > 0) { %>
+		<div class="events-list2" data-cal-start="<%= start %>" data-cal-end="<%= end %>">
+			<% _.each(events, function(event) { %>
+				<% event.dayName = dayName %>
+				<% event.day = day %>
+				<% event.year = year %>
+				<% event.month = month %>
+				
+
+				<div class="event-item" data-event="<%= JSON.stringify(event) %>">
+					<div class="popup-holder">
+						<% cal._loadTemplate('popup') %>
+						<%= cal.options.templates['popup'](event) %>
+					</div>
+
+					<div class="event-opener">
+						<a href="<%= event.url %>">
+							<div class="event-title">
+								<%= event.eventTitle %>
+							</div>
+							<div class="event-time">
+								<% eventHour = new Date(parseInt(event.start)).getHours() %>
+								<% eventMinutes = new Date(parseInt(event.start)).getMinutes() %>
+								<%= new Date(parseInt(event.start)).getFullTime() %>
+							</div>
+						</a>
+					</div>
+				</div>
+			<% }); %>
+		</div>
+	<% } %>
+</div>
