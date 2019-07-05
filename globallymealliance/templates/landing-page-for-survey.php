@@ -59,6 +59,10 @@ https://www.facebook.com/tr?id=1538973079464292&ev=PageView&noscript=1
 "
 /></noscript>
 <!-- End Facebook Pixel Code -->
+<!-- BEGIN PRIVY WIDGET CODE -->
+<script type='text/javascript'> var _d_site = _d_site || '946EEA8AB511FD5AEF0A05B8'; </script>
+<script src='https://widget.privy.com/assets/widget.js'></script>
+<!-- END PRIVY WIDGET CODE -->
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">

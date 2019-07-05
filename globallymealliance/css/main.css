@@ -3472,11 +3472,14 @@ top
 		width: 100% !important
 	}
 	.nav-list ul {
-		width: 67%; /* 62.2% */
+		width: 67%; /* 67% */
 		overflow: hidden;
 		text-align: left;
 		font-size: 20px;
 		font-weight: 700
+	}
+	.nav-list li:first-child ul {
+		width: 70%;
 	}
 	.nav-list ul ul {
 		width: auto;
@@ -3484,6 +3487,9 @@ top
 		font-weight: 300;
 		font-size: 18px;
 		line-height: 24px
+	}
+	.nav-list li:first-child ul ul {
+		width: auto;
 	}
 	.nav-list li li {
 		position: relative;
@@ -3537,9 +3543,12 @@ top
 		margin-right: 0;
 		padding: 0 0 0 30px;
 	}
-	.nav-list>li:first-child li:first-child {
-		padding-left: 0 !important
+	.nav-list>li:first-child .title {
+		margin-right: -30px;
 	}
+	/*.nav-list>li:first-child li:first-child {
+		padding-left: 0 !important
+	}*/
 	.nav-list>li:first-child li li {
 		width: 100%;
 		display: block;
@@ -3577,16 +3586,19 @@ top
 }
 
 @media only screen and (min-width:1200px) {
+	.nav-list>li:first-child .title {
+		margin-right: -40px;
+	}
 	.nav-list>li:first-child li {
 		min-width: 120px;
 		padding-left: 40px
 	}
-	// .nav-list>li:first-child li:last-child {
-	// 	padding-right: 15px !important
-	// }
-	// .nav-list>li:first-child li li:last-child {
-	// 	padding-right: 0 !important
-	// }
+	.nav-list>li:first-child li:last-child {
+		padding-right: 15px !important
+	}
+	.nav-list>li:first-child li li:last-child {
+		padding-right: 0 !important
+	}
 	.nav .title {
 		font-size: 26px;
 		padding-left: 40px
@@ -3594,6 +3606,9 @@ top
 }
 
 @media only screen and (min-width:1300px) {
+	.nav-list>li:first-child .title {
+		margin-right: -60px;
+	}
 	.nav-list>li:first-child li {
 		min-width: 130px;
 		padding-left: 60px

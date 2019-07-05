@@ -628,7 +628,7 @@ function dp_newsletter_to_dp( $entry, $form ) {
 	$matchingDonors = handleMatchingDonorByEmail($email, $form['title'], null, null, null, null, null, null, null, null, null,null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 
 	if( !count($matchingDonors) ){
-		$donorDetails = saveDonor( null, $firstName, $lastName, $email, null, null, null, null, null, null,null, null, null, null, null );
+		$donorDetails = saveDonor( null, $firstName, $lastName, $email, null, null, null, null, null, null,null, null, null, null, null, 'Y', 'INSU' );
 		error_log( 'dp_newsletter_to_dp after_submission: ' . print_r( $donorDetails, true ) );
 
 	    if (isset($donorDetails->{'record'}->{'field'}[0])) {
@@ -657,7 +657,7 @@ function dp_popup_newsletter_to_dp( $entry, $form ) {
     $matchingDonors = handleMatchingDonorByEmail($email, $form['title'], null, null, null, null, null, null, null, null, null,null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 
     if( !count($matchingDonors) ){
-        $donorDetails = saveDonor( null, $firstName, $lastName, $email, null, null, null, null, null, null,null, null, null, null, null );
+        $donorDetails = saveDonor( null, $firstName, $lastName, $email, null, null, null, null, null, null,null, null, null, null, null, 'Y', 'INSU' );
         error_log( 'dp_newsletter_to_dp after_submission: ' . print_r( $donorDetails, true ) );
 
         if (isset($donorDetails->{'record'}->{'field'}[0])) {
@@ -1302,7 +1302,7 @@ function physician_referral_directory_landing_page_to_dp( $entry, $form ) {
 	}
 }
 
-function saveDonor( $title = null, $firstName = null, $lastName = null, $email = null, $isCorp = null, $companyName = null, $country = null, $address1 = null, $address2 = null, $city = null, $cityStateProvince = null, $state = null, $postal = null, $phone = null , $professionalTitle = null){
+function saveDonor( $title = null, $firstName = null, $lastName = null, $email = null, $isCorp = null, $companyName = null, $country = null, $address1 = null, $address2 = null, $city = null, $cityStateProvince = null, $state = null, $postal = null, $phone = null , $professionalTitle = null, $nomail = 'N', $nomail_reason = null){
     
     $title = dp_clean($title);
     $firstName = dp_clean($firstName);
@@ -1369,8 +1369,8 @@ function saveDonor( $title = null, $firstName = null, $lastName = null, $email =
 	$email ? $request .= "'$email'," : $request .= "null,";// @email
 	$isCorp ? $request .= "'$isCorp'," : $request .= "null,";// @org_rec
 	$donor_type ? $request .= "'$donor_type'," : $request .= "null,"; // @donor_type
-    $request .= "'N',"; // @nomail
-    $request .= "null,"; // @nomail_reason
+	$nomail ? $request .= "'$nomail'," : $request .= "'N',";// @nomail
+	$nomail_reason ? $request .= "'$nomail_reason'," : $request .= "null,";// @nomail_reason
     $request .= "null,"; // @narrative
     $request .= "'GLA API User'"; // @user_id
     

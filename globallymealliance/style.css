@@ -8248,8 +8248,8 @@ ul.grid-sm {
 /* update home banner */
 
 .home-banner .section-intro .btn.btn-primary {
-	color: #041f4c;
-	background: #fff;
+	/*color: #041f4c;*/
+	background: #00C0E8;
 	text-transform: none;
 }
 .home-banner .section-intro .btn.btn-primary:hover {
@@ -8257,30 +8257,33 @@ ul.grid-sm {
 }
 
 /*Change by GL-55*/
-.home-banner .text-box h1 p {
+.home-banner .text-box h1 {
+    color: #004A79;
     font-family: Roboto Condensed;
     font-size: 40px;
     line-height: 47px;
+    font-weight: bold;
+}
+
+.home-banner .text-box p {
     font-weight: bolder;
 }
 
+.home-banner .text-box h1 p {
+	color: inherit;
+	font-family: inherit;
+	font-style: inherit;
+	line-height: inherit;
+	letter-spacing: inherit;
+	/*font-weight: inherit;*/
+}
+
 @media only screen and (max-width:767px) {
-	.home-banner .text-box p {
-		font-size: 18px;
-		font-weight: bolder;
+	.home-banner .text-box {
+		font-size: 14px; /* 18px */
 	}
 	.home-banner .section-intro .text-box {
 		padding-bottom: 60px;
-	}
-}
-/*Change by GL-55*/
-@media only screen and (max-width:375px) {
-	.home-banner .text-box h1 p {
-        font-size: 30px;
-        line-height: 35px;
-	}
-	.home-banner .section-intro .text-box {
-		text-align: center;
 	}
 }
 /*Popup news letter*/
@@ -8500,9 +8503,12 @@ ul.grid-sm {
 }
 
 /* updated home intro section */
+.home-banner .section-intro {
+	color: #000;
+}
 .home-banner .section-intro h1 {
   font-size: 20px;
-  line-height: 1.25;
+  line-height: 1.2;
   letter-spacing: 1px;
 }
 .home-banner .section-intro h1:empty {
@@ -8519,17 +8525,20 @@ ul.grid-sm {
   vertical-align: 0.7em;
 }
 .home-banner .section-intro .text-box {
-  text-align: left;
-}
-.home-banner .section-intro .text-box {
   padding: 20px 0;
 }
 /*Change by GL-55*/
-.home-banner .section-intro .text-box p {
+.home-banner .section-intro .text-box {
+  max-width: 150px;
+}
+.home-banner .section-intro p {
   /*font-size: 16px;
   line-height: 20px;*/
   letter-spacing: 0.3px;
   margin-bottom: 24px;
+}
+.home-banner .section-intro  h1 p {
+	margin-bottom: 0;
 }
 .home-banner .section-intro .btn-primary {
   min-width: auto;
@@ -8539,13 +8548,23 @@ ul.grid-sm {
     flex-basis: 100%;
     max-width: 100%;
   }
- .home-banner .section-intro .text-box  {
-    text-align:center;
-  }
+}
+@media only screen and (max-width: 374px) {
+	.home-banner .section-intro p {
+		margin-bottom: 8px;
+	}
+	.home-banner .section-intro h1 {
+		font-size: 22px;
+		line-height: 1;
+	}
+	.home-banner .section-intro h1 p {
+		margin-bottom: 0;
+	}
 }
 @media only screen and (min-width: 375px) {
   .home-banner .section-intro .text-box {
     /* max-width: 212px; 250px */
+    max-width: 175px;
   }
   .home-banner .section-intro .btn-primary {
     font-size: 22px;
@@ -8554,6 +8573,7 @@ ul.grid-sm {
   }
   .home-banner .section-intro h1 {
     font-size: 24px;
+    line-height: 1.25;
     letter-spacing: 2px;
   }
 }
@@ -8569,27 +8589,27 @@ ul.grid-sm {
     margin-bottom: 8px;
   }
   .home-banner .section-intro .text-box {
-    max-width: 420px;
+    max-width: 320px; /* 420px */
   }
   .home-banner .section-intro h1 img {
     margin-bottom: 22px;
   }
 }
 @media only screen and (min-width: 768px) {
-  .home-banner .section-intro .text-box {
-    max-width: 100%;
-  }
   .home-banner .section-intro h1 {
     font-size: 40px;
+    padding-right: 0;
   }
+}
+@media only screen and (min-width: 1024px) {
   .home-banner .section-intro .text-box {
-    max-width: 500px;
+    max-width: 358px;
   }
 }
 @media only screen and (min-width: 1200px) {
   .home-banner .section-intro .text-box {
     padding-right: 0;
-    max-width: 525px;
+    /*max-width: 400px;*/
   }
 }
 
@@ -9170,7 +9190,7 @@ ul.gfield_checkbox li label {
 }
 /* fix bg */
 .home-banner .section-intro .bg-stretch {
-	background-position: 100% 50%;
+	background-position: 0 50%;
 }
 
 
@@ -9999,4 +10019,23 @@ p.map-note {
 
 .img-rounded{
 	border-radius: 50%;
+}
+
+.donor-privacy-policy {
+	margin-top: 10% !important;
+}
+
+
+.footer .donor-privacy-policy a {
+	font-family: "DIN", arial, sans-serif;
+}
+
+/* fix captcha error */
+.contact-form ul.gform_fields .ginput_container.ginput_recaptcha {
+	display: inline-block;
+	vertical-align: top;
+	width: auto;
+}
+.gfield_error .ginput_recaptcha {
+	border: 1px solid #790000;
 }

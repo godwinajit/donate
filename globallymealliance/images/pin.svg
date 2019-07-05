@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="36px" viewBox="0 0 28 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>Oval 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M11.987041,31.960014 C15.6265635,31.960014 23.9740821,19.101421 23.9740821,12.3053589 C23.9740821,5.50929684 18.607301,4.61852778e-14 11.987041,4.61852778e-14 C5.36678108,4.61852778e-14 -5.32907052e-15,5.50929684 -5.32907052e-15,12.3053589 C-5.32907052e-15,19.101421 8.34751857,31.960014 11.987041,31.960014 Z" id="path-1"></path>
+        <filter x="-16.7%" y="-6.3%" width="133.4%" height="125.0%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.122707201 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="GLA---Map" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="GLA---Map_default" transform="translate(-939.000000, -857.000000)" fill-rule="nonzero">
+            <g id="map" transform="translate(719.000000, 474.000000)">
+                <g id="Group-3" transform="translate(117.000000, 136.000000)">
+                    <g id="Oval-2" transform="translate(105.000000, 247.000000)">
+                        <g id="Oval">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                            <path stroke="#FDFEFF" stroke-width="0.879999967" d="M11.987041,31.520014 C15.4817148,31.520014 23.5340821,18.6449569 23.5340821,12.3053589 C23.5340821,5.74975868 18.3616775,0.439999983 11.987041,0.439999983 C5.61240461,0.439999983 0.439999983,5.74975868 0.439999983,12.3053589 C0.439999983,18.6449569 8.49236728,31.520014 11.987041,31.520014 Z" stroke-linejoin="square" fill="#4C8FCF" fill-rule="evenodd"></path>
+                        </g>
+                        <ellipse id="Oval" fill="#FFFFFF" cx="11.987041" cy="11.0736739" rx="3.99568035" ry="3.98652262"></ellipse>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
