@@ -40,7 +40,7 @@ if ($_SERVER ['REQUEST_METHOD'] === 'POST' && ! empty ( $_POST )) {
 
 	if( isset($_POST['first_name']) ) $_POST['first_name'] = gla_ucwords_gravity(strtolower(dp_clean($_POST['first_name'])));
 	if( isset($_POST['last_name']) ) $_POST['last_name'] = gla_ucwords_gravity(strtolower(dp_clean($_POST['last_name'])));
-
+		
 	if(count($_POST['language_1'])){
 		$_POST['language_1'] = implode (", ", $_POST['language_1']);
 	}else{
