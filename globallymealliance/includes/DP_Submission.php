@@ -1,12 +1,13 @@
 <?php
 define('DP_API_KEY_URL', 'https://www.donorperfect.net/prod/xmlrequest.asp?apikey=' );
+date_default_timezone_set('America/New_York');
 
-if (is_wpe()) {
+if (is_wpe_gla_live()){
 	define('DP_API_KEY', 'HFCBGrK8x8aiXpEu50tVH31W7akQaoPOiUtFpsHiXH%2fUKsFZQ4uX3L1gaDHsywRmHwzAsalBDEVpMDsIs56kM%2brGU%2b1SS%2fzQCZodcSq7c6hokQPh1VZPUBRXN9ULnmYp' );
 	define('NOTIFICATION_TO_EMAIL','Casie.Richardson@globallymealliance.org');
 	define('NOTIFICATION_BCC_EMAIL','goliver@mindtrustlabs.com');
 }else{
-	define('DP_API_KEY', 'je%2bXp6cgiCJxfTn0mJV03Nmxigk67oGD2RwFtAlAmjjHxyZYMHS1KhaMRZICl6hi0IhfD76St3UKnS74HUORHf48DNJB1OBs5KD2bGE5zGPbX8pQbuR5Vggp4STJvOXy' );
+	define('DP_API_KEY', 'CF49QhBgJI%2bqygkmvh6%2bXBg6diwGenLN21xqn4fRUE%2fXTyEWYYpi%2ffBD4lgGuid%2fzhOHWZtMNAgs9ozcsqwKuGKXBJ0Hz%2f4FOJp27tnur23CUXxrsLaSoltaSUxK5JiW' );
 	define('NOTIFICATION_TO_EMAIL','goliver@mindtrustlabs.com');
 	define('NOTIFICATION_BCC_EMAIL','goliver@mindtrustlabs.com');
 }
@@ -634,14 +635,14 @@ function dp_newsletter_to_dp( $entry, $form ) {
 	    if (isset($donorDetails->{'record'}->{'field'}[0])) {
 		    $donorDetails = $donorDetails->{'record'}->{'field'}[0]->attributes()->{'value'};
 			$donorId = $donorDetails[0];
-			//Newsletter Flag for DP is commented out i.e no flags will be added/updated in DP for Newsletter Form submissions
-			/*$flagDetails = saveDPFlag($donorId, 'NLTR');
-			error_log( 'dp_newsletter_to_dp after_submission: ' . print_r( $flagDetails, true ) );*/
+
+			$flagDetails = saveDPFlag($donorId, 'NL_DT');
+			error_log( 'dp_newsletter_to_dp after_submission: ' . print_r( $flagDetails, true ) );
 		}
 	} else {
 		foreach($matchingDonors as $donorId){
-			/*$flagDetails = saveDPFlag($donorId, 'NLTR');
-			error_log( 'dp_newsletter_to_dp after_submission: ' . print_r( $flagDetails, true ) );*/
+			$flagDetails = saveDPFlag($donorId, 'NL_DT');
+			error_log( 'dp_newsletter_to_dp after_submission: ' . print_r( $flagDetails, true ) );
 		}
 	}
 }
@@ -1302,6 +1303,192 @@ function physician_referral_directory_landing_page_to_dp( $entry, $form ) {
 	}
 }
 
+// Apply to be a mentor
+add_action( 'gform_after_submission_29', 'apply_to_be_a_mentor_to_dp', 10, 2 );
+function apply_to_be_a_mentor_to_dp( $entry, $form ) {
+    
+    $firstName = rgar( $entry, '1' );
+    $lastName = rgar( $entry, '2' );
+    $email = rgar( $entry, '13' );
+    $country = rgar( $entry, '12' );
+    $address1 = rgar( $entry, '3' );
+    $address2 = rgar( $entry, '4' );
+    $city = rgar( $entry, '5' );
+    $cityStateProvince = rgar( $entry, '41' );
+    $state = rgar( $entry, '40' );
+    $postal = rgar( $entry, '7' );
+	$homePhone = rgar( $entry, '14' );
+	$dob_date_value = null;//rgar( $entry, '62' );
+    $iam = rgar( $entry, '43' );
+    $iamFlag = '';
+    
+    if ($iam == 'Patient') {
+        $iamFlag = 'PAT';
+    } elseif ($iam == 'Caregiver') {
+        $iamFlag = 'CGP';
+    } elseif ($iam == 'Caregiver: spouse') {
+        $iamFlag = 'CGS';
+    } elseif ($iam == 'Physician') {
+        $iamFlag = 'PHY';
+    } elseif ($iam == 'Nurse') {
+        $iamFlag = 'NUR';
+    } elseif ($iam == 'Psychiatrist/psychologist') {
+        $iamFlag = 'PSY';
+    } elseif ($iam == 'Pharma/Diagnostic Rep') {
+        $iamFlag = 'PHRM';
+    } elseif ($iam == 'Teacher') {
+        $iamFlag = 'TCH';
+    } elseif ($iam == 'Camp counselor') {
+        $iamFlag = 'CMP';
+    } elseif ($iam == 'Researcher') {
+        $iamFlag = 'RSRCH';
+    } elseif ($iam == 'Media') {
+        $iamFlag = 'MDA';
+    } elseif ($iam == 'Medical Representative') {
+        $iamFlag = 'MR';
+    }
+    
+    $matchingDonors = handleMatchingDonorByEmail($email, $form['title'], null, $firstName, $lastName, null, null, $country, $address1, $address2, $city, $cityStateProvince, $state, $postal, null, null, null, $dob_date_value, null, null, null, null, null, null, null, null, null, null, $iam);
+    
+    if( !count($matchingDonors) ){
+        $donorDetails = saveDonor( null, $firstName, $lastName, $email, null, null, $country, $address1, $address2, $city, $cityStateProvince, $state, $postal, $homePhone, null );
+        error_log( 'apply_to_be_a_mentor_to_dp after_submission: ' . print_r( $donorDetails, true ) );
+        
+        if (isset($donorDetails->{'record'}->{'field'}[0])) {
+            $donorDetails = $donorDetails->{'record'}->{'field'}[0]->attributes()->{'value'};
+            $donorId = $donorDetails[0];
+            
+            if ($iamFlag != ''){
+                $iAMflagDetails = saveDPFlag($donorId, $iamFlag);
+                error_log( 'apply_to_be_a_mentor_to_dp after_submission: ' . print_r( $iAMflagDetails, true ) );
+            }
+            
+            $flagDetails = saveDPFlag($donorId, 'MENAP');
+            error_log( 'apply_to_be_a_mentor_to_dp after_submission: ' . print_r( $flagDetails, true ) );
+
+			if (is_wpe_gla_live()) {
+				$UDFDetails = dp_save_udf_xml( $donorId, 'DOB', 'D', null, $dob_date_value, null);
+				error_log( 'apply_to_be_a_mentor_to_dp after_submission: ' . print_r( $UDFDetails, true ) );
+		    }else{
+				$UDFDetails = dp_save_udf_xml( $donorId, 'BIRTHDATE', 'D', null, $dob_date_value, null);
+				error_log( 'apply_to_be_a_mentor_to_dp after_submission: ' . print_r( $UDFDetails, true ) );
+			}
+        }
+    } else {
+        foreach($matchingDonors as $donorId){
+            
+            if ($iamFlag != ''){
+                $iAMflagDetails = saveDPFlag($donorId, $iamFlag);
+                error_log( 'apply_to_be_a_mentor_to_dp after_submission: ' . print_r( $iAMflagDetails, true ) );
+            }
+            
+            $flagDetails = saveDPFlag($donorId, 'MENAP');
+            error_log( 'apply_to_be_a_mentor_to_dp after_submission: ' . print_r( $flagDetails, true ) );
+
+			if (is_wpe_gla_live()) {
+				$UDFDetails = dp_save_udf_xml( $donorId, 'DOB', 'D', null, $dob_date_value, null);
+				error_log( 'apply_to_be_a_mentor_to_dp after_submission: ' . print_r( $UDFDetails, true ) );
+		    }else{
+				$UDFDetails = dp_save_udf_xml( $donorId, 'BIRTHDATE', 'D', null, $dob_date_value, null);
+				error_log( 'apply_to_be_a_mentor_to_dp after_submission: ' . print_r( $UDFDetails, true ) );
+			}
+        }
+    }
+}
+
+// Request a peer mentor
+add_action( 'gform_after_submission_30', 'request_a_peer_mentor_to_dp', 10, 2 );
+function request_a_peer_mentor_to_dp( $entry, $form ) {
+    
+    $firstName = rgar( $entry, '1' );
+    $lastName = rgar( $entry, '2' );
+    $email = rgar( $entry, '13' );
+    $country = rgar( $entry, '12' );
+    $address1 = rgar( $entry, '3' );
+    $address2 = rgar( $entry, '4' );
+    $city = rgar( $entry, '5' );
+    $cityStateProvince = rgar( $entry, '42' );
+    $state = rgar( $entry, '41' );
+    $postal = rgar( $entry, '7' );
+	$homePhone = rgar( $entry, '14' );
+	$dob_date_value = null;//rgar( $entry, '61' );
+    $iam = rgar( $entry, '24' );
+    $iamFlag = '';
+    
+    if ($iam == 'patient') {
+        $iamFlag = 'PAT';
+    } elseif ($iam == 'patient_caregiver') {
+        $iamFlag = 'CGP';
+    } elseif ($iam == 'Caregiver: spouse') {
+        $iamFlag = 'CGS';
+    } elseif ($iam == 'Physician') {
+        $iamFlag = 'PHY';
+    } elseif ($iam == 'Nurse') {
+        $iamFlag = 'NUR';
+    } elseif ($iam == 'Psychiatrist/psychologist') {
+        $iamFlag = 'PSY';
+    } elseif ($iam == 'Pharma/Diagnostic Rep') {
+        $iamFlag = 'PHRM';
+    } elseif ($iam == 'Teacher') {
+        $iamFlag = 'TCH';
+    } elseif ($iam == 'Camp counselor') {
+        $iamFlag = 'CMP';
+    } elseif ($iam == 'Researcher') {
+        $iamFlag = 'RSRCH';
+    } elseif ($iam == 'Media') {
+        $iamFlag = 'MDA';
+    } elseif ($iam == 'Medical Representative') {
+        $iamFlag = 'MR';
+    }
+    
+    $matchingDonors = handleMatchingDonorByEmail($email, $form['title'], null, $firstName, $lastName, null, null, $country, $address1, $address2, $city, $cityStateProvince, $state, $postal, null, null, null, $dob_date_value, null, null, null, null, null, null, null, null, null, null, $iam);
+    
+    if( !count($matchingDonors) ){
+        $donorDetails = saveDonor( null, $firstName, $lastName, $email, null, null, $country, $address1, $address2, $city, $cityStateProvince, $state, $postal, $homePhone, null );
+        error_log( 'request_a_peer_mentor_to_dp after_submission: ' . print_r( $donorDetails, true ) );
+        
+        if (isset($donorDetails->{'record'}->{'field'}[0])) {
+            $donorDetails = $donorDetails->{'record'}->{'field'}[0]->attributes()->{'value'};
+            $donorId = $donorDetails[0];
+            
+            if ($iamFlag != ''){
+                $iAMflagDetails = saveDPFlag($donorId, $iamFlag);
+                error_log( 'request_a_peer_mentor_to_dp after_submission: ' . print_r( $iAMflagDetails, true ) );
+            }
+            
+            $flagDetails = saveDPFlag($donorId, 'PRAP');
+            error_log( 'request_a_peer_mentor_to_dp after_submission: ' . print_r( $flagDetails, true ) );
+
+			if (is_wpe_gla_live()) {
+				$UDFDetails = dp_save_udf_xml( $donorId, 'DOB', 'D', null, $dob_date_value, null);
+				error_log( 'apply_to_be_a_mentor_to_dp after_submission: ' . print_r( $UDFDetails, true ) );
+		    }else{
+				$UDFDetails = dp_save_udf_xml( $donorId, 'BIRTHDATE', 'D', null, $dob_date_value, null);
+				error_log( 'apply_to_be_a_mentor_to_dp after_submission: ' . print_r( $UDFDetails, true ) );
+			}
+        }
+    } else {
+        foreach($matchingDonors as $donorId){
+            
+            if ($iamFlag != ''){
+                $iAMflagDetails = saveDPFlag($donorId, $iamFlag);
+                error_log( 'request_a_peer_mentor_to_dp after_submission: ' . print_r( $iAMflagDetails, true ) );
+            }
+            
+            $flagDetails = saveDPFlag($donorId, 'PRAP');
+            error_log( 'request_a_peer_mentor_to_dp after_submission: ' . print_r( $flagDetails, true ) );
+
+			if (is_wpe_gla_live()) {
+				$UDFDetails = dp_save_udf_xml( $donorId, 'DOB', 'D', null, $dob_date_value, null);
+				error_log( 'apply_to_be_a_mentor_to_dp after_submission: ' . print_r( $UDFDetails, true ) );
+		    }else{
+				$UDFDetails = dp_save_udf_xml( $donorId, 'BIRTHDATE', 'D', null, $dob_date_value, null);
+				error_log( 'apply_to_be_a_mentor_to_dp after_submission: ' . print_r( $UDFDetails, true ) );
+			}
+        }
+    }
+}
+
 function saveDonor( $title = null, $firstName = null, $lastName = null, $email = null, $isCorp = null, $companyName = null, $country = null, $address1 = null, $address2 = null, $city = null, $cityStateProvince = null, $state = null, $postal = null, $phone = null , $professionalTitle = null, $nomail = 'N', $nomail_reason = null){
     
     $title = dp_clean($title);
@@ -1538,4 +1725,12 @@ function dp_clean($string)
 function gla_ucwords_gravity($string)
 {
     return str_replace("' ", "'", ucwords(str_replace("'", "' ", $string)));
+}
+
+function is_wpe_gla_live(){
+	if ($_SERVER ['SERVER_NAME'] === 'globallymealliance.org'){
+		return true;
+	} else{
+		return false;
+	}
 }

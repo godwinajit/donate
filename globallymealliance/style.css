@@ -10038,4 +10038,30 @@ p.map-note {
 }
 .gfield_error .ginput_recaptcha {
 	border: 1px solid #790000;
+	width: 304px;
+	height: 78px;
+}
+.gfield_description{display:block;}
+.gform_wrapper .validation_message{display:none;}
+
+#field_21_25
+{
+top: 422px;
+left:0;
+}
+
+#field_24_25
+{
+top: 560px;
+right: 0px;
+}
+#field_24_26
+{
+top: 460px;
+left: 0px;
+}
+
+#gform_wrapper_11 ul.gfield_checkbox li label
+{
+text-indent: -11px;
 }
