@@ -19,7 +19,7 @@ include ('../../wp-load.php');
 </div>
 <div class="inner-banner"
 	style="background-image: url(images/ambassador-hero2.jpg)"></div>
-<div class="container-section">
+<div class="container-section" style="display:none;">
 					<div class="wrapper container-fluid">
 		<div class="row center-xs">
 			<div class="col-xs-12 col-sm-11 col-md-10">
@@ -50,6 +50,22 @@ include ('../../wp-load.php');
 		</div>
 	</div>
 </section> -->
+<a class="btn btn-default open-lightbox" title="" href="#popup-widget2" style="display:none;"></a>
+<div class="popup-holder">
+		<div class="lightbox lightbox-download" id="popup-widget2">
+		Thank you for your application to become a Lyme Education Ambassador.<br> A representative from GLA will follow up within the next two weeks.
+	</div>
+</div>
 <script src="js/jquery-1.11.2.min.js"></script>
 <script src="/ambassador/app/js/main.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        //$(".open-lightbox").fancybox().trigger('click');
+		$('.open-lightbox').fancybox({
+			afterClose: function () {
+				window.location.href = "/";
+	        }
+		}).trigger('click');
+    });
+</script>
 <?php get_template_part( 'ambassadorfooter' ); ?>

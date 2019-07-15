@@ -465,6 +465,7 @@ function insertEntryIntoWordpress( $form_id, $post){
 // Save form to DP
 function submit_form_to_dp( $post ) {
 
+	$current_date_value = date('m/d/Y');
  	$firstName = $post['first_name'];
 	$lastName = $post['last_name'];
 	$dob_date_value = $post['month'] .'/'. $post['day'] .'/'. $post['year'];
@@ -485,19 +486,33 @@ function submit_form_to_dp( $post ) {
 	    if (isset($donorDetails->{'record'}->{'field'}[0])) {
 		    $donorDetails = $donorDetails->{'record'}->{'field'}[0]->attributes()->{'value'};
 			$donorId = $donorDetails[0];
-			$flagDetails = saveDPFlag($donorId, 'LEAP');
-			error_log( 'nyc_marathon_form_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
 
-			if (is_wpe()) {
+			if(!isDonorFlagSet($donorId, "LEAP")){
+				$UDFFirstDate = dp_save_udf_xml( $donorId, 'LEAP_DT', 'D', null, $current_date_value, null);
+				error_log( 'Ambassador Form LEAP_DT: ' . print_r( $UDFFirstDate, true ) );
+			}
+
+			$flagDetails = saveDPFlag($donorId, 'LEAP');
+			error_log( 'Ambassador Form  after_submission: ' . print_r( $flagDetails, true ) );
+
+			if (is_wpe_gla_live()) {
 				$UDFDetails = dp_save_udf_xml( $donorId, 'DOB', 'D', null, $dob_date_value, null);
-				error_log( 'nyc_marathon_form_to_dp_dob after_submission: ' . print_r( $UDFDetails, true ) );
+				error_log( 'Ambassador Form  after_submission: ' . print_r( $UDFDetails, true ) );
 		    }else{
 				$UDFDetails = dp_save_udf_xml( $donorId, 'BIRTHDATE', 'D', null, $dob_date_value, null);
-				error_log( 'nyc_marathon_form_to_dp_dob after_submission: ' . print_r( $UDFDetails, true ) );
+				error_log( 'Ambassador Form  after_submission: ' . print_r( $UDFDetails, true ) );
 			}
 		}
 	} else {
 		foreach($matchingDonors as $donorId){
+
+			
+			if(!isDonorFlagSet($donorId, "LEAP")){
+				$UDFFirstDate = dp_save_udf_xml( $donorId, 'LEAP_DT', 'D', null, $current_date_value, null);
+				error_log( 'Ambassador Form LEAP_DT: ' . print_r( $UDFFirstDate, true ) );
+			}
+
+
 			$flagDetails = saveDPFlag($donorId, 'LEAP');
 			error_log( 'nyc_marathon_form_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
 		}
