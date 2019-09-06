@@ -465,3 +465,14 @@ function setCookie(cname, cvalue, exdays) {
   var expires = "expires="+ d.toUTCString();
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
+
+jQuery('.lightbox, .content-form').on('DOMNodeInserted', 'div', function () {
+    jQuery('#confirmation-button-close').click(function(){
+        closeRespModal();
+    });
+});
+
+function closeRespModal(){
+    jQuery(".response-modal").hide();
+    //window.history.back();
+}

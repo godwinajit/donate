@@ -16,6 +16,7 @@ if (is_wpe_gla_live()){
 add_action( 'gform_after_submission_17', 'add_your_support_group_to_dp', 10, 2 );
 function add_your_support_group_to_dp( $entry, $form ) {
 
+	$current_date_value = date('m/d/Y');
  	$firstName = rgar( $entry, '7' );
 	$lastName = rgar( $entry, '15' );
 	$email = rgar( $entry, '8' );
@@ -37,6 +38,12 @@ function add_your_support_group_to_dp( $entry, $form ) {
 	    if (isset($donorDetails->{'record'}->{'field'}[0])) {
 		    $donorDetails = $donorDetails->{'record'}->{'field'}[0]->attributes()->{'value'};
 			$donorId = $donorDetails[0];
+
+			if(!isDonorFlagSet($donorId, "SG")){
+				$UDFFirstDate = dp_save_udf_xml( $donorId, 'SG_DT', 'D', null, $current_date_value, null);
+				error_log( 'add_your_support_group_to_dp_flag First date: ' . print_r( $UDFFirstDate, true ) );
+			}
+
 			$flagDetails = saveDPFlag($donorId, 'SG');
 			error_log( 'add_your_support_group_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
 
@@ -45,6 +52,12 @@ function add_your_support_group_to_dp( $entry, $form ) {
 		}
 	} else {
 		foreach($matchingDonors as $donorId){
+
+			if(!isDonorFlagSet($donorId, "SG")){
+				$UDFFirstDate = dp_save_udf_xml( $donorId, 'SG_DT', 'D', null, $current_date_value, null);
+				error_log( 'add_your_support_group_to_dp_flag First date: ' . print_r( $UDFFirstDate, true ) );
+			}
+
 			$flagDetails = saveDPFlag($donorId, 'SG');
 			error_log( 'add_your_support_group_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
 		}
@@ -78,7 +91,7 @@ function nyc_marathon_form_to_dp( $entry, $form ) {
 			$flagDetails = saveDPFlag($donorId, 'NYMAP');
 			error_log( 'nyc_marathon_form_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
 
-			if (is_wpe()) {
+			if (is_wpe_gla_live()) {
 				$UDFDetails = dp_save_udf_xml( $donorId, 'DOB', 'D', null, $dob_date_value, null);
 				error_log( 'nyc_marathon_form_to_dp_dob after_submission: ' . print_r( $UDFDetails, true ) );
 		    }else{
@@ -98,6 +111,7 @@ function nyc_marathon_form_to_dp( $entry, $form ) {
 add_action( 'gform_after_submission_25', 'nyc_marathon_form_2019_to_dp', 10, 2 );
 function nyc_marathon_form_2019_to_dp( $entry, $form ) {
 
+	$current_date_value = date('m/d/Y');
  	$firstName = rgar( $entry, '14' );
 	$lastName = rgar( $entry, '15' );
 	$email = rgar( $entry, '13' );
@@ -118,10 +132,16 @@ function nyc_marathon_form_2019_to_dp( $entry, $form ) {
 	    if (isset($donorDetails->{'record'}->{'field'}[0])) {
 		    $donorDetails = $donorDetails->{'record'}->{'field'}[0]->attributes()->{'value'};
 			$donorId = $donorDetails[0];
+
+			if(!isDonorFlagSet($donorId, "NYMAP")){
+				$UDFFirstDate = dp_save_udf_xml( $donorId, 'NYM_DT', 'D', null, $current_date_value, null);
+				error_log( 'nyc_marathon_form_2019_to_dp_dob First date: ' . print_r( $UDFFirstDate, true ) );
+			}
+
 			$flagDetails = saveDPFlag($donorId, 'NYMAP');
 			error_log( 'nyc_marathon_form_2019_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
 
-			if (is_wpe()) {
+			if (is_wpe_gla_live()) {
 				$UDFDetails = dp_save_udf_xml( $donorId, 'DOB', 'D', null, $dob_date_value, null);
 				error_log( 'nyc_marathon_form_2019_to_dp_dob after_submission: ' . print_r( $UDFDetails, true ) );
 		    }else{
@@ -131,6 +151,12 @@ function nyc_marathon_form_2019_to_dp( $entry, $form ) {
 		}
 	} else {
 		foreach($matchingDonors as $donorId){
+
+			if(!isDonorFlagSet($donorId, "NYMAP")){
+				$UDFFirstDate = dp_save_udf_xml( $donorId, 'NYM_DT', 'D', null, $current_date_value, null);
+				error_log( 'nyc_marathon_form_2019_to_dp_dob First date: ' . print_r( $UDFFirstDate, true ) );
+			}
+
 			$flagDetails = saveDPFlag($donorId, 'NYMAP');
 			error_log( 'nyc_marathon_form_2019_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
 		}
@@ -141,6 +167,7 @@ function nyc_marathon_form_2019_to_dp( $entry, $form ) {
 add_action( 'gform_after_submission_14', 'req_a_company_pre_to_dp', 10, 2 );
 function req_a_company_pre_to_dp( $entry, $form ) {
 
+	$current_date_value = date('m/d/Y');
  	$firstName = rgar( $entry, '1' );
 	$lastName = rgar( $entry, '8' );
 	$email = rgar( $entry, '3' );
@@ -162,6 +189,12 @@ function req_a_company_pre_to_dp( $entry, $form ) {
 	    if (isset($donorDetails->{'record'}->{'field'}[0])) {
 		    $donorDetails = $donorDetails->{'record'}->{'field'}[0]->attributes()->{'value'};
 			$donorId = $donorDetails[0];
+
+			if(!isDonorFlagSet($donorId, "EDB")){
+				$UDFFirstDate = dp_save_udf_xml( $donorId, 'EDB_DT', 'D', null, $current_date_value, null);
+				error_log( 'req_a_company_pre_to_dp_flag First date: ' . print_r( $UDFFirstDate, true ) );
+			}
+
 			$flagDetails = saveDPFlag($donorId, 'EDB');
 			error_log( 'req_a_company_pre_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
 
@@ -170,6 +203,12 @@ function req_a_company_pre_to_dp( $entry, $form ) {
 		}
 	} else {
 		foreach($matchingDonors as $donorId){
+
+			if(!isDonorFlagSet($donorId, "EDB")){
+				$UDFFirstDate = dp_save_udf_xml( $donorId, 'EDB_DT', 'D', null, $current_date_value, null);
+				error_log( 'req_a_company_pre_to_dp_flag First date: ' . print_r( $UDFFirstDate, true ) );
+			}
+
 			$flagDetails = saveDPFlag($donorId, 'EDB');
 			error_log( 'req_a_company_pre_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
 		}
@@ -179,6 +218,8 @@ function req_a_company_pre_to_dp( $entry, $form ) {
 // Contact Us
 add_action( 'gform_after_submission_7', 'contact_us_to_dp', 10, 2 );
 function contact_us_to_dp( $entry, $form ) {
+
+	$current_date_value = date('m/d/Y');
 
  	$firstName = rgar( $entry, '4' );
 	$lastName = rgar( $entry, '13' );
@@ -228,23 +269,35 @@ function contact_us_to_dp( $entry, $form ) {
 	    if (isset($donorDetails->{'record'}->{'field'}[0])) {
 		    $donorDetails = $donorDetails->{'record'}->{'field'}[0]->attributes()->{'value'};
 			$donorId = $donorDetails[0];
-			$flagDetails = saveDPFlag($donorId, 'WSCNT');
-			error_log( 'contact_us_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
 		
 			if ($iamFlag != ''){
 				$iAMflagDetails = saveDPFlag($donorId, $iamFlag);
 				error_log( 'contact_us_to_dp_flag after_submission: ' . print_r( $iAMflagDetails, true ) );
 			}
+
+			if(!isDonorFlagSet($donorId, "WSCNT")){
+				$UDFFirstDate = dp_save_udf_xml( $donorId, 'WCNT_DT', 'D', null, $current_date_value, null);
+				error_log( 'dp_popup_newsletter_to_dp First date: ' . print_r( $UDFFirstDate, true ) );
+			}
+
+			$flagDetails = saveDPFlag($donorId, 'WSCNT');
+			error_log( 'contact_us_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
 		}
 	} else {
 		foreach($matchingDonors as $donorId){
-			$flagDetails = saveDPFlag($donorId, 'WSCNT');
-			error_log( 'contact_us_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
 
 			if ($iamFlag != ''){
 				$iAMflagDetails = saveDPFlag($donorId, $iamFlag);
 				error_log( 'contact_us_to_dp_flag after_submission: ' . print_r( $iAMflagDetails, true ) );
 			}
+
+			if(!isDonorFlagSet($donorId, "WSCNT")){
+				$UDFFirstDate = dp_save_udf_xml( $donorId, 'WCNT_DT', 'D', null, $current_date_value, null);
+				error_log( 'dp_popup_newsletter_to_dp First date: ' . print_r( $UDFFirstDate, true ) );
+			}
+
+			$flagDetails = saveDPFlag($donorId, 'WSCNT');
+			error_log( 'contact_us_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
 		}
 	}
 }
@@ -253,6 +306,7 @@ function contact_us_to_dp( $entry, $form ) {
 add_action( 'gform_after_submission_13', 'digital_education_form_to_dp', 10, 2 );
 function digital_education_form_to_dp( $entry, $form ) {
 
+	$current_date_value = date('m/d/Y');
  	$firstName = rgar( $entry, '1' );
 	$lastName = rgar( $entry, '2' );
 	$email = rgar( $entry, '3' );
@@ -300,6 +354,11 @@ function digital_education_form_to_dp( $entry, $form ) {
 	    if (isset($donorDetails->{'record'}->{'field'}[0])) {
 		    $donorDetails = $donorDetails->{'record'}->{'field'}[0]->attributes()->{'value'};
 			$donorId = $donorDetails[0];
+
+			if(!isDonorFlagSet($donorId, "WSDIG")){
+				$UDFFirstDate = dp_save_udf_xml( $donorId, 'WDE_DT', 'D', null, $current_date_value, null);
+				error_log( 'digital_education_form_to_dp_flag First date: ' . print_r( $UDFFirstDate, true ) );
+			}
 			
 			$flagDetails = saveDPFlag($donorId, 'WSDIG');
 			error_log( 'digital_education_form_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
@@ -311,6 +370,12 @@ function digital_education_form_to_dp( $entry, $form ) {
 		}
 	} else {
 		foreach($matchingDonors as $donorId){
+
+			if(!isDonorFlagSet($donorId, "WSDIG")){
+				$UDFFirstDate = dp_save_udf_xml( $donorId, 'WDE_DT', 'D', null, $current_date_value, null);
+				error_log( 'digital_education_form_to_dp_flag First date: ' . print_r( $UDFFirstDate, true ) );
+			}
+
 			$flagDetails = saveDPFlag($donorId, 'WSDIG');
 			error_log( 'digital_education_form_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
 
@@ -325,6 +390,8 @@ function digital_education_form_to_dp( $entry, $form ) {
 // Download Free Resources
 add_action( 'gform_after_submission_9', 'download_free_resources_to_dp', 10, 2 );
 function download_free_resources_to_dp( $entry, $form ) {
+
+	$current_date_value = date('m/d/Y');
 
  	$firstName = rgar( $entry, '1' );
 	$lastName = rgar( $entry, '2' );
@@ -368,28 +435,40 @@ function download_free_resources_to_dp( $entry, $form ) {
 
 	if( !count($matchingDonors) ){
 		$donorDetails = saveDonor( null, $firstName, $lastName, $email, null, null, $country, $address1, null, $city, $cityStateProvince, $state, $postal, null, null );
-		error_log( 'nyc_marathon_form_to_dp after_submission: ' . print_r( $donorDetails, true ) );
+		error_log( 'download_free_resources_to after_submission 1: ' . print_r( $donorDetails, true ) );
 
 	    if (isset($donorDetails->{'record'}->{'field'}[0])) {
 		    $donorDetails = $donorDetails->{'record'}->{'field'}[0]->attributes()->{'value'};
 			$donorId = $donorDetails[0];
-			$flagDetails = saveDPFlag($donorId, 'WSDWNLD');
-			error_log( 'download_free_resources_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
 		
 			if ($iamFlag != ''){
 				$iAMflagDetails = saveDPFlag($donorId, $iamFlag);
-				error_log( 'download_free_resources_to_dp_iam after_submission: ' . print_r( $iAMflagDetails, true ) );
+				error_log( 'download_free_resources_to_dp_iam after_submission 3: ' . print_r( $iAMflagDetails, true ) );
 			}
+
+			if(!isDonorFlagSet($donorId, "WSDWNLD")){
+				$UDFFirstDate = dp_save_udf_xml( $donorId, 'WDWLD_DT', 'D', null, $current_date_value, null);
+				error_log( 'dp_popup_newsletter_to_dp First date: ' . print_r( $UDFFirstDate, true ) );
+			}
+
+			$flagDetails = saveDPFlag($donorId, 'WSDWNLD');
+			error_log( 'download_free_resources_to_dp_flag after_submission 2: ' . print_r( $flagDetails, true ) );
 		}
 	} else {
 		foreach($matchingDonors as $donorId){
-			$flagDetails = saveDPFlag($donorId, 'WSDWNLD');
-			error_log( 'download_free_resources_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
 
 			if ($iamFlag != ''){
 				$iAMflagDetails = saveDPFlag($donorId, $iamFlag);
-				error_log( 'download_free_resources_to_dp_iam after_submission: ' . print_r( $iAMflagDetails, true ) );
+				error_log( 'download_free_resources_to_dp_iam after_submission 5: ' . print_r( $iAMflagDetails, true ) );
 			}
+
+			if(!isDonorFlagSet($donorId, "WSDWNLD")){
+				$UDFFirstDate = dp_save_udf_xml( $donorId, 'WDWLD_DT', 'D', null, $current_date_value, null);
+				error_log( 'dp_popup_newsletter_to_dp First date: ' . print_r( $UDFFirstDate, true ) );
+			}
+
+			$flagDetails = saveDPFlag($donorId, 'WSDWNLD');
+			error_log( 'download_free_resources_to_dp_flag after_submission 4: ' . print_r( $flagDetails, true ) );
 		}
 	}
 }
@@ -398,6 +477,7 @@ function download_free_resources_to_dp( $entry, $form ) {
 add_action( 'gform_after_submission_11', 'down_teach_student_resources_to_dp', 10, 2 );
 function down_teach_student_resources_to_dp( $entry, $form ) {
 
+	$current_date_value = date('m/d/Y');
  	$firstName = rgar( $entry, '1' );
 	$lastName = rgar( $entry, '2' );
 	$email = rgar( $entry, '3' );
@@ -437,6 +517,12 @@ function down_teach_student_resources_to_dp( $entry, $form ) {
 	    if (isset($donorDetails->{'record'}->{'field'}[0])) {
 		    $donorDetails = $donorDetails->{'record'}->{'field'}[0]->attributes()->{'value'};
 			$donorId = $donorDetails[0];
+
+			if(!isDonorFlagSet($donorId, "WSTCHSTD")){
+				$UDFFirstDate = dp_save_udf_xml( $donorId, 'WTCHST_DT', 'D', null, $current_date_value, null);
+				error_log( 'down_teach_student_resources_to_dp_flag First date: ' . print_r( $UDFFirstDate, true ) );
+			}
+
 			$flagDetails = saveDPFlag($donorId, 'WSTCHSTD');
 			error_log( 'down_teach_student_resources_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
 	
@@ -467,6 +553,12 @@ function down_teach_student_resources_to_dp( $entry, $form ) {
 		}
 	} else {
 		foreach($matchingDonors as $donorId){
+
+			if(!isDonorFlagSet($donorId, "WSTCHSTD")){
+				$UDFFirstDate = dp_save_udf_xml( $donorId, 'WTCHST_DT', 'D', null, $current_date_value, null);
+				error_log( 'down_teach_student_resources_to_dp_flag First date: ' . print_r( $UDFFirstDate, true ) );
+			}
+
 			$flagDetails = saveDPFlag($donorId, 'WSTCHSTD');
 			error_log( 'download_free_resources_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
 		}
@@ -476,6 +568,8 @@ function down_teach_student_resources_to_dp( $entry, $form ) {
 // Find a Medical Professional Form
 add_action( 'gform_after_submission_5', 'find_a_medical_pro_to_dp', 10, 2 );
 function find_a_medical_pro_to_dp( $entry, $form ) {
+
+	$current_date_value = date('m/d/Y');
 
  	$firstName = rgar( $entry, '1' );
 	$lastName = rgar( $entry, '2' );
@@ -525,23 +619,35 @@ function find_a_medical_pro_to_dp( $entry, $form ) {
 	    if (isset($donorDetails->{'record'}->{'field'}[0])) {
 		    $donorDetails = $donorDetails->{'record'}->{'field'}[0]->attributes()->{'value'};
 			$donorId = $donorDetails[0];
-			$flagDetails = saveDPFlag($donorId, 'WSFMED');
-			error_log( 'find_a_medical_pro_to_dp after_submission: ' . print_r( $flagDetails, true ) );
 		
 			if ($iamFlag != ''){
 				$iAMflagDetails = saveDPFlag($donorId, $iamFlag);
 				error_log( 'find_a_medical_pro_to_dp after_submission: ' . print_r( $iAMflagDetails, true ) );
 			}
+
+			if(!isDonorFlagSet($donorId, "WSFMED")){
+				$UDFFirstDate = dp_save_udf_xml( $donorId, 'WFMED_DT', 'D', null, $current_date_value, null);
+				error_log( 'dp_popup_newsletter_to_dp First date: ' . print_r( $UDFFirstDate, true ) );
+			}
+
+			$flagDetails = saveDPFlag($donorId, 'WSFMED');
+			error_log( 'find_a_medical_pro_to_dp after_submission: ' . print_r( $flagDetails, true ) );
 		}
 	} else {
 		foreach($matchingDonors as $donorId){
-			$flagDetails = saveDPFlag($donorId, 'WSFMED');
-			error_log( 'find_a_medical_pro_to_dp after_submission: ' . print_r( $flagDetails, true ) );
 
 			if ($iamFlag != ''){
 				$iAMflagDetails = saveDPFlag($donorId, $iamFlag);
 				error_log( 'find_a_medical_pro_to_dp after_submission: ' . print_r( $iAMflagDetails, true ) );
 			}
+
+			if(!isDonorFlagSet($donorId, "WSFMED")){
+				$UDFFirstDate = dp_save_udf_xml( $donorId, 'WFMED_DT', 'D', null, $current_date_value, null);
+				error_log( 'dp_popup_newsletter_to_dp First date: ' . print_r( $UDFFirstDate, true ) );
+			}
+
+			$flagDetails = saveDPFlag($donorId, 'WSFMED');
+			error_log( 'find_a_medical_pro_to_dp after_submission: ' . print_r( $flagDetails, true ) );
 		}
 	}
 }
@@ -550,6 +656,7 @@ function find_a_medical_pro_to_dp( $entry, $form ) {
 add_action( 'gform_after_submission_12', 'view_video_resources_to_dp', 10, 2 );
 function view_video_resources_to_dp( $entry, $form ) {
 
+	$current_date_value = date('m/d/Y');
  	$firstName = rgar( $entry, '1' );
 	$lastName = rgar( $entry, '2' );
 	$email = rgar( $entry, '3' );
@@ -597,6 +704,12 @@ function view_video_resources_to_dp( $entry, $form ) {
 		if (isset($donorDetails->{'record'}->{'field'}[0])) {
 			$donorDetails = $donorDetails->{'record'}->{'field'}[0]->attributes()->{'value'};
 	        $donorId = $donorDetails[0];
+
+			if(!isDonorFlagSet($donorId, "WSVID")){
+				$UDFFirstDate = dp_save_udf_xml( $donorId, 'WVID_DT', 'D', null, $current_date_value, null);
+				error_log( 'view_video_resources_to_dp First date: ' . print_r( $UDFFirstDate, true ) );
+			}
+
 			$flagDetails = saveDPFlag($donorId, 'WSVID');
 			error_log( 'view_video_resources_to_dp after_submission: ' . print_r( $flagDetails, true ) );
 		
@@ -607,6 +720,12 @@ function view_video_resources_to_dp( $entry, $form ) {
 		}
 	} else {
 		foreach($matchingDonors as $donorId){
+
+			if(!isDonorFlagSet($donorId, "WSVID")){
+				$UDFFirstDate = dp_save_udf_xml( $donorId, 'WVID_DT', 'D', null, $current_date_value, null);
+				error_log( 'view_video_resources_to_dp First date: ' . print_r( $UDFFirstDate, true ) );
+			}
+
 			$flagDetails = saveDPFlag($donorId, 'WSVID');
 			error_log( 'view_video_resources_to_dp after_submission: ' . print_r( $flagDetails, true ) );
 
@@ -654,23 +773,36 @@ function dp_popup_newsletter_to_dp( $entry, $form ) {
     $firstName = '';
     $lastName = rgar( $entry, '1' );
     $email = rgar( $entry, '1' );
+	$current_date_value = date('m/d/Y');
 
     $matchingDonors = handleMatchingDonorByEmail($email, $form['title'], null, null, null, null, null, null, null, null, null,null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 
     if( !count($matchingDonors) ){
         $donorDetails = saveDonor( null, $firstName, $lastName, $email, null, null, null, null, null, null,null, null, null, null, null, 'Y', 'INSU' );
-        error_log( 'dp_newsletter_to_dp after_submission: ' . print_r( $donorDetails, true ) );
+        error_log( 'dp_popup_newsletter_to_dp after_submission: ' . print_r( $donorDetails, true ) );
 
         if (isset($donorDetails->{'record'}->{'field'}[0])) {
             $donorDetails = $donorDetails->{'record'}->{'field'}[0]->attributes()->{'value'};
             $donorId = $donorDetails[0];
-            $flagDetails = saveDPFlag($donorId, 'NLPU');
-            error_log( 'dp_newsletter_to_dp after_submission: ' . print_r( $flagDetails, true ) );
+			
+			if(!isDonorFlagSet($donorId, "NLPU")){
+				$UDFFirstDate = dp_save_udf_xml( $donorId, 'NLP_DT', 'D', null, $current_date_value, null);
+				error_log( 'dp_popup_newsletter_to_dp First date: ' . print_r( $UDFFirstDate, true ) );
+			}
+
+			$flagDetails = saveDPFlag($donorId, 'NLPU');
+            error_log( 'dp_popup_newsletter_to_dp after_submission: ' . print_r( $flagDetails, true ) );
         }
     } else {
         foreach($matchingDonors as $donorId){
-            $flagDetails = saveDPFlag($donorId, 'NLPU');
-            error_log( 'dp_newsletter_to_dp after_submission: ' . print_r( $flagDetails, true ) );
+
+			if(!isDonorFlagSet($donorId, "NLPU")){
+				$UDFFirstDate = dp_save_udf_xml( $donorId, 'NLP_DT', 'D', null, $current_date_value, null);
+				error_log( 'dp_popup_newsletter_to_dp First date: ' . print_r( $UDFFirstDate, true ) );
+			}
+
+			$flagDetails = saveDPFlag($donorId, 'NLPU');
+            error_log( 'dp_popup_newsletter_to_dp after_submission: ' . print_r( $flagDetails, true ) );
         }
     }
 }
@@ -754,6 +886,7 @@ function tick_table_download_to_dp( $entry, $form ) {
 add_action( 'gform_after_submission_15', 'spon_a_lyme_prevention_edu_prog_to_dp', 10, 2 );
 function spon_a_lyme_prevention_edu_prog_to_dp( $entry, $form ) {
 
+	$current_date_value = date('m/d/Y');
  	$firstName = rgar( $entry, '1' );
 	$lastName = rgar( $entry, '11' );
 	$email = rgar( $entry, '3' );
@@ -780,21 +913,45 @@ function spon_a_lyme_prevention_edu_prog_to_dp( $entry, $form ) {
 			$donorId = $donorDetails[0];
 		
 			if ($sponsorship1 != '') {
+
+				if(!isDonorFlagSet($donorId, "SPNRED")){
+					$UDFFirstDate = dp_save_udf_xml( $donorId, 'SPED_DT', 'D', null, $current_date_value, null);
+					error_log( 'spon_a_lyme_prevention_edu_prog_to_dp First date: ' . print_r( $UDFFirstDate, true ) );
+				}
+
 				$flagDetails = saveDPFlag($donorId, 'SPNRED');
 				error_log( 'spon_a_lyme_prevention_edu_prog_to_dp after_submission: ' . print_r( $flagDetails, true ) );
 			}
 
 			if ($sponsorship2 != '') {
+
+				if(!isDonorFlagSet($donorId, "SPNRE")){
+					$UDFFirstDate = dp_save_udf_xml( $donorId, 'SPBE_DT', 'D', null, $current_date_value, null);
+					error_log( 'spon_a_lyme_prevention_edu_prog_to_dp First date: ' . print_r( $UDFFirstDate, true ) );
+				}
+
 				$flagDetails = saveDPFlag($donorId, 'SPNRE');
 				error_log( 'spon_a_lyme_prevention_edu_prog_to_dp after_submission: ' . print_r( $flagDetails, true ) );
 			}
 
 			if ($sponsorship3 != '') {
+
+				if(!isDonorFlagSet($donorId, "SPNRRES")){
+					$UDFFirstDate = dp_save_udf_xml( $donorId, 'SPR_DT', 'D', null, $current_date_value, null);
+					error_log( 'spon_a_lyme_prevention_edu_prog_to_dp First date: ' . print_r( $UDFFirstDate, true ) );
+				}
+
 				$flagDetails = saveDPFlag($donorId, 'SPNRRES');
 				error_log( 'spon_a_lyme_prevention_edu_prog_to_dp after_submission: ' . print_r( $flagDetails, true ) );
 			}
 	
 			if ($sponsorship4 != '') {
+
+				if(!isDonorFlagSet($donorId, "SPNR")){
+					$UDFFirstDate = dp_save_udf_xml( $donorId, 'SPB_DT', 'D', null, $current_date_value, null);
+					error_log( 'spon_a_lyme_prevention_edu_prog_to_dp First date: ' . print_r( $UDFFirstDate, true ) );
+				}
+
 				$flagDetails = saveDPFlag($donorId, 'SPNR');
 				error_log( 'spon_a_lyme_prevention_edu_prog_to_dp after_submission: ' . print_r( $flagDetails, true ) );
 			}
@@ -805,21 +962,45 @@ function spon_a_lyme_prevention_edu_prog_to_dp( $entry, $form ) {
 	} else {
 		foreach($matchingDonors as $donorId){
 			if ($sponsorship1 != '') {
+
+				if(!isDonorFlagSet($donorId, "SPNRED")){
+					$UDFFirstDate = dp_save_udf_xml( $donorId, 'SPED_DT', 'D', null, $current_date_value, null);
+					error_log( 'spon_a_lyme_prevention_edu_prog_to_dp First date: ' . print_r( $UDFFirstDate, true ) );
+				}
+
 				$flagDetails = saveDPFlag($donorId, 'SPNRED');
 				error_log( 'spon_a_lyme_prevention_edu_prog_to_dp after_submission: ' . print_r( $flagDetails, true ) );
 			}
 
 			if ($sponsorship2 != '') {
+
+				if(!isDonorFlagSet($donorId, "SPNRE")){
+					$UDFFirstDate = dp_save_udf_xml( $donorId, 'SPBE_DT', 'D', null, $current_date_value, null);
+					error_log( 'spon_a_lyme_prevention_edu_prog_to_dp First date: ' . print_r( $UDFFirstDate, true ) );
+				}
+
 				$flagDetails = saveDPFlag($donorId, 'SPNRE');
 				error_log( 'spon_a_lyme_prevention_edu_prog_to_dp after_submission: ' . print_r( $flagDetails, true ) );
 			}
 
 			if ($sponsorship3 != '') {
+
+				if(!isDonorFlagSet($donorId, "SPNRRES")){
+					$UDFFirstDate = dp_save_udf_xml( $donorId, 'SPR_DT', 'D', null, $current_date_value, null);
+					error_log( 'spon_a_lyme_prevention_edu_prog_to_dp First date: ' . print_r( $UDFFirstDate, true ) );
+				}
+
 				$flagDetails = saveDPFlag($donorId, 'SPNRRES');
 				error_log( 'spon_a_lyme_prevention_edu_prog_to_dp after_submission: ' . print_r( $flagDetails, true ) );
 			}
 	
 			if ($sponsorship4 != '') {
+
+				if(!isDonorFlagSet($donorId, "SPNR")){
+					$UDFFirstDate = dp_save_udf_xml( $donorId, 'SPB_DT', 'D', null, $current_date_value, null);
+					error_log( 'spon_a_lyme_prevention_edu_prog_to_dp First date: ' . print_r( $UDFFirstDate, true ) );
+				}
+
 				$flagDetails = saveDPFlag($donorId, 'SPNR');
 				error_log( 'spon_a_lyme_prevention_edu_prog_to_dp after_submission: ' . print_r( $flagDetails, true ) );
 			}
@@ -954,6 +1135,7 @@ function spin_the_wheel_form_to_dp( $entry, $form ) {
 add_action( 'gform_after_submission_21', 'survey_landing_page_to_dp', 10, 2 );
 function survey_landing_page_to_dp( $entry, $form ) {
 
+	$current_date_value = date('m/d/Y');
  	$firstName = rgar( $entry, '1' );
 	$lastName = rgar( $entry, '2' );
 	$email = rgar( $entry, '24' );
@@ -1009,66 +1191,75 @@ function survey_landing_page_to_dp( $entry, $form ) {
 		    $donorDetails = $donorDetails->{'record'}->{'field'}[0]->attributes()->{'value'};
 			$donorId = $donorDetails[0];
 			
+			if(!isDonorFlagSet($donorId, "WE")){
+				$UDFFirstDate = dp_save_udf_xml( $donorId, 'WE_DT', 'D', null, $current_date_value, null);
+				error_log( 'survey_landing_page_to_dp First date: ' . print_r( $UDFFirstDate, true ) );
+			}
 
 			$flagDetails = saveDPFlag($donorId, 'WE');
-			error_log( 'digital_education_form_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
+			error_log( 'survey_landing_page_to_dp after_submission: ' . print_r( $flagDetails, true ) );
 		
 			if ($iamFlag != ''){
 				$iAMflagDetails = saveDPFlag($donorId, $iamFlag);
-				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $iAMflagDetails, true ) );
+				error_log( 'survey_landing_page_to_dp after_submission: ' . print_r( $iAMflagDetails, true ) );
 			}
 
 			if ($interested1 != ''){
 				$interestedFlagDetails = saveDPFlag($donorId, 'INED');
-				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $interestedFlagDetails, true ) );
+				error_log( 'survey_landing_page_to_dp after_submission: ' . print_r( $interestedFlagDetails, true ) );
 			}
 			if ($interested2 != ''){
 				$interestedFlagDetails = saveDPFlag($donorId, 'INFR');
-				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $interestedFlagDetails, true ) );
+				error_log( 'survey_landing_page_to_dp after_submission: ' . print_r( $interestedFlagDetails, true ) );
 			}
 			if ($interested3 != ''){
 				$interestedFlagDetails = saveDPFlag($donorId, 'INPS');
-				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $interestedFlagDetails, true ) );
+				error_log( 'survey_landing_page_to_dp after_submission: ' . print_r( $interestedFlagDetails, true ) );
 			}
 			if ($interested4 != ''){
 				$interestedFlagDetails = saveDPFlag($donorId, 'INEV');
-				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $interestedFlagDetails, true ) );
+				error_log( 'survey_landing_page_to_dp after_submission: ' . print_r( $interestedFlagDetails, true ) );
 			}
 			if ($interested5 != ''){
 				$interestedFlagDetails = saveDPFlag($donorId, 'INRN');
-				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $interestedFlagDetails, true ) );
+				error_log( 'survey_landing_page_to_dp after_submission: ' . print_r( $interestedFlagDetails, true ) );
 			}
 		}
 	} else {
 		foreach($matchingDonors as $donorId){
 
+			if(!isDonorFlagSet($donorId, "WE")){
+				$UDFFirstDate = dp_save_udf_xml( $donorId, 'WE_DT', 'D', null, $current_date_value, null);
+				error_log( 'survey_landing_page_to_dp First date: ' . print_r( $UDFFirstDate, true ) );
+			}
+
 			$flagDetails = saveDPFlag($donorId, 'WE');
-			error_log( 'digital_education_form_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
+			error_log( 'survey_landing_page_to_dp after_submission: ' . print_r( $flagDetails, true ) );
 
 			if ($iamFlag != ''){
 				$iAMflagDetails = saveDPFlag($donorId, $iamFlag);
-				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $iAMflagDetails, true ) );
+				error_log( 'survey_landing_page_to_dp after_submission: ' . print_r( $iAMflagDetails, true ) );
 			}
 
 			if ($interested1 != ''){
 				$interestedFlagDetails = saveDPFlag($donorId, 'INED');
-				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $interestedFlagDetails, true ) );
+				error_log( 'survey_landing_page_to_dp after_submission: ' . print_r( $interestedFlagDetails, true ) );
 			}
 			if ($interested2 != ''){
 				$interestedFlagDetails = saveDPFlag($donorId, 'INFR');
-				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $interestedFlagDetails, true ) );
+				error_log( 'survey_landing_page_to_dp after_submission: ' . print_r( $interestedFlagDetails, true ) );
 			}
 			if ($interested3 != ''){
 				$interestedFlagDetails = saveDPFlag($donorId, 'INPS');
-				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $interestedFlagDetails, true ) );
+				error_log( 'survey_landing_page_to_dp after_submission: ' . print_r( $interestedFlagDetails, true ) );
 			}
 			if ($interested4 != ''){
 				$interestedFlagDetails = saveDPFlag($donorId, 'INEV');
-				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $interestedFlagDetails, true ) );
+				error_log( 'survey_landing_page_to_dp after_submission: ' . print_r( $interestedFlagDetails, true ) );
 			}
 			if ($interested5 != ''){
 				$interestedFlagDetails = saveDPFlag($donorId, 'INRN');
-				error_log( 'digital_education_form_to_dp_iam after_submission: ' . print_r( $interestedFlagDetails, true ) );
+				error_log( 'survey_landing_page_to_dp after_submission: ' . print_r( $interestedFlagDetails, true ) );
 			}
 		}
 	}
@@ -1078,7 +1269,9 @@ function survey_landing_page_to_dp( $entry, $form ) {
 add_action( 'gform_after_submission_26', 'registration_form_professional_education_to_dp', 10, 2 );
 function registration_form_professional_education_to_dp( $entry, $form ) {
 
- 	$firstName = rgar( $entry, '2' );
+	$current_date_value = date('m/d/Y');
+ 	
+	$firstName = rgar( $entry, '2' );
 	$lastName = rgar( $entry, '3' );
 	$email = rgar( $entry, '12' );
 	$homePhone = '';
@@ -1132,10 +1325,6 @@ function registration_form_professional_education_to_dp( $entry, $form ) {
 	    if (isset($donorDetails->{'record'}->{'field'}[0])) {
 		    $donorDetails = $donorDetails->{'record'}->{'field'}[0]->attributes()->{'value'};
 			$donorId = $donorDetails[0];
-			
-
-			$flagDetails = saveDPFlag($donorId, 'CMEPEDIATRIC');
-			error_log( 'registration_form_professional_education_to_dp after_submission: ' . print_r( $flagDetails, true ) );
 		
 			if ($iamFlag != ''){
 				$iAMflagDetails = saveDPFlag($donorId, $iamFlag);
@@ -1166,12 +1355,17 @@ function registration_form_professional_education_to_dp( $entry, $form ) {
 				$WEBUDFDetails = dp_save_udf_xml( $donorId, 'TPYP', 'C', $practiceType, null, null);
 				error_log( 'registration_form_professional_education_to_dp after_submission: ' . print_r( $WEBUDFDetails, true ) );
 			}
-		}
-	} else {
-		foreach($matchingDonors as $donorId){
+
+			if(!isDonorFlagSet($donorId, "CMEPEDIATRIC")){
+				$UDFFirstDate = dp_save_udf_xml( $donorId, 'CMEPED_DT', 'D', null, $current_date_value, null);
+				error_log( 'dp_popup_newsletter_to_dp First date: ' . print_r( $UDFFirstDate, true ) );
+			}
 
 			$flagDetails = saveDPFlag($donorId, 'CMEPEDIATRIC');
 			error_log( 'registration_form_professional_education_to_dp after_submission: ' . print_r( $flagDetails, true ) );
+		}
+	} else {
+		foreach($matchingDonors as $donorId){
 
 			if ($iamFlag != ''){
 				$iAMflagDetails = saveDPFlag($donorId, $iamFlag);
@@ -1202,6 +1396,14 @@ function registration_form_professional_education_to_dp( $entry, $form ) {
 				$WEBUDFDetails = dp_save_udf_xml( $donorId, 'TPYP', 'C', $practiceType, null, null);
 				error_log( 'registration_form_professional_education_to_dp after_submission: ' . print_r( $WEBUDFDetails, true ) );
 			}
+
+			if(!isDonorFlagSet($donorId, "CMEPEDIATRIC")){
+				$UDFFirstDate = dp_save_udf_xml( $donorId, 'CMEPED_DT', 'D', null, $current_date_value, null);
+				error_log( 'dp_popup_newsletter_to_dp First date: ' . print_r( $UDFFirstDate, true ) );
+			}
+
+			$flagDetails = saveDPFlag($donorId, 'CMEPEDIATRIC');
+			error_log( 'registration_form_professional_education_to_dp after_submission: ' . print_r( $flagDetails, true ) );
 		}
 	}
 }
@@ -1210,6 +1412,7 @@ function registration_form_professional_education_to_dp( $entry, $form ) {
 add_action( 'gform_after_submission_28', 'physician_referral_directory_landing_page_to_dp', 10, 2 );
 function physician_referral_directory_landing_page_to_dp( $entry, $form ) {
 
+	$current_date_value = date('m/d/Y');
  	$firstName = rgar( $entry, '51' );
 	$lastName = rgar( $entry, '52' );
 	$email = rgar( $entry, '18' );
@@ -1234,6 +1437,11 @@ function physician_referral_directory_landing_page_to_dp( $entry, $form ) {
 	    if (isset($donorDetails->{'record'}->{'field'}[0])) {
 		    $donorDetails = $donorDetails->{'record'}->{'field'}[0]->attributes()->{'value'};
 			$donorId = $donorDetails[0];
+
+			if(!isDonorFlagSet($donorId, "DRAPPL")){
+				$UDFFirstDate = dp_save_udf_xml( $donorId, 'DRAP_DT', 'D', null, $current_date_value, null);
+				error_log( 'physician_referral_directory_landing_page_to_dp First date: ' . print_r( $UDFFirstDate, true ) );
+			}
 			
 			$flagDetails = saveDPFlag($donorId, 'DRAPPL');
 			error_log( 'physician_referral_directory_landing_page_to_dp after_submission: ' . print_r( $flagDetails, true ) );
@@ -1268,6 +1476,11 @@ function physician_referral_directory_landing_page_to_dp( $entry, $form ) {
 		}
 	} else {
 		foreach($matchingDonors as $donorId){
+
+			if(!isDonorFlagSet($donorId, "DRAPPL")){
+				$UDFFirstDate = dp_save_udf_xml( $donorId, 'DRAP_DT', 'D', null, $current_date_value, null);
+				error_log( 'physician_referral_directory_landing_page_to_dp First date: ' . print_r( $UDFFirstDate, true ) );
+			}
 
 			$flagDetails = saveDPFlag($donorId, 'DRAPPL');
 			error_log( 'digital_education_form_to_dp_flag after_submission: ' . print_r( $flagDetails, true ) );
@@ -1318,7 +1531,7 @@ function apply_to_be_a_mentor_to_dp( $entry, $form ) {
     $state = rgar( $entry, '40' );
     $postal = rgar( $entry, '7' );
 	$homePhone = rgar( $entry, '14' );
-	$dob_date_value = null;//rgar( $entry, '62' );
+	$dob_date_value = rgar( $entry, '62' );
     $iam = rgar( $entry, '43' );
     $iamFlag = '';
     
@@ -1384,14 +1597,6 @@ function apply_to_be_a_mentor_to_dp( $entry, $form ) {
             
             $flagDetails = saveDPFlag($donorId, 'MENAP');
             error_log( 'apply_to_be_a_mentor_to_dp after_submission: ' . print_r( $flagDetails, true ) );
-
-			if (is_wpe_gla_live()) {
-				$UDFDetails = dp_save_udf_xml( $donorId, 'DOB', 'D', null, $dob_date_value, null);
-				error_log( 'apply_to_be_a_mentor_to_dp after_submission: ' . print_r( $UDFDetails, true ) );
-		    }else{
-				$UDFDetails = dp_save_udf_xml( $donorId, 'BIRTHDATE', 'D', null, $dob_date_value, null);
-				error_log( 'apply_to_be_a_mentor_to_dp after_submission: ' . print_r( $UDFDetails, true ) );
-			}
         }
     }
 }
@@ -1411,7 +1616,7 @@ function request_a_peer_mentor_to_dp( $entry, $form ) {
     $state = rgar( $entry, '41' );
     $postal = rgar( $entry, '7' );
 	$homePhone = rgar( $entry, '14' );
-	$dob_date_value = null;//rgar( $entry, '61' );
+	$dob_date_value = rgar( $entry, '61' );
     $iam = rgar( $entry, '24' );
     $iamFlag = '';
     
@@ -1477,14 +1682,6 @@ function request_a_peer_mentor_to_dp( $entry, $form ) {
             
             $flagDetails = saveDPFlag($donorId, 'PRAP');
             error_log( 'request_a_peer_mentor_to_dp after_submission: ' . print_r( $flagDetails, true ) );
-
-			if (is_wpe_gla_live()) {
-				$UDFDetails = dp_save_udf_xml( $donorId, 'DOB', 'D', null, $dob_date_value, null);
-				error_log( 'apply_to_be_a_mentor_to_dp after_submission: ' . print_r( $UDFDetails, true ) );
-		    }else{
-				$UDFDetails = dp_save_udf_xml( $donorId, 'BIRTHDATE', 'D', null, $dob_date_value, null);
-				error_log( 'apply_to_be_a_mentor_to_dp after_submission: ' . print_r( $UDFDetails, true ) );
-			}
         }
     }
 }
@@ -1652,7 +1849,7 @@ function handleMatchingDonorByEmail($email, $formTitle, $title = null, $firstNam
 		try {
             $matchingDonorRecords = simplexml_load_file($request);
         } catch (Exception $e) {
-	        error_log( 'nyc_marathon_form_to_dp_flag error after_submission: ' . print_r( $e, true ) );
+	        error_log( 'handleMatchingDonorByEmail error after_submission: ' . print_r( $e, true ) );
         }
 
 		if(isset($matchingDonorRecords->record)){
@@ -1708,6 +1905,30 @@ function handleMatchingDonorByEmail($email, $formTitle, $title = null, $firstNam
     return $matchingDonor;
 }
 
+function isDonorFlagSet($donorId, $flagCode)
+{
+        $request = DP_API_KEY_URL . DP_API_KEY;
+        $request .= "&action=SELECT * FROM DPFLAGS WHERE DONOR_ID = ";
+        $request .= "$donorId";// @donorId
+		$request .= "AND FLAG = ";
+		$request .= "'$flagCode'";// @$flagCode
+        $request = urlencode($request);
+
+		$matchingDonorRecords;
+        
+		try {
+            $matchingDonorRecords = simplexml_load_file($request);
+        } catch (Exception $e) {
+	        error_log( 'isDonorFlagSet error after_submission: ' . print_r( $e, true ) );
+        }
+
+		if(isset($matchingDonorRecords->record)){
+			return true;
+		}
+    
+    return false;
+}
+
 function dp_clean($string)
 {
     $replaceArr = array(
@@ -1733,4 +1954,17 @@ function is_wpe_gla_live(){
 	} else{
 		return false;
 	}
+}
+
+// Ambassador Form Backend DOB Combined for Export
+add_filter( 'gform_export_field_value', 'set_gla_custom_export_values', 10, 4 );
+function set_gla_custom_export_values( $value, $form_id, $field_id, $entry ) {
+    
+	if($form_id == 18 ){
+		error_log(print_r($entry,true));
+		if( $field_id == 45) {
+			$value = $entry[4].'/'.$entry[3].'/'.$entry[5];
+		}
+	}
+    return $value;
 }

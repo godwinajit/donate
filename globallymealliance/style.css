@@ -2300,7 +2300,7 @@ figure.event-left img{width:100%}
 
 .content-form ul li.gfield_error input{border-color:red}
 
-.container-section .validation_error,.gfield_description{display:none;}
+/*.container-section .validation_error,.gfield_description{display:none;}*/
 
 .content-form ul li.custom-textarea {position: relative; overflow: hidden;}
 
@@ -8603,13 +8603,19 @@ ul.grid-sm {
 }
 @media only screen and (min-width: 1024px) {
   .home-banner .section-intro .text-box {
-    max-width: 358px;
+    max-width: 600px;
   }
 }
 @media only screen and (min-width: 1200px) {
   .home-banner .section-intro .text-box {
     padding-right: 0;
-    /*max-width: 400px;*/
+    max-width: 500px;
+  }
+}
+@media only screen and (min-width: 1400px) {
+  .home-banner .section-intro .text-box {
+    padding-right: 0;
+    max-width: 600px;
   }
 }
 
@@ -10064,4 +10070,40 @@ left: 0px;
 #gform_wrapper_11 ul.gfield_checkbox li label
 {
 text-indent: -11px;
+}
+
+.response-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1050;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: block;
+    overflow-x: hidden;
+    background-color: #191919cc;
+    overflow-y: auto;
+}
+
+.modal-centered{
+	color: #001b50; 
+	margin: 200px auto; 
+	position: relative; 
+	width: 50%; 
+	padding: 40px; 
+	background: white; 
+	border-radius: 5px; 
+	text-align: center;
+}
+button#confirmation-button-close {
+    position: relative;
+    z-index: 1200;
+    display: block;
+    border: 2px solid #00c0e8;
+    border-radius: 4px;
+    margin: 20px auto;
+    color: #00c0e8;
+    padding: 10px 30px;
+    text-transform: uppercase;
 }
