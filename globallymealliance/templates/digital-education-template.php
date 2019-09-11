@@ -8,27 +8,13 @@ $post_slug = $post->post_name;
 ?>
             <main class="mains">
                 <div class="inner-pages common-content-page">
-                    <?php 
-
-                        if (has_post_thumbnail()) {
-
-                            $banneurl = wp_get_attachment_url( get_post_thumbnail_id($post->ID) );  
-
-                        }else {
-
-                            $banneurl = get_template_directory_uri().'/images/template-banner.jpg';
-
-                        }
-
-                    ?>
-                    <div class="inner-banner" style="background-image:url(<?php echo $banneurl; ?>)"></div>
                     <div class="container-section">
                         <div class="wrapper container-fluid">
                             <div class="row center-xs">
                                 <div class="col-xs-12 col-sm-11 col-md-10">
                                     <div class="boards">
-                                        <div class="content-left content-section-height">
                                             <h1><?php the_title(); ?></h1>
+                                            <div class="download-tab-description">
                                             <?php
 
                                                 /* translators: %s: Name of current post */
@@ -56,67 +42,71 @@ $post_slug = $post->post_name;
                                                 
 
                                             ?>
-											<?php if (have_rows('download_sections')) :
-                                while (have_rows('download_sections')) : the_row(); ?>
-                                <h2 class="sm-h2-header" style="margin-left: 0;"><?php the_sub_field('download_section_title'); ?></h2>		
-								<?php the_sub_field('download_section_description'); ?>
-                                            <?php
-                                    if( have_rows('download_free_resources') ): ?>
-										<div class="list-style-3">
-		                                <ul class="download-list interactive-curriculum-ul">
-									<?php
-                                        while ( have_rows('download_free_resources') ) : the_row();
-                                            ?>
-                                                <li>
-		                                                    <img src="<?php the_sub_field('download_resource_image');?>" alt="" width="150" height="150" />
-															
-			                                            	<div class="holder">
-						                                    	<strong class="title"><?php the_sub_field('download_resource_title');?></strong>
-								                            	<?php the_sub_field('download_resource_description');?>
-															</div>
-															<?php if (get_sub_field('download_gated')): ?>
-																<?php if( get_sub_field('download_resource_link') ): ?>
-											            		<?php if(!isset($_COOKIE[$post_slug])) { ?>
-																    <a data-val="<?php the_sub_field('download_resource_link');?>" class="open-lightbox link-download-bt" href="#popup-download">Download</a>
-															    <?php } else { ?>
-																    <a class="open-lightbox link-download" target="_blank" href="<?php the_sub_field('download_resource_link');?>">Download</a>
-																<?php } ?>
-																<?php endif; ?>
-															<?php else:?>
-																<a class="link-download-bt" href="<?php the_sub_field('download_resource_path');?>" target="_blank" rel="noopener">Get Now</a>
-															<?php endif; ?>
+                                            </div>
 
+                                            <?php if (have_rows('download_sections')) : ?>
+                                                <div class="download-tabset-holder">
+                                                    <ul class="download-tabset">
+                                                    <?php while (have_rows('download_sections')) : the_row(); ?>
+                                                        <li><a href="#tab-<?php echo get_row_index(); ?>"><?php the_sub_field('download_section_title'); ?></a></li>
+                                                    <?php endwhile; ?>
+                                                    </ul>
+                                                </div>
+                                            <?php endif; ?>
 
-                                                </li>
+            							    <?php if (have_rows('download_sections')) :
+                                              while (have_rows('download_sections')) : the_row(); ?>
+                                              <div class="download-tab" id="tab-<?php echo get_row_index(); ?>">
+                                                <div class="download-tab-description">
+            								        <?php the_sub_field('download_section_description'); ?>
+                                                </div>
                                                 <?php
-                                        endwhile;
-										?>
-			                            </ul>
-										</div>
-										<?php
-                                    else :
-                                        
-                                    endif;
-                                        
-                                ?>
-                            <?php endwhile;
-                    else :
-                        echo "<p>Unfortunately, there are no downloads available at this time.</p>";
-                    endif; ?>
+                                                    if( have_rows('download_free_resources') ): ?>
+            		                                <ul class="download-grid interactive-curriculum-ul">
+            									<?php
+                                                    while ( have_rows('download_free_resources') ) : the_row();
+                                                        ?>
+                                                            <li>
+            		                                                    <div class="download-info">
+                                                                            <div class="download-pic">
+                                                                                <img src="<?php the_sub_field('download_resource_image');?>" alt="" height="235" />
+                                                                            </div>
+                			                                                <div class="holder">
+                						                                        <strong class="title"><?php the_sub_field('download_resource_title');?></strong>
+                								                                <?php the_sub_field('download_resource_description');?>
+                															</div>
+                                                                        </div>
+                                                                        <div class="download-actions">
+                															<?php if (get_sub_field('download_gated')): ?>
+                																<?php if( get_sub_field('download_resource_link') ): ?>
+                											            		<?php if(!isset($_COOKIE[$post_slug])) { ?>
+                																    <a data-val="<?php the_sub_field('download_resource_link');?>" class="open-lightbox link-download-bt" href="#popup-download">Download</a>
+                															    <?php } else { ?>
+                																    <a class="open-lightbox link-download" target="_blank" href="<?php the_sub_field('download_resource_link');?>">Download</a>
+                																<?php } ?>
+                																<?php endif; ?>
+                															<?php else:?>
+                																<a class="link-download-bt" href="<?php the_sub_field('download_resource_path');?>" target="_blank" rel="noopener">Get Now</a>
+                															<?php endif; ?>
+                                                                        </div>
 
+
+                                                            </li>
+                                                            <?php
+                                                    endwhile;
+            										?>
+            			                            </ul>
+            										<?php
+                                                else :
+                                                    
+                                                endif;
+                                            ?>
                                         </div>
-                                        <!-- aside section -->
-                                        <div class="aside-right content-section-height">
+                                        <?php endwhile;
+                                        else :
+                                            echo "<p>Unfortunately, there are no downloads available at this time.</p>";
+                                        endif; ?>
 
-                                            <?php dynamic_sidebar('blogvideo-sidebar'); ?>
-
-                                            <?php dynamic_sidebar('aboutgrant-sidebar'); ?>
-
-                                            <?php dynamic_sidebar('bucket-sidebar'); ?>
-
-                                            <?php dynamic_sidebar('ga-sidebar'); ?>
-
-                                        </div>
                                         <section class="posts-panel">
                                             <h3>Free Lyme Disease Prevention Student Curriculum and Teachers Workbooks</h3>
                                             <ul class="posts-grid pics">

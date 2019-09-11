@@ -14,6 +14,8 @@ $post_slug = $post->post_name;
                     <div class="col-xs-12 col-sm-11 col-md-10">
                         <div class="boards">
                             <h1><?php the_title(); ?></h1>
+
+                            <div class="download-tab-description">
                             <?php
 
                                 /* translators: %s: Name of current post */
@@ -41,31 +43,49 @@ $post_slug = $post->post_name;
                                 
 
                             ?>
+                            </div>
+
+                            <?php if (have_rows('download_sections')) : ?>
+                                <div class="download-tabset-holder">
+                                    <ul class="download-tabset">
+                                    <?php while (have_rows('download_sections')) : the_row(); ?>
+                                        <li><a href="#tab-<?php echo get_row_index(); ?>"><?php the_sub_field('download_section_title'); ?></a></li>
+                                    <?php endwhile; ?>
+                                    </ul>
+                                </div>
+                            <?php endif; ?>
+
                             <?php if (have_rows('download_sections')) :
                                 while (have_rows('download_sections')) : the_row(); ?>
-                            <section class="panel-2">
-                                <h2 class="sm-h2-header"><?php the_sub_field('download_section_title'); ?></h2>								
-                                <ul class="download-list">
-								<li><?php the_sub_field('download_section_description'); ?></li>
+                            <section class="download-tab" id="tab-<?php echo get_row_index(); ?>">
+                                <div class="download-tab-description">
+                                    <?php the_sub_field('download_section_description'); ?>
+                                </div>
+                                <ul class="download-grid">
                                             <?php
                                     if( have_rows('download_free_resources') ):
                                         while ( have_rows('download_free_resources') ) : the_row();
                                             ?>
                                                 <li>
-		                                                    <img src="<?php the_sub_field('download_resource_image');?>" alt="" width="150" height="150" />
-															
-			                                            	<div class="holder">
-						                                    	<strong class="title"><?php the_sub_field('download_resource_title');?></strong>
-								                            	<?php the_sub_field('download_resource_description');?>
-															</div>
+                                                            <div class="download-info">
+                                                                <div class="download-pic">
+    		                                                      <img src="<?php the_sub_field('download_resource_image');?>" alt="" height="235" />
+    															</div>
+    			                                            	<div class="holder">
+    						                                    	<strong class="title"><?php the_sub_field('download_resource_title');?></strong>
+    								                            	<?php the_sub_field('download_resource_description');?>
+    															</div>
+                                                            </div>
+                                                            <div class="download-actions">
 											                <?php if( get_sub_field('download_resource_link') ): ?>
 											            	<?php 
 												            if(!isset($_COOKIE[$post_slug])) { ?>
 													            <a data-val="<?php the_sub_field('download_resource_link');?>" class="open-lightbox link-download-bt" href="#popup-download">Download</a>
 														    <?php } else { ?>
 															    <a class="open-lightbox link-download" target="_blank" href="<?php the_sub_field('download_resource_link');?>">Download</a>
-	                                                    <?php } ?>
-														<?php endif; ?>
+	                                                        <?php } ?>
+														    <?php endif; ?>
+                                                            </div>
                                                 </li>
                                                 <?php
                                         endwhile;
@@ -77,7 +97,7 @@ $post_slug = $post->post_name;
                                 ?>
                             </ul>
                         </section>
-                            <?php endwhile;
+                        <?php endwhile;
                     else :
                         echo "<p>Unfortunately, there are no downloads available at this time.</p>";
                     endif; ?>

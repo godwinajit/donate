@@ -1,5 +1,5 @@
 function initTabs() {
-    jQuery('.map-section .tabset').tabset();
+    jQuery('.map-section .tabset, .download-tabset').tabset();
     initOpenClose();
     initSelectAllOption();
 }
