@@ -482,7 +482,7 @@ class DonorPerfect {
 		}
 		
 		// Thank-You Letter
-		$ty_letter_no = "01";
+		$ty_letter_no = "GEN";
 		$amountNumber = number_format ( $amount, 2 );
 		if (bccomp ( $amountNumber, 250 ) == - 1)
 			$ty_letter_no = "NOLTR";
