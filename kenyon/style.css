@@ -162,9 +162,10 @@ a img.aligncenter {
     margin-bottom: 8px;
     width: 100%;
 }
-.select-area {
+/*fix double select displaying*/
+/*.select-area {
     width: 100% !important;
-}
+}*/
 .payment .cart_totals .btn {
 	width:100%;
 }
@@ -483,3 +484,234 @@ display:none;
 }
 .main-image > img {z-index:99;}
 /*To Include the play icon over the image in product -- End--*/
+
+/* sticky nav update */
+.sticky-lg em {
+	font-style: inherit;
+}
+@media (max-width: 767px) {
+	.sticky-lg svg {
+		width: 13px;
+		height: 13px;
+		vertical-align: top;
+	}
+	.sticky-lg path {
+		fill: rgba(179, 182, 185, 0.85);
+	}
+	.sticky-lg ul li:first-child path {
+		fill: #ffffff;
+	}
+}
+@media (min-width: 768px) {
+	.sticky-lg ul {
+		width: 99px;
+	}
+	.sticky-lg ul li {
+		float: left;
+		width: 50%;
+		height: auto;
+		margin-top: 0;
+		margin-bottom: 8px;
+		box-shadow: none;
+	}
+	.sticky-lg ul li:first-child {
+		width: 100%;
+		box-shadow: 0 2px 16px 0 rgba(0,0,0,.5);
+	}
+	.sticky-lg ul li span {
+		margin-bottom: 2px;
+	}
+	.sticky-lg ul li a {
+		height: 50px;
+		padding: 9px 4px 2px;
+	}
+	.sticky-lg ul li:first-child a {
+		height: 100px;
+		color: #232427;
+		border-left: 6px solid #3b8fef;
+		background: #fff;
+		padding-top: 20px;
+		font-size: 14px;
+		font-weight: 600;
+	}
+	.sticky-lg ul li:first-child span {
+		animation: animationIcon linear 1.5s;
+		animation-iteration-count: infinite;
+		transform-origin: 50% 50%;
+		-webkit-animation: animationIcon linear 1.5s;
+		-webkit-animation-iteration-count: infinite;
+		-webkit-transform-origin: 50% 50%;
+	}
+	.sticky-lg ul li:first-child em {
+		display: block;
+		animation: animationText linear 1.5s;
+		animation-iteration-count: infinite;
+		transform-origin: 50% 50%;
+		-webkit-animation: animationText linear 1.5s;
+		-webkit-animation-iteration-count: infinite;
+		-webkit-transform-origin: 50% 50%;
+	}
+	.sticky-lg ul li a:hover,
+	.sticky-lg ul li:first-child a:hover {
+		color: #fff;
+		background: #3b8fef;
+	}
+	.sticky-lg svg {
+		width: 21px;
+		height: 21px;
+	}
+	.sticky-lg .icon-offer {
+		width: 40px;
+		height: 40px;
+	}
+	.sticky-lg path {
+		fill: #d8d8d8;
+	}
+	.sticky-lg .path-offer {
+		fill: #3b8fef;
+	}
+	.sticky-lg a:hover path,
+	.sticky-lg a:hover .path-offer {
+		fill: #ffffff;
+	}
+}
+@-webkit-keyframes animationText {
+	20% {
+		-webkit-transform: translate(0, 0);
+	}
+	40% {
+		-webkit-transform: translate(0, 3px);
+	}
+	60% {
+		-webkit-transform: translate(0, 0);
+	}
+}
+
+@keyframes animationText {
+	20% {
+		-webkit-transform: translate(0, 0);
+	}
+	40% {
+		-webkit-transform: translate(0, 3px);
+	}
+	60% {
+		-webkit-transform: translate(0, 0);
+	}
+}
+
+@-webkit-keyframes animationIcon {
+	20% {
+		-webkit-transform: rotate(0deg);
+	}
+	40% {
+		-webkit-transform: rotate(-33deg);
+	}
+	60% {
+		-webkit-transform: rotate(18deg);
+	}
+	80% {
+		-webkit-transform: rotate(0deg);
+	}
+}
+
+@keyframes animationIcon {
+	20% {
+		transform: rotate(0deg);
+	}
+	40% {
+		transform: rotate(-33deg);
+	}
+	60% {
+		transform: rotate(18deg);
+	}
+	80% {
+		transform: rotate(0deg);
+	}
+}
+
+/* hide date on the blog and recipes pages */
+.post-article .meta time {display: none;}
+
+/* fix icons */
+@media (min-width: 767px) {
+	.lp-footer .lp-f-social ul li {
+		padding-left: 3px;
+		padding-right: 3px;
+	}
+	.lp-footer .lp-f-contact {
+		padding-top: 3px;
+	}
+	.lp-footer .lp-f-contact ul li {
+		padding-right: 0;
+	}
+}
+
+@media (max-width: 1024px) and (min-width: 768px) {
+	.lp-footer .lp-f-contact {
+		padding-top: 20px;
+	}
+}
+
+/* fix video */
+.frame-holder {
+	position: relative;
+	padding-top: 57.1429%;
+	height: 0;
+}
+.frame-holder iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.pro-image-slider .slick-prev.slick-arrow,
+.pro-image-slider .slick-next.slick-arrow {
+	margin-top: -14px;
+}
+
+/* fix widget icon */
+#fc_frame, #fc_frame.fc-widget-normal {
+	bottom: 94px !important;
+}
+
+/* social links in footer */
+.social-media-links a:hover,
+.lp-f-social a:hover {
+	text-decoration: none;
+}
+
+.social-media-links i,
+.lp-f-social i {
+	color: #b3b6b9;
+	font-size: 26px;
+	line-height: 1;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.social-media-links i {
+	margin-right: 4px;
+}
+
+.link-facebook:hover i {
+	color: #2f609c;
+}
+.link-google:hover i {
+	color: #d24231;
+}
+.link-linkedin:hover i {
+	color: #0074a1;
+}
+.link-instagram:hover i {
+	color: #1e4e8a;
+}
+.link-pinterest:hover i {
+	color: #cd201f;
+}
+.link-twitter:hover i {
+	color: #55acee;
+}
+.link-youtube:hover i {
+	color: #cd201f;
+}

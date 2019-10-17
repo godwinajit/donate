@@ -7,18 +7,11 @@
  * @version     3.6.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-    exit;
-}
+defined( 'ABSPATH' ) || exit;
 
-global $current_user;
+$page_title = ( 'billing' === $load_address ) ? __( 'Billing address', 'woocommerce' ) : __( 'Shipping address', 'woocommerce' );
 
-$page_title = ( $load_address === 'billing' ) ? __( 'Billing Address', 'woocommerce' ) : __( 'Shipping Address', 'woocommerce' );
-
-get_currentuserinfo();
-?>
-
-<?php wc_print_notices(); ?>
+do_action( 'woocommerce_before_edit_account_address_form' ); ?>
 
 <?php if ( ! $load_address ) : ?>
 
@@ -28,7 +21,7 @@ get_currentuserinfo();
 
 	<form method="post">
 
-		<h3><?php echo apply_filters( 'woocommerce_my_account_edit_address_title', $page_title ); ?></h3>
+		<h3><?php echo apply_filters( 'woocommerce_my_account_edit_address_title', $page_title, $load_address ); ?></h3>
 		<div class="col2-set">
             <div class="col-1">
             <?php
@@ -39,7 +32,7 @@ get_currentuserinfo();
             	print '</div><div class="col-2">';
             ?>
     
-                <?php woocommerce_form_field_modified( $key, $field, ! empty( $_POST[ $key ] ) ? wc_clean( $_POST[ $key ] ) : $field['value'] ); ?>
+                <?php woocommerce_form_field( $key, $field, wc_get_post_data_by_key( $key, $field['value'] ) ); ?>
     
             <?php 
 			$count++;
@@ -47,7 +40,7 @@ get_currentuserinfo();
     
             <p>
                 <input type="submit" class="btn btn-default" name="save_address" value="<?php _e( 'Save Address', 'woocommerce' ); ?>" />
-                <?php wp_nonce_field( 'woocommerce-edit_address' ); ?>
+                <?php wp_nonce_field( 'woocommerce-edit_address', 'woocommerce-edit-address-nonce' ); ?>
                 <input type="hidden" name="action" value="edit_address" />
             </p>
             </div>

@@ -31,6 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 
 <div class="pro-image-slider">
+<?php  get_template_part('blocks/shop/product-video'); ?>
             <?php
     global $product;
 
@@ -43,8 +44,6 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
     }
 ?>
-
-<?php  get_template_part('blocks/shop/product-video'); ?>
 </div>
 <script src="//cdn.jsdelivr.net/jquery.slick/1.5.7/slick.min.js"></script>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/jquery.slick/1.5.7/slick.css">

@@ -65,11 +65,26 @@ var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(glc
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 	<div id="wrapper">
-				<div class="sticky-menu">
+				<div class="sticky-menu sticky-lg">
 			<ul>
-				<li><a onclick="openNav()" href="javascript:void(0)"><span><img src="/wp-content/uploads/2018/05/offer.svg"></span>Offers</a></li>
-				<li><a href="/about/"><span><img src="/wp-content/uploads/2018/05/star.svg"></span>Why us?</a></li>
-				<li><a href="tel:(860)664-4906"><span><img src="/wp-content/uploads/2018/05/phone.svg"></span>Call Us</a></li>
+				<li><a onclick="openNav()" href="javascript:void(0)"><span><svg version="1.1" class="icon-offer" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
+					<path class="path-offer" d="M27.174,13.412l-12.6-12.6C14.07,0.308,13.37,0,12.6,0H2.8C1.26,0,0,1.26,0,2.8v9.8
+					c0,0.77,0.308,1.47,0.826,1.988l12.6,12.6C13.93,27.692,14.63,28,15.4,28c0.77,0,1.47-0.308,1.974-0.826l9.8-9.8
+					C27.692,16.87,28,16.17,28,15.4C28,14.63,27.678,13.916,27.174,13.412z M4.9,7C3.738,7,2.8,6.062,2.8,4.9s0.938-2.1,2.1-2.1
+					S7,3.738,7,4.9S6.062,7,4.9,7z"/>
+				</svg></span><em>Offers</em></a></li>
+				<li><a href="/about/"><span><svg version="1.1" class="icon-star" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
+					<path class="path-star" d="M27.976,10.643c-0.058-0.187-0.211-0.323-0.397-0.351L18.5,8.906l-4.06-8.642
+					c-0.166-0.352-0.716-0.352-0.881,0l-4.06,8.642l-9.079,1.385c-0.185,0.028-0.339,0.165-0.397,0.351s-0.01,0.392,0.124,0.529
+					l6.569,6.727l-1.551,9.498c-0.031,0.194,0.044,0.389,0.196,0.504c0.152,0.116,0.352,0.131,0.518,0.039L14,23.456l8.12,4.484
+					C22.192,27.98,22.271,28,22.349,28c0.102,0,0.203-0.033,0.289-0.099c0.151-0.115,0.227-0.311,0.196-0.504l-1.551-9.498l6.569-6.727
+					C27.985,11.034,28.033,10.829,27.976,10.643z"/>
+				</svg></span><em>Why us?</em></a></li>
+				<li><a href="tel:(860)664-4906"><span><svg version="1.1" class="icon-phone" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
+					<path class="path-phone" d="M23.496,28C10.519,28,0,17.48,0,4.503l4.226-4.226c0.37-0.37,0.969-0.37,1.338,0l5.515,5.515
+						c0.37,0.37,0.37,0.969,0,1.338l-4.226,4.226l9.79,9.791l4.226-4.226c0.37-0.37,0.969-0.37,1.338,0l5.515,5.515
+						c0.37,0.37,0.37,0.969,0,1.338L23.496,28z"/>
+					</svg></span><em>Call Us</em></a></li>
 			</ul>
 		</div>
 
